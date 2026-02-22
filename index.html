@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WireTrack — The Operating System for Electrical Execution</title>
+    <meta name="description" content="WireTrack is the structured control environment for electrical companies. Projects. Service orders. Costs. Materials. Accountability. Workflows. One system. Full control." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://wiretrack.ch" />
+    <meta name="theme-color" content="#060a11" />
+    <meta property="og:title" content="WireTrack — Enterprise Operating System" />
+    <meta property="og:description" content="The structured control environment for electrical companies. One system. Full control." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://wiretrack.ch" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="WireTrack — Enterprise Operating System" />
+    <meta name="twitter:description" content="The structured control environment for electrical companies. One system. Full control." />
+
+    <!--
+        WIRETRACK TAGLINE OPTIONS
+        ─────────────────────────
+        01  The Operating System for Electrical Execution
+        02  Order. Control. Execution.
+        03  Built for Structure. Engineered for Scale.
+        04  Infrastructure, Not Software.
+        05  Where Execution Meets Architecture.
+        06  Control Is Not Optional.
+        07  Structured by Design. Scalable by Default.
+        08  The System Behind the System.
+        09  Every Wire. Every Cost. Every Decision. Tracked.
+        10  Digital Infrastructure for Electrical Operations.
+        11  Precision at the System Level.
+        12  Engineered Control for Complex Operations.
+    -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        bg: '#060a11',
+                        surface: { DEFAULT: '#0a1018', 2: '#0f1722', 3: '#141e2c' },
+                        accent: { DEFAULT: '#0ea5e9', light: '#38bdf8', dim: '#0284c7' },
+                        wire: { cyan: '#0ea5e9', mint: '#2dd4bf', slate: '#64748b' }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --bg: #060a11;
+            --fg: #e2e8f0;
+            --muted: #64748b;
+            --accent: #0ea5e9;
+            --accent-glow: rgba(14, 165, 233, 0.12);
+            --border: rgba(255,255,255,0.06);
+            --border-hover: rgba(14, 165, 233, 0.25);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { height: 100%; background: var(--bg); color: var(--fg); font-family: Inter, system-ui, -apple-system, sans-serif; }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background-image:
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(14, 165, 233, 0.08), transparent),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" opacity="0.035"><path d="M0 0h80v80H0z" fill="none"/><path d="M0 40h80M40 0v80" stroke="white" stroke-width=".4"/></svg>');
+            background-size: 100% 100%, 80px 80px;
+            pointer-events: none;
+        }
+
+        .wrap { max-width: 1200px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+        @media (min-width: 768px) { .wrap { padding-left: 40px; padding-right: 40px; } }
+
+        .topbar {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(6, 10, 17, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .card {
+            background: rgba(10, 16, 24, 0.7);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            border-color: var(--border-hover);
+            box-shadow: 0 0 40px -12px rgba(14, 165, 233, 0.1);
+        }
+
+        .card-static {
+            background: rgba(10, 16, 24, 0.7);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--accent);
+            color: #060a11;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border-radius: 8px;
+            border: none;
+            transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background: #38bdf8;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 24px rgba(14, 165, 233, 0.3);
+        }
+        .btn-primary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            color: var(--fg);
+            font-weight: 500;
+            font-size: 0.875rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.12);
+            transition: border-color 0.2s ease, transform 0.15s ease;
+            cursor: pointer;
+        }
+        .btn-secondary:hover {
+            border-color: rgba(255,255,255,0.25);
+            transform: translateY(-1px);
+        }
+        .btn-secondary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+        .scrollbar {
+            position: fixed; top: 0; left: 0; height: 2px;
+            background: var(--accent);
+            width: 0%; z-index: 60;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.in { opacity: 1; transform: none; }
+        .reveal-d1 { transition-delay: 0.06s; }
+        .reveal-d2 { transition-delay: 0.12s; }
+        .reveal-d3 { transition-delay: 0.18s; }
+        .reveal-d4 { transition-delay: 0.24s; }
+        .reveal-d5 { transition-delay: 0.30s; }
+        .reveal-d6 { transition-delay: 0.36s; }
+        .reveal-d7 { transition-delay: 0.42s; }
+
+        .system-mock {
+            background: #080e18;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            overflow: hidden;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .system-mock-header {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            display: flex; align-items: center; justify-content: space-between;
+            font-size: 0.7rem;
+            color: #64748b;
+        }
+        .system-mock-body { padding: 16px; font-size: 0.72rem; color: #94a3b8; }
+        .mock-row {
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            align-items: center;
+        }
+        .mock-row:last-child { border-bottom: none; }
+
+        .status-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            display: inline-block;
+        }
+        .status-live {
+            background: #22c55e;
+            box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        .status-standby { background: #eab308; box-shadow: 0 0 6px rgba(234, 179, 8, 0.4); }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .flow-step {
+            position: relative;
+            text-align: center;
+            flex: 1;
+        }
+        .flow-step::after {
+            content: '';
+            position: absolute;
+            top: 22px;
+            right: -50%;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(14,165,233,0.3), rgba(14,165,233,0.08));
+        }
+        .flow-step:last-child::after { display: none; }
+
+        .diff-col { flex: 1; min-width: 280px; }
+
+        .manifesto-text {
+            font-size: 1.125rem;
+            line-height: 1.85;
+            color: #cbd5e1;
+            max-width: 720px;
+        }
+        .manifesto-text p + p { margin-top: 1.25rem; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { transition: none !important; transform: none !important; opacity: 1 !important; }
+            .status-live { animation: none !important; }
+        }
+
+        .counter { font-variant-numeric: tabular-nums; }
+    </style>
+
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"SoftwareApplication","name":"WireTrack","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"Enterprise operating system for electrical companies. Manages projects, service orders, costs, materials, accountability, and structured workflows.","url":"https://wiretrack.ch","author":{"@type":"Organization","name":"WireTrack","url":"https://wiretrack.ch"}}
+    </script>
+</head>
+<body>
+    <div id="scrollbar" class="scrollbar" aria-hidden="true"></div>
+
+    <!-- ─── NAVIGATION ─── -->
+    <nav class="topbar" aria-label="Main navigation">
+        <div class="wrap py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <span class="font-mono text-sm font-semibold tracking-tight text-white">WIRETRACK</span>
+                    <span class="hidden sm:inline font-mono text-[0.65rem] text-slate-500 border border-slate-700/50 rounded px-1.5 py-0.5">v2.0</span>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="hidden md:flex items-center gap-6 text-sm text-slate-400">
+                        <a class="hover:text-slate-200 transition-colors" href="#architecture">Architecture</a>
+                        <a class="hover:text-slate-200 transition-colors" href="#security">Security</a>
+                        <a class="hover:text-slate-200 transition-colors" href="#philosophy">Philosophy</a>
+                    </div>
+                    <a href="mailto:info@wiretrack.ch" class="btn-primary text-xs px-4 py-2">Request Access</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ─── HERO ─── -->
+    <header class="wrap pt-20 pb-24 md:pt-28 md:pb-32">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div>
+                <div class="reveal">
+                    <span class="font-mono text-[0.7rem] tracking-widest uppercase text-accent">Enterprise Operating System</span>
+                </div>
+
+                <h1 class="mt-5 text-4xl md:text-5xl lg:text-[3.4rem] font-black leading-[1.08] tracking-tight reveal reveal-d1">
+                    The Operating System<br/>for Electrical Execution.
+                </h1>
+
+                <p class="mt-6 text-lg text-slate-400 leading-relaxed max-w-xl reveal reveal-d2">
+                    WireTrack is the structured control environment for electrical companies. Projects. Service orders. Costs. Materials. Accountability. Workflows. One system. Full control.
+                </p>
+
+                <div class="mt-8 flex flex-wrap gap-3 reveal reveal-d3">
+                    <a href="mailto:info@wiretrack.ch" class="btn-primary">Request Access</a>
+                    <a href="#architecture" class="btn-secondary">View Architecture</a>
+                </div>
+
+                <div class="mt-10 flex flex-wrap gap-x-6 gap-y-2 reveal reveal-d4">
+                    <span class="flex items-center gap-2 text-xs text-slate-500 font-mono">
+                        <span class="w-1 h-1 rounded-full bg-accent"></span>Role-Based Access
+                    </span>
+                    <span class="flex items-center gap-2 text-xs text-slate-500 font-mono">
+                        <span class="w-1 h-1 rounded-full bg-accent"></span>Full Audit Trail
+                    </span>
+                    <span class="flex items-center gap-2 text-xs text-slate-500 font-mono">
+                        <span class="w-1 h-1 rounded-full bg-accent"></span>Modular Architecture
+                    </span>
+                    <span class="flex items-center gap-2 text-xs text-slate-500 font-mono">
+                        <span class="w-1 h-1 rounded-full bg-accent"></span>Swiss Infrastructure
+                    </span>
+                </div>
+            </div>
+
+            <div class="reveal reveal-d3">
+                <div class="system-mock shadow-2xl shadow-black/40">
+                    <div class="system-mock-header">
+                        <div class="flex items-center gap-3">
+                            <span class="text-white/80 font-semibold tracking-wide">WIRETRACK SYSTEM</span>
+                            <span class="text-slate-600">v2.4.1</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="status-dot status-live"></span>
+                            <span class="text-emerald-400/70">LIVE</span>
+                        </div>
+                    </div>
+                    <div class="system-mock-body">
+                        <div class="mock-row text-[0.65rem] text-slate-500 font-semibold uppercase tracking-wider" style="border-bottom-color: rgba(255,255,255,0.06);">
+                            <span>Module</span>
+                            <span>Status</span>
+                            <span class="text-right">Orders</span>
+                            <span class="text-right">Volume</span>
+                        </div>
+                        <div class="mock-row">
+                            <span class="text-slate-300">Project Control</span>
+                            <span class="flex items-center gap-1.5"><span class="status-dot status-live"></span> Active</span>
+                            <span class="text-right text-slate-300 counter" data-target="847">0</span>
+                            <span class="text-right text-slate-400">CHF 2.4M</span>
+                        </div>
+                        <div class="mock-row">
+                            <span class="text-slate-300">Service Orders</span>
+                            <span class="flex items-center gap-1.5"><span class="status-dot status-live"></span> Active</span>
+                            <span class="text-right text-slate-300 counter" data-target="1203">0</span>
+                            <span class="text-right text-slate-400">CHF 890K</span>
+                        </div>
+                        <div class="mock-row">
+                            <span class="text-slate-300">Material Mgmt</span>
+                            <span class="flex items-center gap-1.5"><span class="status-dot status-live"></span> Active</span>
+                            <span class="text-right text-slate-500">&mdash;</span>
+                            <span class="text-right text-slate-400">CHF 340K</span>
+                        </div>
+                        <div class="mock-row">
+                            <span class="text-slate-300">Cost Engine</span>
+                            <span class="flex items-center gap-1.5"><span class="status-dot status-live"></span> Active</span>
+                            <span class="text-right text-slate-500">&mdash;</span>
+                            <span class="text-right text-slate-400">CHF 3.6M</span>
+                        </div>
+                        <div class="mock-row">
+                            <span class="text-slate-300">Archive</span>
+                            <span class="flex items-center gap-1.5"><span class="status-dot status-standby"></span> Standby</span>
+                            <span class="text-right text-slate-300 counter" data-target="12847">0</span>
+                            <span class="text-right text-slate-500">&mdash;</span>
+                        </div>
+                        <div class="mt-3 pt-3 border-t border-white/[0.04] text-[0.65rem] text-slate-500 flex items-center justify-between">
+                            <span>RBAC: 4 roles &middot; 23 users</span>
+                            <span>last sync: 0.3s</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ─── 01 THE PROBLEM ─── -->
+    <section class="wrap py-20 md:py-28" id="problem">
+        <div class="reveal">
+            <span class="section-label">01 &mdash; The Problem</span>
+            <h2 class="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">Fragmented operations.<br/>Zero infrastructure.</h2>
+            <p class="mt-4 text-slate-400 max-w-2xl">Electrical companies manage complexity with scattered tools, manual tracking, and systems that were never designed for structured execution.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
+            <div class="card p-6 reveal reveal-d1">
+                <div class="font-mono text-xs text-accent mb-3">Cost Tracking</div>
+                <div class="text-sm font-semibold text-slate-200 mb-2">Scattered across spreadsheets</div>
+                <p class="text-sm text-slate-500 leading-relaxed">Material costs, labor hours, and project expenses live in separate files. No aggregation. No single view.</p>
+            </div>
+            <div class="card p-6 reveal reveal-d2">
+                <div class="font-mono text-xs text-accent mb-3">Accountability</div>
+                <div class="text-sm font-semibold text-slate-200 mb-2">No traceable chain of decisions</div>
+                <p class="text-sm text-slate-500 leading-relaxed">When something goes wrong, there is no audit trail. Responsibility dissolves. Root cause stays hidden.</p>
+            </div>
+            <div class="card p-6 reveal reveal-d3">
+                <div class="font-mono text-xs text-accent mb-3">Workflows</div>
+                <div class="text-sm font-semibold text-slate-200 mb-2">Exist in people's heads</div>
+                <p class="text-sm text-slate-500 leading-relaxed">Processes survive as tribal knowledge. When someone leaves, the workflow leaves with them.</p>
+            </div>
+            <div class="card p-6 reveal reveal-d4">
+                <div class="font-mono text-xs text-accent mb-3">Archive</div>
+                <div class="text-sm font-semibold text-slate-200 mb-2">Stored, not structured</div>
+                <p class="text-sm text-slate-500 leading-relaxed">Documents are filed away without logic. Retrieval is guesswork. Versioning is nonexistent.</p>
+            </div>
+            <div class="card p-6 reveal reveal-d5">
+                <div class="font-mono text-xs text-accent mb-3">Permissions</div>
+                <div class="text-sm font-semibold text-slate-200 mb-2">Binary access or none</div>
+                <p class="text-sm text-slate-500 leading-relaxed">Access control is all-or-nothing. No role granularity. No hierarchy enforcement. No scoping.</p>
+            </div>
+            <div class="card p-6 reveal reveal-d6">
+                <div class="font-mono text-xs text-accent mb-3">Service Orders</div>
+                <div class="text-sm font-semibold text-slate-200 mb-2">Created, assigned, forgotten</div>
+                <p class="text-sm text-slate-500 leading-relaxed">No execution tracking. No completion verification. No structured lifecycle management.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── 02 SYSTEM ARCHITECTURE ─── -->
+    <section class="wrap py-20 md:py-28" id="architecture">
+        <div class="reveal">
+            <span class="section-label">02 &mdash; System Architecture</span>
+            <h2 class="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">One system. Eight layers.<br/>Full control.</h2>
+            <p class="mt-4 text-slate-400 max-w-2xl">WireTrack is not a tool. It is a digital infrastructure layer built for the operational reality of electrical companies.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
+            <div class="card p-6 reveal reveal-d1">
+                <div class="font-mono text-xs text-accent/70 mb-1">01</div>
+                <div class="text-sm font-bold text-slate-200 mb-2">Project Control</div>
+                <p class="text-xs text-slate-500 leading-relaxed">Full lifecycle management from initiation to archive. Status tracking, milestone enforcement, resource allocation.</p>
+            </div>
+            <div class="card p-6 reveal reveal-d2">
+                <div class="font-mono text-xs text-accent/70 mb-1">02</div>
+                <div class="text-sm font-bold text-slate-200 mb-2">Service Orders</div>
+                <p class="text-xs text-slate-500 leading-relaxed">Structured order creation, assignment, execution tracking, and completion verification.</p>
+            </div>
+            <div class="card p-6 reveal reveal-d3">
+                <div class="font-mono text-xs text-accent/70 mb-1">03</div>
+                <div class="text-sm font-bold text-slate-200 mb-2">Cost Aggregation</div>
+                <p class="text-xs text-slate-500 leading-relaxed">Real-time cost consolidation across materials, labor, and overhead. Per-project and per-order granularity.</p>
+            </div>
+            <div class="card p-6 reveal reveal-d4">
+                <div class="font-mono text-xs text-accent/70 mb-1">04</div>
+                <div class="text-sm font-bold text-slate-200 mb-2">Material Management</div>
+                <p class="text-xs text-slate-500 leading-relaxed">Inventory tracking, usage logging, and procurement workflow integration.</p>
+            </div>
+            <div class="card p-6 reveal reveal-d5">
+                <div class="font-mono text-xs text-accent/70 mb-1">05</div>
+                <div class="text-sm font-bold text-slate-200 mb-2">Role-Based Access</div>
+                <p class="text-xs text-slate-500 leading-relaxed">Granular permission systems mapped to organizational hierarchy. Every action scoped to role and context.</p>
+            </div>
+            <div class="card p-6 reveal reveal-d6">
+                <div class="font-mono text-xs text-accent/70 mb-1">06</div>
+                <div class="text-sm font-bold text-slate-200 mb-2">Archive &amp; Restore</div>
+                <p class="text-xs text-slate-500 leading-relaxed">Structured archival with version control. Full restore capability. Nothing is lost. Everything is retrievable.</p>
+            </div>
+            <div class="card p-6 reveal reveal-d7">
+                <div class="font-mono text-xs text-accent/70 mb-1">07</div>
+                <div class="text-sm font-bold text-slate-200 mb-2">Workflow Engine</div>
+                <p class="text-xs text-slate-500 leading-relaxed">Defined execution paths. Status transitions. Approval chains. Automated routing logic.</p>
+            </div>
+            <div class="card p-6 reveal">
+                <div class="font-mono text-xs text-accent/70 mb-1">08</div>
+                <div class="text-sm font-bold text-slate-200 mb-2">Audit Trail</div>
+                <p class="text-xs text-slate-500 leading-relaxed">Every action logged. Every change traced. Every decision accountable. Immutable history.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── 03 EXECUTION FLOW ─── -->
+    <section class="wrap py-20 md:py-28" id="flow">
+        <div class="reveal">
+            <span class="section-label">03 &mdash; Execution Flow</span>
+            <h2 class="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">Every operation follows<br/>a defined path.</h2>
+            <p class="mt-4 text-slate-400 max-w-2xl">From ingestion to archive, WireTrack enforces structure at every transition. No step is skipped. No state is undefined.</p>
+        </div>
+
+        <div class="mt-14 overflow-x-auto">
+            <div class="flex gap-0 min-w-[700px] reveal reveal-d2">
+                <div class="flow-step px-3">
+                    <div class="w-11 h-11 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto mb-3">
+                        <span class="font-mono text-xs text-accent font-semibold">01</span>
+                    </div>
+                    <div class="text-sm font-bold text-slate-200 mb-1">Ingest</div>
+                    <p class="text-xs text-slate-500">Data enters the system through defined input channels.</p>
+                </div>
+                <div class="flow-step px-3">
+                    <div class="w-11 h-11 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto mb-3">
+                        <span class="font-mono text-xs text-accent font-semibold">02</span>
+                    </div>
+                    <div class="text-sm font-bold text-slate-200 mb-1">Structure</div>
+                    <p class="text-xs text-slate-500">Raw data is validated, classified, and mapped to entities.</p>
+                </div>
+                <div class="flow-step px-3">
+                    <div class="w-11 h-11 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto mb-3">
+                        <span class="font-mono text-xs text-accent font-semibold">03</span>
+                    </div>
+                    <div class="text-sm font-bold text-slate-200 mb-1">Assign</div>
+                    <p class="text-xs text-slate-500">Tasks routed to responsible roles based on permission scope.</p>
+                </div>
+                <div class="flow-step px-3">
+                    <div class="w-11 h-11 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto mb-3">
+                        <span class="font-mono text-xs text-accent font-semibold">04</span>
+                    </div>
+                    <div class="text-sm font-bold text-slate-200 mb-1">Execute</div>
+                    <p class="text-xs text-slate-500">Work is performed within tracked, time-stamped boundaries.</p>
+                </div>
+                <div class="flow-step px-3">
+                    <div class="w-11 h-11 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto mb-3">
+                        <span class="font-mono text-xs text-accent font-semibold">05</span>
+                    </div>
+                    <div class="text-sm font-bold text-slate-200 mb-1">Document</div>
+                    <p class="text-xs text-slate-500">Results, costs, and changes are captured at the system level.</p>
+                </div>
+                <div class="flow-step px-3">
+                    <div class="w-11 h-11 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto mb-3">
+                        <span class="font-mono text-xs text-accent font-semibold">06</span>
+                    </div>
+                    <div class="text-sm font-bold text-slate-200 mb-1">Archive</div>
+                    <p class="text-xs text-slate-500">Completed records are versioned, sealed, and stored for retrieval.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── 04 DIFFERENTIATION ─── -->
+    <section class="wrap py-20 md:py-28" id="differentiation">
+        <div class="reveal">
+            <span class="section-label">04 &mdash; Differentiation</span>
+            <h2 class="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">WireTrack is not<br/>another tool.</h2>
+        </div>
+
+        <div class="mt-12 flex flex-wrap gap-6">
+            <div class="diff-col reveal reveal-d1">
+                <div class="card-static p-6 md:p-8">
+                    <div class="font-mono text-xs text-accent mb-5 tracking-wider">WIRETRACK IS</div>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0"></span>
+                            <span class="text-sm text-slate-300">An operating system for electrical execution</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0"></span>
+                            <span class="text-sm text-slate-300">A structured control environment</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0"></span>
+                            <span class="text-sm text-slate-300">A digital infrastructure layer</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0"></span>
+                            <span class="text-sm text-slate-300">Built by operators, not marketers</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0"></span>
+                            <span class="text-sm text-slate-300">Designed for accountability and traceability</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0"></span>
+                            <span class="text-sm text-slate-300">Engineered for modular scalability</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="diff-col reveal reveal-d2">
+                <div class="card-static p-6 md:p-8">
+                    <div class="font-mono text-xs text-slate-500 mb-5 tracking-wider">WIRETRACK IS NOT</div>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-600 flex-shrink-0"></span>
+                            <span class="text-sm text-slate-500">A generic ERP system</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-600 flex-shrink-0"></span>
+                            <span class="text-sm text-slate-500">A project management tool</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-600 flex-shrink-0"></span>
+                            <span class="text-sm text-slate-500">A startup experiment</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-600 flex-shrink-0"></span>
+                            <span class="text-sm text-slate-500">A marketing wrapper around generic features</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-600 flex-shrink-0"></span>
+                            <span class="text-sm text-slate-500">An all-in-one promise that delivers nothing deeply</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-600 flex-shrink-0"></span>
+                            <span class="text-sm text-slate-500">A one-size-fits-all solution</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── 05 SECURITY & STABILITY ─── -->
+    <section class="wrap py-20 md:py-28" id="security">
+        <div class="reveal">
+            <span class="section-label">05 &mdash; Security &amp; Stability</span>
+            <h2 class="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">Trust through architecture.</h2>
+            <p class="mt-4 text-slate-400 max-w-2xl">Security is not a feature. It is the foundation.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4 mt-12">
+            <div class="card p-6 reveal reveal-d1">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
+                        <svg class="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    </div>
+                    <div class="text-sm font-bold text-slate-200">Role-Based Access Control</div>
+                </div>
+                <p class="text-sm text-slate-500 leading-relaxed">Every user operates within defined permission boundaries. Actions are scoped to role, team, and context. No exceptions.</p>
+            </div>
+            <div class="card p-6 reveal reveal-d2">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
+                        <svg class="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                    </div>
+                    <div class="text-sm font-bold text-slate-200">Audit Trail</div>
+                </div>
+                <p class="text-sm text-slate-500 leading-relaxed">Every action is logged with timestamp, user identity, and change delta. The history is immutable. Compliance is structural.</p>
+            </div>
+            <div class="card p-6 reveal reveal-d3">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
+                        <svg class="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                    </div>
+                    <div class="text-sm font-bold text-slate-200">Data Integrity</div>
+                </div>
+                <p class="text-sm text-slate-500 leading-relaxed">Referential consistency enforced at the system level. No orphaned records. No silent failures. No unverified states.</p>
+            </div>
+            <div class="card p-6 reveal reveal-d4">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
+                        <svg class="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                    </div>
+                    <div class="text-sm font-bold text-slate-200">Version Control</div>
+                </div>
+                <p class="text-sm text-slate-500 leading-relaxed">Configuration and data changes are versioned. Rollback is always possible. Every state is recoverable.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── 06 SCALABILITY ─── -->
+    <section class="wrap py-20 md:py-28" id="scalability">
+        <div class="reveal">
+            <span class="section-label">06 &mdash; Scalability &amp; Modularity</span>
+            <h2 class="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">Modular by design.<br/>Scalable by default.</h2>
+            <p class="mt-4 text-slate-400 max-w-2xl">WireTrack grows with operational complexity without requiring architectural change.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
+            <div class="card p-6 reveal reveal-d1">
+                <div class="font-mono text-xs text-accent/70 mb-3">Modules</div>
+                <div class="text-sm font-bold text-slate-200 mb-2">Module-Based Architecture</div>
+                <p class="text-xs text-slate-500 leading-relaxed">Enable what you need. Disable what you don't. No bloat. No unused complexity.</p>
+            </div>
+            <div class="card p-6 reveal reveal-d2">
+                <div class="font-mono text-xs text-accent/70 mb-3">Teams</div>
+                <div class="text-sm font-bold text-slate-200 mb-2">Per-Team Scaling</div>
+                <p class="text-xs text-slate-500 leading-relaxed">Each team, branch, or division operates independently within the same system instance.</p>
+            </div>
+            <div class="card p-6 reveal reveal-d3">
+                <div class="font-mono text-xs text-accent/70 mb-3">Config</div>
+                <div class="text-sm font-bold text-slate-200 mb-2">Versioned Configuration</div>
+                <p class="text-xs text-slate-500 leading-relaxed">System configurations are version-controlled. Changes are auditable and reversible.</p>
+            </div>
+            <div class="card p-6 reveal reveal-d4">
+                <div class="font-mono text-xs text-accent/70 mb-3">API</div>
+                <div class="text-sm font-bold text-slate-200 mb-2">API-First Design</div>
+                <p class="text-xs text-slate-500 leading-relaxed">Every module exposes structured interfaces. Integration is a first-class concern.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── 07 MANIFESTO ─── -->
+    <section class="wrap py-20 md:py-28" id="philosophy">
+        <div class="reveal">
+            <span class="section-label">07 &mdash; Philosophy</span>
+            <h2 class="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight mb-10">The WireTrack Manifesto.</h2>
+        </div>
+
+        <div class="max-w-3xl">
+            <div class="card-static p-8 md:p-12 reveal reveal-d1">
+                <div class="manifesto-text">
+                    <p>WireTrack exists because electrical companies deserve infrastructure, not improvisation.</p>
+                    <p>We believe operational software should enforce structure, not suggest it. That accountability requires architecture. That cost control requires aggregation at the system level. That access control must reflect organizational reality.</p>
+                    <p>We build for operators who value precision over aesthetics, traceability over convenience, and control over flexibility.</p>
+                    <p class="text-slate-300 font-medium">WireTrack is not designed to impress. It is designed to work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── 08 FINAL CTA ─── -->
+    <section class="wrap py-20 md:py-28">
+        <div class="card-static p-8 md:p-14 text-center reveal">
+            <span class="section-label">08 &mdash; Deployment</span>
+            <h2 class="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">Built for operators.<br/>Ready for deployment.</h2>
+            <p class="mt-4 text-slate-400 max-w-xl mx-auto">WireTrack is available for qualified electrical companies with structured operational requirements.</p>
+            <div class="mt-8">
+                <a href="mailto:info@wiretrack.ch" class="btn-primary text-sm px-6 py-3">Request Access</a>
+            </div>
+            <p class="mt-6 text-xs text-slate-600 max-w-md mx-auto">Deployment includes architecture review, role configuration, and operational onboarding.</p>
+        </div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <footer class="wrap py-10 border-t border-white/[0.04]">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-slate-500">
+            <div class="flex items-center gap-3">
+                <span class="font-mono text-xs text-slate-600">WIRETRACK</span>
+                <span class="text-slate-700">&middot;</span>
+                <span id="year"></span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a class="hover:text-slate-300 transition-colors" href="mailto:info@wiretrack.ch">info@wiretrack.ch</a>
+                <a class="hover:text-slate-300 transition-colors" href="/impressum.html">Impressum</a>
+                <a class="hover:text-slate-300 transition-colors" href="/datenschutz.html">Datenschutz</a>
+            </div>
+        </div>
+    </footer>
+
+    <noscript>
+        <style>.reveal { opacity: 1 !important; transform: none !important; }</style>
+    </noscript>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const sb = document.getElementById('scrollbar');
+        const onScroll = () => {
+            const h = document.documentElement;
+            sb.style.width = ((h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100) + '%';
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('in');
+                    io.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.dataset.target);
+                    const duration = 1800;
+                    const start = performance.now();
+
+                    const animate = (now) => {
+                        const elapsed = now - start;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const eased = 1 - Math.pow(1 - progress, 3);
+                        el.textContent = Math.floor(target * eased).toLocaleString('en-CH');
+                        if (progress < 1) requestAnimationFrame(animate);
+                    };
+
+                    requestAnimationFrame(animate);
+                    counterObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                const target = document.querySelector(anchor.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Impressum — WireTrack</title>
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://wiretrack.ch/impressum.html" />
+    <meta name="theme-color" content="#060a11" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { --bg: #060a11; --fg: #e2e8f0; --accent: #0ea5e9; --border: rgba(255,255,255,0.06); }
+        html, body { background: var(--bg); color: var(--fg); font-family: Inter, system-ui, -apple-system, sans-serif; }
+        body::before {
+            content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" opacity="0.035"><path d="M0 0h80v80H0z" fill="none"/><path d="M0 40h80M40 0v80" stroke="white" stroke-width=".4"/></svg>');
+            background-size: 80px 80px;
+        }
+        .card { background: rgba(10, 16, 24, 0.7); border: 1px solid var(--border); border-radius: 12px; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <nav class="sticky top-0 z-50 bg-[#060a11]/80 backdrop-blur-xl border-b border-white/[0.06]">
+        <div class="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="/" class="font-mono text-sm font-semibold tracking-tight text-white hover:text-sky-400 transition-colors">WIRETRACK</a>
+            <a href="/" class="text-sm text-slate-400 hover:text-slate-200 transition-colors">&larr; Back</a>
+        </div>
+    </nav>
+    <main class="max-w-3xl mx-auto px-6 py-12 md:py-16">
+        <span class="font-mono text-[0.7rem] tracking-widest uppercase text-sky-500">Legal</span>
+        <h1 class="text-3xl md:text-4xl font-extrabold mt-3 tracking-tight">Impressum</h1>
+
+        <section class="card p-6 md:p-8 mt-8 space-y-6 text-slate-300/90 text-sm leading-relaxed">
+            <div>
+                <p class="font-semibold text-slate-200">WireTrack by Silas Roos</p>
+                <p class="mt-1">Sch&uuml;tzenweg 2<br/>4710 Balsthal<br/>Schweiz</p>
+            </div>
+            <div>
+                <p>E&#8209;Mail: <a href="mailto:info@wiretrack.ch" class="text-sky-400 hover:underline">info@wiretrack.ch</a></p>
+                <p>Web: <a href="https://wiretrack.ch" class="text-sky-400 hover:underline">wiretrack.ch</a></p>
+            </div>
+            <div>
+                <p>Verantwortlich f&uuml;r den Inhalt: Silas Roos</p>
+                <p class="mt-1">Rechtsform: Einzelunternehmen (nicht im Handelsregister eingetragen)</p>
+                <p class="mt-1">Umsatzsteuer/MWST: nicht anwendbar gem&auml;ss MWSTG (Kleinunternehmen)</p>
+            </div>
+
+            <div class="border-t border-white/[0.06] pt-6">
+                <h2 class="text-base font-bold text-slate-200">Haftungsausschluss</h2>
+                <p class="mt-2">Alle Inhalte wurden sorgf&auml;ltig gepr&uuml;ft. Dennoch wird keine Haftung f&uuml;r Richtigkeit, Vollst&auml;ndigkeit oder Aktualit&auml;t &uuml;bernommen.</p>
+            </div>
+            <div class="border-t border-white/[0.06] pt-6">
+                <h2 class="text-base font-bold text-slate-200">Urheberrecht</h2>
+                <p class="mt-2">Alle Inhalte (Texte, Grafiken, Logos) sind urheberrechtlich gesch&uuml;tzt. Nutzung nur mit ausdr&uuml;cklicher Genehmigung.</p>
+            </div>
+            <div class="border-t border-white/[0.06] pt-6">
+                <h2 class="text-base font-bold text-slate-200">Gerichtsstand</h2>
+                <p class="mt-2">Schweiz</p>
+            </div>
+        </section>
+
+        <footer class="text-xs text-slate-500 mt-12 flex items-center gap-3">
+            <span class="font-mono text-slate-600">WIRETRACK</span>
+            <span class="text-slate-700">&middot;</span>
+            <span><script>document.write(new Date().getFullYear())</script></span>
+        </footer>
+    </main>
+</body>
+</html>
