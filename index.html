@@ -230,23 +230,75 @@
         }
         .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); transform: translateY(-3px); }
 
-        /* Hero Visual */
-        .hero-visual { margin-top: 80px; position: relative; perspective: 1000px; }
+        /* Hero Visual - Mock Dashboard */
+        .hero-visual { margin-top: 80px; position: relative; perspective: 1200px; }
         .hero-visual-inner {
-            position: relative; max-width: 750px; margin: 0 auto;
+            position: relative; max-width: 900px; margin: 0 auto;
             animation: hero-float 6s ease-in-out infinite;
         }
-        @keyframes hero-float { 0%, 100% { transform: translateY(0) rotateX(2deg); } 50% { transform: translateY(-16px) rotateX(0deg); } }
-        .hero-visual img {
-            width: 100%; display: block; border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 80px rgba(59,130,246,0.08);
-        }
+        @keyframes hero-float { 0%, 100% { transform: translateY(0) rotateX(2deg); } 50% { transform: translateY(-14px) rotateX(0deg); } }
         .hero-visual-glow {
             position: absolute; bottom: -60px; left: 5%; right: 5%; height: 120px;
-            background: radial-gradient(ellipse, rgba(59,130,246,0.15), transparent);
+            background: radial-gradient(ellipse, rgba(59,130,246,0.18), transparent);
             filter: blur(40px); z-index: -1;
         }
+
+        .mock-app {
+            background: #0b1222; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px;
+            overflow: hidden; font-family: 'Inter', sans-serif;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 80px rgba(59,130,246,0.08);
+        }
+        .mock-titlebar {
+            display: flex; align-items: center; justify-content: space-between; padding: 12px 20px;
+            background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .mock-dots { display: flex; gap: 6px; }
+        .mock-dots span { width: 10px; height: 10px; border-radius: 50%; }
+        .mock-dots span:nth-child(1) { background: #ef4444; }
+        .mock-dots span:nth-child(2) { background: #f59e0b; }
+        .mock-dots span:nth-child(3) { background: #22c55e; }
+        .mock-titlebar-text { font-size: 0.7rem; color: rgba(255,255,255,0.3); font-weight: 500; }
+        .mock-body { display: flex; min-height: 320px; }
+        @media (max-width: 640px) { .mock-body { flex-direction: column; min-height: auto; } }
+        .mock-sidebar {
+            width: 200px; flex-shrink: 0; border-right: 1px solid rgba(255,255,255,0.05);
+            padding: 16px 12px; background: rgba(0,0,0,0.15);
+        }
+        @media (max-width: 640px) { .mock-sidebar { width: 100%; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 12px; } }
+        .mock-sidebar-item {
+            display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px;
+            font-size: 0.75rem; color: rgba(255,255,255,0.4); cursor: default; transition: all 0.2s; margin-bottom: 2px;
+        }
+        .mock-sidebar-item.active { background: rgba(59,130,246,0.12); color: var(--accent-2); }
+        .mock-sidebar-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+        .mock-content { flex: 1; padding: 20px; overflow: hidden; }
+        .mock-content-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+        .mock-content-title { font-size: 1rem; font-weight: 700; color: #fff; }
+        .mock-badge { font-size: 0.65rem; padding: 4px 10px; border-radius: 6px; font-weight: 600; }
+        .mock-badge-blue { background: rgba(59,130,246,0.15); color: #60a5fa; }
+        .mock-table { width: 100%; }
+        .mock-table-head {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; padding: 8px 12px;
+            font-size: 0.65rem; color: rgba(255,255,255,0.3); text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .mock-table-row {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8px; padding: 10px 12px;
+            font-size: 0.75rem; color: rgba(255,255,255,0.6); align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.03); transition: background 0.2s;
+        }
+        .mock-table-row:hover { background: rgba(255,255,255,0.02); }
+        .mock-table-row .name { color: #fff; font-weight: 600; }
+        .mock-status { display: inline-flex; align-items: center; gap: 5px; font-size: 0.68rem; font-weight: 500; }
+        .mock-status-dot { width: 5px; height: 5px; border-radius: 50%; }
+        .mock-status-green .mock-status-dot { background: #22c55e; box-shadow: 0 0 6px rgba(34,197,94,0.5); }
+        .mock-status-green { color: #4ade80; }
+        .mock-status-yellow .mock-status-dot { background: #f59e0b; box-shadow: 0 0 6px rgba(245,158,11,0.5); }
+        .mock-status-yellow { color: #fbbf24; }
+        .mock-status-blue .mock-status-dot { background: #3b82f6; box-shadow: 0 0 6px rgba(59,130,246,0.5); }
+        .mock-status-blue { color: #60a5fa; }
+        .mock-progress { height: 4px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+        .mock-progress-bar { height: 100%; border-radius: 4px; }
 
         /* Hero Stats */
         .hero-stats {
@@ -323,17 +375,39 @@
 
         /* ── Showcase ── */
         .showcase { text-align: center; position: relative; overflow: hidden; }
-        .showcase-wrap { position: relative; margin-top: 60px; }
-        .showcase-wrap img {
-            width: 100%; max-width: 950px; margin: 0 auto; display: block; border-radius: 24px;
-            border: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 40px 100px rgba(0,0,0,0.5), 0 0 80px rgba(59,130,246,0.06);
+        .showcase-wrap { position: relative; margin-top: 60px; max-width: 950px; margin-left: auto; margin-right: auto; }
+
+        .mock-phone {
+            background: #0b1222; border: 1px solid rgba(255,255,255,0.1); border-radius: 28px;
+            width: 280px; margin: 0 auto; overflow: hidden; padding: 12px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(59,130,246,0.06);
         }
-        .showcase-wrap::before {
-            content: ''; position: absolute; inset: -2px; border-radius: 26px;
-            background: linear-gradient(135deg, rgba(59,130,246,0.2), transparent 40%, transparent 60%, rgba(6,182,212,0.2));
-            z-index: -1; max-width: 954px; margin: 0 auto;
+        @media (min-width: 768px) { .mock-phone { width: 320px; } }
+        .mock-phone-screen { background: #080e1a; border-radius: 18px; overflow: hidden; }
+        .mock-phone-status { display: flex; justify-content: space-between; padding: 8px 16px; font-size: 0.6rem; color: rgba(255,255,255,0.4); }
+        .mock-phone-content { padding: 16px; }
+        .mock-phone-card {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px; padding: 14px; margin-bottom: 10px;
         }
+        .mock-phone-card-title { font-size: 0.7rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+        .mock-phone-card-sub { font-size: 0.6rem; color: rgba(255,255,255,0.4); }
+        .mock-phone-card-row { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+
+        .showcase-grid { display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
+        .showcase-stats {
+            display: flex; flex-direction: column; gap: 16px; max-width: 320px;
+        }
+        .showcase-stat-card {
+            background: rgba(10,17,33,0.5); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px; padding: 20px 24px; display: flex; align-items: center; gap: 16px;
+            transition: all 0.3s;
+        }
+        .showcase-stat-card:hover { border-color: rgba(59,130,246,0.15); transform: translateX(6px); }
+        .showcase-stat-icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .showcase-stat-icon svg { width: 20px; height: 20px; }
+        .showcase-stat-val { font-size: 1.3rem; font-weight: 800; color: #fff; }
+        .showcase-stat-label { font-size: 0.75rem; color: var(--muted); }
 
         /* ── Benefits ── */
         .benefits-grid { display: grid; grid-template-columns: 1fr; gap: 32px; margin-top: 60px; }
@@ -525,7 +599,89 @@
 
             <div class="hero-visual reveal reveal-d4">
                 <div class="hero-visual-inner">
-                    <img src="/wrtk-glow.png" alt="WireTrack Plattform" />
+                    <div class="mock-app">
+                        <div class="mock-titlebar">
+                            <div class="mock-dots"><span></span><span></span><span></span></div>
+                            <div class="mock-titlebar-text">WireTrack — Dashboard</div>
+                            <div style="width: 50px;"></div>
+                        </div>
+                        <div class="mock-body">
+                            <div class="mock-sidebar">
+                                <div class="mock-sidebar-item active">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4"/></svg>
+                                    Dashboard
+                                </div>
+                                <div class="mock-sidebar-item">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                                    Projekte
+                                </div>
+                                <div class="mock-sidebar-item">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                                    Aufträge
+                                </div>
+                                <div class="mock-sidebar-item">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                    Team
+                                </div>
+                                <div class="mock-sidebar-item">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    Kosten
+                                </div>
+                                <div class="mock-sidebar-item">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                                    Material
+                                </div>
+                                <div class="mock-sidebar-item">
+                                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                    Fotos
+                                </div>
+                            </div>
+                            <div class="mock-content">
+                                <div class="mock-content-header">
+                                    <div class="mock-content-title">Aktive Projekte</div>
+                                    <span class="mock-badge mock-badge-blue">7 aktiv</span>
+                                </div>
+                                <div class="mock-table">
+                                    <div class="mock-table-head">
+                                        <span>Projekt</span>
+                                        <span>Status</span>
+                                        <span>Fortschritt</span>
+                                        <span style="text-align:right;">Budget</span>
+                                    </div>
+                                    <div class="mock-table-row">
+                                        <span class="name">Neubau Wohnüberbauung Muri</span>
+                                        <span class="mock-status mock-status-green"><span class="mock-status-dot"></span> Aktiv</span>
+                                        <span><div class="mock-progress"><div class="mock-progress-bar" style="width:78%;background:linear-gradient(90deg,#3b82f6,#22d3ee);"></div></div></span>
+                                        <span style="text-align:right;color:#fff;">CHF 340K</span>
+                                    </div>
+                                    <div class="mock-table-row">
+                                        <span class="name">Sanierung Schulhaus Balsthal</span>
+                                        <span class="mock-status mock-status-green"><span class="mock-status-dot"></span> Aktiv</span>
+                                        <span><div class="mock-progress"><div class="mock-progress-bar" style="width:45%;background:linear-gradient(90deg,#3b82f6,#22d3ee);"></div></div></span>
+                                        <span style="text-align:right;color:#fff;">CHF 185K</span>
+                                    </div>
+                                    <div class="mock-table-row">
+                                        <span class="name">EFH Umbau Solothurn</span>
+                                        <span class="mock-status mock-status-yellow"><span class="mock-status-dot"></span> Planung</span>
+                                        <span><div class="mock-progress"><div class="mock-progress-bar" style="width:20%;background:linear-gradient(90deg,#f59e0b,#fbbf24);"></div></div></span>
+                                        <span style="text-align:right;color:#fff;">CHF 92K</span>
+                                    </div>
+                                    <div class="mock-table-row">
+                                        <span class="name">Bürogebäude Olten</span>
+                                        <span class="mock-status mock-status-blue"><span class="mock-status-dot"></span> Offerte</span>
+                                        <span><div class="mock-progress"><div class="mock-progress-bar" style="width:10%;background:linear-gradient(90deg,#8b5cf6,#a78bfa);"></div></div></span>
+                                        <span style="text-align:right;color:#fff;">CHF 520K</span>
+                                    </div>
+                                    <div class="mock-table-row">
+                                        <span class="name">Gewerbepark Langenthal</span>
+                                        <span class="mock-status mock-status-green"><span class="mock-status-dot"></span> Aktiv</span>
+                                        <span><div class="mock-progress"><div class="mock-progress-bar" style="width:62%;background:linear-gradient(90deg,#3b82f6,#22d3ee);"></div></div></span>
+                                        <span style="text-align:right;color:#fff;">CHF 410K</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="hero-visual-glow"></div>
                 </div>
             </div>
@@ -638,7 +794,104 @@
                 <p class="section-desc" style="margin: 16px auto 0; text-align: center; max-width: 550px;">Übersichtlich, schnell und intuitiv. WireTrack wurde gemeinsam mit Baufachleuten entwickelt — für Abläufe, die wirklich funktionieren.</p>
             </div>
             <div class="showcase-wrap reveal reveal-d2">
-                <img src="/wrtk-dark.png" alt="WireTrack Dashboard" />
+                <div class="showcase-grid">
+                    <div class="showcase-stats">
+                        <div class="showcase-stat-card">
+                            <div class="showcase-stat-icon" style="background:rgba(59,130,246,0.1);">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="#3b82f6" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                            </div>
+                            <div>
+                                <div class="showcase-stat-val">847</div>
+                                <div class="showcase-stat-label">Projekte verwaltet</div>
+                            </div>
+                        </div>
+                        <div class="showcase-stat-card">
+                            <div class="showcase-stat-icon" style="background:rgba(6,182,212,0.1);">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="#06b6d4" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                            </div>
+                            <div>
+                                <div class="showcase-stat-val">3'291</div>
+                                <div class="showcase-stat-label">Aufträge abgeschlossen</div>
+                            </div>
+                        </div>
+                        <div class="showcase-stat-card">
+                            <div class="showcase-stat-icon" style="background:rgba(16,185,129,0.1);">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="#10b981" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                            <div>
+                                <div class="showcase-stat-val">CHF 12.4M</div>
+                                <div class="showcase-stat-label">Volumen erfasst</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mock-phone">
+                        <div class="mock-phone-screen">
+                            <div class="mock-phone-status">
+                                <span>9:41</span>
+                                <span>●●● WiFi 🔋</span>
+                            </div>
+                            <div class="mock-phone-content">
+                                <div style="font-size:0.85rem;font-weight:700;color:#fff;margin-bottom:14px;">📋 Heutige Aufträge</div>
+                                <div class="mock-phone-card">
+                                    <div class="mock-phone-card-title">🏗️ Neubau Muri — Elektro EG</div>
+                                    <div class="mock-phone-card-sub">Zuweisung: Marco B. · Prio: Hoch</div>
+                                    <div class="mock-phone-card-row">
+                                        <span style="font-size:0.6rem;color:#4ade80;">● In Arbeit</span>
+                                        <span style="font-size:0.6rem;color:rgba(255,255,255,0.3);">14:00 – 17:00</span>
+                                    </div>
+                                </div>
+                                <div class="mock-phone-card">
+                                    <div class="mock-phone-card-title">🔧 Service Heizung — Fam. Müller</div>
+                                    <div class="mock-phone-card-sub">Zuweisung: Lukas W. · Prio: Mittel</div>
+                                    <div class="mock-phone-card-row">
+                                        <span style="font-size:0.6rem;color:#fbbf24;">● Geplant</span>
+                                        <span style="font-size:0.6rem;color:rgba(255,255,255,0.3);">08:00 – 10:30</span>
+                                    </div>
+                                </div>
+                                <div class="mock-phone-card">
+                                    <div class="mock-phone-card-title">📐 Offerte Bürogebäude Olten</div>
+                                    <div class="mock-phone-card-sub">Zuweisung: Silas R. · Frist: 28.02.</div>
+                                    <div class="mock-phone-card-row">
+                                        <span style="font-size:0.6rem;color:#60a5fa;">● Entwurf</span>
+                                        <span style="font-size:0.6rem;color:rgba(255,255,255,0.3);">CHF 520K</span>
+                                    </div>
+                                </div>
+                                <div style="margin-top:14px;padding:12px;background:rgba(59,130,246,0.08);border-radius:10px;text-align:center;">
+                                    <div style="font-size:0.7rem;font-weight:600;color:var(--accent-2);">+ Neuer Rapport erfassen</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="showcase-stats">
+                        <div class="showcase-stat-card">
+                            <div class="showcase-stat-icon" style="background:rgba(245,158,11,0.1);">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="#f59e0b" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            </div>
+                            <div>
+                                <div class="showcase-stat-val">14'800h</div>
+                                <div class="showcase-stat-label">Stunden erfasst</div>
+                            </div>
+                        </div>
+                        <div class="showcase-stat-card">
+                            <div class="showcase-stat-icon" style="background:rgba(139,92,246,0.1);">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="#8b5cf6" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </div>
+                            <div>
+                                <div class="showcase-stat-val">23</div>
+                                <div class="showcase-stat-label">Mitarbeiter aktiv</div>
+                            </div>
+                        </div>
+                        <div class="showcase-stat-card">
+                            <div class="showcase-stat-icon" style="background:rgba(244,114,182,0.1);">
+                                <svg fill="none" viewBox="0 0 24 24" stroke="#f472b6" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </div>
+                            <div>
+                                <div class="showcase-stat-val">5'420</div>
+                                <div class="showcase-stat-label">Fotos dokumentiert</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
