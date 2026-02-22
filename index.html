@@ -230,56 +230,135 @@
         }
         .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); transform: translateY(-3px); }
 
-        /* Hero Visual - Real Screenshots */
-        .hero-visual { margin-top: 80px; position: relative; perspective: 1200px; }
+        /* Hero Visual - Browser Frame */
+        .hero-visual { margin-top: 80px; position: relative; perspective: 1400px; }
         .hero-visual-inner {
             position: relative; max-width: 950px; margin: 0 auto;
-            animation: hero-float 6s ease-in-out infinite;
+            animation: hero-float 7s ease-in-out infinite;
         }
-        @keyframes hero-float { 0%, 100% { transform: translateY(0) rotateX(1.5deg); } 50% { transform: translateY(-12px) rotateX(0deg); } }
+        @keyframes hero-float { 0%, 100% { transform: translateY(0) rotateX(2deg); } 50% { transform: translateY(-14px) rotateX(0deg); } }
         .hero-visual-glow {
-            position: absolute; bottom: -60px; left: 5%; right: 5%; height: 140px;
-            background: radial-gradient(ellipse, rgba(59,130,246,0.2), transparent);
-            filter: blur(50px); z-index: -1;
-        }
-        .hero-screenshot {
-            width: 100%; display: block; border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 80px rgba(59,130,246,0.08), inset 0 1px 0 rgba(255,255,255,0.05);
+            position: absolute; bottom: -80px; left: 5%; right: 5%; height: 160px;
+            background: radial-gradient(ellipse, rgba(59,130,246,0.22), transparent);
+            filter: blur(60px); z-index: -1;
         }
 
-        /* Screenshot Gallery / Carousel */
-        .screenshot-gallery {
-            display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 60px;
+        .browser-frame {
+            background: #0c1424; border-radius: 16px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 50px 120px rgba(0,0,0,0.65), 0 0 100px rgba(59,130,246,0.1), 0 0 1px rgba(255,255,255,0.1);
+            position: relative;
         }
-        @media (min-width: 768px) {
-            .screenshot-gallery { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .browser-bar {
+            display: flex; align-items: center; gap: 12px; padding: 14px 20px;
+            background: rgba(0,0,0,0.3); border-bottom: 1px solid rgba(255,255,255,0.06);
         }
-        .screenshot-card {
-            position: relative; border-radius: 16px; overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.06);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            cursor: default;
+        .browser-dots { display: flex; gap: 7px; }
+        .browser-dots span { width: 11px; height: 11px; border-radius: 50%; }
+        .browser-dots span:nth-child(1) { background: #ff5f57; }
+        .browser-dots span:nth-child(2) { background: #febc2e; }
+        .browser-dots span:nth-child(3) { background: #28c840; }
+        .browser-url {
+            flex: 1; margin: 0 16px; padding: 7px 16px; background: rgba(255,255,255,0.05);
+            border-radius: 8px; font-size: 0.72rem; color: rgba(255,255,255,0.35);
+            display: flex; align-items: center; gap: 8px;
         }
-        .screenshot-card:hover {
-            border-color: rgba(59,130,246,0.25);
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 0 40px rgba(59,130,246,0.1);
-            z-index: 2;
+        .browser-url .lock { color: #28c840; }
+        .browser-frame img { width: 100%; display: block; }
+
+        /* Floating notification overlays */
+        .hero-float-card {
+            position: absolute; z-index: 10;
+            background: rgba(10,17,33,0.85); backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 14px;
+            padding: 14px 18px; display: flex; align-items: center; gap: 12px;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 20px rgba(59,130,246,0.08);
+            animation: card-pop 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+            white-space: nowrap;
         }
-        .screenshot-card img {
-            width: 100%; display: block; transition: transform 0.4s;
+        .hero-float-card.fc1 { top: 15%; right: -20px; animation-delay: 1.2s; }
+        .hero-float-card.fc2 { bottom: 20%; left: -30px; animation-delay: 1.8s; }
+        .hero-float-card.fc3 { bottom: 8%; right: 5%; animation-delay: 2.4s; }
+        @media (max-width: 768px) {
+            .hero-float-card { display: none; }
         }
-        .screenshot-card:hover img { transform: scale(1.03); }
-        .screenshot-card-label {
-            position: absolute; bottom: 0; left: 0; right: 0;
-            padding: 20px 16px 14px;
-            background: linear-gradient(transparent, rgba(5,10,20,0.95));
-            font-size: 0.85rem; font-weight: 600; color: #fff;
+        @keyframes card-pop {
+            0% { opacity: 0; transform: scale(0.8) translateY(10px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
         }
-        .screenshot-card-label span {
-            display: block; font-size: 0.7rem; font-weight: 400; color: var(--muted); margin-top: 2px;
+        .fc-icon {
+            width: 38px; height: 38px; border-radius: 10px; display: flex;
+            align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem;
         }
+        .fc-text { font-size: 0.78rem; font-weight: 600; color: #fff; line-height: 1.3; }
+        .fc-sub { font-size: 0.65rem; color: var(--muted); font-weight: 400; }
+
+        /* ── Showcase 3D Stack ── */
+        .showcase-stage { margin-top: 70px; position: relative; min-height: 500px; perspective: 1500px; }
+        @media (max-width: 768px) { .showcase-stage { min-height: 350px; } }
+
+        .showcase-tabs {
+            display: flex; justify-content: center; gap: 8px; margin-bottom: 40px; flex-wrap: wrap;
+        }
+        .showcase-tab {
+            padding: 10px 22px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px; font-size: 0.85rem; font-weight: 600; color: var(--muted);
+            cursor: pointer; transition: all 0.3s; user-select: none;
+        }
+        .showcase-tab:hover { border-color: rgba(255,255,255,0.15); color: #fff; }
+        .showcase-tab.active {
+            background: rgba(59,130,246,0.12); border-color: rgba(59,130,246,0.3);
+            color: var(--accent-2); box-shadow: 0 0 20px rgba(59,130,246,0.1);
+        }
+
+        .showcase-screens { position: relative; max-width: 900px; margin: 0 auto; }
+        .showcase-screen {
+            position: absolute; top: 0; left: 50%; width: 85%; max-width: 800px;
+            transform: translateX(-50%);
+            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+        }
+        .showcase-screen.center {
+            z-index: 3; opacity: 1;
+            transform: translateX(-50%) rotateY(0deg) scale(1);
+        }
+        .showcase-screen.left {
+            z-index: 1; opacity: 0.4;
+            transform: translateX(-105%) rotateY(25deg) scale(0.85);
+        }
+        .showcase-screen.right {
+            z-index: 1; opacity: 0.4;
+            transform: translateX(5%) rotateY(-25deg) scale(0.85);
+        }
+        .showcase-screen.hidden { opacity: 0; pointer-events: none; transform: translateX(-50%) scale(0.7); z-index: 0; }
+
+        .ss-browser {
+            background: #0c1424; border-radius: 14px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 40px rgba(59,130,246,0.06);
+            transition: box-shadow 0.5s, border-color 0.5s;
+        }
+        .center .ss-browser {
+            border-color: rgba(59,130,246,0.2);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 80px rgba(59,130,246,0.12);
+        }
+        .ss-bar {
+            display: flex; align-items: center; gap: 10px; padding: 10px 16px;
+            background: rgba(0,0,0,0.3); border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .ss-dots { display: flex; gap: 5px; }
+        .ss-dots span { width: 8px; height: 8px; border-radius: 50%; }
+        .ss-dots span:nth-child(1) { background: #ff5f57; }
+        .ss-dots span:nth-child(2) { background: #febc2e; }
+        .ss-dots span:nth-child(3) { background: #28c840; }
+        .ss-title { font-size: 0.65rem; color: rgba(255,255,255,0.3); margin-left: 8px; font-weight: 500; }
+        .ss-browser img { width: 100%; display: block; }
+
+        .showcase-label {
+            text-align: center; margin-top: 24px; transition: opacity 0.5s;
+        }
+        .showcase-label-title { font-size: 1.1rem; font-weight: 700; color: #fff; }
+        .showcase-label-sub { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
 
         /* Hero Stats */
         .hero-stats {
@@ -550,7 +629,36 @@
 
             <div class="hero-visual reveal reveal-d4">
                 <div class="hero-visual-inner">
-                    <img class="hero-screenshot" src="/screenshot-dashboard.png" alt="WireTrack Dashboard — Schnellzugriff, Projekte, Aufträge" />
+                    <div class="browser-frame">
+                        <div class="browser-bar">
+                            <div class="browser-dots"><span></span><span></span><span></span></div>
+                            <div class="browser-url"><span class="lock">🔒</span> app.wiretrack.ch/dashboard</div>
+                        </div>
+                        <img src="/screenshot-dashboard.png" alt="WireTrack Dashboard" />
+                    </div>
+
+                    <div class="hero-float-card fc1">
+                        <div class="fc-icon" style="background:rgba(34,197,94,0.15);">✅</div>
+                        <div>
+                            <div class="fc-text">Auftrag abgeschlossen</div>
+                            <div class="fc-sub">Sanierung EG · vor 3 Min.</div>
+                        </div>
+                    </div>
+                    <div class="hero-float-card fc2">
+                        <div class="fc-icon" style="background:rgba(59,130,246,0.15);">📊</div>
+                        <div>
+                            <div class="fc-text">+12% Effizienz</div>
+                            <div class="fc-sub">Diesen Monat vs. Vormonat</div>
+                        </div>
+                    </div>
+                    <div class="hero-float-card fc3">
+                        <div class="fc-icon" style="background:rgba(245,158,11,0.15);">⚡</div>
+                        <div>
+                            <div class="fc-text">3 neue Aufträge</div>
+                            <div class="fc-sub">Heute zugewiesen</div>
+                        </div>
+                    </div>
+
                     <div class="hero-visual-glow"></div>
                 </div>
             </div>
@@ -662,27 +770,45 @@
                 <h2 class="section-title" style="margin: 0 auto;">So sieht WireTrack in Aktion aus.</h2>
                 <p class="section-desc" style="margin: 16px auto 0; text-align: center; max-width: 580px;">Projektübersicht, Serviceaufträge und Detailansichten — alles durchdacht, alles an einem Ort.</p>
             </div>
-            <div class="screenshot-gallery">
-                <div class="screenshot-card reveal reveal-d1">
-                    <img src="/screenshot-uebersicht.png" alt="WireTrack Projektübersicht" loading="lazy" />
-                    <div class="screenshot-card-label">
-                        Projektübersicht
-                        <span>Alle Projekte mit Status & Fortschritt</span>
+            <div class="showcase-tabs reveal reveal-d1">
+                <div class="showcase-tab active" data-idx="0">Projektübersicht</div>
+                <div class="showcase-tab" data-idx="1">Serviceaufträge</div>
+                <div class="showcase-tab" data-idx="2">Auftragsdetail</div>
+            </div>
+
+            <div class="showcase-stage reveal reveal-d2">
+                <div class="showcase-screens" id="showcase-screens">
+                    <div class="showcase-screen center" data-idx="0">
+                        <div class="ss-browser">
+                            <div class="ss-bar">
+                                <div class="ss-dots"><span></span><span></span><span></span></div>
+                                <div class="ss-title">app.wiretrack.ch / übersicht</div>
+                            </div>
+                            <img src="/screenshot-uebersicht.png" alt="Projektübersicht" loading="lazy" />
+                        </div>
+                    </div>
+                    <div class="showcase-screen right" data-idx="1">
+                        <div class="ss-browser">
+                            <div class="ss-bar">
+                                <div class="ss-dots"><span></span><span></span><span></span></div>
+                                <div class="ss-title">app.wiretrack.ch / service</div>
+                            </div>
+                            <img src="/screenshot-service.png" alt="Serviceaufträge" loading="lazy" />
+                        </div>
+                    </div>
+                    <div class="showcase-screen hidden" data-idx="2">
+                        <div class="ss-browser">
+                            <div class="ss-bar">
+                                <div class="ss-dots"><span></span><span></span><span></span></div>
+                                <div class="ss-title">app.wiretrack.ch / auftrag</div>
+                            </div>
+                            <img src="/screenshot-detail.png" alt="Auftragsdetail" loading="lazy" />
+                        </div>
                     </div>
                 </div>
-                <div class="screenshot-card reveal reveal-d2">
-                    <img src="/screenshot-service.png" alt="WireTrack Serviceaufträge" loading="lazy" />
-                    <div class="screenshot-card-label">
-                        Serviceaufträge
-                        <span>Aufträge erstellen, zuweisen & verfolgen</span>
-                    </div>
-                </div>
-                <div class="screenshot-card reveal reveal-d3">
-                    <img src="/screenshot-detail.png" alt="WireTrack Auftragsdetail" loading="lazy" />
-                    <div class="screenshot-card-label">
-                        Auftragsdetail
-                        <span>Checklisten, Dokumente, Material & mehr</span>
-                    </div>
+                <div class="showcase-label" id="showcase-label">
+                    <div class="showcase-label-title">Projektübersicht</div>
+                    <div class="showcase-label-sub">Alle Projekte auf einen Blick — mit Fortschritt, Status und Workflow-Stufen</div>
                 </div>
             </div>
         </div>
@@ -906,6 +1032,49 @@
                 if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
             });
         });
+
+        // 3D Screenshot Carousel
+        (function initShowcase() {
+            const screens = document.querySelectorAll('.showcase-screen');
+            const tabs = document.querySelectorAll('.showcase-tab');
+            const labelTitle = document.querySelector('.showcase-label-title');
+            const labelSub = document.querySelector('.showcase-label-sub');
+            const labels = [
+                { t: 'Projektübersicht', s: 'Alle Projekte auf einen Blick — mit Fortschritt, Status und Workflow-Stufen' },
+                { t: 'Serviceaufträge', s: 'Aufträge erstellen, zuweisen und den Status in Echtzeit verfolgen' },
+                { t: 'Auftragsdetail', s: 'Checklisten, Dokumente, Stunden, Material — alles pro Auftrag' },
+            ];
+            let current = 0;
+            const classes = ['center', 'right', 'hidden', 'left'];
+
+            function setPositions(idx) {
+                current = idx;
+                screens.forEach((s, i) => {
+                    s.className = 'showcase-screen';
+                    const diff = (i - idx + screens.length) % screens.length;
+                    s.classList.add(classes[diff] || 'hidden');
+                });
+                tabs.forEach((t, i) => { t.classList.toggle('active', i === idx); });
+                labelTitle.textContent = labels[idx].t;
+                labelSub.textContent = labels[idx].s;
+            }
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => setPositions(parseInt(tab.dataset.idx)));
+            });
+            screens.forEach(s => {
+                s.addEventListener('click', () => {
+                    const idx = parseInt(s.dataset.idx);
+                    if (idx !== current) setPositions(idx);
+                });
+            });
+
+            let autoInterval = setInterval(() => setPositions((current + 1) % screens.length), 5000);
+            document.querySelector('.showcase-stage').addEventListener('mouseenter', () => clearInterval(autoInterval));
+            document.querySelector('.showcase-stage').addEventListener('mouseleave', () => {
+                autoInterval = setInterval(() => setPositions((current + 1) % screens.length), 5000);
+            });
+        })();
 
         // Construction SVG icons
         (function createConstructionBg() {
