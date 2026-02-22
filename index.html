@@ -266,6 +266,59 @@
         .browser-url .lock { color: #28c840; }
         .browser-frame img { width: 100%; display: block; }
 
+        /* ── App Mock UI ── */
+        .app-mock { background: #0b1222; padding: 0; font-family: 'Inter', sans-serif; color: #e2e8f0; }
+        .am-header { padding: 20px 24px 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+        .am-greeting { font-size: 1.1rem; font-weight: 700; }
+        .am-badge { font-size: 0.6rem; padding: 3px 8px; background: rgba(59,130,246,0.2); color: #60a5fa; border-radius: 5px; font-weight: 600; margin-left: 8px; }
+        .am-header-btns { display: flex; gap: 8px; }
+        .am-header-btn { width: 32px; height: 32px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: var(--muted); position: relative; }
+        .am-notif { position: absolute; top: -3px; right: -3px; width: 14px; height: 14px; background: #ef4444; border-radius: 50%; font-size: 0.5rem; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+        .am-search { margin: 0 24px 16px; padding: 10px 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; font-size: 0.72rem; color: rgba(255,255,255,0.3); display: flex; align-items: center; gap: 8px; }
+        .am-stats { display: flex; gap: 8px; margin: 0 24px 20px; flex-wrap: wrap; }
+        .am-stat { padding: 6px 14px; border-radius: 8px; font-size: 0.65rem; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+        .am-section-title { padding: 0 24px 12px; font-size: 0.85rem; font-weight: 700; color: #fff; }
+        .am-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 0 24px 24px; }
+        @media (max-width: 640px) { .am-grid { grid-template-columns: repeat(2, 1fr); } }
+        .am-tile {
+            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 10px; padding: 16px 12px; text-align: center;
+            font-size: 0.7rem; color: rgba(255,255,255,0.5); font-weight: 500;
+            display: flex; flex-direction: column; align-items: center; gap: 6px;
+        }
+        .am-tile-icon { font-size: 1rem; }
+
+        /* Overview mock */
+        .ov-header { padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; }
+        .ov-title { font-size: 1rem; font-weight: 700; color: #fff; }
+        .ov-count { font-size: 0.7rem; color: var(--muted); }
+        .ov-filters { display: flex; gap: 6px; padding: 0 24px 16px; flex-wrap: wrap; }
+        .ov-filter { padding: 5px 12px; border-radius: 7px; font-size: 0.6rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); }
+        .ov-filter.active { background: rgba(59,130,246,0.15); border-color: rgba(59,130,246,0.3); color: #60a5fa; }
+        .ov-project { margin: 0 24px 12px; padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; }
+        .ov-project-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 6px; }
+        .ov-project-name { font-size: 0.8rem; font-weight: 700; color: #fff; }
+        .ov-tag { font-size: 0.55rem; padding: 3px 8px; border-radius: 5px; font-weight: 600; }
+        .ov-steps { display: flex; gap: 2px; height: 5px; margin-top: 4px; }
+        .ov-step { flex: 1; border-radius: 3px; }
+        .ov-project-info { font-size: 0.6rem; color: rgba(255,255,255,0.3); margin-top: 6px; }
+        .ov-step-labels { display: flex; justify-content: space-between; margin-top: 4px; }
+        .ov-step-label { font-size: 0.5rem; color: rgba(255,255,255,0.2); }
+
+        /* Service mock */
+        .sv-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 24px 24px; }
+        @media (max-width: 500px) { .sv-cards { grid-template-columns: 1fr; } }
+        .sv-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 16px; }
+        .sv-card-title { font-size: 0.78rem; font-weight: 700; color: #fff; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+        .sv-card-sub { font-size: 0.62rem; color: rgba(255,255,255,0.3); margin-bottom: 8px; line-height: 1.4; }
+        .sv-card-bottom { display: flex; align-items: center; justify-content: space-between; }
+        .sv-card-avatars { display: flex; gap: -4px; }
+        .sv-avatar { width: 22px; height: 22px; border-radius: 50%; font-size: 0.55rem; font-weight: 700; display: flex; align-items: center; justify-content: center; color: #fff; border: 2px solid #0b1222; margin-left: -4px; }
+        .sv-card-progress { height: 4px; background: rgba(255,255,255,0.05); border-radius: 4px; margin-top: 10px; overflow: hidden; }
+        .sv-card-progress-bar { height: 100%; border-radius: 4px; }
+        .sv-card-pct { font-size: 0.55rem; color: rgba(255,255,255,0.3); text-align: right; margin-top: 3px; }
+        .ss-browser .app-mock { max-height: 400px; overflow: hidden; }
+
         /* Floating notification overlays */
         .hero-float-card {
             position: absolute; z-index: 10;
@@ -634,7 +687,42 @@
                             <div class="browser-dots"><span></span><span></span><span></span></div>
                             <div class="browser-url"><span class="lock">🔒</span> app.wiretrack.ch/dashboard</div>
                         </div>
-                        <img src="/screenshot-dashboard.png" alt="WireTrack Dashboard" />
+                        <div class="app-mock">
+                            <div class="am-header">
+                                <div><span class="am-greeting">Guten Tag, Max 👋</span><br><span style="font-size:0.7rem;color:var(--muted);">WireTrack Dashboard</span><span class="am-badge">Admin</span></div>
+                                <div class="am-header-btns">
+                                    <div class="am-header-btn">📋<div class="am-notif">3</div></div>
+                                    <div class="am-header-btn">🔔<div class="am-notif">12</div></div>
+                                    <div class="am-header-btn">⚙️</div>
+                                    <div style="padding:6px 14px;background:#ef4444;border-radius:8px;font-size:0.65rem;font-weight:600;color:#fff;cursor:default;">Logout</div>
+                                </div>
+                            </div>
+                            <div class="am-search">🔍 Globale Suche... (Ctrl+K)</div>
+                            <div class="am-stats">
+                                <div class="am-stat" style="background:rgba(59,130,246,0.1);color:#60a5fa;">📁 42 / 280 Jahr</div>
+                                <div class="am-stat" style="background:rgba(16,185,129,0.1);color:#34d399;">⏱ 0.00 / 0.0 h Heute</div>
+                                <div class="am-stat" style="background:rgba(245,158,11,0.1);color:#fbbf24;">📊 0.00 / 41.25 h Woche</div>
+                            </div>
+                            <div class="am-section-title">Schnellzugriff</div>
+                            <div class="am-grid">
+                                <div class="am-tile"><span class="am-tile-icon">📋</span>Meine Aufgaben</div>
+                                <div class="am-tile"><span class="am-tile-icon">📅</span>Kalender</div>
+                                <div class="am-tile"><span class="am-tile-icon">🏗️</span>Übersicht</div>
+                                <div class="am-tile"><span class="am-tile-icon">📈</span>Monitoring</div>
+                                <div class="am-tile"><span class="am-tile-icon">🔧</span>Serviceaufträge</div>
+                                <div class="am-tile"><span class="am-tile-icon">⚠️</span>Mängelberichte</div>
+                                <div class="am-tile"><span class="am-tile-icon">⚡</span>Projekte Elektro</div>
+                                <div class="am-tile"><span class="am-tile-icon">☀️</span>Projekte PV</div>
+                                <div class="am-tile"><span class="am-tile-icon">🔒</span>Projekte Sicherheit</div>
+                                <div class="am-tile"><span class="am-tile-icon">🔌</span>Ladestationen</div>
+                                <div class="am-tile"><span class="am-tile-icon">👥</span>Kunden</div>
+                                <div class="am-tile"><span class="am-tile-icon">📦</span>Inventar</div>
+                                <div class="am-tile"><span class="am-tile-icon">📄</span>Offerten</div>
+                                <div class="am-tile"><span class="am-tile-icon">🗄️</span>Archiv</div>
+                                <div class="am-tile"><span class="am-tile-icon">👤</span>Mein Profil</div>
+                                <div class="am-tile"><span class="am-tile-icon">🏢</span>Admin / GL</div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="hero-float-card fc1">
@@ -784,7 +872,41 @@
                                 <div class="ss-dots"><span></span><span></span><span></span></div>
                                 <div class="ss-title">app.wiretrack.ch / übersicht</div>
                             </div>
-                            <img src="/screenshot-uebersicht.png" alt="Projektübersicht" loading="lazy" />
+                            <div class="app-mock">
+                                <div class="ov-header">
+                                    <div><span class="ov-title">🏗️ Übersicht</span><br><span class="ov-count">62 Einträge</span></div>
+                                    <div style="display:flex;gap:6px;">
+                                        <div class="ov-filter">Zurück</div><div class="ov-filter">Meine Aufgaben</div><div class="ov-filter">Dashboard</div>
+                                    </div>
+                                </div>
+                                <div class="ov-filters">
+                                    <div class="ov-filter active">Alle</div><div class="ov-filter">Offerten</div><div class="ov-filter">Projekte Elektro</div><div class="ov-filter">Projekte PV</div><div class="ov-filter">Sicherheit</div><div class="ov-filter">Ladestation</div><div class="ov-filter">Service</div>
+                                </div>
+                                <div class="ov-project">
+                                    <div class="ov-project-top">
+                                        <div><span class="ov-tag" style="background:rgba(16,185,129,0.15);color:#34d399;">Elektroprojekt</span> <span class="ov-project-name">Umbau Küche</span></div>
+                                        <span style="font-size:0.6rem;color:rgba(255,255,255,0.3);">Next: Offerte gesendet</span>
+                                    </div>
+                                    <div class="ov-project-info">Muster AG · Musterstrasse 12, 4500 Solothurn</div>
+                                    <div class="ov-steps"><div class="ov-step" style="background:#22c55e;"></div><div class="ov-step" style="background:#22c55e;"></div><div class="ov-step" style="background:#22c55e;"></div><div class="ov-step" style="background:#f59e0b;"></div><div class="ov-step" style="background:rgba(255,255,255,0.06);"></div><div class="ov-step" style="background:rgba(255,255,255,0.06);"></div><div class="ov-step" style="background:rgba(255,255,255,0.06);"></div></div>
+                                </div>
+                                <div class="ov-project">
+                                    <div class="ov-project-top">
+                                        <div><span class="ov-tag" style="background:rgba(239,68,68,0.15);color:#f87171;">Sicherheitsprojekt</span> <span class="ov-project-name">Kameras installieren</span></div>
+                                        <span style="font-size:0.6rem;color:rgba(255,255,255,0.3);">Next: Offerte gesendet</span>
+                                    </div>
+                                    <div class="ov-project-info">Demo GmbH · Hafenstrasse 20, 4500 Solothurn</div>
+                                    <div class="ov-steps"><div class="ov-step" style="background:#ef4444;"></div><div class="ov-step" style="background:#ef4444;"></div><div class="ov-step" style="background:#ef4444;"></div><div class="ov-step" style="background:#ef4444;"></div><div class="ov-step" style="background:#f59e0b;"></div><div class="ov-step" style="background:rgba(255,255,255,0.06);"></div></div>
+                                </div>
+                                <div class="ov-project" style="margin-bottom:0;">
+                                    <div class="ov-project-top">
+                                        <div><span class="ov-tag" style="background:rgba(168,85,247,0.15);color:#c084fc;">Ladestation</span> <span class="ov-project-name">Easee Ladestation</span></div>
+                                        <span style="font-size:0.6rem;color:rgba(255,255,255,0.3);">Next: Regie</span>
+                                    </div>
+                                    <div class="ov-project-info">Beispiel Corp · Schützenweg 2, 4710 Balsthal</div>
+                                    <div class="ov-steps"><div class="ov-step" style="background:#3b82f6;"></div><div class="ov-step" style="background:#3b82f6;"></div><div class="ov-step" style="background:#f59e0b;"></div><div class="ov-step" style="background:rgba(255,255,255,0.06);"></div><div class="ov-step" style="background:rgba(255,255,255,0.06);"></div></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="showcase-screen right" data-idx="1">
@@ -793,7 +915,61 @@
                                 <div class="ss-dots"><span></span><span></span><span></span></div>
                                 <div class="ss-title">app.wiretrack.ch / service</div>
                             </div>
-                            <img src="/screenshot-service.png" alt="Serviceaufträge" loading="lazy" />
+                            <div class="app-mock">
+                                <div class="ov-header">
+                                    <div><span class="ov-title">🔧 Service-Aufträge</span><br><span class="ov-count">21 Einträge</span></div>
+                                    <div style="display:flex;gap:6px;">
+                                        <div style="padding:5px 12px;background:rgba(239,68,68,0.15);color:#f87171;border-radius:7px;font-size:0.6rem;font-weight:600;">Neuer Service</div>
+                                        <div class="ov-filter">Dashboard</div>
+                                    </div>
+                                </div>
+                                <div class="am-search" style="margin:0 24px 16px;">🔍 Suche: Titel, Kunde, Adresse/Ort, Status...</div>
+                                <div class="ov-filters">
+                                    <div class="ov-filter active">Alle Status</div><div class="ov-filter active">Alle</div><div class="ov-filter">Garantie</div><div class="ov-filter">Kulanz</div><div class="ov-filter">⭐ Favoriten</div>
+                                </div>
+                                <div class="sv-cards">
+                                    <div class="sv-card">
+                                        <div class="sv-card-title">⭐ Störung Beleuchtung <span class="ov-tag" style="background:rgba(59,130,246,0.15);color:#60a5fa;">In Arbeit</span></div>
+                                        <div class="sv-card-sub">Muster AG<br>Hauptstrasse 15, 4500 Solothurn</div>
+                                        <div class="sv-card-bottom">
+                                            <div class="sv-card-avatars"><div class="sv-avatar" style="background:#8b5cf6;">MK</div><div class="sv-avatar" style="background:#3b82f6;">LW</div></div>
+                                            <div class="ov-filter" style="font-size:0.55rem;">Archivieren</div>
+                                        </div>
+                                        <div class="sv-card-progress"><div class="sv-card-progress-bar" style="width:33%;background:#ef4444;"></div></div>
+                                        <div class="sv-card-pct">33%</div>
+                                    </div>
+                                    <div class="sv-card">
+                                        <div class="sv-card-title">⭐ Steckdosen EG <span class="ov-tag" style="background:rgba(245,158,11,0.15);color:#fbbf24;">Garantie</span> <span class="ov-tag" style="background:rgba(59,130,246,0.15);color:#60a5fa;">In Arbeit</span></div>
+                                        <div class="sv-card-sub">Demo GmbH<br>Postfach, 8036 Zürich</div>
+                                        <div class="sv-card-bottom">
+                                            <div class="sv-card-avatars"><div class="sv-avatar" style="background:#f59e0b;">SR</div><div class="sv-avatar" style="background:#3b82f6;">LW</div></div>
+                                            <div class="ov-filter" style="font-size:0.55rem;">Archivieren</div>
+                                        </div>
+                                        <div class="sv-card-progress"><div class="sv-card-progress-bar" style="width:67%;background:#22c55e;"></div></div>
+                                        <div class="sv-card-pct">67%</div>
+                                    </div>
+                                    <div class="sv-card">
+                                        <div class="sv-card-title">⭐ Prüfung Sicherung <span class="ov-tag" style="background:rgba(16,185,129,0.15);color:#34d399;">Erledigt</span></div>
+                                        <div class="sv-card-sub">Beispiel Corp<br>Schützenweg 2, 4710 Balsthal</div>
+                                        <div class="sv-card-bottom">
+                                            <div class="sv-card-avatars"><div class="sv-avatar" style="background:#8b5cf6;">MK</div></div>
+                                            <div class="ov-filter" style="font-size:0.55rem;">Archivieren</div>
+                                        </div>
+                                        <div class="sv-card-progress"><div class="sv-card-progress-bar" style="width:56%;background:#f59e0b;"></div></div>
+                                        <div class="sv-card-pct">56%</div>
+                                    </div>
+                                    <div class="sv-card">
+                                        <div class="sv-card-title">⭐ Zählerkasten <span class="ov-tag" style="background:rgba(59,130,246,0.15);color:#60a5fa;">In Arbeit</span></div>
+                                        <div class="sv-card-sub">Hausverwaltung AG<br>Dornacherstr. 8, 4600 Olten</div>
+                                        <div class="sv-card-bottom">
+                                            <div class="sv-card-avatars"><div class="sv-avatar" style="background:#f59e0b;">SR</div></div>
+                                            <div class="ov-filter" style="font-size:0.55rem;">Archivieren</div>
+                                        </div>
+                                        <div class="sv-card-progress"><div class="sv-card-progress-bar" style="width:25%;background:#ef4444;"></div></div>
+                                        <div class="sv-card-pct">25%</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="showcase-screen hidden" data-idx="2">
@@ -802,7 +978,50 @@
                                 <div class="ss-dots"><span></span><span></span><span></span></div>
                                 <div class="ss-title">app.wiretrack.ch / auftrag</div>
                             </div>
-                            <img src="/screenshot-detail.png" alt="Auftragsdetail" loading="lazy" />
+                            <div class="app-mock" style="padding-bottom:16px;">
+                                <div class="ov-header">
+                                    <div><span class="ov-title">🔧 Störung Beleuchtung</span></div>
+                                    <div style="display:flex;gap:6px;">
+                                        <div class="ov-filter">Serviceliste</div><div class="ov-filter">Übersicht</div><div class="ov-filter">Dashboard</div>
+                                    </div>
+                                </div>
+                                <div style="margin:0 24px 16px; padding:20px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:12px;">
+                                    <div style="font-size:0.78rem;font-weight:700;color:#fff;margin-bottom:12px;">📋 Serviceinformation</div>
+                                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:0.65rem;">
+                                        <div>
+                                            <div style="color:rgba(255,255,255,0.3);text-transform:uppercase;font-weight:600;font-size:0.55rem;margin-bottom:4px;">Kunde</div>
+                                            <div style="color:#fff;font-weight:600;">Muster AG</div>
+                                            <div style="color:var(--muted);">Hauptstrasse 15<br>4500 Solothurn</div>
+                                            <div style="color:#60a5fa;margin-top:4px;">Tel: 032 123 45 67</div>
+                                        </div>
+                                        <div>
+                                            <div style="color:rgba(255,255,255,0.3);text-transform:uppercase;font-weight:600;font-size:0.55rem;margin-bottom:4px;">Mitarbeiter</div>
+                                            <div style="display:flex;gap:4px;margin:6px 0;"><div class="sv-avatar" style="background:#8b5cf6;margin:0;">MK</div><div class="sv-avatar" style="background:#3b82f6;margin:0;">LW</div></div>
+                                            <div style="margin-top:6px;">Status <span class="ov-tag" style="background:rgba(59,130,246,0.15);color:#60a5fa;">In Arbeit</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="margin:0 24px 8px;padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:10px;display:flex;align-items:center;justify-content:space-between;">
+                                    <span style="font-size:0.75rem;font-weight:600;color:#fff;">✅ Checkliste</span>
+                                    <span style="font-size:0.65rem;color:var(--muted);">3/9 · 33%</span>
+                                </div>
+                                <div style="margin:8px 24px;padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:10px;display:flex;align-items:center;justify-content:space-between;">
+                                    <span style="font-size:0.75rem;font-weight:600;color:#fff;">📁 Servicedokumente</span>
+                                    <span style="font-size:0.65rem;color:var(--muted);">2 Dateien</span>
+                                </div>
+                                <div style="margin:8px 24px;padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:10px;display:flex;align-items:center;justify-content:space-between;">
+                                    <span style="font-size:0.75rem;font-weight:600;color:#fff;">⏱ Stunden & Spesen</span>
+                                    <span style="font-size:0.65rem;color:var(--muted);">4.5 h · CHF 380.00</span>
+                                </div>
+                                <div style="margin:8px 24px;padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:10px;display:flex;align-items:center;justify-content:space-between;">
+                                    <span style="font-size:0.75rem;font-weight:600;color:#fff;">📦 Material</span>
+                                    <span style="font-size:0.65rem;color:var(--muted);">3 Pos. · CHF 124.50</span>
+                                </div>
+                                <div style="margin:8px 24px;padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:10px;display:flex;align-items:center;justify-content:space-between;">
+                                    <span style="font-size:0.75rem;font-weight:600;color:#fff;">📐 Messwerte</span>
+                                    <span style="font-size:0.65rem;color:var(--muted);">0 Einträge</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
