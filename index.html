@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>WireTrack — Das Betriebssystem für Elektroinstallationen</title>
-    <meta name="description" content="WireTrack ist die digitale Plattform für Elektroinstallationsbetriebe. Projekte, Aufträge, Kosten, Material — alles in einem System. Volle Kontrolle." />
+    <title>WireTrack — Das Betriebssystem für die Baubranche</title>
+    <meta name="description" content="WireTrack ist die digitale Plattform für Baubetriebe. Projekte, Aufträge, Kosten, Material — alles in einem System. Volle Kontrolle." />
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href="https://wiretrack.ch" />
     <meta name="theme-color" content="#050a14" />
-    <meta property="og:title" content="WireTrack — Das Betriebssystem für Elektroinstallationen" />
-    <meta property="og:description" content="Die digitale Plattform für Elektroinstallationsbetriebe. Ein System. Volle Kontrolle." />
+    <meta property="og:title" content="WireTrack — Das Betriebssystem für die Baubranche" />
+    <meta property="og:description" content="Die digitale Plattform für Baubetriebe. Ein System. Volle Kontrolle." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://wiretrack.ch" />
     <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png" />
@@ -30,10 +30,10 @@
             --muted: #7a8ba8;
             --accent: #3b82f6;
             --accent-2: #60a5fa;
-            --accent-glow: rgba(59, 130, 246, 0.15);
             --cyan: #06b6d4;
             --emerald: #10b981;
             --purple: #8b5cf6;
+            --orange: #f59e0b;
         }
 
         html { scroll-behavior: smooth; }
@@ -45,34 +45,51 @@
             overflow-x: hidden;
         }
 
-        /* ── Scrollbar ── */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
         ::-webkit-scrollbar-thumb { background: rgba(59, 130, 246, 0.3); border-radius: 3px; }
 
-        /* ── Progress Bar ── */
-        #progress { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--cyan)); width: 0%; z-index: 100; transition: width 0.1s; }
+        #progress { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--cyan), var(--orange)); width: 0%; z-index: 100; }
 
-        /* ── Background ── */
-        .bg-grid {
-            position: fixed; inset: 0; z-index: -3; pointer-events: none;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><path d="M60 0v60H0" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/></svg>');
-            background-size: 60px 60px;
-        }
-        .bg-glow-1 {
-            position: fixed; top: -30%; left: -10%; width: 60%; height: 60%;
-            background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
-            z-index: -2; pointer-events: none; animation: float-slow 20s ease-in-out infinite;
-        }
-        .bg-glow-2 {
-            position: fixed; bottom: -20%; right: -10%; width: 50%; height: 50%;
-            background: radial-gradient(circle, rgba(6,182,212,0.06) 0%, transparent 70%);
-            z-index: -2; pointer-events: none; animation: float-slow 25s ease-in-out infinite reverse;
+        /* ── Animated Background ── */
+        .bg-canvas { position: fixed; inset: 0; z-index: -5; pointer-events: none; }
+
+        .bg-blueprint {
+            position: fixed; inset: 0; z-index: -4; pointer-events: none; opacity: 0.03;
+            background-image:
+                linear-gradient(rgba(59,130,246,0.5) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59,130,246,0.5) 1px, transparent 1px),
+                linear-gradient(rgba(59,130,246,0.25) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59,130,246,0.25) 1px, transparent 1px);
+            background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
         }
 
-        @keyframes float-slow {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(30px, 20px); }
+        .bg-glow {
+            position: fixed; width: 600px; height: 600px; border-radius: 50%;
+            filter: blur(120px); z-index: -3; pointer-events: none; opacity: 0.5;
+        }
+        .bg-glow-1 { top: -200px; left: -100px; background: rgba(59,130,246,0.08); animation: glow-drift 25s ease-in-out infinite; }
+        .bg-glow-2 { bottom: -200px; right: -100px; background: rgba(6,182,212,0.06); animation: glow-drift 30s ease-in-out infinite reverse; }
+        .bg-glow-3 { top: 40%; left: 50%; background: rgba(245,158,11,0.04); animation: glow-drift 20s ease-in-out infinite 5s; }
+
+        @keyframes glow-drift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(40px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 40px) scale(0.95); }
+        }
+
+        /* Floating construction shapes */
+        .floating-shapes { position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden; }
+        .shape {
+            position: absolute; opacity: 0; animation: shape-float linear infinite;
+        }
+        .shape svg { width: 100%; height: 100%; }
+
+        @keyframes shape-float {
+            0% { opacity: 0; transform: translateY(100vh) rotate(0deg); }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(-100px) rotate(360deg); }
         }
 
         /* ── Layout ── */
@@ -82,268 +99,336 @@
         /* ── Nav ── */
         .nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 90;
-            background: rgba(5, 10, 20, 0.6);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            transition: background 0.3s, box-shadow 0.3s;
+            background: rgba(5, 10, 20, 0.4);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            transition: all 0.4s;
         }
-        .nav.scrolled {
-            background: rgba(5, 10, 20, 0.9);
-            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
-        }
-        .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
-        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .nav-logo img { height: 32px; width: auto; }
-        .nav-logo span { font-size: 0.95rem; font-weight: 700; letter-spacing: -0.02em; color: #fff; }
+        .nav.scrolled { background: rgba(5, 10, 20, 0.92); box-shadow: 0 8px 32px rgba(0,0,0,0.4); border-bottom-color: rgba(255,255,255,0.06); }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+        .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+        .nav-logo img { height: 44px; width: auto; transition: transform 0.3s; }
+        .nav-logo:hover img { transform: scale(1.05); }
+        .nav-logo-text { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.02em; color: #fff; }
+        @media (min-width: 768px) { .nav-logo img { height: 52px; } .nav-logo-text { font-size: 1.35rem; } }
         .nav-links { display: none; align-items: center; gap: 32px; }
         @media (min-width: 768px) { .nav-links { display: flex; } }
-        .nav-links a { font-size: 0.875rem; color: var(--muted); text-decoration: none; transition: color 0.2s; font-weight: 500; }
+        .nav-links a { font-size: 0.9rem; color: var(--muted); text-decoration: none; transition: color 0.2s; font-weight: 500; position: relative; }
         .nav-links a:hover { color: #fff; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s; border-radius: 2px; }
+        .nav-links a:hover::after { width: 100%; }
         .nav-cta {
             padding: 10px 24px; background: var(--accent); color: #fff; font-size: 0.875rem; font-weight: 600;
             border: none; border-radius: 10px; cursor: pointer; text-decoration: none;
-            transition: all 0.2s; box-shadow: 0 0 20px rgba(59,130,246,0.2);
+            transition: all 0.25s; box-shadow: 0 0 20px rgba(59,130,246,0.15);
         }
-        .nav-cta:hover { background: var(--accent-2); transform: translateY(-1px); box-shadow: 0 4px 30px rgba(59,130,246,0.4); }
+        .nav-cta:hover { background: var(--accent-2); transform: translateY(-1px); box-shadow: 0 4px 30px rgba(59,130,246,0.35); }
 
-        /* ── Mobile Menu ── */
         .mobile-toggle { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
         .mobile-toggle span { width: 22px; height: 2px; background: var(--muted); border-radius: 2px; transition: all 0.3s; }
         @media (min-width: 768px) { .mobile-toggle { display: none; } }
         .mobile-menu {
-            display: none; position: fixed; inset: 0; top: 65px; z-index: 89;
+            display: none; position: fixed; inset: 0; top: 80px; z-index: 89;
             background: rgba(5, 10, 20, 0.98); backdrop-filter: blur(20px);
-            flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+            flex-direction: column; align-items: center; justify-content: center; gap: 36px;
         }
         .mobile-menu.open { display: flex; }
-        .mobile-menu a { font-size: 1.25rem; color: var(--fg); text-decoration: none; font-weight: 600; }
+        .mobile-menu a { font-size: 1.3rem; color: var(--fg); text-decoration: none; font-weight: 600; }
 
         /* ── Hero ── */
-        .hero { padding: 160px 0 100px; text-align: center; position: relative; }
-        @media (min-width: 768px) { .hero { padding: 200px 0 140px; } }
+        .hero { padding: 160px 0 80px; text-align: center; position: relative; }
+        @media (min-width: 768px) { .hero { padding: 200px 0 120px; } }
         .hero-badge {
-            display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px;
-            background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);
-            border-radius: 50px; font-size: 0.8rem; color: var(--accent-2); font-weight: 500;
-            margin-bottom: 32px;
+            display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px;
+            background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(6,182,212,0.08));
+            border: 1px solid rgba(59,130,246,0.2); border-radius: 50px;
+            font-size: 0.85rem; color: var(--accent-2); font-weight: 500; margin-bottom: 36px;
         }
-        .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--emerald); animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--emerald); box-shadow: 0 0 10px rgba(16,185,129,0.6); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.85); } }
+
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.05;
-            letter-spacing: -0.03em; max-width: 900px; margin: 0 auto;
-            background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 900; line-height: 1.05;
+            letter-spacing: -0.04em; max-width: 950px; margin: 0 auto;
         }
-        .hero h1 .accent-word { background: linear-gradient(135deg, var(--accent) 0%, var(--cyan) 100%); -webkit-background-clip: text; background-clip: text; }
+        .hero h1 .white-text { color: #fff; }
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--cyan) 50%, var(--orange) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            background-size: 200% 200%; animation: gradient-shift 5s ease-in-out infinite;
+        }
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
         .hero-sub {
-            font-size: clamp(1rem, 2vw, 1.25rem); color: var(--muted); max-width: 600px;
-            margin: 24px auto 0; line-height: 1.7; font-weight: 400;
+            font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--muted); max-width: 620px;
+            margin: 28px auto 0; line-height: 1.7; font-weight: 400;
         }
         .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 48px; }
+
         .btn-primary {
-            padding: 14px 32px; background: var(--accent); color: #fff; font-size: 1rem; font-weight: 600;
-            border: none; border-radius: 12px; cursor: pointer; text-decoration: none;
-            transition: all 0.25s; box-shadow: 0 0 30px rgba(59,130,246,0.25);
-            display: inline-flex; align-items: center; gap: 8px;
+            padding: 16px 36px; font-size: 1.05rem; font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), #2563eb);
+            color: #fff; border: none; border-radius: 14px; cursor: pointer; text-decoration: none;
+            transition: all 0.3s; box-shadow: 0 4px 24px rgba(59,130,246,0.3);
+            display: inline-flex; align-items: center; gap: 10px; position: relative; overflow: hidden;
         }
-        .btn-primary:hover { background: var(--accent-2); transform: translateY(-2px); box-shadow: 0 8px 40px rgba(59,130,246,0.4); }
+        .btn-primary::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
+            background-size: 200% 200%; animation: btn-shimmer 3s ease-in-out infinite;
+        }
+        @keyframes btn-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 40px rgba(59,130,246,0.45); }
+
         .btn-secondary {
-            padding: 14px 32px; background: rgba(255,255,255,0.05); color: var(--fg); font-size: 1rem; font-weight: 500;
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; cursor: pointer; text-decoration: none;
-            transition: all 0.25s; display: inline-flex; align-items: center; gap: 8px;
+            padding: 16px 36px; font-size: 1.05rem; font-weight: 600;
+            background: rgba(255,255,255,0.04); color: var(--fg);
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; cursor: pointer; text-decoration: none;
+            transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px;
         }
-        .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); transform: translateY(-3px); }
 
-        .hero-visual { margin-top: 80px; position: relative; }
-        .hero-visual img {
-            width: 100%; max-width: 700px; margin: 0 auto; display: block;
-            border-radius: 16px;
+        /* Hero Visual */
+        .hero-visual { margin-top: 80px; position: relative; perspective: 1000px; }
+        .hero-visual-inner {
+            position: relative; max-width: 750px; margin: 0 auto;
             animation: hero-float 6s ease-in-out infinite;
-            filter: drop-shadow(0 20px 60px rgba(59,130,246,0.15));
         }
-        @keyframes hero-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        @keyframes hero-float { 0%, 100% { transform: translateY(0) rotateX(2deg); } 50% { transform: translateY(-16px) rotateX(0deg); } }
+        .hero-visual img {
+            width: 100%; display: block; border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 80px rgba(59,130,246,0.08);
+        }
+        .hero-visual-glow {
+            position: absolute; bottom: -60px; left: 5%; right: 5%; height: 120px;
+            background: radial-gradient(ellipse, rgba(59,130,246,0.15), transparent);
+            filter: blur(40px); z-index: -1;
+        }
 
+        /* Hero Stats */
         .hero-stats {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-            max-width: 600px; margin: 60px auto 0; text-align: center;
+            max-width: 650px; margin: 80px auto 0; text-align: center;
         }
-        .hero-stat-num { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; color: #fff; letter-spacing: -0.02em; }
-        .hero-stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+        .stat-card {
+            background: rgba(10,17,33,0.5); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px; padding: 28px 16px; transition: all 0.3s;
+        }
+        .stat-card:hover { border-color: rgba(59,130,246,0.2); transform: translateY(-4px); }
+        .stat-num { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; letter-spacing: -0.03em; }
+        .stat-num.blue { color: var(--accent-2); }
+        .stat-num.cyan { color: var(--cyan); }
+        .stat-num.orange { color: var(--orange); }
+        .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 6px; font-weight: 500; }
+
+        /* ── Marquee ── */
+        .marquee-section { overflow: hidden; padding: 48px 0; border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .marquee-track { display: flex; gap: 0; width: max-content; animation: marquee 35s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .marquee-item {
+            padding: 0 32px; font-size: 0.95rem; color: rgba(255,255,255,0.12); white-space: nowrap;
+            font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+            display: flex; align-items: center; gap: 32px;
+        }
+        .marquee-item::after { content: '◆'; color: rgba(59,130,246,0.25); font-size: 0.5rem; }
 
         /* ── Sections ── */
         section { padding: 100px 0; }
         @media (min-width: 768px) { section { padding: 140px 0; } }
         .section-label {
-            display: inline-flex; align-items: center; gap: 8px;
-            font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
-            color: var(--accent-2); margin-bottom: 16px;
+            display: inline-flex; align-items: center; gap: 10px;
+            font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--accent-2); margin-bottom: 20px;
         }
-        .section-label::before { content: ''; width: 24px; height: 2px; background: var(--accent); border-radius: 2px; }
+        .section-label::before { content: ''; width: 28px; height: 2px; background: linear-gradient(90deg, var(--accent), var(--cyan)); border-radius: 2px; }
         .section-title {
-            font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.03em;
-            line-height: 1.15; color: #fff;
+            font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 900; letter-spacing: -0.03em;
+            line-height: 1.1; color: #fff;
         }
         .section-desc { font-size: 1.1rem; color: var(--muted); margin-top: 16px; max-width: 600px; line-height: 1.7; }
 
         /* ── Feature Cards ── */
-        .features-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 60px; }
+        .features-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 60px; }
         @media (min-width: 640px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (min-width: 1024px) { .features-grid { grid-template-columns: repeat(3, 1fr); } }
 
         .feature-card {
-            background: rgba(10, 17, 33, 0.6); border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 16px; padding: 32px; position: relative; overflow: hidden;
+            background: rgba(10, 17, 33, 0.5); border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px; padding: 36px; position: relative; overflow: hidden;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         .feature-card::before {
-            content: ''; position: absolute; inset: 0; opacity: 0;
-            background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(6,182,212,0.05));
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; opacity: 0;
             transition: opacity 0.4s;
         }
-        .feature-card:hover { border-color: rgba(59,130,246,0.2); transform: translateY(-4px); }
+        .feature-card:hover { border-color: rgba(59,130,246,0.15); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
         .feature-card:hover::before { opacity: 1; }
+        .feature-card:nth-child(1)::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+        .feature-card:nth-child(2)::before { background: linear-gradient(90deg, #06b6d4, #22d3ee); }
+        .feature-card:nth-child(3)::before { background: linear-gradient(90deg, #10b981, #34d399); }
+        .feature-card:nth-child(4)::before { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+        .feature-card:nth-child(5)::before { background: linear-gradient(90deg, #f472b6, #f9a8d4); }
+        .feature-card:nth-child(6)::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+
         .feature-icon {
-            width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
-            margin-bottom: 20px; position: relative;
+            width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
+            margin-bottom: 24px;
         }
-        .feature-icon svg { width: 24px; height: 24px; position: relative; z-index: 1; }
-        .feature-card h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 8px; position: relative; }
-        .feature-card p { font-size: 0.925rem; color: var(--muted); line-height: 1.65; position: relative; }
+        .feature-icon svg { width: 26px; height: 26px; }
+        .feature-card h3 { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
+        .feature-card p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; }
 
         /* ── Showcase ── */
-        .showcase { position: relative; text-align: center; }
-        .showcase-img-wrap { position: relative; margin-top: 60px; }
-        .showcase-img-wrap img {
-            width: 100%; max-width: 900px; margin: 0 auto; display: block; border-radius: 20px;
+        .showcase { text-align: center; position: relative; overflow: hidden; }
+        .showcase-wrap { position: relative; margin-top: 60px; }
+        .showcase-wrap img {
+            width: 100%; max-width: 950px; margin: 0 auto; display: block; border-radius: 24px;
             border: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 30px 80px rgba(0,0,0,0.4), 0 0 60px rgba(59,130,246,0.08);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.5), 0 0 80px rgba(59,130,246,0.06);
         }
-        .showcase-img-wrap::after {
-            content: ''; position: absolute; bottom: -40px; left: 10%; right: 10%; height: 80px;
-            background: radial-gradient(ellipse, rgba(59,130,246,0.12), transparent);
-            filter: blur(30px); z-index: -1;
+        .showcase-wrap::before {
+            content: ''; position: absolute; inset: -2px; border-radius: 26px;
+            background: linear-gradient(135deg, rgba(59,130,246,0.2), transparent 40%, transparent 60%, rgba(6,182,212,0.2));
+            z-index: -1; max-width: 954px; margin: 0 auto;
         }
 
         /* ── Benefits ── */
-        .benefits-grid { display: grid; grid-template-columns: 1fr; gap: 48px; margin-top: 60px; }
-        @media (min-width: 768px) { .benefits-grid { grid-template-columns: 1fr 1fr; gap: 64px; } }
-        .benefit-item { display: flex; gap: 20px; }
+        .benefits-grid { display: grid; grid-template-columns: 1fr; gap: 32px; margin-top: 60px; }
+        @media (min-width: 768px) { .benefits-grid { grid-template-columns: 1fr 1fr; gap: 40px; } }
+        .benefit-card {
+            background: rgba(10,17,33,0.4); border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px; padding: 36px; display: flex; gap: 20px;
+            transition: all 0.3s;
+        }
+        .benefit-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-4px); }
         .benefit-num {
-            font-size: 3rem; font-weight: 900; line-height: 1; letter-spacing: -0.04em;
-            background: linear-gradient(135deg, rgba(59,130,246,0.3), rgba(6,182,212,0.15));
+            font-size: 3.5rem; font-weight: 900; line-height: 1; letter-spacing: -0.06em; flex-shrink: 0;
+            background: linear-gradient(180deg, rgba(59,130,246,0.4), rgba(59,130,246,0.05));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            flex-shrink: 0;
         }
-        .benefit-item h3 { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
-        .benefit-item p { font-size: 0.925rem; color: var(--muted); line-height: 1.65; }
+        .benefit-card h3 { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+        .benefit-card p { font-size: 0.95rem; color: var(--muted); line-height: 1.65; }
 
-        /* ── Inline Quote ── */
-        .quote-section { text-align: center; position: relative; }
-        .quote-text {
-            font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; line-height: 1.4;
-            color: #fff; max-width: 800px; margin: 0 auto; letter-spacing: -0.02em;
+        /* ── Quote ── */
+        .quote-section { text-align: center; position: relative; padding: 120px 0; }
+        .quote-section::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(59,130,246,0.06), transparent);
         }
-        .quote-text .highlight {
+        .quote-text {
+            font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 700; line-height: 1.35;
+            color: #fff; max-width: 850px; margin: 0 auto; letter-spacing: -0.02em; position: relative;
+        }
+        .quote-text .hl {
             background: linear-gradient(135deg, var(--accent), var(--cyan));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        .quote-author { margin-top: 24px; font-size: 0.9rem; color: var(--muted); }
 
-        /* ── Contact Form ── */
-        .contact-section { position: relative; }
+        /* ── About ── */
+        .about-badges {
+            display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 48px;
+        }
+        .about-badge {
+            background: rgba(10,17,33,0.5); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px; padding: 28px 36px; text-align: center; transition: all 0.3s;
+        }
+        .about-badge:hover { border-color: rgba(59,130,246,0.2); transform: translateY(-4px); }
+        .about-badge-val { font-size: 1.6rem; font-weight: 900; color: #fff; }
+        .about-badge-label { font-size: 0.8rem; color: var(--muted); margin-top: 6px; font-weight: 500; }
+
+        /* ── Contact ── */
         .contact-grid { display: grid; grid-template-columns: 1fr; gap: 48px; margin-top: 60px; }
         @media (min-width: 768px) { .contact-grid { grid-template-columns: 1fr 1fr; gap: 64px; } }
-        .contact-info h3 { font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 16px; }
-        .contact-info p { color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
-        .contact-detail { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; color: var(--muted); font-size: 0.95rem; }
-        .contact-detail svg { width: 20px; height: 20px; color: var(--accent-2); flex-shrink: 0; }
+        .contact-info h3 { font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 16px; }
+        .contact-info > p { color: var(--muted); line-height: 1.7; margin-bottom: 32px; font-size: 1.05rem; }
+        .contact-detail { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; color: var(--muted); font-size: 0.95rem; }
+        .contact-detail svg { width: 22px; height: 22px; color: var(--accent-2); flex-shrink: 0; }
+        .contact-detail a { color: var(--accent-2); text-decoration: none; }
+        .contact-detail a:hover { text-decoration: underline; }
 
         .contact-form {
-            background: rgba(10, 17, 33, 0.6); border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 20px; padding: 36px;
+            background: rgba(10, 17, 33, 0.5); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 24px; padding: 40px;
         }
-        .form-group { margin-bottom: 20px; }
+        .form-row { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 16px; }
+        @media (min-width: 480px) { .form-row.two { grid-template-columns: 1fr 1fr; } }
+        .form-group { margin-bottom: 4px; }
         .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--fg); margin-bottom: 8px; }
         .form-group input, .form-group textarea, .form-group select {
-            width: 100%; padding: 14px 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 10px; color: var(--fg); font-family: inherit; font-size: 0.95rem;
-            transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+            width: 100%; padding: 14px 18px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px; color: var(--fg); font-family: inherit; font-size: 0.95rem;
+            transition: all 0.25s; outline: none;
         }
         .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
-            border-color: var(--accent); box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+            border-color: var(--accent); box-shadow: 0 0 0 4px rgba(59,130,246,0.1); background: rgba(59,130,246,0.03);
         }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.2); }
         .form-group textarea { resize: vertical; min-height: 120px; }
-        .form-group select option { background: var(--bg-2); color: var(--fg); }
+        .form-group select option { background: var(--bg-2); }
         .form-submit {
-            width: 100%; padding: 16px; background: var(--accent); color: #fff; font-size: 1rem; font-weight: 600;
-            border: none; border-radius: 12px; cursor: pointer; transition: all 0.25s;
-            box-shadow: 0 0 20px rgba(59,130,246,0.2);
+            width: 100%; padding: 16px; margin-top: 8px;
+            background: linear-gradient(135deg, var(--accent), #2563eb); color: #fff;
+            font-size: 1rem; font-weight: 700; border: none; border-radius: 14px; cursor: pointer;
+            transition: all 0.3s; box-shadow: 0 4px 20px rgba(59,130,246,0.25); position: relative; overflow: hidden;
         }
-        .form-submit:hover { background: var(--accent-2); box-shadow: 0 4px 30px rgba(59,130,246,0.4); transform: translateY(-1px); }
+        .form-submit::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
+            background-size: 200% 200%; animation: btn-shimmer 3s ease-in-out infinite;
+        }
+        .form-submit:hover { box-shadow: 0 8px 32px rgba(59,130,246,0.4); transform: translateY(-2px); }
 
         /* ── Footer ── */
         .footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 48px 0; }
         .footer-inner { display: flex; flex-direction: column; gap: 24px; align-items: center; text-align: center; }
         @media (min-width: 768px) { .footer-inner { flex-direction: row; justify-content: space-between; text-align: left; } }
+        .footer-left { display: flex; align-items: center; gap: 16px; }
+        .footer-left img { height: 28px; width: auto; }
         .footer-links { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
-        .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+        .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
         .footer-links a:hover { color: #fff; }
 
         /* ── Animations ── */
         .reveal {
-            opacity: 0; transform: translateY(24px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0; transform: translateY(28px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .reveal.visible { opacity: 1; transform: none; }
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.4s; }
-        .reveal-delay-5 { transition-delay: 0.5s; }
-
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
-        .shimmer {
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
-            background-size: 200% 100%;
-            animation: shimmer 8s ease-in-out infinite;
-        }
-
-        /* ── Marquee ── */
-        .marquee-section { overflow: hidden; padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04); }
-        .marquee-track {
-            display: flex; gap: 48px; width: max-content;
-            animation: marquee 30s linear infinite;
-        }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .marquee-item { font-size: 1rem; color: rgba(255,255,255,0.15); white-space: nowrap; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
-        .marquee-item .sep { margin: 0 24px; color: rgba(59,130,246,0.3); }
+        .reveal-d1 { transition-delay: 0.1s; }
+        .reveal-d2 { transition-delay: 0.2s; }
+        .reveal-d3 { transition-delay: 0.3s; }
+        .reveal-d4 { transition-delay: 0.4s; }
+        .reveal-d5 { transition-delay: 0.5s; }
 
         @media (prefers-reduced-motion: reduce) {
             .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
-            .marquee-track { animation: none !important; }
-            .hero-visual img { animation: none !important; }
-            .bg-glow-1, .bg-glow-2 { animation: none !important; }
+            .marquee-track, .hero-visual-inner, .bg-glow, .shape { animation: none !important; }
+            .btn-primary::before, .form-submit::before { animation: none !important; }
         }
     </style>
 </head>
 <body>
     <div id="progress"></div>
-    <div class="bg-grid"></div>
-    <div class="bg-glow-1"></div>
-    <div class="bg-glow-2"></div>
+
+    <!-- Animated Background -->
+    <div class="bg-blueprint"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+    <div class="floating-shapes" id="shapes"></div>
 
     <!-- ─── NAV ─── -->
     <nav class="nav" id="nav">
         <div class="container">
             <div class="nav-inner">
                 <a href="#" class="nav-logo">
-                    <img src="/wrtk-glow.png" alt="WireTrack Logo" height="32" />
+                    <img src="/wrtk-glow.png" alt="WireTrack Logo" />
+                    <span class="nav-logo-text">WireTrack</span>
                 </a>
                 <div class="nav-links">
                     <a href="#funktionen">Funktionen</a>
@@ -351,10 +436,12 @@
                     <a href="#ueber">Über uns</a>
                     <a href="#kontakt">Kontakt</a>
                 </div>
-                <a href="#kontakt" class="nav-cta" style="display: none;" id="nav-cta-btn">Demo anfragen</a>
-                <button class="mobile-toggle" id="mobile-toggle" aria-label="Menü öffnen">
-                    <span></span><span></span><span></span>
-                </button>
+                <div style="display: flex; align-items: center; gap: 16px;">
+                    <a href="#kontakt" class="nav-cta">Demo anfragen</a>
+                    <button class="mobile-toggle" id="mobile-toggle" aria-label="Menü">
+                        <span></span><span></span><span></span>
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
@@ -372,45 +459,49 @@
             <div class="reveal">
                 <div class="hero-badge">
                     <span class="dot"></span>
-                    Jetzt verfügbar für Elektrobetriebe
+                    Jetzt verfügbar für Baubetriebe in der Schweiz
                 </div>
             </div>
 
-            <h1 class="reveal reveal-delay-1">
-                Das Betriebssystem für<br/><span class="accent-word">Elektroinstallationen.</span>
+            <h1 class="reveal reveal-d1">
+                <span class="white-text">Das Betriebssystem für</span><br/>
+                <span class="gradient-text">die Baubranche.</span>
             </h1>
 
-            <p class="hero-sub reveal reveal-delay-2">
-                WireTrack bündelt Projekte, Serviceaufträge, Kosten und Material in einer Plattform — damit dein Betrieb effizienter, strukturierter und profitabler arbeitet.
+            <p class="hero-sub reveal reveal-d2">
+                WireTrack bündelt Projekte, Aufträge, Kosten und Material in einer Plattform — damit dein Baubetrieb effizienter, strukturierter und profitabler arbeitet.
             </p>
 
-            <div class="hero-actions reveal reveal-delay-3">
+            <div class="hero-actions reveal reveal-d3">
                 <a href="#kontakt" class="btn-primary">
                     Kostenlose Demo anfragen
-                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
                 </a>
                 <a href="#funktionen" class="btn-secondary">
                     Mehr erfahren
-                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                 </a>
             </div>
 
-            <div class="hero-visual reveal reveal-delay-4">
-                <img src="/wrtk-glow.png" alt="WireTrack Plattform Übersicht" />
+            <div class="hero-visual reveal reveal-d4">
+                <div class="hero-visual-inner">
+                    <img src="/wrtk-glow.png" alt="WireTrack Plattform" />
+                    <div class="hero-visual-glow"></div>
+                </div>
             </div>
 
-            <div class="hero-stats reveal reveal-delay-5">
-                <div>
-                    <div class="hero-stat-num" data-count="100">0</div>
-                    <div class="hero-stat-label">Prozent digital</div>
+            <div class="hero-stats">
+                <div class="stat-card reveal reveal-d3">
+                    <div class="stat-num blue" data-count="100">0</div>
+                    <div class="stat-label">Prozent digital</div>
                 </div>
-                <div>
-                    <div class="hero-stat-num" data-count="50">0</div>
-                    <div class="hero-stat-label">% weniger Aufwand</div>
+                <div class="stat-card reveal reveal-d4">
+                    <div class="stat-num cyan" data-count="50">0</div>
+                    <div class="stat-label">% weniger Admin</div>
                 </div>
-                <div>
-                    <div class="hero-stat-num" data-count="24">0</div>
-                    <div class="hero-stat-label">/7 Zugriff</div>
+                <div class="stat-card reveal reveal-d5">
+                    <div class="stat-num orange" data-count="24">0</div>
+                    <div class="stat-label">/7 Zugriff</div>
                 </div>
             </div>
         </div>
@@ -419,22 +510,26 @@
     <!-- ─── MARQUEE ─── -->
     <div class="marquee-section">
         <div class="marquee-track">
-            <span class="marquee-item">Projekte<span class="sep">✦</span></span>
-            <span class="marquee-item">Serviceaufträge<span class="sep">✦</span></span>
-            <span class="marquee-item">Kostenübersicht<span class="sep">✦</span></span>
-            <span class="marquee-item">Materialverwaltung<span class="sep">✦</span></span>
-            <span class="marquee-item">Zeiterfassung<span class="sep">✦</span></span>
-            <span class="marquee-item">Dokumentation<span class="sep">✦</span></span>
-            <span class="marquee-item">Teamverwaltung<span class="sep">✦</span></span>
-            <span class="marquee-item">Archiv<span class="sep">✦</span></span>
-            <span class="marquee-item">Projekte<span class="sep">✦</span></span>
-            <span class="marquee-item">Serviceaufträge<span class="sep">✦</span></span>
-            <span class="marquee-item">Kostenübersicht<span class="sep">✦</span></span>
-            <span class="marquee-item">Materialverwaltung<span class="sep">✦</span></span>
-            <span class="marquee-item">Zeiterfassung<span class="sep">✦</span></span>
-            <span class="marquee-item">Dokumentation<span class="sep">✦</span></span>
-            <span class="marquee-item">Teamverwaltung<span class="sep">✦</span></span>
-            <span class="marquee-item">Archiv<span class="sep">✦</span></span>
+            <span class="marquee-item">Projekte</span>
+            <span class="marquee-item">Serviceaufträge</span>
+            <span class="marquee-item">Kostenübersicht</span>
+            <span class="marquee-item">Materialverwaltung</span>
+            <span class="marquee-item">Zeiterfassung</span>
+            <span class="marquee-item">Baustellendoku</span>
+            <span class="marquee-item">Teamplanung</span>
+            <span class="marquee-item">Rapporte</span>
+            <span class="marquee-item">Archiv</span>
+            <span class="marquee-item">Offerten</span>
+            <span class="marquee-item">Projekte</span>
+            <span class="marquee-item">Serviceaufträge</span>
+            <span class="marquee-item">Kostenübersicht</span>
+            <span class="marquee-item">Materialverwaltung</span>
+            <span class="marquee-item">Zeiterfassung</span>
+            <span class="marquee-item">Baustellendoku</span>
+            <span class="marquee-item">Teamplanung</span>
+            <span class="marquee-item">Rapporte</span>
+            <span class="marquee-item">Archiv</span>
+            <span class="marquee-item">Offerten</span>
         </div>
     </div>
 
@@ -444,51 +539,51 @@
             <div class="reveal">
                 <div class="section-label">Funktionen</div>
                 <h2 class="section-title">Alles, was dein Betrieb braucht.<br/>In einem System.</h2>
-                <p class="section-desc">Von der Projektplanung bis zur Archivierung — WireTrack deckt den gesamten Workflow ab. Kein Systemwechsel. Keine Insellösungen.</p>
+                <p class="section-desc">Von der Offerte bis zum Rapport — WireTrack deckt den gesamten Baualltag ab. Kein Papierkram. Keine Insellösungen.</p>
             </div>
 
             <div class="features-grid">
-                <div class="feature-card reveal reveal-delay-1">
+                <div class="feature-card reveal reveal-d1">
                     <div class="feature-icon" style="background: rgba(59,130,246,0.1);">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="#3b82f6" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
+                        <svg fill="none" viewBox="0 0 24 24" stroke="#3b82f6" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
                     </div>
                     <h3>Projektsteuerung</h3>
-                    <p>Plane, verfolge und steuere alle Projekte zentral. Vom Angebot bis zur Abrechnung — alles an einem Ort.</p>
+                    <p>Plane, verfolge und steuere alle Bauprojekte zentral. Vom Angebot bis zur Schlussabrechnung — alles an einem Ort.</p>
                 </div>
-                <div class="feature-card reveal reveal-delay-2">
+                <div class="feature-card reveal reveal-d2">
                     <div class="feature-icon" style="background: rgba(6,182,212,0.1);">
                         <svg fill="none" viewBox="0 0 24 24" stroke="#06b6d4" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
-                    <h3>Serviceaufträge</h3>
-                    <p>Erstelle, weise zu und verfolge Aufträge in Echtzeit. Dein Team weiss immer, was als Nächstes ansteht.</p>
+                    <h3>Aufträge & Rapporte</h3>
+                    <p>Erstelle, verteile und verfolge Aufträge in Echtzeit. Rapporte direkt von der Baustelle erfassen — digital und nachvollziehbar.</p>
                 </div>
-                <div class="feature-card reveal reveal-delay-3">
+                <div class="feature-card reveal reveal-d3">
                     <div class="feature-icon" style="background: rgba(16,185,129,0.1);">
                         <svg fill="none" viewBox="0 0 24 24" stroke="#10b981" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
                     <h3>Kostenübersicht</h3>
-                    <p>Material, Arbeitsstunden und Spesen auf einen Blick. Wisse genau, was jedes Projekt kostet — in Echtzeit.</p>
+                    <p>Material, Arbeitsstunden und Spesen auf einen Blick. Du weisst jederzeit, was jedes Projekt wirklich kostet.</p>
                 </div>
-                <div class="feature-card reveal reveal-delay-1">
+                <div class="feature-card reveal reveal-d4">
                     <div class="feature-icon" style="background: rgba(139,92,246,0.1);">
                         <svg fill="none" viewBox="0 0 24 24" stroke="#8b5cf6" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
                     </div>
                     <h3>Materialverwaltung</h3>
-                    <p>Behalte den Überblick über Lagerbestände, Bestellungen und Materialverbrauch pro Projekt.</p>
+                    <p>Bestände, Bestellungen und Materialverbrauch pro Projekt — immer im Griff, nie zu viel, nie zu wenig.</p>
                 </div>
-                <div class="feature-card reveal reveal-delay-2">
+                <div class="feature-card reveal reveal-d5">
                     <div class="feature-icon" style="background: rgba(244,114,182,0.1);">
                         <svg fill="none" viewBox="0 0 24 24" stroke="#f472b6" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
                     </div>
-                    <h3>Teamverwaltung</h3>
-                    <p>Weise Rollen und Berechtigungen zu. Jeder sieht nur, was relevant ist — sicher und übersichtlich.</p>
+                    <h3>Teamplanung</h3>
+                    <p>Wer arbeitet wo? Plane dein Team über Baustellen hinweg ein und behalte den Überblick über Verfügbarkeiten.</p>
                 </div>
-                <div class="feature-card reveal reveal-delay-3">
-                    <div class="feature-icon" style="background: rgba(251,191,36,0.1);">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="#fbbf24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
+                <div class="feature-card reveal reveal-d5">
+                    <div class="feature-icon" style="background: rgba(245,158,11,0.1);">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="#f59e0b" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                     </div>
-                    <h3>Archiv & Dokumentation</h3>
-                    <p>Alles wird automatisch dokumentiert und archiviert. Schneller Zugriff auf vergangene Projekte und Aufträge.</p>
+                    <h3>Baustellendokumentation</h3>
+                    <p>Fotos, Notizen und Fortschritt dokumentieren — direkt von der Baustelle. Alles automatisch zugeordnet und archiviert.</p>
                 </div>
             </div>
         </div>
@@ -499,10 +594,10 @@
         <div class="container">
             <div class="reveal" style="text-align: center;">
                 <div class="section-label" style="justify-content: center;">Einblick</div>
-                <h2 class="section-title" style="margin: 0 auto;">Entwickelt für den Arbeitsalltag.</h2>
-                <p class="section-desc" style="margin: 16px auto 0; text-align: center;">Übersichtlich, schnell und intuitiv. WireTrack wurde gemeinsam mit Elektrikern entwickelt — für Abläufe, die wirklich funktionieren.</p>
+                <h2 class="section-title" style="margin: 0 auto;">Gebaut für den Baualltag.</h2>
+                <p class="section-desc" style="margin: 16px auto 0; text-align: center; max-width: 550px;">Übersichtlich, schnell und intuitiv. WireTrack wurde gemeinsam mit Baufachleuten entwickelt — für Abläufe, die wirklich funktionieren.</p>
             </div>
-            <div class="showcase-img-wrap reveal reveal-delay-2">
+            <div class="showcase-wrap reveal reveal-d2">
                 <img src="/wrtk-dark.png" alt="WireTrack Dashboard" />
             </div>
         </div>
@@ -518,32 +613,32 @@
             </div>
 
             <div class="benefits-grid">
-                <div class="benefit-item reveal reveal-delay-1">
+                <div class="benefit-card reveal reveal-d1">
                     <div class="benefit-num">01</div>
                     <div>
                         <h3>Alles an einem Ort</h3>
-                        <p>Schluss mit Excel, WhatsApp und Papierkram. WireTrack vereint alle Betriebsprozesse in einer einzigen Plattform.</p>
+                        <p>Schluss mit Excel, WhatsApp und Papierkram. WireTrack vereint alle Betriebsprozesse in einer Plattform.</p>
                     </div>
                 </div>
-                <div class="benefit-item reveal reveal-delay-2">
+                <div class="benefit-card reveal reveal-d2">
                     <div class="benefit-num">02</div>
                     <div>
                         <h3>Sofort einsatzbereit</h3>
-                        <p>Kein monatelanges Setup. WireTrack ist so einfach zu bedienen, dass dein Team sofort starten kann.</p>
+                        <p>Kein monatelanges Setup. WireTrack ist intuitiv — dein Team kann sofort loslegen.</p>
                     </div>
                 </div>
-                <div class="benefit-item reveal reveal-delay-3">
+                <div class="benefit-card reveal reveal-d3">
                     <div class="benefit-num">03</div>
                     <div>
                         <h3>Volle Transparenz</h3>
-                        <p>Kosten, Fortschritt und Verantwortlichkeiten — alles jederzeit sichtbar. Keine Überraschungen mehr.</p>
+                        <p>Kosten, Fortschritt und Verantwortlichkeiten — alles jederzeit sichtbar. Keine Überraschungen.</p>
                     </div>
                 </div>
-                <div class="benefit-item reveal reveal-delay-4">
+                <div class="benefit-card reveal reveal-d4">
                     <div class="benefit-num">04</div>
                     <div>
-                        <h3>Für die Schweiz gebaut</h3>
-                        <p>Schweizer Hosting, Schweizer Datenschutz. Deine Daten bleiben hier — sicher und konform.</p>
+                        <h3>Schweizer Qualität</h3>
+                        <p>Gehostet in der Schweiz. Deine Daten bleiben hier — sicher, privat und konform.</p>
                     </div>
                 </div>
             </div>
@@ -551,38 +646,41 @@
     </section>
 
     <!-- ─── QUOTE ─── -->
-    <section class="quote-section">
+    <div class="quote-section">
         <div class="container">
             <div class="reveal">
                 <p class="quote-text">
-                    &laquo;Elektrobetriebe verdienen <span class="highlight">digitale Infrastruktur</span>, die so zuverlässig arbeitet wie sie selbst.&raquo;
+                    &laquo;Baubetriebe verdienen <span class="hl">digitale Werkzeuge</span>, die so zuverlässig arbeiten wie sie selbst.&raquo;
                 </p>
-                <p class="quote-author">— WireTrack Team</p>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- ─── ÜBER UNS ─── -->
     <section id="ueber">
         <div class="container">
-            <div class="reveal" style="text-align: center; max-width: 700px; margin: 0 auto;">
+            <div class="reveal" style="text-align: center; max-width: 720px; margin: 0 auto;">
                 <div class="section-label" style="justify-content: center;">Über uns</div>
                 <h2 class="section-title" style="margin: 0 auto;">Gebaut von Praktikern,<br/>für Praktiker.</h2>
-                <p class="section-desc" style="margin: 20px auto 0; text-align: center;">
-                    WireTrack entstand aus dem Alltag der Elektrobranche. Wir wissen, wie Betriebe arbeiten — und was sie brauchen, um besser zu werden. Unser Ziel: eine Software, die sich anfühlt, als wäre sie für deinen Betrieb massgeschneidert.
+                <p class="section-desc" style="margin: 20px auto 0; text-align: center; max-width: 580px;">
+                    WireTrack entstand aus dem Alltag der Baubranche. Wir wissen, wie Betriebe arbeiten — und was sie brauchen, um besser zu werden.
                 </p>
-                <div style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; margin-top: 40px;">
-                    <div class="reveal reveal-delay-1" style="background: rgba(10,17,33,0.6); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 24px 32px; text-align: center;">
-                        <div style="font-size: 1.5rem; font-weight: 800; color: #fff;">CH</div>
-                        <div style="font-size: 0.8rem; color: var(--muted); margin-top: 4px;">Schweizer Hosting</div>
+                <div class="about-badges">
+                    <div class="about-badge reveal reveal-d1">
+                        <div class="about-badge-val">🇨🇭</div>
+                        <div class="about-badge-label">Schweizer Hosting</div>
                     </div>
-                    <div class="reveal reveal-delay-2" style="background: rgba(10,17,33,0.6); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 24px 32px; text-align: center;">
-                        <div style="font-size: 1.5rem; font-weight: 800; color: #fff;">100%</div>
-                        <div style="font-size: 0.8rem; color: var(--muted); margin-top: 4px;">DSGVO-konform</div>
+                    <div class="about-badge reveal reveal-d2">
+                        <div class="about-badge-val">100%</div>
+                        <div class="about-badge-label">DSGVO-konform</div>
                     </div>
-                    <div class="reveal reveal-delay-3" style="background: rgba(10,17,33,0.6); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 24px 32px; text-align: center;">
-                        <div style="font-size: 1.5rem; font-weight: 800; color: #fff;">24/7</div>
-                        <div style="font-size: 0.8rem; color: var(--muted); margin-top: 4px;">Verfügbarkeit</div>
+                    <div class="about-badge reveal reveal-d3">
+                        <div class="about-badge-val">24/7</div>
+                        <div class="about-badge-label">Verfügbarkeit</div>
+                    </div>
+                    <div class="about-badge reveal reveal-d4">
+                        <div class="about-badge-val">∞</div>
+                        <div class="about-badge-label">Skalierbar</div>
                     </div>
                 </div>
             </div>
@@ -590,7 +688,7 @@
     </section>
 
     <!-- ─── KONTAKT ─── -->
-    <section id="kontakt" class="contact-section">
+    <section id="kontakt">
         <div class="container">
             <div class="reveal">
                 <div class="section-label">Kontakt</div>
@@ -599,13 +697,13 @@
             </div>
 
             <div class="contact-grid">
-                <div class="contact-info reveal reveal-delay-1">
-                    <h3>Sprich mit uns</h3>
-                    <p>Ob Fragen, Demo-Anfrage oder einfach neugierig — wir freuen uns auf deine Nachricht.</p>
+                <div class="contact-info reveal reveal-d1">
+                    <h3>Lass uns reden</h3>
+                    <p>Ob Fragen, Demo-Anfrage oder einfach neugierig — wir freuen uns auf deine Nachricht und melden uns innert 24 Stunden.</p>
 
                     <div class="contact-detail">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                        <a href="mailto:info@wiretrack.ch" style="color: var(--accent-2); text-decoration: none;">info@wiretrack.ch</a>
+                        <a href="mailto:info@wiretrack.ch">info@wiretrack.ch</a>
                     </div>
                     <div class="contact-detail">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -613,42 +711,46 @@
                     </div>
                     <div class="contact-detail">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
-                        <a href="https://wiretrack.ch" style="color: var(--accent-2); text-decoration: none;">wiretrack.ch</a>
+                        <a href="https://wiretrack.ch">wiretrack.ch</a>
                     </div>
                 </div>
 
-                <form class="contact-form reveal reveal-delay-2" action="https://formsubmit.co/info@wiretrack.ch" method="POST">
+                <form class="contact-form reveal reveal-d2" action="https://formsubmit.co/info@wiretrack.ch" method="POST">
                     <input type="hidden" name="_subject" value="Neue Anfrage von wiretrack.ch">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_next" value="https://wiretrack.ch#kontakt">
                     <input type="text" name="_honey" style="display:none">
 
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Dein Name" required />
+                    <div class="form-row two">
+                        <div class="form-group">
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" placeholder="Dein Name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-Mail *</label>
+                            <input type="email" id="email" name="email" placeholder="deine@email.ch" required />
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="email">E-Mail</label>
-                        <input type="email" id="email" name="email" placeholder="deine@email.ch" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="firma">Firma</label>
-                        <input type="text" id="firma" name="firma" placeholder="Firmenname (optional)" />
-                    </div>
-                    <div class="form-group">
-                        <label for="interesse">Interesse</label>
-                        <select id="interesse" name="interesse">
-                            <option value="demo">Kostenlose Demo</option>
-                            <option value="info">Allgemeine Informationen</option>
-                            <option value="preise">Preise & Pakete</option>
-                            <option value="partner">Partnerschaft</option>
-                        </select>
+                    <div class="form-row two">
+                        <div class="form-group">
+                            <label for="firma">Firma</label>
+                            <input type="text" id="firma" name="firma" placeholder="Firmenname" />
+                        </div>
+                        <div class="form-group">
+                            <label for="interesse">Interesse</label>
+                            <select id="interesse" name="interesse">
+                                <option value="demo">Kostenlose Demo</option>
+                                <option value="info">Allgemeine Infos</option>
+                                <option value="preise">Preise & Pakete</option>
+                                <option value="partner">Partnerschaft</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="nachricht">Nachricht</label>
                         <textarea id="nachricht" name="nachricht" placeholder="Erzähl uns kurz, was du brauchst..."></textarea>
                     </div>
-                    <button type="submit" class="form-submit">Nachricht senden</button>
+                    <button type="submit" class="form-submit">Nachricht senden →</button>
                 </form>
             </div>
         </div>
@@ -658,8 +760,8 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-inner">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <img src="/wrtk-glow.png" alt="WireTrack" height="24" style="height: 24px; width: auto;" />
+                <div class="footer-left">
+                    <img src="/wrtk-glow.png" alt="WireTrack" />
                     <span style="font-size: 0.85rem; color: var(--muted);" id="year-text"></span>
                 </div>
                 <div class="footer-links">
@@ -674,73 +776,81 @@
     <script>
         document.getElementById('year-text').textContent = '© ' + new Date().getFullYear() + ' WireTrack';
 
-        const progressBar = document.getElementById('progress');
+        const progress = document.getElementById('progress');
         const nav = document.getElementById('nav');
-        const navCta = document.getElementById('nav-cta-btn');
 
         window.addEventListener('scroll', () => {
             const h = document.documentElement;
-            const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-            progressBar.style.width = pct + '%';
-
-            if (h.scrollTop > 100) {
-                nav.classList.add('scrolled');
-                navCta.style.display = 'inline-flex';
-            } else {
-                nav.classList.remove('scrolled');
-                navCta.style.display = 'none';
-            }
+            progress.style.width = ((h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100) + '%';
+            nav.classList.toggle('scrolled', h.scrollTop > 60);
         }, { passive: true });
 
-        const mobileToggle = document.getElementById('mobile-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('open');
-        });
-        function closeMobile() {
-            mobileMenu.classList.remove('open');
-        }
+        const toggle = document.getElementById('mobile-toggle');
+        const menu = document.getElementById('mobile-menu');
+        toggle.addEventListener('click', () => menu.classList.toggle('open'));
+        function closeMobile() { menu.classList.remove('open'); }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-        const countObserver = new IntersectionObserver((entries) => {
+        const cio = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const el = entry.target;
                     const target = parseInt(el.dataset.count);
-                    const duration = 2000;
                     const start = performance.now();
-                    const animate = (now) => {
-                        const elapsed = now - start;
-                        const progress = Math.min(elapsed / duration, 1);
-                        const eased = 1 - Math.pow(1 - progress, 4);
+                    const dur = 2200;
+                    const tick = (now) => {
+                        const p = Math.min((now - start) / dur, 1);
+                        const eased = 1 - Math.pow(1 - p, 4);
                         el.textContent = Math.floor(target * eased);
-                        if (progress < 1) requestAnimationFrame(animate);
+                        if (p < 1) requestAnimationFrame(tick);
                     };
-                    requestAnimationFrame(animate);
-                    countObserver.unobserve(el);
+                    requestAnimationFrame(tick);
+                    cio.unobserve(el);
                 }
             });
         }, { threshold: 0.5 });
-        document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
+        document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', (e) => {
-                const target = document.querySelector(anchor.getAttribute('href'));
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', (e) => {
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
             });
         });
+
+        // Floating construction shapes
+        (function createShapes() {
+            const container = document.getElementById('shapes');
+            const shapes = [
+                '<svg viewBox="0 0 40 40" fill="none"><rect x="2" y="2" width="36" height="36" rx="4" stroke="rgba(59,130,246,0.15)" stroke-width="1"/></svg>',
+                '<svg viewBox="0 0 40 40" fill="none"><polygon points="20,2 38,38 2,38" stroke="rgba(6,182,212,0.12)" stroke-width="1"/></svg>',
+                '<svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="17" stroke="rgba(245,158,11,0.1)" stroke-width="1"/></svg>',
+                '<svg viewBox="0 0 40 40" fill="none"><polygon points="20,2 38,14 32,36 8,36 2,14" stroke="rgba(139,92,246,0.1)" stroke-width="1"/></svg>',
+                '<svg viewBox="0 0 40 40" fill="none"><line x1="2" y1="20" x2="38" y2="20" stroke="rgba(59,130,246,0.1)" stroke-width="1"/><line x1="20" y1="2" x2="20" y2="38" stroke="rgba(59,130,246,0.1)" stroke-width="1"/></svg>',
+                '<svg viewBox="0 0 40 40" fill="none"><polygon points="20,2 26,16 40,16 28,26 32,40 20,30 8,40 12,26 0,16 14,16" stroke="rgba(16,185,129,0.08)" stroke-width="0.8"/></svg>',
+            ];
+
+            function spawn() {
+                const el = document.createElement('div');
+                el.className = 'shape';
+                el.innerHTML = shapes[Math.floor(Math.random() * shapes.length)];
+                const size = 20 + Math.random() * 40;
+                el.style.width = size + 'px';
+                el.style.height = size + 'px';
+                el.style.left = Math.random() * 100 + '%';
+                el.style.animationDuration = (25 + Math.random() * 35) + 's';
+                el.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(el);
+                setTimeout(() => el.remove(), 65000);
+            }
+
+            for (let i = 0; i < 12; i++) setTimeout(() => spawn(), i * 2000);
+            setInterval(spawn, 4000);
+        })();
     </script>
 </body>
 </html>
