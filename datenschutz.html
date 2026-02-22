@@ -3,74 +3,102 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Datenschutzerkl&auml;rung — WireTrack</title>
+    <title>Datenschutzerklärung — WireTrack</title>
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href="https://wiretrack.ch/datenschutz.html" />
-    <meta name="theme-color" content="#060a11" />
+    <meta name="theme-color" content="#050a14" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
-        :root { --bg: #060a11; --fg: #e2e8f0; --accent: #0ea5e9; --border: rgba(255,255,255,0.06); }
-        html, body { background: var(--bg); color: var(--fg); font-family: Inter, system-ui, -apple-system, sans-serif; }
-        body::before {
-            content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" opacity="0.035"><path d="M0 0h80v80H0z" fill="none"/><path d="M0 40h80M40 0v80" stroke="white" stroke-width=".4"/></svg>');
-            background-size: 80px 80px;
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg: #050a14; --fg: #e8edf5; --muted: #7a8ba8; --accent: #3b82f6; --accent-2: #60a5fa; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
+        .bg-grid {
+            position: fixed; inset: 0; z-index: -1; pointer-events: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><path d="M60 0v60H0" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/></svg>');
+            background-size: 60px 60px;
         }
-        .card { background: rgba(10, 16, 24, 0.7); border: 1px solid var(--border); border-radius: 12px; }
+        .nav {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(5, 10, 20, 0.8); backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .nav-inner { max-width: 800px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+        .nav a { text-decoration: none; }
+        .nav-logo { display: flex; align-items: center; gap: 8px; }
+        .nav-logo img { height: 24px; width: auto; }
+        .nav-back { font-size: 0.875rem; color: var(--muted); transition: color 0.2s; }
+        .nav-back:hover { color: #fff; }
+        main { flex: 1; max-width: 800px; margin: 0 auto; padding: 48px 24px 80px; width: 100%; }
+        .label { font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-2); display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+        .label::before { content: ''; width: 24px; height: 2px; background: var(--accent); border-radius: 2px; }
+        h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; color: #fff; }
+        .card {
+            background: rgba(10, 17, 33, 0.6); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px; padding: 32px; margin-top: 32px;
+        }
+        @media (min-width: 768px) { .card { padding: 40px; } }
+        .card h2 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 12px; }
+        .card p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; }
+        .card a { color: var(--accent-2); text-decoration: none; }
+        .card a:hover { text-decoration: underline; }
+        .divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 24px 0; }
+        .footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 32px 24px; text-align: center; }
+        .footer span { font-size: 0.8rem; color: var(--muted); }
     </style>
 </head>
-<body class="min-h-screen">
-    <nav class="sticky top-0 z-50 bg-[#060a11]/80 backdrop-blur-xl border-b border-white/[0.06]">
-        <div class="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
-            <a href="/" class="font-mono text-sm font-semibold tracking-tight text-white hover:text-sky-400 transition-colors">WIRETRACK</a>
-            <a href="/" class="text-sm text-slate-400 hover:text-slate-200 transition-colors">&larr; Back</a>
+<body>
+    <div class="bg-grid"></div>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <img src="/wrtk-glow.png" alt="WireTrack" />
+            </a>
+            <a href="/" class="nav-back">← Zurück</a>
         </div>
     </nav>
-    <main class="max-w-3xl mx-auto px-6 py-12 md:py-16">
-        <span class="font-mono text-[0.7rem] tracking-widest uppercase text-sky-500">Legal</span>
-        <h1 class="text-3xl md:text-4xl font-extrabold mt-3 tracking-tight">Datenschutzerkl&auml;rung</h1>
+    <main>
+        <div class="label">Rechtliches</div>
+        <h1>Datenschutzerklärung</h1>
 
-        <section class="card p-6 md:p-8 mt-8 space-y-6 text-slate-300/90 text-sm leading-relaxed">
+        <div class="card">
             <div>
-                <p class="font-semibold text-slate-200">WireTrack by Silas Roos</p>
-                <p class="mt-1">Sch&uuml;tzenweg 2 &middot; 4710 Balsthal &middot; Schweiz</p>
-                <p class="mt-1">E&#8209;Mail: <a href="mailto:info@wiretrack.ch" class="text-sky-400 hover:underline">info@wiretrack.ch</a></p>
+                <p style="font-weight: 600; color: #fff;">WireTrack by Silas Roos</p>
+                <p style="margin-top: 8px;">Schützenweg 2 · 4710 Balsthal · Schweiz</p>
+                <p style="margin-top: 4px;">E‑Mail: <a href="mailto:info@wiretrack.ch">info@wiretrack.ch</a></p>
             </div>
 
-            <div class="border-t border-white/[0.06] pt-6">
-                <h2 class="text-base font-bold text-slate-200">Grunds&auml;tze</h2>
-                <p class="mt-2">Wir verarbeiten personenbezogene Daten nur, soweit dies zur Bereitstellung dieser Website erforderlich ist. Es werden keine Analyse&#8209;Tools, keine Cookies und keine externen Tracker eingesetzt.</p>
-            </div>
+            <hr class="divider" />
+            <h2>Grundsätze</h2>
+            <p>Wir verarbeiten personenbezogene Daten nur, soweit dies zur Bereitstellung dieser Website erforderlich ist. Es werden keine Analyse‑Tools, keine Cookies und keine externen Tracker eingesetzt.</p>
 
-            <div class="border-t border-white/[0.06] pt-6">
-                <h2 class="text-base font-bold text-slate-200">Server&#8209;Logfiles</h2>
-                <p class="mt-2">Beim Zugriff werden technisch notwendige Daten (z.&nbsp;B. IP&#8209;Adresse, Datum/Uhrzeit, User&#8209;Agent, aufgerufene URL) in Server&#8209;Logs gespeichert. Diese dienen ausschliesslich der technischen Sicherheit und werden nicht mit anderen Datenquellen zusammengef&uuml;hrt.</p>
-            </div>
+            <hr class="divider" />
+            <h2>Server‑Logfiles</h2>
+            <p>Beim Zugriff werden technisch notwendige Daten (z.&nbsp;B. IP‑Adresse, Datum/Uhrzeit, User‑Agent, aufgerufene URL) in Server‑Logs gespeichert. Diese dienen ausschliesslich der technischen Sicherheit und werden nicht mit anderen Datenquellen zusammengeführt.</p>
 
-            <div class="border-t border-white/[0.06] pt-6">
-                <h2 class="text-base font-bold text-slate-200">Kontakt per E&#8209;Mail</h2>
-                <p class="mt-2">Wenn Sie uns per E&#8209;Mail kontaktieren, werden Ihre Angaben zur Bearbeitung der Anfrage gespeichert. Die Daten werden nicht an Dritte weitergegeben.</p>
-            </div>
+            <hr class="divider" />
+            <h2>Kontaktformular & E‑Mail</h2>
+            <p>Wenn Sie uns über das Kontaktformular oder per E‑Mail kontaktieren, werden Ihre Angaben zur Bearbeitung der Anfrage gespeichert. Die Daten werden nicht an Dritte weitergegeben und nach Erledigung der Anfrage gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.</p>
 
-            <div class="border-t border-white/[0.06] pt-6">
-                <h2 class="text-base font-bold text-slate-200">Rechtsgrundlagen &amp; Rechte</h2>
-                <p class="mt-2">Es gelten Schweizer Datenschutzrecht (revDSG) und &ndash; sofern anwendbar &ndash; die DSGVO. Sie haben das Recht auf Auskunft, Berichtigung und L&ouml;schung. Kontakt: <a href="mailto:info@wiretrack.ch" class="text-sky-400 hover:underline">info@wiretrack.ch</a>.</p>
-            </div>
+            <hr class="divider" />
+            <h2>FormSubmit (Kontaktformular)</h2>
+            <p>Für die Verarbeitung des Kontaktformulars nutzen wir den Dienst FormSubmit. Ihre eingegebenen Daten werden über FormSubmit an unsere E‑Mail-Adresse weitergeleitet. Weitere Informationen finden Sie unter <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener">formsubmit.co/privacy</a>.</p>
 
-            <div class="border-t border-white/[0.06] pt-6">
-                <h2 class="text-base font-bold text-slate-200">Sicherheit</h2>
-                <p class="mt-2">&Uuml;bertragung erfolgt verschl&uuml;sselt per HTTPS (TLS). Wir treffen angemessene technische und organisatorische Massnahmen, um Daten vor unbefugtem Zugriff zu sch&uuml;tzen.</p>
-            </div>
-        </section>
+            <hr class="divider" />
+            <h2>Rechtsgrundlagen & Rechte</h2>
+            <p>Es gelten Schweizer Datenschutzrecht (revDSG) und — sofern anwendbar — die DSGVO. Sie haben das Recht auf Auskunft, Berichtigung und Löschung. Kontakt: <a href="mailto:info@wiretrack.ch">info@wiretrack.ch</a>.</p>
 
-        <footer class="text-xs text-slate-500 mt-12 flex items-center gap-3">
-            <span class="font-mono text-slate-600">WIRETRACK</span>
-            <span class="text-slate-700">&middot;</span>
-            <span><script>document.write(new Date().getFullYear())</script></span>
-        </footer>
+            <hr class="divider" />
+            <h2>Sicherheit</h2>
+            <p>Übertragung erfolgt verschlüsselt per HTTPS (TLS). Wir treffen angemessene technische und organisatorische Massnahmen, um Daten vor unbefugtem Zugriff zu schützen.</p>
+        </div>
     </main>
+    <footer class="footer">
+        <span id="ft"></span>
+        <script>document.getElementById('ft').textContent='© ' + new Date().getFullYear() + ' WireTrack';</script>
+    </footer>
 </body>
 </html>

@@ -1,775 +1,736 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="de" class="scroll-smooth">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>WireTrack — The Operating System for Electrical Execution</title>
-    <meta name="description" content="WireTrack is the structured control environment for electrical companies. Projects. Service orders. Costs. Materials. Accountability. Workflows. One system. Full control." />
+    <title>WireTrack — Das Betriebssystem für Elektroinstallationen</title>
+    <meta name="description" content="WireTrack ist die digitale Plattform für Elektroinstallationsbetriebe. Projekte, Aufträge, Kosten, Material — alles in einem System. Volle Kontrolle." />
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href="https://wiretrack.ch" />
-    <meta name="theme-color" content="#060a11" />
-    <meta property="og:title" content="WireTrack — Enterprise Operating System" />
-    <meta property="og:description" content="The structured control environment for electrical companies. One system. Full control." />
+    <meta name="theme-color" content="#050a14" />
+    <meta property="og:title" content="WireTrack — Das Betriebssystem für Elektroinstallationen" />
+    <meta property="og:description" content="Die digitale Plattform für Elektroinstallationsbetriebe. Ein System. Volle Kontrolle." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://wiretrack.ch" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="WireTrack — Enterprise Operating System" />
-    <meta name="twitter:description" content="The structured control environment for electrical companies. One system. Full control." />
-
-    <!--
-        WIRETRACK TAGLINE OPTIONS
-        ─────────────────────────
-        01  The Operating System for Electrical Execution
-        02  Order. Control. Execution.
-        03  Built for Structure. Engineered for Scale.
-        04  Infrastructure, Not Software.
-        05  Where Execution Meets Architecture.
-        06  Control Is Not Optional.
-        07  Structured by Design. Scalable by Default.
-        08  The System Behind the System.
-        09  Every Wire. Every Cost. Every Decision. Tracked.
-        10  Digital Infrastructure for Electrical Operations.
-        11  Precision at the System Level.
-        12  Engineered Control for Complex Operations.
-    -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace']
-                    },
-                    colors: {
-                        bg: '#060a11',
-                        surface: { DEFAULT: '#0a1018', 2: '#0f1722', 3: '#141e2c' },
-                        accent: { DEFAULT: '#0ea5e9', light: '#38bdf8', dim: '#0284c7' },
-                        wire: { cyan: '#0ea5e9', mint: '#2dd4bf', slate: '#64748b' }
-                    }
-                }
-            }
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
     <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
         :root {
-            --bg: #060a11;
-            --fg: #e2e8f0;
-            --muted: #64748b;
-            --accent: #0ea5e9;
-            --accent-glow: rgba(14, 165, 233, 0.12);
-            --border: rgba(255,255,255,0.06);
-            --border-hover: rgba(14, 165, 233, 0.25);
+            --bg: #050a14;
+            --bg-2: #0a1121;
+            --fg: #e8edf5;
+            --muted: #7a8ba8;
+            --accent: #3b82f6;
+            --accent-2: #60a5fa;
+            --accent-glow: rgba(59, 130, 246, 0.15);
+            --cyan: #06b6d4;
+            --emerald: #10b981;
+            --purple: #8b5cf6;
         }
 
-        *, *::before, *::after { box-sizing: border-box; }
-        html, body { height: 100%; background: var(--bg); color: var(--fg); font-family: Inter, system-ui, -apple-system, sans-serif; }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-            background-image:
-                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(14, 165, 233, 0.08), transparent),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" opacity="0.035"><path d="M0 0h80v80H0z" fill="none"/><path d="M0 40h80M40 0v80" stroke="white" stroke-width=".4"/></svg>');
-            background-size: 100% 100%, 80px 80px;
-            pointer-events: none;
-        }
-
-        .wrap { max-width: 1200px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
-        @media (min-width: 768px) { .wrap { padding-left: 40px; padding-right: 40px; } }
-
-        .topbar {
-            position: sticky; top: 0; z-index: 50;
-            background: rgba(6, 10, 17, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .section-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--accent);
-        }
-
-        .card {
-            background: rgba(10, 16, 24, 0.7);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card:hover {
-            border-color: var(--border-hover);
-            box-shadow: 0 0 40px -12px rgba(14, 165, 233, 0.1);
-        }
-
-        .card-static {
-            background: rgba(10, 16, 24, 0.7);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-        }
-
-        .btn-primary {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: var(--accent);
-            color: #060a11;
-            font-weight: 600;
-            font-size: 0.875rem;
-            border-radius: 8px;
-            border: none;
-            transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
-            cursor: pointer;
-        }
-        .btn-primary:hover {
-            background: #38bdf8;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 24px rgba(14, 165, 233, 0.3);
-        }
-        .btn-primary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-        .btn-secondary {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: transparent;
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
             color: var(--fg);
-            font-weight: 500;
-            font-size: 0.875rem;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.12);
-            transition: border-color 0.2s ease, transform 0.15s ease;
-            cursor: pointer;
-        }
-        .btn-secondary:hover {
-            border-color: rgba(255,255,255,0.25);
-            transform: translateY(-1px);
-        }
-        .btn-secondary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-        .scrollbar {
-            position: fixed; top: 0; left: 0; height: 2px;
-            background: var(--accent);
-            width: 0%; z-index: 60;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .reveal {
-            opacity: 0;
-            transform: translateY(16px);
-            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.in { opacity: 1; transform: none; }
-        .reveal-d1 { transition-delay: 0.06s; }
-        .reveal-d2 { transition-delay: 0.12s; }
-        .reveal-d3 { transition-delay: 0.18s; }
-        .reveal-d4 { transition-delay: 0.24s; }
-        .reveal-d5 { transition-delay: 0.30s; }
-        .reveal-d6 { transition-delay: 0.36s; }
-        .reveal-d7 { transition-delay: 0.42s; }
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: rgba(59, 130, 246, 0.3); border-radius: 3px; }
 
-        .system-mock {
-            background: #080e18;
+        /* ── Progress Bar ── */
+        #progress { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--cyan)); width: 0%; z-index: 100; transition: width 0.1s; }
+
+        /* ── Background ── */
+        .bg-grid {
+            position: fixed; inset: 0; z-index: -3; pointer-events: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><path d="M60 0v60H0" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/></svg>');
+            background-size: 60px 60px;
+        }
+        .bg-glow-1 {
+            position: fixed; top: -30%; left: -10%; width: 60%; height: 60%;
+            background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+            z-index: -2; pointer-events: none; animation: float-slow 20s ease-in-out infinite;
+        }
+        .bg-glow-2 {
+            position: fixed; bottom: -20%; right: -10%; width: 50%; height: 50%;
+            background: radial-gradient(circle, rgba(6,182,212,0.06) 0%, transparent 70%);
+            z-index: -2; pointer-events: none; animation: float-slow 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float-slow {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 20px); }
+        }
+
+        /* ── Layout ── */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        @media (min-width: 768px) { .container { padding: 0 48px; } }
+
+        /* ── Nav ── */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 90;
+            background: rgba(5, 10, 20, 0.6);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+        .nav.scrolled {
+            background: rgba(5, 10, 20, 0.9);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-logo img { height: 32px; width: auto; }
+        .nav-logo span { font-size: 0.95rem; font-weight: 700; letter-spacing: -0.02em; color: #fff; }
+        .nav-links { display: none; align-items: center; gap: 32px; }
+        @media (min-width: 768px) { .nav-links { display: flex; } }
+        .nav-links a { font-size: 0.875rem; color: var(--muted); text-decoration: none; transition: color 0.2s; font-weight: 500; }
+        .nav-links a:hover { color: #fff; }
+        .nav-cta {
+            padding: 10px 24px; background: var(--accent); color: #fff; font-size: 0.875rem; font-weight: 600;
+            border: none; border-radius: 10px; cursor: pointer; text-decoration: none;
+            transition: all 0.2s; box-shadow: 0 0 20px rgba(59,130,246,0.2);
+        }
+        .nav-cta:hover { background: var(--accent-2); transform: translateY(-1px); box-shadow: 0 4px 30px rgba(59,130,246,0.4); }
+
+        /* ── Mobile Menu ── */
+        .mobile-toggle { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+        .mobile-toggle span { width: 22px; height: 2px; background: var(--muted); border-radius: 2px; transition: all 0.3s; }
+        @media (min-width: 768px) { .mobile-toggle { display: none; } }
+        .mobile-menu {
+            display: none; position: fixed; inset: 0; top: 65px; z-index: 89;
+            background: rgba(5, 10, 20, 0.98); backdrop-filter: blur(20px);
+            flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { font-size: 1.25rem; color: var(--fg); text-decoration: none; font-weight: 600; }
+
+        /* ── Hero ── */
+        .hero { padding: 160px 0 100px; text-align: center; position: relative; }
+        @media (min-width: 768px) { .hero { padding: 200px 0 140px; } }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px;
+            background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2);
+            border-radius: 50px; font-size: 0.8rem; color: var(--accent-2); font-weight: 500;
+            margin-bottom: 32px;
+        }
+        .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--emerald); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.05;
+            letter-spacing: -0.03em; max-width: 900px; margin: 0 auto;
+            background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero h1 .accent-word { background: linear-gradient(135deg, var(--accent) 0%, var(--cyan) 100%); -webkit-background-clip: text; background-clip: text; }
+        .hero-sub {
+            font-size: clamp(1rem, 2vw, 1.25rem); color: var(--muted); max-width: 600px;
+            margin: 24px auto 0; line-height: 1.7; font-weight: 400;
+        }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 48px; }
+        .btn-primary {
+            padding: 14px 32px; background: var(--accent); color: #fff; font-size: 1rem; font-weight: 600;
+            border: none; border-radius: 12px; cursor: pointer; text-decoration: none;
+            transition: all 0.25s; box-shadow: 0 0 30px rgba(59,130,246,0.25);
+            display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-primary:hover { background: var(--accent-2); transform: translateY(-2px); box-shadow: 0 8px 40px rgba(59,130,246,0.4); }
+        .btn-secondary {
+            padding: 14px 32px; background: rgba(255,255,255,0.05); color: var(--fg); font-size: 1rem; font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; cursor: pointer; text-decoration: none;
+            transition: all 0.25s; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
+
+        .hero-visual { margin-top: 80px; position: relative; }
+        .hero-visual img {
+            width: 100%; max-width: 700px; margin: 0 auto; display: block;
+            border-radius: 16px;
+            animation: hero-float 6s ease-in-out infinite;
+            filter: drop-shadow(0 20px 60px rgba(59,130,246,0.15));
+        }
+        @keyframes hero-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+        .hero-stats {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+            max-width: 600px; margin: 60px auto 0; text-align: center;
+        }
+        .hero-stat-num { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; color: #fff; letter-spacing: -0.02em; }
+        .hero-stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+
+        /* ── Sections ── */
+        section { padding: 100px 0; }
+        @media (min-width: 768px) { section { padding: 140px 0; } }
+        .section-label {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--accent-2); margin-bottom: 16px;
+        }
+        .section-label::before { content: ''; width: 24px; height: 2px; background: var(--accent); border-radius: 2px; }
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.03em;
+            line-height: 1.15; color: #fff;
+        }
+        .section-desc { font-size: 1.1rem; color: var(--muted); margin-top: 16px; max-width: 600px; line-height: 1.7; }
+
+        /* ── Feature Cards ── */
+        .features-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 60px; }
+        @media (min-width: 640px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .features-grid { grid-template-columns: repeat(3, 1fr); } }
+
+        .feature-card {
+            background: rgba(10, 17, 33, 0.6); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px; padding: 32px; position: relative; overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .feature-card::before {
+            content: ''; position: absolute; inset: 0; opacity: 0;
+            background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(6,182,212,0.05));
+            transition: opacity 0.4s;
+        }
+        .feature-card:hover { border-color: rgba(59,130,246,0.2); transform: translateY(-4px); }
+        .feature-card:hover::before { opacity: 1; }
+        .feature-icon {
+            width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px; position: relative;
+        }
+        .feature-icon svg { width: 24px; height: 24px; position: relative; z-index: 1; }
+        .feature-card h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 8px; position: relative; }
+        .feature-card p { font-size: 0.925rem; color: var(--muted); line-height: 1.65; position: relative; }
+
+        /* ── Showcase ── */
+        .showcase { position: relative; text-align: center; }
+        .showcase-img-wrap { position: relative; margin-top: 60px; }
+        .showcase-img-wrap img {
+            width: 100%; max-width: 900px; margin: 0 auto; display: block; border-radius: 20px;
             border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 12px;
-            overflow: hidden;
-            font-family: 'JetBrains Mono', monospace;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4), 0 0 60px rgba(59,130,246,0.08);
         }
-        .system-mock-header {
-            padding: 12px 16px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            display: flex; align-items: center; justify-content: space-between;
-            font-size: 0.7rem;
-            color: #64748b;
-        }
-        .system-mock-body { padding: 16px; font-size: 0.72rem; color: #94a3b8; }
-        .mock-row {
-            display: grid;
-            grid-template-columns: 1fr auto auto auto;
-            gap: 12px;
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-            align-items: center;
-        }
-        .mock-row:last-child { border-bottom: none; }
-
-        .status-dot {
-            width: 6px; height: 6px; border-radius: 50%;
-            display: inline-block;
-        }
-        .status-live {
-            background: #22c55e;
-            box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
-            animation: pulse-dot 2s ease-in-out infinite;
-        }
-        .status-standby { background: #eab308; box-shadow: 0 0 6px rgba(234, 179, 8, 0.4); }
-        @keyframes pulse-dot {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+        .showcase-img-wrap::after {
+            content: ''; position: absolute; bottom: -40px; left: 10%; right: 10%; height: 80px;
+            background: radial-gradient(ellipse, rgba(59,130,246,0.12), transparent);
+            filter: blur(30px); z-index: -1;
         }
 
-        .flow-step {
-            position: relative;
-            text-align: center;
-            flex: 1;
+        /* ── Benefits ── */
+        .benefits-grid { display: grid; grid-template-columns: 1fr; gap: 48px; margin-top: 60px; }
+        @media (min-width: 768px) { .benefits-grid { grid-template-columns: 1fr 1fr; gap: 64px; } }
+        .benefit-item { display: flex; gap: 20px; }
+        .benefit-num {
+            font-size: 3rem; font-weight: 900; line-height: 1; letter-spacing: -0.04em;
+            background: linear-gradient(135deg, rgba(59,130,246,0.3), rgba(6,182,212,0.15));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            flex-shrink: 0;
         }
-        .flow-step::after {
-            content: '';
-            position: absolute;
-            top: 22px;
-            right: -50%;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(14,165,233,0.3), rgba(14,165,233,0.08));
-        }
-        .flow-step:last-child::after { display: none; }
+        .benefit-item h3 { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+        .benefit-item p { font-size: 0.925rem; color: var(--muted); line-height: 1.65; }
 
-        .diff-col { flex: 1; min-width: 280px; }
-
-        .manifesto-text {
-            font-size: 1.125rem;
-            line-height: 1.85;
-            color: #cbd5e1;
-            max-width: 720px;
+        /* ── Inline Quote ── */
+        .quote-section { text-align: center; position: relative; }
+        .quote-text {
+            font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; line-height: 1.4;
+            color: #fff; max-width: 800px; margin: 0 auto; letter-spacing: -0.02em;
         }
-        .manifesto-text p + p { margin-top: 1.25rem; }
+        .quote-text .highlight {
+            background: linear-gradient(135deg, var(--accent), var(--cyan));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .quote-author { margin-top: 24px; font-size: 0.9rem; color: var(--muted); }
+
+        /* ── Contact Form ── */
+        .contact-section { position: relative; }
+        .contact-grid { display: grid; grid-template-columns: 1fr; gap: 48px; margin-top: 60px; }
+        @media (min-width: 768px) { .contact-grid { grid-template-columns: 1fr 1fr; gap: 64px; } }
+        .contact-info h3 { font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 16px; }
+        .contact-info p { color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+        .contact-detail { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; color: var(--muted); font-size: 0.95rem; }
+        .contact-detail svg { width: 20px; height: 20px; color: var(--accent-2); flex-shrink: 0; }
+
+        .contact-form {
+            background: rgba(10, 17, 33, 0.6); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px; padding: 36px;
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--fg); margin-bottom: 8px; }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 14px 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px; color: var(--fg); font-family: inherit; font-size: 0.95rem;
+            transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--accent); box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+        }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        .form-group select option { background: var(--bg-2); color: var(--fg); }
+        .form-submit {
+            width: 100%; padding: 16px; background: var(--accent); color: #fff; font-size: 1rem; font-weight: 600;
+            border: none; border-radius: 12px; cursor: pointer; transition: all 0.25s;
+            box-shadow: 0 0 20px rgba(59,130,246,0.2);
+        }
+        .form-submit:hover { background: var(--accent-2); box-shadow: 0 4px 30px rgba(59,130,246,0.4); transform: translateY(-1px); }
+
+        /* ── Footer ── */
+        .footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 48px 0; }
+        .footer-inner { display: flex; flex-direction: column; gap: 24px; align-items: center; text-align: center; }
+        @media (min-width: 768px) { .footer-inner { flex-direction: row; justify-content: space-between; text-align: left; } }
+        .footer-links { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+        .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; transition: color 0.2s; }
+        .footer-links a:hover { color: #fff; }
+
+        /* ── Animations ── */
+        .reveal {
+            opacity: 0; transform: translateY(24px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible { opacity: 1; transform: none; }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 8s ease-in-out infinite;
+        }
+
+        /* ── Marquee ── */
+        .marquee-section { overflow: hidden; padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .marquee-track {
+            display: flex; gap: 48px; width: max-content;
+            animation: marquee 30s linear infinite;
+        }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .marquee-item { font-size: 1rem; color: rgba(255,255,255,0.15); white-space: nowrap; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+        .marquee-item .sep { margin: 0 24px; color: rgba(59,130,246,0.3); }
 
         @media (prefers-reduced-motion: reduce) {
-            .reveal { transition: none !important; transform: none !important; opacity: 1 !important; }
-            .status-live { animation: none !important; }
+            .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
+            .marquee-track { animation: none !important; }
+            .hero-visual img { animation: none !important; }
+            .bg-glow-1, .bg-glow-2 { animation: none !important; }
         }
-
-        .counter { font-variant-numeric: tabular-nums; }
     </style>
-
-    <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"SoftwareApplication","name":"WireTrack","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"Enterprise operating system for electrical companies. Manages projects, service orders, costs, materials, accountability, and structured workflows.","url":"https://wiretrack.ch","author":{"@type":"Organization","name":"WireTrack","url":"https://wiretrack.ch"}}
-    </script>
 </head>
 <body>
-    <div id="scrollbar" class="scrollbar" aria-hidden="true"></div>
+    <div id="progress"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
 
-    <!-- ─── NAVIGATION ─── -->
-    <nav class="topbar" aria-label="Main navigation">
-        <div class="wrap py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2.5">
-                    <span class="font-mono text-sm font-semibold tracking-tight text-white">WIRETRACK</span>
-                    <span class="hidden sm:inline font-mono text-[0.65rem] text-slate-500 border border-slate-700/50 rounded px-1.5 py-0.5">v2.0</span>
+    <!-- ─── NAV ─── -->
+    <nav class="nav" id="nav">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="#" class="nav-logo">
+                    <img src="/wrtk-glow.png" alt="WireTrack Logo" height="32" />
+                </a>
+                <div class="nav-links">
+                    <a href="#funktionen">Funktionen</a>
+                    <a href="#vorteile">Vorteile</a>
+                    <a href="#ueber">Über uns</a>
+                    <a href="#kontakt">Kontakt</a>
                 </div>
-                <div class="flex items-center gap-6">
-                    <div class="hidden md:flex items-center gap-6 text-sm text-slate-400">
-                        <a class="hover:text-slate-200 transition-colors" href="#architecture">Architecture</a>
-                        <a class="hover:text-slate-200 transition-colors" href="#security">Security</a>
-                        <a class="hover:text-slate-200 transition-colors" href="#philosophy">Philosophy</a>
-                    </div>
-                    <a href="mailto:info@wiretrack.ch" class="btn-primary text-xs px-4 py-2">Request Access</a>
-                </div>
+                <a href="#kontakt" class="nav-cta" style="display: none;" id="nav-cta-btn">Demo anfragen</a>
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Menü öffnen">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
         </div>
     </nav>
 
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#funktionen" onclick="closeMobile()">Funktionen</a>
+        <a href="#vorteile" onclick="closeMobile()">Vorteile</a>
+        <a href="#ueber" onclick="closeMobile()">Über uns</a>
+        <a href="#kontakt" onclick="closeMobile()">Kontakt</a>
+    </div>
+
     <!-- ─── HERO ─── -->
-    <header class="wrap pt-20 pb-24 md:pt-28 md:pb-32">
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div>
-                <div class="reveal">
-                    <span class="font-mono text-[0.7rem] tracking-widest uppercase text-accent">Enterprise Operating System</span>
-                </div>
-
-                <h1 class="mt-5 text-4xl md:text-5xl lg:text-[3.4rem] font-black leading-[1.08] tracking-tight reveal reveal-d1">
-                    The Operating System<br/>for Electrical Execution.
-                </h1>
-
-                <p class="mt-6 text-lg text-slate-400 leading-relaxed max-w-xl reveal reveal-d2">
-                    WireTrack is the structured control environment for electrical companies. Projects. Service orders. Costs. Materials. Accountability. Workflows. One system. Full control.
-                </p>
-
-                <div class="mt-8 flex flex-wrap gap-3 reveal reveal-d3">
-                    <a href="mailto:info@wiretrack.ch" class="btn-primary">Request Access</a>
-                    <a href="#architecture" class="btn-secondary">View Architecture</a>
-                </div>
-
-                <div class="mt-10 flex flex-wrap gap-x-6 gap-y-2 reveal reveal-d4">
-                    <span class="flex items-center gap-2 text-xs text-slate-500 font-mono">
-                        <span class="w-1 h-1 rounded-full bg-accent"></span>Role-Based Access
-                    </span>
-                    <span class="flex items-center gap-2 text-xs text-slate-500 font-mono">
-                        <span class="w-1 h-1 rounded-full bg-accent"></span>Full Audit Trail
-                    </span>
-                    <span class="flex items-center gap-2 text-xs text-slate-500 font-mono">
-                        <span class="w-1 h-1 rounded-full bg-accent"></span>Modular Architecture
-                    </span>
-                    <span class="flex items-center gap-2 text-xs text-slate-500 font-mono">
-                        <span class="w-1 h-1 rounded-full bg-accent"></span>Swiss Infrastructure
-                    </span>
+    <header class="hero">
+        <div class="container">
+            <div class="reveal">
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    Jetzt verfügbar für Elektrobetriebe
                 </div>
             </div>
 
-            <div class="reveal reveal-d3">
-                <div class="system-mock shadow-2xl shadow-black/40">
-                    <div class="system-mock-header">
-                        <div class="flex items-center gap-3">
-                            <span class="text-white/80 font-semibold tracking-wide">WIRETRACK SYSTEM</span>
-                            <span class="text-slate-600">v2.4.1</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="status-dot status-live"></span>
-                            <span class="text-emerald-400/70">LIVE</span>
-                        </div>
-                    </div>
-                    <div class="system-mock-body">
-                        <div class="mock-row text-[0.65rem] text-slate-500 font-semibold uppercase tracking-wider" style="border-bottom-color: rgba(255,255,255,0.06);">
-                            <span>Module</span>
-                            <span>Status</span>
-                            <span class="text-right">Orders</span>
-                            <span class="text-right">Volume</span>
-                        </div>
-                        <div class="mock-row">
-                            <span class="text-slate-300">Project Control</span>
-                            <span class="flex items-center gap-1.5"><span class="status-dot status-live"></span> Active</span>
-                            <span class="text-right text-slate-300 counter" data-target="847">0</span>
-                            <span class="text-right text-slate-400">CHF 2.4M</span>
-                        </div>
-                        <div class="mock-row">
-                            <span class="text-slate-300">Service Orders</span>
-                            <span class="flex items-center gap-1.5"><span class="status-dot status-live"></span> Active</span>
-                            <span class="text-right text-slate-300 counter" data-target="1203">0</span>
-                            <span class="text-right text-slate-400">CHF 890K</span>
-                        </div>
-                        <div class="mock-row">
-                            <span class="text-slate-300">Material Mgmt</span>
-                            <span class="flex items-center gap-1.5"><span class="status-dot status-live"></span> Active</span>
-                            <span class="text-right text-slate-500">&mdash;</span>
-                            <span class="text-right text-slate-400">CHF 340K</span>
-                        </div>
-                        <div class="mock-row">
-                            <span class="text-slate-300">Cost Engine</span>
-                            <span class="flex items-center gap-1.5"><span class="status-dot status-live"></span> Active</span>
-                            <span class="text-right text-slate-500">&mdash;</span>
-                            <span class="text-right text-slate-400">CHF 3.6M</span>
-                        </div>
-                        <div class="mock-row">
-                            <span class="text-slate-300">Archive</span>
-                            <span class="flex items-center gap-1.5"><span class="status-dot status-standby"></span> Standby</span>
-                            <span class="text-right text-slate-300 counter" data-target="12847">0</span>
-                            <span class="text-right text-slate-500">&mdash;</span>
-                        </div>
-                        <div class="mt-3 pt-3 border-t border-white/[0.04] text-[0.65rem] text-slate-500 flex items-center justify-between">
-                            <span>RBAC: 4 roles &middot; 23 users</span>
-                            <span>last sync: 0.3s</span>
-                        </div>
-                    </div>
+            <h1 class="reveal reveal-delay-1">
+                Das Betriebssystem für<br/><span class="accent-word">Elektroinstallationen.</span>
+            </h1>
+
+            <p class="hero-sub reveal reveal-delay-2">
+                WireTrack bündelt Projekte, Serviceaufträge, Kosten und Material in einer Plattform — damit dein Betrieb effizienter, strukturierter und profitabler arbeitet.
+            </p>
+
+            <div class="hero-actions reveal reveal-delay-3">
+                <a href="#kontakt" class="btn-primary">
+                    Kostenlose Demo anfragen
+                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+                </a>
+                <a href="#funktionen" class="btn-secondary">
+                    Mehr erfahren
+                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </a>
+            </div>
+
+            <div class="hero-visual reveal reveal-delay-4">
+                <img src="/wrtk-glow.png" alt="WireTrack Plattform Übersicht" />
+            </div>
+
+            <div class="hero-stats reveal reveal-delay-5">
+                <div>
+                    <div class="hero-stat-num" data-count="100">0</div>
+                    <div class="hero-stat-label">Prozent digital</div>
+                </div>
+                <div>
+                    <div class="hero-stat-num" data-count="50">0</div>
+                    <div class="hero-stat-label">% weniger Aufwand</div>
+                </div>
+                <div>
+                    <div class="hero-stat-num" data-count="24">0</div>
+                    <div class="hero-stat-label">/7 Zugriff</div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- ─── 01 THE PROBLEM ─── -->
-    <section class="wrap py-20 md:py-28" id="problem">
-        <div class="reveal">
-            <span class="section-label">01 &mdash; The Problem</span>
-            <h2 class="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">Fragmented operations.<br/>Zero infrastructure.</h2>
-            <p class="mt-4 text-slate-400 max-w-2xl">Electrical companies manage complexity with scattered tools, manual tracking, and systems that were never designed for structured execution.</p>
+    <!-- ─── MARQUEE ─── -->
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <span class="marquee-item">Projekte<span class="sep">✦</span></span>
+            <span class="marquee-item">Serviceaufträge<span class="sep">✦</span></span>
+            <span class="marquee-item">Kostenübersicht<span class="sep">✦</span></span>
+            <span class="marquee-item">Materialverwaltung<span class="sep">✦</span></span>
+            <span class="marquee-item">Zeiterfassung<span class="sep">✦</span></span>
+            <span class="marquee-item">Dokumentation<span class="sep">✦</span></span>
+            <span class="marquee-item">Teamverwaltung<span class="sep">✦</span></span>
+            <span class="marquee-item">Archiv<span class="sep">✦</span></span>
+            <span class="marquee-item">Projekte<span class="sep">✦</span></span>
+            <span class="marquee-item">Serviceaufträge<span class="sep">✦</span></span>
+            <span class="marquee-item">Kostenübersicht<span class="sep">✦</span></span>
+            <span class="marquee-item">Materialverwaltung<span class="sep">✦</span></span>
+            <span class="marquee-item">Zeiterfassung<span class="sep">✦</span></span>
+            <span class="marquee-item">Dokumentation<span class="sep">✦</span></span>
+            <span class="marquee-item">Teamverwaltung<span class="sep">✦</span></span>
+            <span class="marquee-item">Archiv<span class="sep">✦</span></span>
         </div>
+    </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
-            <div class="card p-6 reveal reveal-d1">
-                <div class="font-mono text-xs text-accent mb-3">Cost Tracking</div>
-                <div class="text-sm font-semibold text-slate-200 mb-2">Scattered across spreadsheets</div>
-                <p class="text-sm text-slate-500 leading-relaxed">Material costs, labor hours, and project expenses live in separate files. No aggregation. No single view.</p>
+    <!-- ─── FUNKTIONEN ─── -->
+    <section id="funktionen">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Funktionen</div>
+                <h2 class="section-title">Alles, was dein Betrieb braucht.<br/>In einem System.</h2>
+                <p class="section-desc">Von der Projektplanung bis zur Archivierung — WireTrack deckt den gesamten Workflow ab. Kein Systemwechsel. Keine Insellösungen.</p>
             </div>
-            <div class="card p-6 reveal reveal-d2">
-                <div class="font-mono text-xs text-accent mb-3">Accountability</div>
-                <div class="text-sm font-semibold text-slate-200 mb-2">No traceable chain of decisions</div>
-                <p class="text-sm text-slate-500 leading-relaxed">When something goes wrong, there is no audit trail. Responsibility dissolves. Root cause stays hidden.</p>
-            </div>
-            <div class="card p-6 reveal reveal-d3">
-                <div class="font-mono text-xs text-accent mb-3">Workflows</div>
-                <div class="text-sm font-semibold text-slate-200 mb-2">Exist in people's heads</div>
-                <p class="text-sm text-slate-500 leading-relaxed">Processes survive as tribal knowledge. When someone leaves, the workflow leaves with them.</p>
-            </div>
-            <div class="card p-6 reveal reveal-d4">
-                <div class="font-mono text-xs text-accent mb-3">Archive</div>
-                <div class="text-sm font-semibold text-slate-200 mb-2">Stored, not structured</div>
-                <p class="text-sm text-slate-500 leading-relaxed">Documents are filed away without logic. Retrieval is guesswork. Versioning is nonexistent.</p>
-            </div>
-            <div class="card p-6 reveal reveal-d5">
-                <div class="font-mono text-xs text-accent mb-3">Permissions</div>
-                <div class="text-sm font-semibold text-slate-200 mb-2">Binary access or none</div>
-                <p class="text-sm text-slate-500 leading-relaxed">Access control is all-or-nothing. No role granularity. No hierarchy enforcement. No scoping.</p>
-            </div>
-            <div class="card p-6 reveal reveal-d6">
-                <div class="font-mono text-xs text-accent mb-3">Service Orders</div>
-                <div class="text-sm font-semibold text-slate-200 mb-2">Created, assigned, forgotten</div>
-                <p class="text-sm text-slate-500 leading-relaxed">No execution tracking. No completion verification. No structured lifecycle management.</p>
-            </div>
-        </div>
-    </section>
 
-    <!-- ─── 02 SYSTEM ARCHITECTURE ─── -->
-    <section class="wrap py-20 md:py-28" id="architecture">
-        <div class="reveal">
-            <span class="section-label">02 &mdash; System Architecture</span>
-            <h2 class="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">One system. Eight layers.<br/>Full control.</h2>
-            <p class="mt-4 text-slate-400 max-w-2xl">WireTrack is not a tool. It is a digital infrastructure layer built for the operational reality of electrical companies.</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
-            <div class="card p-6 reveal reveal-d1">
-                <div class="font-mono text-xs text-accent/70 mb-1">01</div>
-                <div class="text-sm font-bold text-slate-200 mb-2">Project Control</div>
-                <p class="text-xs text-slate-500 leading-relaxed">Full lifecycle management from initiation to archive. Status tracking, milestone enforcement, resource allocation.</p>
-            </div>
-            <div class="card p-6 reveal reveal-d2">
-                <div class="font-mono text-xs text-accent/70 mb-1">02</div>
-                <div class="text-sm font-bold text-slate-200 mb-2">Service Orders</div>
-                <p class="text-xs text-slate-500 leading-relaxed">Structured order creation, assignment, execution tracking, and completion verification.</p>
-            </div>
-            <div class="card p-6 reveal reveal-d3">
-                <div class="font-mono text-xs text-accent/70 mb-1">03</div>
-                <div class="text-sm font-bold text-slate-200 mb-2">Cost Aggregation</div>
-                <p class="text-xs text-slate-500 leading-relaxed">Real-time cost consolidation across materials, labor, and overhead. Per-project and per-order granularity.</p>
-            </div>
-            <div class="card p-6 reveal reveal-d4">
-                <div class="font-mono text-xs text-accent/70 mb-1">04</div>
-                <div class="text-sm font-bold text-slate-200 mb-2">Material Management</div>
-                <p class="text-xs text-slate-500 leading-relaxed">Inventory tracking, usage logging, and procurement workflow integration.</p>
-            </div>
-            <div class="card p-6 reveal reveal-d5">
-                <div class="font-mono text-xs text-accent/70 mb-1">05</div>
-                <div class="text-sm font-bold text-slate-200 mb-2">Role-Based Access</div>
-                <p class="text-xs text-slate-500 leading-relaxed">Granular permission systems mapped to organizational hierarchy. Every action scoped to role and context.</p>
-            </div>
-            <div class="card p-6 reveal reveal-d6">
-                <div class="font-mono text-xs text-accent/70 mb-1">06</div>
-                <div class="text-sm font-bold text-slate-200 mb-2">Archive &amp; Restore</div>
-                <p class="text-xs text-slate-500 leading-relaxed">Structured archival with version control. Full restore capability. Nothing is lost. Everything is retrievable.</p>
-            </div>
-            <div class="card p-6 reveal reveal-d7">
-                <div class="font-mono text-xs text-accent/70 mb-1">07</div>
-                <div class="text-sm font-bold text-slate-200 mb-2">Workflow Engine</div>
-                <p class="text-xs text-slate-500 leading-relaxed">Defined execution paths. Status transitions. Approval chains. Automated routing logic.</p>
-            </div>
-            <div class="card p-6 reveal">
-                <div class="font-mono text-xs text-accent/70 mb-1">08</div>
-                <div class="text-sm font-bold text-slate-200 mb-2">Audit Trail</div>
-                <p class="text-xs text-slate-500 leading-relaxed">Every action logged. Every change traced. Every decision accountable. Immutable history.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── 03 EXECUTION FLOW ─── -->
-    <section class="wrap py-20 md:py-28" id="flow">
-        <div class="reveal">
-            <span class="section-label">03 &mdash; Execution Flow</span>
-            <h2 class="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">Every operation follows<br/>a defined path.</h2>
-            <p class="mt-4 text-slate-400 max-w-2xl">From ingestion to archive, WireTrack enforces structure at every transition. No step is skipped. No state is undefined.</p>
-        </div>
-
-        <div class="mt-14 overflow-x-auto">
-            <div class="flex gap-0 min-w-[700px] reveal reveal-d2">
-                <div class="flow-step px-3">
-                    <div class="w-11 h-11 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto mb-3">
-                        <span class="font-mono text-xs text-accent font-semibold">01</span>
+            <div class="features-grid">
+                <div class="feature-card reveal reveal-delay-1">
+                    <div class="feature-icon" style="background: rgba(59,130,246,0.1);">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="#3b82f6" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
                     </div>
-                    <div class="text-sm font-bold text-slate-200 mb-1">Ingest</div>
-                    <p class="text-xs text-slate-500">Data enters the system through defined input channels.</p>
+                    <h3>Projektsteuerung</h3>
+                    <p>Plane, verfolge und steuere alle Projekte zentral. Vom Angebot bis zur Abrechnung — alles an einem Ort.</p>
                 </div>
-                <div class="flow-step px-3">
-                    <div class="w-11 h-11 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto mb-3">
-                        <span class="font-mono text-xs text-accent font-semibold">02</span>
+                <div class="feature-card reveal reveal-delay-2">
+                    <div class="feature-icon" style="background: rgba(6,182,212,0.1);">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="#06b6d4" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
-                    <div class="text-sm font-bold text-slate-200 mb-1">Structure</div>
-                    <p class="text-xs text-slate-500">Raw data is validated, classified, and mapped to entities.</p>
+                    <h3>Serviceaufträge</h3>
+                    <p>Erstelle, weise zu und verfolge Aufträge in Echtzeit. Dein Team weiss immer, was als Nächstes ansteht.</p>
                 </div>
-                <div class="flow-step px-3">
-                    <div class="w-11 h-11 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto mb-3">
-                        <span class="font-mono text-xs text-accent font-semibold">03</span>
+                <div class="feature-card reveal reveal-delay-3">
+                    <div class="feature-icon" style="background: rgba(16,185,129,0.1);">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="#10b981" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
-                    <div class="text-sm font-bold text-slate-200 mb-1">Assign</div>
-                    <p class="text-xs text-slate-500">Tasks routed to responsible roles based on permission scope.</p>
+                    <h3>Kostenübersicht</h3>
+                    <p>Material, Arbeitsstunden und Spesen auf einen Blick. Wisse genau, was jedes Projekt kostet — in Echtzeit.</p>
                 </div>
-                <div class="flow-step px-3">
-                    <div class="w-11 h-11 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto mb-3">
-                        <span class="font-mono text-xs text-accent font-semibold">04</span>
+                <div class="feature-card reveal reveal-delay-1">
+                    <div class="feature-icon" style="background: rgba(139,92,246,0.1);">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="#8b5cf6" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
                     </div>
-                    <div class="text-sm font-bold text-slate-200 mb-1">Execute</div>
-                    <p class="text-xs text-slate-500">Work is performed within tracked, time-stamped boundaries.</p>
+                    <h3>Materialverwaltung</h3>
+                    <p>Behalte den Überblick über Lagerbestände, Bestellungen und Materialverbrauch pro Projekt.</p>
                 </div>
-                <div class="flow-step px-3">
-                    <div class="w-11 h-11 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto mb-3">
-                        <span class="font-mono text-xs text-accent font-semibold">05</span>
+                <div class="feature-card reveal reveal-delay-2">
+                    <div class="feature-icon" style="background: rgba(244,114,182,0.1);">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="#f472b6" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
                     </div>
-                    <div class="text-sm font-bold text-slate-200 mb-1">Document</div>
-                    <p class="text-xs text-slate-500">Results, costs, and changes are captured at the system level.</p>
+                    <h3>Teamverwaltung</h3>
+                    <p>Weise Rollen und Berechtigungen zu. Jeder sieht nur, was relevant ist — sicher und übersichtlich.</p>
                 </div>
-                <div class="flow-step px-3">
-                    <div class="w-11 h-11 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto mb-3">
-                        <span class="font-mono text-xs text-accent font-semibold">06</span>
+                <div class="feature-card reveal reveal-delay-3">
+                    <div class="feature-icon" style="background: rgba(251,191,36,0.1);">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="#fbbf24" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
                     </div>
-                    <div class="text-sm font-bold text-slate-200 mb-1">Archive</div>
-                    <p class="text-xs text-slate-500">Completed records are versioned, sealed, and stored for retrieval.</p>
+                    <h3>Archiv & Dokumentation</h3>
+                    <p>Alles wird automatisch dokumentiert und archiviert. Schneller Zugriff auf vergangene Projekte und Aufträge.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ─── 04 DIFFERENTIATION ─── -->
-    <section class="wrap py-20 md:py-28" id="differentiation">
-        <div class="reveal">
-            <span class="section-label">04 &mdash; Differentiation</span>
-            <h2 class="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">WireTrack is not<br/>another tool.</h2>
-        </div>
-
-        <div class="mt-12 flex flex-wrap gap-6">
-            <div class="diff-col reveal reveal-d1">
-                <div class="card-static p-6 md:p-8">
-                    <div class="font-mono text-xs text-accent mb-5 tracking-wider">WIRETRACK IS</div>
-                    <ul class="space-y-3">
-                        <li class="flex items-start gap-3">
-                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0"></span>
-                            <span class="text-sm text-slate-300">An operating system for electrical execution</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0"></span>
-                            <span class="text-sm text-slate-300">A structured control environment</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0"></span>
-                            <span class="text-sm text-slate-300">A digital infrastructure layer</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0"></span>
-                            <span class="text-sm text-slate-300">Built by operators, not marketers</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0"></span>
-                            <span class="text-sm text-slate-300">Designed for accountability and traceability</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0"></span>
-                            <span class="text-sm text-slate-300">Engineered for modular scalability</span>
-                        </li>
-                    </ul>
-                </div>
+    <!-- ─── SHOWCASE ─── -->
+    <section class="showcase">
+        <div class="container">
+            <div class="reveal" style="text-align: center;">
+                <div class="section-label" style="justify-content: center;">Einblick</div>
+                <h2 class="section-title" style="margin: 0 auto;">Entwickelt für den Arbeitsalltag.</h2>
+                <p class="section-desc" style="margin: 16px auto 0; text-align: center;">Übersichtlich, schnell und intuitiv. WireTrack wurde gemeinsam mit Elektrikern entwickelt — für Abläufe, die wirklich funktionieren.</p>
             </div>
-            <div class="diff-col reveal reveal-d2">
-                <div class="card-static p-6 md:p-8">
-                    <div class="font-mono text-xs text-slate-500 mb-5 tracking-wider">WIRETRACK IS NOT</div>
-                    <ul class="space-y-3">
-                        <li class="flex items-start gap-3">
-                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-600 flex-shrink-0"></span>
-                            <span class="text-sm text-slate-500">A generic ERP system</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-600 flex-shrink-0"></span>
-                            <span class="text-sm text-slate-500">A project management tool</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-600 flex-shrink-0"></span>
-                            <span class="text-sm text-slate-500">A startup experiment</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-600 flex-shrink-0"></span>
-                            <span class="text-sm text-slate-500">A marketing wrapper around generic features</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-600 flex-shrink-0"></span>
-                            <span class="text-sm text-slate-500">An all-in-one promise that delivers nothing deeply</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-600 flex-shrink-0"></span>
-                            <span class="text-sm text-slate-500">A one-size-fits-all solution</span>
-                        </li>
-                    </ul>
+            <div class="showcase-img-wrap reveal reveal-delay-2">
+                <img src="/wrtk-dark.png" alt="WireTrack Dashboard" />
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── VORTEILE ─── -->
+    <section id="vorteile">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Vorteile</div>
+                <h2 class="section-title">Warum Betriebe auf<br/>WireTrack setzen.</h2>
+                <p class="section-desc">Weniger Chaos, mehr Struktur. WireTrack bringt Ordnung in deinen Betrieb — und du sparst Zeit, Geld und Nerven.</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-item reveal reveal-delay-1">
+                    <div class="benefit-num">01</div>
+                    <div>
+                        <h3>Alles an einem Ort</h3>
+                        <p>Schluss mit Excel, WhatsApp und Papierkram. WireTrack vereint alle Betriebsprozesse in einer einzigen Plattform.</p>
+                    </div>
+                </div>
+                <div class="benefit-item reveal reveal-delay-2">
+                    <div class="benefit-num">02</div>
+                    <div>
+                        <h3>Sofort einsatzbereit</h3>
+                        <p>Kein monatelanges Setup. WireTrack ist so einfach zu bedienen, dass dein Team sofort starten kann.</p>
+                    </div>
+                </div>
+                <div class="benefit-item reveal reveal-delay-3">
+                    <div class="benefit-num">03</div>
+                    <div>
+                        <h3>Volle Transparenz</h3>
+                        <p>Kosten, Fortschritt und Verantwortlichkeiten — alles jederzeit sichtbar. Keine Überraschungen mehr.</p>
+                    </div>
+                </div>
+                <div class="benefit-item reveal reveal-delay-4">
+                    <div class="benefit-num">04</div>
+                    <div>
+                        <h3>Für die Schweiz gebaut</h3>
+                        <p>Schweizer Hosting, Schweizer Datenschutz. Deine Daten bleiben hier — sicher und konform.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ─── 05 SECURITY & STABILITY ─── -->
-    <section class="wrap py-20 md:py-28" id="security">
-        <div class="reveal">
-            <span class="section-label">05 &mdash; Security &amp; Stability</span>
-            <h2 class="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">Trust through architecture.</h2>
-            <p class="mt-4 text-slate-400 max-w-2xl">Security is not a feature. It is the foundation.</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-4 mt-12">
-            <div class="card p-6 reveal reveal-d1">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
-                        <svg class="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                    </div>
-                    <div class="text-sm font-bold text-slate-200">Role-Based Access Control</div>
-                </div>
-                <p class="text-sm text-slate-500 leading-relaxed">Every user operates within defined permission boundaries. Actions are scoped to role, team, and context. No exceptions.</p>
-            </div>
-            <div class="card p-6 reveal reveal-d2">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
-                        <svg class="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
-                    </div>
-                    <div class="text-sm font-bold text-slate-200">Audit Trail</div>
-                </div>
-                <p class="text-sm text-slate-500 leading-relaxed">Every action is logged with timestamp, user identity, and change delta. The history is immutable. Compliance is structural.</p>
-            </div>
-            <div class="card p-6 reveal reveal-d3">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
-                        <svg class="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                    </div>
-                    <div class="text-sm font-bold text-slate-200">Data Integrity</div>
-                </div>
-                <p class="text-sm text-slate-500 leading-relaxed">Referential consistency enforced at the system level. No orphaned records. No silent failures. No unverified states.</p>
-            </div>
-            <div class="card p-6 reveal reveal-d4">
-                <div class="flex items-center gap-3 mb-3">
-                    <div class="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
-                        <svg class="w-4 h-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-                    </div>
-                    <div class="text-sm font-bold text-slate-200">Version Control</div>
-                </div>
-                <p class="text-sm text-slate-500 leading-relaxed">Configuration and data changes are versioned. Rollback is always possible. Every state is recoverable.</p>
+    <!-- ─── QUOTE ─── -->
+    <section class="quote-section">
+        <div class="container">
+            <div class="reveal">
+                <p class="quote-text">
+                    &laquo;Elektrobetriebe verdienen <span class="highlight">digitale Infrastruktur</span>, die so zuverlässig arbeitet wie sie selbst.&raquo;
+                </p>
+                <p class="quote-author">— WireTrack Team</p>
             </div>
         </div>
     </section>
 
-    <!-- ─── 06 SCALABILITY ─── -->
-    <section class="wrap py-20 md:py-28" id="scalability">
-        <div class="reveal">
-            <span class="section-label">06 &mdash; Scalability &amp; Modularity</span>
-            <h2 class="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">Modular by design.<br/>Scalable by default.</h2>
-            <p class="mt-4 text-slate-400 max-w-2xl">WireTrack grows with operational complexity without requiring architectural change.</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-12">
-            <div class="card p-6 reveal reveal-d1">
-                <div class="font-mono text-xs text-accent/70 mb-3">Modules</div>
-                <div class="text-sm font-bold text-slate-200 mb-2">Module-Based Architecture</div>
-                <p class="text-xs text-slate-500 leading-relaxed">Enable what you need. Disable what you don't. No bloat. No unused complexity.</p>
-            </div>
-            <div class="card p-6 reveal reveal-d2">
-                <div class="font-mono text-xs text-accent/70 mb-3">Teams</div>
-                <div class="text-sm font-bold text-slate-200 mb-2">Per-Team Scaling</div>
-                <p class="text-xs text-slate-500 leading-relaxed">Each team, branch, or division operates independently within the same system instance.</p>
-            </div>
-            <div class="card p-6 reveal reveal-d3">
-                <div class="font-mono text-xs text-accent/70 mb-3">Config</div>
-                <div class="text-sm font-bold text-slate-200 mb-2">Versioned Configuration</div>
-                <p class="text-xs text-slate-500 leading-relaxed">System configurations are version-controlled. Changes are auditable and reversible.</p>
-            </div>
-            <div class="card p-6 reveal reveal-d4">
-                <div class="font-mono text-xs text-accent/70 mb-3">API</div>
-                <div class="text-sm font-bold text-slate-200 mb-2">API-First Design</div>
-                <p class="text-xs text-slate-500 leading-relaxed">Every module exposes structured interfaces. Integration is a first-class concern.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── 07 MANIFESTO ─── -->
-    <section class="wrap py-20 md:py-28" id="philosophy">
-        <div class="reveal">
-            <span class="section-label">07 &mdash; Philosophy</span>
-            <h2 class="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight mb-10">The WireTrack Manifesto.</h2>
-        </div>
-
-        <div class="max-w-3xl">
-            <div class="card-static p-8 md:p-12 reveal reveal-d1">
-                <div class="manifesto-text">
-                    <p>WireTrack exists because electrical companies deserve infrastructure, not improvisation.</p>
-                    <p>We believe operational software should enforce structure, not suggest it. That accountability requires architecture. That cost control requires aggregation at the system level. That access control must reflect organizational reality.</p>
-                    <p>We build for operators who value precision over aesthetics, traceability over convenience, and control over flexibility.</p>
-                    <p class="text-slate-300 font-medium">WireTrack is not designed to impress. It is designed to work.</p>
+    <!-- ─── ÜBER UNS ─── -->
+    <section id="ueber">
+        <div class="container">
+            <div class="reveal" style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <div class="section-label" style="justify-content: center;">Über uns</div>
+                <h2 class="section-title" style="margin: 0 auto;">Gebaut von Praktikern,<br/>für Praktiker.</h2>
+                <p class="section-desc" style="margin: 20px auto 0; text-align: center;">
+                    WireTrack entstand aus dem Alltag der Elektrobranche. Wir wissen, wie Betriebe arbeiten — und was sie brauchen, um besser zu werden. Unser Ziel: eine Software, die sich anfühlt, als wäre sie für deinen Betrieb massgeschneidert.
+                </p>
+                <div style="display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; margin-top: 40px;">
+                    <div class="reveal reveal-delay-1" style="background: rgba(10,17,33,0.6); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 24px 32px; text-align: center;">
+                        <div style="font-size: 1.5rem; font-weight: 800; color: #fff;">CH</div>
+                        <div style="font-size: 0.8rem; color: var(--muted); margin-top: 4px;">Schweizer Hosting</div>
+                    </div>
+                    <div class="reveal reveal-delay-2" style="background: rgba(10,17,33,0.6); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 24px 32px; text-align: center;">
+                        <div style="font-size: 1.5rem; font-weight: 800; color: #fff;">100%</div>
+                        <div style="font-size: 0.8rem; color: var(--muted); margin-top: 4px;">DSGVO-konform</div>
+                    </div>
+                    <div class="reveal reveal-delay-3" style="background: rgba(10,17,33,0.6); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 24px 32px; text-align: center;">
+                        <div style="font-size: 1.5rem; font-weight: 800; color: #fff;">24/7</div>
+                        <div style="font-size: 0.8rem; color: var(--muted); margin-top: 4px;">Verfügbarkeit</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ─── 08 FINAL CTA ─── -->
-    <section class="wrap py-20 md:py-28">
-        <div class="card-static p-8 md:p-14 text-center reveal">
-            <span class="section-label">08 &mdash; Deployment</span>
-            <h2 class="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight">Built for operators.<br/>Ready for deployment.</h2>
-            <p class="mt-4 text-slate-400 max-w-xl mx-auto">WireTrack is available for qualified electrical companies with structured operational requirements.</p>
-            <div class="mt-8">
-                <a href="mailto:info@wiretrack.ch" class="btn-primary text-sm px-6 py-3">Request Access</a>
+    <!-- ─── KONTAKT ─── -->
+    <section id="kontakt" class="contact-section">
+        <div class="container">
+            <div class="reveal">
+                <div class="section-label">Kontakt</div>
+                <h2 class="section-title">Bereit, durchzustarten?</h2>
+                <p class="section-desc">Schreib uns — wir zeigen dir, wie WireTrack deinen Betrieb voranbringt. Kostenlos und unverbindlich.</p>
             </div>
-            <p class="mt-6 text-xs text-slate-600 max-w-md mx-auto">Deployment includes architecture review, role configuration, and operational onboarding.</p>
+
+            <div class="contact-grid">
+                <div class="contact-info reveal reveal-delay-1">
+                    <h3>Sprich mit uns</h3>
+                    <p>Ob Fragen, Demo-Anfrage oder einfach neugierig — wir freuen uns auf deine Nachricht.</p>
+
+                    <div class="contact-detail">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        <a href="mailto:info@wiretrack.ch" style="color: var(--accent-2); text-decoration: none;">info@wiretrack.ch</a>
+                    </div>
+                    <div class="contact-detail">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        <span>Schützenweg 2, 4710 Balsthal, Schweiz</span>
+                    </div>
+                    <div class="contact-detail">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                        <a href="https://wiretrack.ch" style="color: var(--accent-2); text-decoration: none;">wiretrack.ch</a>
+                    </div>
+                </div>
+
+                <form class="contact-form reveal reveal-delay-2" action="https://formsubmit.co/info@wiretrack.ch" method="POST">
+                    <input type="hidden" name="_subject" value="Neue Anfrage von wiretrack.ch">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://wiretrack.ch#kontakt">
+                    <input type="text" name="_honey" style="display:none">
+
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Dein Name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-Mail</label>
+                        <input type="email" id="email" name="email" placeholder="deine@email.ch" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="firma">Firma</label>
+                        <input type="text" id="firma" name="firma" placeholder="Firmenname (optional)" />
+                    </div>
+                    <div class="form-group">
+                        <label for="interesse">Interesse</label>
+                        <select id="interesse" name="interesse">
+                            <option value="demo">Kostenlose Demo</option>
+                            <option value="info">Allgemeine Informationen</option>
+                            <option value="preise">Preise & Pakete</option>
+                            <option value="partner">Partnerschaft</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="nachricht">Nachricht</label>
+                        <textarea id="nachricht" name="nachricht" placeholder="Erzähl uns kurz, was du brauchst..."></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Nachricht senden</button>
+                </form>
+            </div>
         </div>
     </section>
 
     <!-- ─── FOOTER ─── -->
-    <footer class="wrap py-10 border-t border-white/[0.04]">
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-slate-500">
-            <div class="flex items-center gap-3">
-                <span class="font-mono text-xs text-slate-600">WIRETRACK</span>
-                <span class="text-slate-700">&middot;</span>
-                <span id="year"></span>
-            </div>
-            <div class="flex items-center gap-6">
-                <a class="hover:text-slate-300 transition-colors" href="mailto:info@wiretrack.ch">info@wiretrack.ch</a>
-                <a class="hover:text-slate-300 transition-colors" href="/impressum.html">Impressum</a>
-                <a class="hover:text-slate-300 transition-colors" href="/datenschutz.html">Datenschutz</a>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="/wrtk-glow.png" alt="WireTrack" height="24" style="height: 24px; width: auto;" />
+                    <span style="font-size: 0.85rem; color: var(--muted);" id="year-text"></span>
+                </div>
+                <div class="footer-links">
+                    <a href="mailto:info@wiretrack.ch">info@wiretrack.ch</a>
+                    <a href="/impressum.html">Impressum</a>
+                    <a href="/datenschutz.html">Datenschutz</a>
+                </div>
             </div>
         </div>
     </footer>
 
-    <noscript>
-        <style>.reveal { opacity: 1 !important; transform: none !important; }</style>
-    </noscript>
-
     <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
+        document.getElementById('year-text').textContent = '© ' + new Date().getFullYear() + ' WireTrack';
 
-        const sb = document.getElementById('scrollbar');
-        const onScroll = () => {
+        const progressBar = document.getElementById('progress');
+        const nav = document.getElementById('nav');
+        const navCta = document.getElementById('nav-cta-btn');
+
+        window.addEventListener('scroll', () => {
             const h = document.documentElement;
-            sb.style.width = ((h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100) + '%';
-        };
-        window.addEventListener('scroll', onScroll, { passive: true });
-        onScroll();
+            const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+            progressBar.style.width = pct + '%';
 
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.classList.add('in');
-                    io.unobserve(e.target);
+            if (h.scrollTop > 100) {
+                nav.classList.add('scrolled');
+                navCta.style.display = 'inline-flex';
+            } else {
+                nav.classList.remove('scrolled');
+                navCta.style.display = 'none';
+            }
+        }, { passive: true });
+
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+        function closeMobile() {
+            mobileMenu.classList.remove('open');
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.12 });
-        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        const counterObserver = new IntersectionObserver((entries) => {
+        const countObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const el = entry.target;
-                    const target = parseInt(el.dataset.target);
-                    const duration = 1800;
+                    const target = parseInt(el.dataset.count);
+                    const duration = 2000;
                     const start = performance.now();
-
                     const animate = (now) => {
                         const elapsed = now - start;
                         const progress = Math.min(elapsed / duration, 1);
-                        const eased = 1 - Math.pow(1 - progress, 3);
-                        el.textContent = Math.floor(target * eased).toLocaleString('en-CH');
+                        const eased = 1 - Math.pow(1 - progress, 4);
+                        el.textContent = Math.floor(target * eased);
                         if (progress < 1) requestAnimationFrame(animate);
                     };
-
                     requestAnimationFrame(animate);
-                    counterObserver.unobserve(el);
+                    countObserver.unobserve(el);
                 }
             });
         }, { threshold: 0.5 });
-        document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+        document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', (e) => {
