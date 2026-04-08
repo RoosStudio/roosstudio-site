@@ -1,1337 +1,364 @@
 <!DOCTYPE html>
-<html lang="de" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>WireTrack — Das Betriebssystem für die Baubranche</title>
-    <meta name="description" content="WireTrack ist die digitale Plattform für Baubetriebe. Projekte, Aufträge, Kosten, Material — alles in einem System. Volle Kontrolle." />
+    <title>Roos Studio — Software, tools & systems</title>
+    <meta name="description" content="Roos Studio — vibecoding meets production. Apps, internal tools, and systems built with founder energy and engineering discipline." />
     <meta name="robots" content="index,follow" />
-    <link rel="canonical" href="https://wiretrack.ch" />
-    <meta name="theme-color" content="#050a14" />
-    <meta property="og:title" content="WireTrack — Das Betriebssystem für die Baubranche" />
-    <meta property="og:description" content="Die digitale Plattform für Baubetriebe. Ein System. Volle Kontrolle." />
+    <meta name="theme-color" content="#0B0B0F" />
+    <meta property="og:title" content="Roos Studio" />
+    <meta property="og:description" content="Vibecoding meets production — apps, tools, and systems from Roos Studio." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://wiretrack.ch" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
-    <link rel="apple-touch-icon" href="/icon-192.png" />
+
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
-    <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-        :root {
-            --bg: #050a14;
-            --bg-2: #0a1121;
-            --fg: #e8edf5;
-            --muted: #7a8ba8;
-            --accent: #3b82f6;
-            --accent-2: #60a5fa;
-            --cyan: #06b6d4;
-            --emerald: #10b981;
-            --purple: #8b5cf6;
-            --orange: #f59e0b;
-        }
-
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--fg);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: rgba(59, 130, 246, 0.3); border-radius: 3px; }
-
-        #progress { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--cyan), var(--orange)); width: 0%; z-index: 100; }
-
-        /* ── Animated Background ── */
-        .bg-canvas { position: fixed; inset: 0; z-index: -5; pointer-events: none; }
-
-        .bg-blueprint {
-            position: fixed; inset: 0; z-index: -4; pointer-events: none; opacity: 0.03;
-            background-image:
-                linear-gradient(rgba(59,130,246,0.5) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(59,130,246,0.5) 1px, transparent 1px),
-                linear-gradient(rgba(59,130,246,0.25) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(59,130,246,0.25) 1px, transparent 1px);
-            background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
-        }
-
-        .bg-glow {
-            position: fixed; width: 600px; height: 600px; border-radius: 50%;
-            filter: blur(120px); z-index: -3; pointer-events: none; opacity: 0.5;
-        }
-        .bg-glow-1 { top: -200px; left: -100px; background: rgba(59,130,246,0.08); animation: glow-drift 25s ease-in-out infinite; }
-        .bg-glow-2 { bottom: -200px; right: -100px; background: rgba(6,182,212,0.06); animation: glow-drift 30s ease-in-out infinite reverse; }
-        .bg-glow-3 { top: 40%; left: 50%; background: rgba(245,158,11,0.04); animation: glow-drift 20s ease-in-out infinite 5s; }
-
-        @keyframes glow-drift {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(40px, -30px) scale(1.1); }
-            66% { transform: translate(-20px, 40px) scale(0.95); }
-        }
-
-        /* Floating construction elements */
-        .floating-shapes { position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden; }
-        .shape {
-            position: absolute; opacity: 0; animation: shape-float linear infinite;
-            filter: drop-shadow(0 0 8px rgba(59,130,246,0.15));
-        }
-        .shape svg { width: 100%; height: 100%; }
-        .shape-emoji {
-            position: absolute; opacity: 0; animation: shape-float-sway linear infinite;
-            font-size: 28px; filter: grayscale(0.3) brightness(0.7);
-            user-select: none; will-change: transform, opacity;
-        }
-
-        @keyframes shape-float {
-            0% { opacity: 0; transform: translateY(110vh) rotate(0deg) scale(0.8); }
-            8% { opacity: 0.7; }
-            50% { opacity: 0.5; }
-            92% { opacity: 0.6; }
-            100% { opacity: 0; transform: translateY(-80px) rotate(180deg) scale(1.1); }
-        }
-        @keyframes shape-float-sway {
-            0% { opacity: 0; transform: translateY(110vh) translateX(0) rotate(0deg); }
-            8% { opacity: 0.6; }
-            25% { transform: translateY(75vh) translateX(30px) rotate(10deg); }
-            50% { opacity: 0.4; transform: translateY(50vh) translateX(-20px) rotate(-5deg); }
-            75% { transform: translateY(25vh) translateX(25px) rotate(8deg); }
-            92% { opacity: 0.5; }
-            100% { opacity: 0; transform: translateY(-80px) translateX(0) rotate(0deg); }
-        }
-
-        /* Particle field */
-        .particles { position: fixed; inset: 0; z-index: -3; pointer-events: none; }
-        .particle {
-            position: absolute; width: 2px; height: 2px; border-radius: 50%;
-            animation: particle-rise linear infinite; will-change: transform, opacity;
-        }
-        @keyframes particle-rise {
-            0% { opacity: 0; transform: translateY(100vh); }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { opacity: 0; transform: translateY(-20px); }
-        }
-
-        
-
-        /* ── Layout ── */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-        @media (min-width: 768px) { .container { padding: 0 48px; } }
-
-        /* ── Nav ── */
-        .nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 90;
-            background: rgba(5, 10, 20, 0.4);
-            backdrop-filter: blur(24px) saturate(180%);
-            -webkit-backdrop-filter: blur(24px) saturate(180%);
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-            transition: all 0.4s;
-        }
-        .nav.scrolled { background: rgba(5, 10, 20, 0.92); box-shadow: 0 8px 32px rgba(0,0,0,0.4); border-bottom-color: rgba(255,255,255,0.06); }
-        .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
-        .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
-        .nav-logo img { height: 44px; width: auto; transition: transform 0.3s; }
-        .nav-logo:hover img { transform: scale(1.05); }
-        .nav-logo-text { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.02em; color: #fff; }
-        @media (min-width: 768px) { .nav-logo img { height: 52px; } .nav-logo-text { font-size: 1.35rem; } }
-        .nav-links { display: none; align-items: center; gap: 32px; }
-        @media (min-width: 768px) { .nav-links { display: flex; } }
-        .nav-links a { font-size: 0.9rem; color: var(--muted); text-decoration: none; transition: color 0.2s; font-weight: 500; position: relative; }
-        .nav-links a:hover { color: #fff; }
-        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s; border-radius: 2px; }
-        .nav-links a:hover::after { width: 100%; }
-        .nav-cta {
-            padding: 10px 24px; background: var(--accent); color: #fff; font-size: 0.875rem; font-weight: 600;
-            border: none; border-radius: 10px; cursor: pointer; text-decoration: none;
-            transition: all 0.25s; box-shadow: 0 0 20px rgba(59,130,246,0.15);
-        }
-        .nav-cta:hover { background: var(--accent-2); transform: translateY(-1px); box-shadow: 0 4px 30px rgba(59,130,246,0.35); }
-
-        .mobile-toggle { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-        .mobile-toggle span { width: 22px; height: 2px; background: var(--muted); border-radius: 2px; transition: all 0.3s; }
-        @media (min-width: 768px) { .mobile-toggle { display: none; } }
-        .mobile-menu {
-            display: none; position: fixed; inset: 0; top: 80px; z-index: 89;
-            background: rgba(5, 10, 20, 0.98); backdrop-filter: blur(20px);
-            flex-direction: column; align-items: center; justify-content: center; gap: 36px;
-        }
-        .mobile-menu.open { display: flex; }
-        .mobile-menu a { font-size: 1.3rem; color: var(--fg); text-decoration: none; font-weight: 600; }
-
-        /* ── Hero ── */
-        .hero { padding: 160px 0 80px; text-align: center; position: relative; }
-        @media (min-width: 768px) { .hero { padding: 200px 0 120px; } }
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px;
-            background: linear-gradient(135deg, rgba(59,130,246,0.12), rgba(6,182,212,0.08));
-            border: 1px solid rgba(59,130,246,0.2); border-radius: 50px;
-            font-size: 0.85rem; color: var(--accent-2); font-weight: 500; margin-bottom: 36px;
-        }
-        .hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--emerald); box-shadow: 0 0 10px rgba(16,185,129,0.6); animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.85); } }
-
-        .hero h1 {
-            font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 900; line-height: 1.05;
-            letter-spacing: -0.04em; max-width: 950px; margin: 0 auto;
-        }
-        .hero h1 .white-text { color: #fff; }
-        .hero h1 .gradient-text {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--cyan) 50%, var(--orange) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-            background-size: 200% 200%; animation: gradient-shift 5s ease-in-out infinite;
-        }
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .hero-sub {
-            font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--muted); max-width: 620px;
-            margin: 28px auto 0; line-height: 1.7; font-weight: 400;
-        }
-        .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 48px; }
-
-        .btn-primary {
-            padding: 16px 36px; font-size: 1.05rem; font-weight: 700;
-            background: linear-gradient(135deg, var(--accent), #2563eb);
-            color: #fff; border: none; border-radius: 14px; cursor: pointer; text-decoration: none;
-            transition: all 0.3s; box-shadow: 0 4px 24px rgba(59,130,246,0.3);
-            display: inline-flex; align-items: center; gap: 10px; position: relative; overflow: hidden;
-        }
-        .btn-primary::before {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
-            background-size: 200% 200%; animation: btn-shimmer 3s ease-in-out infinite;
-        }
-        @keyframes btn-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 40px rgba(59,130,246,0.45); }
-
-        .btn-secondary {
-            padding: 16px 36px; font-size: 1.05rem; font-weight: 600;
-            background: rgba(255,255,255,0.04); color: var(--fg);
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; cursor: pointer; text-decoration: none;
-            transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px;
-        }
-        .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); transform: translateY(-3px); }
-
-        /* Hero Visual - Browser Frame */
-        .hero-visual { margin-top: 80px; position: relative; perspective: 1400px; }
-        .hero-visual-inner {
-            position: relative; max-width: 950px; margin: 0 auto;
-            animation: hero-float 7s ease-in-out infinite;
-        }
-        @keyframes hero-float { 0%, 100% { transform: translateY(0) rotateX(2deg); } 50% { transform: translateY(-14px) rotateX(0deg); } }
-        .hero-visual-glow {
-            position: absolute; bottom: -80px; left: 5%; right: 5%; height: 160px;
-            background: radial-gradient(ellipse, rgba(59,130,246,0.22), transparent);
-            filter: blur(60px); z-index: -1;
-        }
-
-        .browser-frame {
-            background: #0c1424; border-radius: 16px; overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 50px 120px rgba(0,0,0,0.65), 0 0 100px rgba(59,130,246,0.1), 0 0 1px rgba(255,255,255,0.1);
-            position: relative;
-        }
-        .browser-bar {
-            display: flex; align-items: center; gap: 12px; padding: 14px 20px;
-            background: rgba(0,0,0,0.3); border-bottom: 1px solid rgba(255,255,255,0.06);
-        }
-        .browser-dots { display: flex; gap: 7px; }
-        .browser-dots span { width: 11px; height: 11px; border-radius: 50%; }
-        .browser-dots span:nth-child(1) { background: #ff5f57; }
-        .browser-dots span:nth-child(2) { background: #febc2e; }
-        .browser-dots span:nth-child(3) { background: #28c840; }
-        .browser-url {
-            flex: 1; margin: 0 16px; padding: 7px 16px; background: rgba(255,255,255,0.05);
-            border-radius: 8px; font-size: 0.72rem; color: rgba(255,255,255,0.35);
-            display: flex; align-items: center; gap: 8px;
-        }
-        .browser-url .lock { color: #28c840; }
-        .browser-frame img { width: 100%; display: block; }
-
-        /* ── App Mock UI ── */
-        .app-mock { background: #0b1222; padding: 0; font-family: 'Inter', sans-serif; color: #e2e8f0; }
-        .am-header { padding: 20px 24px 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-        .am-greeting { font-size: 1.1rem; font-weight: 700; }
-        .am-badge { font-size: 0.6rem; padding: 3px 8px; background: rgba(59,130,246,0.2); color: #60a5fa; border-radius: 5px; font-weight: 600; margin-left: 8px; }
-        .am-header-btns { display: flex; gap: 8px; }
-        .am-header-btn { width: 32px; height: 32px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: var(--muted); position: relative; }
-        .am-notif { position: absolute; top: -3px; right: -3px; width: 14px; height: 14px; background: #ef4444; border-radius: 50%; font-size: 0.5rem; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; }
-        .am-search { margin: 0 24px 16px; padding: 10px 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; font-size: 0.72rem; color: rgba(255,255,255,0.3); display: flex; align-items: center; gap: 8px; }
-        .am-stats { display: flex; gap: 8px; margin: 0 24px 20px; flex-wrap: wrap; }
-        .am-stat { padding: 6px 14px; border-radius: 8px; font-size: 0.65rem; font-weight: 600; display: flex; align-items: center; gap: 6px; }
-        .am-section-title { padding: 0 24px 12px; font-size: 0.85rem; font-weight: 700; color: #fff; }
-        .am-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 0 24px 24px; }
-        @media (max-width: 640px) { .am-grid { grid-template-columns: repeat(2, 1fr); } }
-        .am-tile {
-            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 10px; padding: 16px 12px; text-align: center;
-            font-size: 0.7rem; color: rgba(255,255,255,0.5); font-weight: 500;
-            display: flex; flex-direction: column; align-items: center; gap: 6px;
-        }
-        .am-tile-icon { font-size: 1rem; }
-
-        /* Overview mock */
-        .ov-header { padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; }
-        .ov-title { font-size: 1rem; font-weight: 700; color: #fff; }
-        .ov-count { font-size: 0.7rem; color: var(--muted); }
-        .ov-filters { display: flex; gap: 6px; padding: 0 24px 16px; flex-wrap: wrap; }
-        .ov-filter { padding: 5px 12px; border-radius: 7px; font-size: 0.6rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); }
-        .ov-filter.active { background: rgba(59,130,246,0.15); border-color: rgba(59,130,246,0.3); color: #60a5fa; }
-        .ov-project { margin: 0 24px 12px; padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; }
-        .ov-project-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 6px; }
-        .ov-project-name { font-size: 0.8rem; font-weight: 700; color: #fff; }
-        .ov-tag { font-size: 0.55rem; padding: 3px 8px; border-radius: 5px; font-weight: 600; }
-        .ov-steps { display: flex; gap: 2px; height: 5px; margin-top: 4px; }
-        .ov-step { flex: 1; border-radius: 3px; }
-        .ov-project-info { font-size: 0.6rem; color: rgba(255,255,255,0.3); margin-top: 6px; }
-        .ov-step-labels { display: flex; justify-content: space-between; margin-top: 4px; }
-        .ov-step-label { font-size: 0.5rem; color: rgba(255,255,255,0.2); }
-
-        /* Service mock */
-        .sv-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 24px 24px; }
-        @media (max-width: 500px) { .sv-cards { grid-template-columns: 1fr; } }
-        .sv-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 16px; }
-        .sv-card-title { font-size: 0.78rem; font-weight: 700; color: #fff; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
-        .sv-card-sub { font-size: 0.62rem; color: rgba(255,255,255,0.3); margin-bottom: 8px; line-height: 1.4; }
-        .sv-card-bottom { display: flex; align-items: center; justify-content: space-between; }
-        .sv-card-avatars { display: flex; gap: -4px; }
-        .sv-avatar { width: 22px; height: 22px; border-radius: 50%; font-size: 0.55rem; font-weight: 700; display: flex; align-items: center; justify-content: center; color: #fff; border: 2px solid #0b1222; margin-left: -4px; }
-        .sv-card-progress { height: 4px; background: rgba(255,255,255,0.05); border-radius: 4px; margin-top: 10px; overflow: hidden; }
-        .sv-card-progress-bar { height: 100%; border-radius: 4px; }
-        .sv-card-pct { font-size: 0.55rem; color: rgba(255,255,255,0.3); text-align: right; margin-top: 3px; }
-        .ss-browser .app-mock { max-height: 400px; overflow: hidden; }
-
-        /* Floating notification overlays */
-        .hero-float-card {
-            position: absolute; z-index: 10;
-            background: rgba(10,17,33,0.85); backdrop-filter: blur(16px);
-            border: 1px solid rgba(255,255,255,0.1); border-radius: 14px;
-            padding: 14px 18px; display: flex; align-items: center; gap: 12px;
-            box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 20px rgba(59,130,246,0.08);
-            animation: card-pop 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-            white-space: nowrap;
-        }
-        .hero-float-card.fc1 { top: 15%; right: -20px; animation-delay: 1.2s; }
-        .hero-float-card.fc2 { bottom: 20%; left: -30px; animation-delay: 1.8s; }
-        .hero-float-card.fc3 { bottom: 8%; right: 5%; animation-delay: 2.4s; }
-        @media (max-width: 768px) {
-            .hero-float-card { display: none; }
-        }
-        @keyframes card-pop {
-            0% { opacity: 0; transform: scale(0.8) translateY(10px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        .fc-icon {
-            width: 38px; height: 38px; border-radius: 10px; display: flex;
-            align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem;
-        }
-        .fc-text { font-size: 0.78rem; font-weight: 600; color: #fff; line-height: 1.3; }
-        .fc-sub { font-size: 0.65rem; color: var(--muted); font-weight: 400; }
-
-        /* ── Showcase 3D Stack ── */
-        .showcase-stage { margin-top: 70px; position: relative; min-height: 500px; perspective: 1500px; }
-        @media (max-width: 768px) { .showcase-stage { min-height: 350px; } }
-
-        .showcase-tabs {
-            display: flex; justify-content: center; gap: 8px; margin-bottom: 40px; flex-wrap: wrap;
-        }
-        .showcase-tab {
-            padding: 10px 22px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 10px; font-size: 0.85rem; font-weight: 600; color: var(--muted);
-            cursor: pointer; transition: all 0.3s; user-select: none;
-        }
-        .showcase-tab:hover { border-color: rgba(255,255,255,0.15); color: #fff; }
-        .showcase-tab.active {
-            background: rgba(59,130,246,0.12); border-color: rgba(59,130,246,0.3);
-            color: var(--accent-2); box-shadow: 0 0 20px rgba(59,130,246,0.1);
-        }
-
-        .showcase-screens { position: relative; max-width: 900px; margin: 0 auto; }
-        .showcase-screen {
-            position: absolute; top: 0; left: 50%; width: 85%; max-width: 800px;
-            transform: translateX(-50%);
-            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            cursor: pointer;
-        }
-        .showcase-screen.center {
-            z-index: 3; opacity: 1;
-            transform: translateX(-50%) rotateY(0deg) scale(1);
-        }
-        .showcase-screen.left {
-            z-index: 1; opacity: 0.4;
-            transform: translateX(-105%) rotateY(25deg) scale(0.85);
-        }
-        .showcase-screen.right {
-            z-index: 1; opacity: 0.4;
-            transform: translateX(5%) rotateY(-25deg) scale(0.85);
-        }
-        .showcase-screen.hidden { opacity: 0; pointer-events: none; transform: translateX(-50%) scale(0.7); z-index: 0; }
-
-        .ss-browser {
-            background: #0c1424; border-radius: 14px; overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 40px rgba(59,130,246,0.06);
-            transition: box-shadow 0.5s, border-color 0.5s;
-        }
-        .center .ss-browser {
-            border-color: rgba(59,130,246,0.2);
-            box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 80px rgba(59,130,246,0.12);
-        }
-        .ss-bar {
-            display: flex; align-items: center; gap: 10px; padding: 10px 16px;
-            background: rgba(0,0,0,0.3); border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .ss-dots { display: flex; gap: 5px; }
-        .ss-dots span { width: 8px; height: 8px; border-radius: 50%; }
-        .ss-dots span:nth-child(1) { background: #ff5f57; }
-        .ss-dots span:nth-child(2) { background: #febc2e; }
-        .ss-dots span:nth-child(3) { background: #28c840; }
-        .ss-title { font-size: 0.65rem; color: rgba(255,255,255,0.3); margin-left: 8px; font-weight: 500; }
-        .ss-browser img { width: 100%; display: block; }
-
-        .showcase-label {
-            text-align: center; margin-top: 24px; transition: opacity 0.5s;
-        }
-        .showcase-label-title { font-size: 1.1rem; font-weight: 700; color: #fff; }
-        .showcase-label-sub { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
-
-        /* Hero Stats */
-        .hero-stats {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-            max-width: 650px; margin: 80px auto 0; text-align: center;
-        }
-        .stat-card {
-            background: rgba(10,17,33,0.5); border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 16px; padding: 28px 16px; transition: all 0.3s;
-        }
-        .stat-card:hover { border-color: rgba(59,130,246,0.2); transform: translateY(-4px); }
-        .stat-num { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; letter-spacing: -0.03em; }
-        .stat-num.blue { color: var(--accent-2); }
-        .stat-num.cyan { color: var(--cyan); }
-        .stat-num.orange { color: var(--orange); }
-        .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 6px; font-weight: 500; }
-
-        /* ── Marquee ── */
-        .marquee-section { overflow: hidden; padding: 48px 0; border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04); }
-        .marquee-track { display: flex; gap: 0; width: max-content; animation: marquee 35s linear infinite; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .marquee-item {
-            padding: 0 32px; font-size: 0.95rem; color: rgba(255,255,255,0.12); white-space: nowrap;
-            font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-            display: flex; align-items: center; gap: 32px;
-        }
-        .marquee-item::after { content: '◆'; color: rgba(59,130,246,0.25); font-size: 0.5rem; }
-
-        /* ── Sections ── */
-        section { padding: 100px 0; }
-        @media (min-width: 768px) { section { padding: 140px 0; } }
-        .section-label {
-            display: inline-flex; align-items: center; gap: 10px;
-            font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
-            color: var(--accent-2); margin-bottom: 20px;
-        }
-        .section-label::before { content: ''; width: 28px; height: 2px; background: linear-gradient(90deg, var(--accent), var(--cyan)); border-radius: 2px; }
-        .section-title {
-            font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 900; letter-spacing: -0.03em;
-            line-height: 1.1; color: #fff;
-        }
-        .section-desc { font-size: 1.1rem; color: var(--muted); margin-top: 16px; max-width: 600px; line-height: 1.7; }
-
-        /* ── Feature Cards ── */
-        .features-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 60px; }
-        @media (min-width: 640px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 1024px) { .features-grid { grid-template-columns: repeat(3, 1fr); } }
-
-        .feature-card {
-            background: rgba(10, 17, 33, 0.5); border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 20px; padding: 36px; position: relative; overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .feature-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; opacity: 0;
-            transition: opacity 0.4s;
-        }
-        .feature-card:hover { border-color: rgba(59,130,246,0.15); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
-        .feature-card:hover::before { opacity: 1; }
-        .feature-card:nth-child(1)::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
-        .feature-card:nth-child(2)::before { background: linear-gradient(90deg, #06b6d4, #22d3ee); }
-        .feature-card:nth-child(3)::before { background: linear-gradient(90deg, #10b981, #34d399); }
-        .feature-card:nth-child(4)::before { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
-        .feature-card:nth-child(5)::before { background: linear-gradient(90deg, #f472b6, #f9a8d4); }
-        .feature-card:nth-child(6)::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
-
-        .feature-icon {
-            width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
-            margin-bottom: 24px;
-        }
-        .feature-icon svg { width: 26px; height: 26px; }
-        .feature-card h3 { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 10px; }
-        .feature-card p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; }
-
-        /* ── Showcase ── */
-        .showcase { text-align: center; position: relative; overflow: hidden; }
-        .showcase-wrap { position: relative; margin-top: 60px; max-width: 950px; margin-left: auto; margin-right: auto; }
-
-        
-
-        /* ── Benefits ── */
-        .benefits-grid { display: grid; grid-template-columns: 1fr; gap: 32px; margin-top: 60px; }
-        @media (min-width: 768px) { .benefits-grid { grid-template-columns: 1fr 1fr; gap: 40px; } }
-        .benefit-card {
-            background: rgba(10,17,33,0.4); border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 20px; padding: 36px; display: flex; gap: 20px;
-            transition: all 0.3s;
-        }
-        .benefit-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-4px); }
-        .benefit-num {
-            font-size: 3.5rem; font-weight: 900; line-height: 1; letter-spacing: -0.06em; flex-shrink: 0;
-            background: linear-gradient(180deg, rgba(59,130,246,0.4), rgba(59,130,246,0.05));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .benefit-card h3 { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
-        .benefit-card p { font-size: 0.95rem; color: var(--muted); line-height: 1.65; }
-
-        /* ── Quote ── */
-        .quote-section { text-align: center; position: relative; padding: 120px 0; }
-        .quote-section::before {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(59,130,246,0.06), transparent);
-        }
-        .quote-text {
-            font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 700; line-height: 1.35;
-            color: #fff; max-width: 850px; margin: 0 auto; letter-spacing: -0.02em; position: relative;
-        }
-        .quote-text .hl {
-            background: linear-gradient(135deg, var(--accent), var(--cyan));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-
-        /* ── About ── */
-        .about-badges {
-            display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 48px;
-        }
-        .about-badge {
-            background: rgba(10,17,33,0.5); border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 16px; padding: 28px 36px; text-align: center; transition: all 0.3s;
-        }
-        .about-badge:hover { border-color: rgba(59,130,246,0.2); transform: translateY(-4px); }
-        .about-badge-val { font-size: 1.6rem; font-weight: 900; color: #fff; }
-        .about-badge-label { font-size: 0.8rem; color: var(--muted); margin-top: 6px; font-weight: 500; }
-
-        /* ── Contact ── */
-        .contact-grid { display: grid; grid-template-columns: 1fr; gap: 48px; margin-top: 60px; }
-        @media (min-width: 768px) { .contact-grid { grid-template-columns: 1fr 1fr; gap: 64px; } }
-        .contact-info h3 { font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 16px; }
-        .contact-info > p { color: var(--muted); line-height: 1.7; margin-bottom: 32px; font-size: 1.05rem; }
-        .contact-detail { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; color: var(--muted); font-size: 0.95rem; }
-        .contact-detail svg { width: 22px; height: 22px; color: var(--accent-2); flex-shrink: 0; }
-        .contact-detail a { color: var(--accent-2); text-decoration: none; }
-        .contact-detail a:hover { text-decoration: underline; }
-
-        .contact-form {
-            background: rgba(10, 17, 33, 0.5); border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 24px; padding: 40px;
-        }
-        .form-row { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 16px; }
-        @media (min-width: 480px) { .form-row.two { grid-template-columns: 1fr 1fr; } }
-        .form-group { margin-bottom: 4px; }
-        .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--fg); margin-bottom: 8px; }
-        .form-group input, .form-group textarea, .form-group select {
-            width: 100%; padding: 14px 18px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 12px; color: var(--fg); font-family: inherit; font-size: 0.95rem;
-            transition: all 0.25s; outline: none;
-        }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
-            border-color: var(--accent); box-shadow: 0 0 0 4px rgba(59,130,246,0.1); background: rgba(59,130,246,0.03);
-        }
-        .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.2); }
-        .form-group textarea { resize: vertical; min-height: 120px; }
-        .form-group select option { background: var(--bg-2); }
-        .form-submit {
-            width: 100%; padding: 16px; margin-top: 8px;
-            background: linear-gradient(135deg, var(--accent), #2563eb); color: #fff;
-            font-size: 1rem; font-weight: 700; border: none; border-radius: 14px; cursor: pointer;
-            transition: all 0.3s; box-shadow: 0 4px 20px rgba(59,130,246,0.25); position: relative; overflow: hidden;
-        }
-        .form-submit::before {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
-            background-size: 200% 200%; animation: btn-shimmer 3s ease-in-out infinite;
-        }
-        .form-submit:hover { box-shadow: 0 8px 32px rgba(59,130,246,0.4); transform: translateY(-2px); }
-
-        /* ── Footer ── */
-        .footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 48px 0; }
-        .footer-inner { display: flex; flex-direction: column; gap: 24px; align-items: center; text-align: center; }
-        @media (min-width: 768px) { .footer-inner { flex-direction: row; justify-content: space-between; text-align: left; } }
-        .footer-left { display: flex; align-items: center; gap: 16px; }
-        .footer-left img { height: 28px; width: auto; }
-        .footer-links { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
-        .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
-        .footer-links a:hover { color: #fff; }
-
-        /* ── Animations ── */
-        .reveal {
-            opacity: 0; transform: translateY(28px);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.visible { opacity: 1; transform: none; }
-        .reveal-d1 { transition-delay: 0.1s; }
-        .reveal-d2 { transition-delay: 0.2s; }
-        .reveal-d3 { transition-delay: 0.3s; }
-        .reveal-d4 { transition-delay: 0.4s; }
-        .reveal-d5 { transition-delay: 0.5s; }
-
-        @media (prefers-reduced-motion: reduce) {
-            .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
-            .marquee-track, .hero-visual-inner, .bg-glow, .shape { animation: none !important; }
-            .btn-primary::before, .form-submit::before { animation: none !important; }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/roos-studio-system.css" />
 </head>
-<body>
-    <div id="progress"></div>
+<body class="rs-page">
+    <div class="rs-atmosphere" aria-hidden="true"></div>
+    <div class="rs-grid-overlay" aria-hidden="true"></div>
 
-    <!-- Animated Background -->
-    <div class="bg-blueprint"></div>
-    <div class="bg-glow bg-glow-1"></div>
-    <div class="bg-glow bg-glow-2"></div>
-    <div class="bg-glow bg-glow-3"></div>
-    <div class="particles" id="particles"></div>
-    <div class="floating-shapes" id="shapes"></div>
-
-    <!-- ─── NAV ─── -->
-    <nav class="nav" id="nav">
-        <div class="container">
-            <div class="nav-inner">
-                <a href="#" class="nav-logo">
-                    <img src="/wrtk-glow.png" alt="WireTrack Logo" />
-                    <span class="nav-logo-text">WireTrack</span>
+    <div class="rs-wrap">
+        <nav class="rs-nav" id="rs-nav" aria-label="Primary">
+            <div class="rs-nav__bar">
+                <a href="/" class="rs-nav__logo" aria-label="Roos Studio home">
+                    <img src="roos-studio-branding/logos/logo-primary-dark.png" alt="Roos Studio" width="140" height="24" />
                 </a>
-                <div class="nav-links">
-                    <a href="#funktionen">Funktionen</a>
-                    <a href="#vorteile">Vorteile</a>
-                    <a href="#ueber">Über uns</a>
-                    <a href="#kontakt">Kontakt</a>
+                <div class="rs-nav__links">
+                    <a href="#capabilities">Capabilities</a>
+                    <a href="#work">Work</a>
+                    <a href="#process">Process</a>
+                    <a href="#about">About</a>
                 </div>
-                <div style="display: flex; align-items: center; gap: 16px;">
-                    <a href="#kontakt" class="nav-cta">Demo anfragen</a>
-                    <button class="mobile-toggle" id="mobile-toggle" aria-label="Menü">
-                        <span></span><span></span><span></span>
+                <div class="rs-nav__actions">
+                    <a href="#contact" class="rs-btn rs-btn--primary">Start a project</a>
+                    <button type="button" class="rs-nav__toggle" id="rs-nav-toggle" aria-expanded="false" aria-controls="rs-drawer" aria-label="Menu open">
+                        <span></span>
+                        <span></span>
                     </button>
                 </div>
             </div>
+        </nav>
+
+        <div class="rs-drawer" id="rs-drawer" role="dialog" aria-label="Menu" aria-hidden="true">
+            <a href="#capabilities">Capabilities</a>
+            <a href="#work">Work</a>
+            <a href="#process">Process</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
         </div>
-    </nav>
 
-    <div class="mobile-menu" id="mobile-menu">
-        <a href="#funktionen" onclick="closeMobile()">Funktionen</a>
-        <a href="#vorteile" onclick="closeMobile()">Vorteile</a>
-        <a href="#ueber" onclick="closeMobile()">Über uns</a>
-        <a href="#kontakt" onclick="closeMobile()">Kontakt</a>
-    </div>
-
-    <!-- ─── HERO ─── -->
-    <header class="hero">
-        <div class="container">
-            <div class="reveal">
-                <div class="hero-badge">
-                    <span class="dot"></span>
-                    Jetzt verfügbar für Baubetriebe in der Schweiz
-                </div>
-            </div>
-
-            <h1 class="reveal reveal-d1">
-                <span class="white-text">Das Betriebssystem für</span><br/>
-                <span class="gradient-text">die Baubranche.</span>
-            </h1>
-
-            <p class="hero-sub reveal reveal-d2">
-                WireTrack bündelt Projekte, Aufträge, Kosten und Material in einer Plattform — damit dein Baubetrieb effizienter, strukturierter und profitabler arbeitet.
-            </p>
-
-            <div class="hero-actions reveal reveal-d3">
-                <a href="#kontakt" class="btn-primary">
-                    Kostenlose Demo anfragen
-                    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
-                </a>
-                <a href="#funktionen" class="btn-secondary">
-                    Mehr erfahren
-                    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                </a>
-            </div>
-
-            <div class="hero-visual reveal reveal-d4">
-                <div class="hero-visual-inner">
-                    <div class="browser-frame">
-                        <div class="browser-bar">
-                            <div class="browser-dots"><span></span><span></span><span></span></div>
-                            <div class="browser-url"><span class="lock">🔒</span> app.wiretrack.ch/dashboard</div>
-                        </div>
-                        <div class="app-mock">
-                            <div class="am-header">
-                                <div><span class="am-greeting">Guten Tag, Max 👋</span><br><span style="font-size:0.7rem;color:var(--muted);">WireTrack Dashboard</span><span class="am-badge">Admin</span></div>
-                                <div class="am-header-btns">
-                                    <div class="am-header-btn">📋<div class="am-notif">3</div></div>
-                                    <div class="am-header-btn">🔔<div class="am-notif">12</div></div>
-                                    <div class="am-header-btn">⚙️</div>
-                                    <div style="padding:6px 14px;background:#ef4444;border-radius:8px;font-size:0.65rem;font-weight:600;color:#fff;cursor:default;">Logout</div>
-                                </div>
-                            </div>
-                            <div class="am-search">🔍 Globale Suche... (Ctrl+K)</div>
-                            <div class="am-stats">
-                                <div class="am-stat" style="background:rgba(59,130,246,0.1);color:#60a5fa;">📁 42 / 280 Jahr</div>
-                                <div class="am-stat" style="background:rgba(16,185,129,0.1);color:#34d399;">⏱ 0.00 / 0.0 h Heute</div>
-                                <div class="am-stat" style="background:rgba(245,158,11,0.1);color:#fbbf24;">📊 0.00 / 41.25 h Woche</div>
-                            </div>
-                            <div class="am-section-title">Schnellzugriff</div>
-                            <div class="am-grid">
-                                <div class="am-tile"><span class="am-tile-icon">📋</span>Meine Aufgaben</div>
-                                <div class="am-tile"><span class="am-tile-icon">📅</span>Kalender</div>
-                                <div class="am-tile"><span class="am-tile-icon">🏗️</span>Übersicht</div>
-                                <div class="am-tile"><span class="am-tile-icon">📈</span>Monitoring</div>
-                                <div class="am-tile"><span class="am-tile-icon">🔧</span>Serviceaufträge</div>
-                                <div class="am-tile"><span class="am-tile-icon">⚠️</span>Mängelberichte</div>
-                                <div class="am-tile"><span class="am-tile-icon">⚡</span>Projekte Elektro</div>
-                                <div class="am-tile"><span class="am-tile-icon">☀️</span>Projekte PV</div>
-                                <div class="am-tile"><span class="am-tile-icon">🔒</span>Projekte Sicherheit</div>
-                                <div class="am-tile"><span class="am-tile-icon">🔌</span>Ladestationen</div>
-                                <div class="am-tile"><span class="am-tile-icon">👥</span>Kunden</div>
-                                <div class="am-tile"><span class="am-tile-icon">📦</span>Inventar</div>
-                                <div class="am-tile"><span class="am-tile-icon">📄</span>Offerten</div>
-                                <div class="am-tile"><span class="am-tile-icon">🗄️</span>Archiv</div>
-                                <div class="am-tile"><span class="am-tile-icon">👤</span>Mein Profil</div>
-                                <div class="am-tile"><span class="am-tile-icon">🏢</span>Admin / GL</div>
-                            </div>
+        <header class="rs-hero">
+            <div class="rs-container">
+                <div class="rs-hero__grid">
+                    <div>
+                        <p class="rs-eyebrow rs-reveal">Roos Studio</p>
+                        <h1 class="rs-h1 rs-reveal" style="transition-delay: 0.04s;">
+                            We code with taste.<br />
+                            <span class="rs-gradient-text">We ship with discipline.</span>
+                        </h1>
+                        <p class="rs-lead rs-reveal" style="transition-delay: 0.08s;">
+                            Roos Studio is where vibecoding energy meets production rigor — apps, internal tools, and systems that stay legible long after launch day.
+                        </p>
+                        <div class="rs-reveal" style="margin-top: var(--rs-space-lg); transition-delay: 0.12s;">
+                            <a href="#contact" class="rs-btn rs-btn--primary">
+                                Start a project
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                            </a>
                         </div>
                     </div>
+                    <aside class="rs-hero__panel rs-reveal" style="transition-delay: 0.1s;" aria-label="Studio snapshot">
+                        <div class="rs-hero__panel-inner">
+                            <div class="rs-hero__panel-header">
+                                <span class="rs-hero__panel-title">build.config.ts</span>
+                                <span class="rs-hero__status">
+                                    <span class="rs-hero__status-dot" aria-hidden="true"></span>
+                                    shipping
+                                </span>
+                            </div>
+                            <pre class="rs-hero__code"><span class="kw">export const</span> studio = {
+  <span class="str">mode</span>: <span class="str">'vibecoding → ship'</span>,
+  <span class="str">stack</span>: <span class="str">'boring-core, sharp-UI'</span>,
+  <span class="str">bias</span>: <span class="str">'senior execution'</span>,
+  <span class="muted">// no deckware — only deployables</span>
+}</pre>
+                            <div class="rs-hero__metrics" role="presentation">
+                                <div class="rs-hero__metric">
+                                    <div class="rs-hero__metric-val">Senior-led</div>
+                                    <div class="rs-hero__metric-lbl">Team</div>
+                                </div>
+                                <div class="rs-hero__metric">
+                                    <div class="rs-hero__metric-val">Ship-ready</div>
+                                    <div class="rs-hero__metric-lbl">Default</div>
+                                </div>
+                                <div class="rs-hero__metric">
+                                    <div class="rs-hero__metric-val">EU</div>
+                                    <div class="rs-hero__metric-lbl">Timezone</div>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </header>
 
-                    <div class="hero-float-card fc1">
-                        <div class="fc-icon" style="background:rgba(34,197,94,0.15);">✅</div>
+        <div class="rs-vibe-marquee" aria-hidden="true">
+            <div class="rs-vibe-marquee__inner">
+                <div class="rs-vibe-marquee__track">
+                    <span>vibecoding</span><span>design tokens</span><span>TypeScript</span><span>ship weekly</span><span>a11y first</span><span>edge-ready</span><span>internal tools</span><span>founder-led</span><span>calm UI</span><span>real data</span>
+                    <span>vibecoding</span><span>design tokens</span><span>TypeScript</span><span>ship weekly</span><span>a11y first</span><span>edge-ready</span><span>internal tools</span><span>founder-led</span><span>calm UI</span><span>real data</span>
+                </div>
+            </div>
+        </div>
+
+        <section id="capabilities" class="rs-section rs-section--tight-top">
+            <div class="rs-container">
+                <header class="rs-section-head">
+                    <div class="rs-reveal">
+                        <p class="rs-eyebrow" style="margin-bottom: 14px;">What we build</p>
+                        <h2 class="rs-section-title">Three lanes — from prototype energy to ops-grade software.</h2>
+                    </div>
+                    <p class="rs-section-intro rs-reveal" style="transition-delay: 0.06s;">
+                        Whether you are in pure vibecoding mode or hardening for scale, we scope for outcomes: velocity where it matters, guardrails where it counts.
+                    </p>
+                </header>
+                <div class="rs-cap-list">
+                    <a href="#contact" class="rs-cap-row rs-reveal">
+                        <span class="rs-mono-index">01</span>
                         <div>
-                            <div class="fc-text">Auftrag abgeschlossen</div>
-                            <div class="fc-sub">Sanierung EG · vor 3 Min.</div>
+                            <span class="rs-cap-tag">Product</span>
+                            <h3>Applications</h3>
                         </div>
-                    </div>
-                    <div class="hero-float-card fc2">
-                        <div class="fc-icon" style="background:rgba(59,130,246,0.15);">📊</div>
+                        <p>Web and mobile experiences — fast, accessible, and built to evolve with your roadmap.</p>
+                    </a>
+                    <a href="#contact" class="rs-cap-row rs-reveal" style="transition-delay: 0.05s;">
+                        <span class="rs-mono-index">02</span>
                         <div>
-                            <div class="fc-text">+12% Effizienz</div>
-                            <div class="fc-sub">Diesen Monat vs. Vormonat</div>
+                            <span class="rs-cap-tag">Internal</span>
+                            <h3>Tools &amp; consoles</h3>
                         </div>
-                    </div>
-                    <div class="hero-float-card fc3">
-                        <div class="fc-icon" style="background:rgba(245,158,11,0.15);">⚡</div>
+                        <p>Dashboards, admin surfaces, and workflows that replace spreadsheets with something your team actually wants to use.</p>
+                    </a>
+                    <a href="#contact" class="rs-cap-row rs-reveal" style="transition-delay: 0.1s;">
+                        <span class="rs-mono-index">03</span>
                         <div>
-                            <div class="fc-text">3 neue Aufträge</div>
-                            <div class="fc-sub">Heute zugewiesen</div>
+                            <span class="rs-cap-tag">Systems</span>
+                            <h3>Automation &amp; glue</h3>
                         </div>
+                        <p>Integrations, data pipelines, and quiet infrastructure that keeps operations predictable.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="work" class="rs-section">
+            <div class="rs-container">
+                <header class="rs-section-head">
+                    <div class="rs-reveal">
+                        <p class="rs-eyebrow" style="margin-bottom: 14px;">Selected work</p>
+                        <h2 class="rs-section-title">Engagements where structure mattered as much as speed.</h2>
                     </div>
-
-                    <div class="hero-visual-glow"></div>
+                    <p class="rs-section-intro rs-reveal" style="transition-delay: 0.06s;">
+                        Representative cases — anonymised where needed. Each row links to the same contact path so we can discuss fit.
+                    </p>
+                </header>
+                <div class="rs-work">
+                    <a href="#contact" class="rs-work-item rs-reveal">
+                        <div class="rs-work-visual" aria-hidden="true"></div>
+                        <div class="rs-work-body">
+                            <span class="rs-pill">B2B SaaS</span>
+                            <h3>Operations console</h3>
+                            <p>Unified view for orders, inventory, and partner SLAs — reduced support load through clarity.</p>
+                        </div>
+                    </a>
+                    <a href="#contact" class="rs-work-item rs-reveal" style="transition-delay: 0.05s;">
+                        <div class="rs-work-visual" aria-hidden="true"></div>
+                        <div class="rs-work-body">
+                            <span class="rs-pill">Mobile</span>
+                            <h3>Field service app</h3>
+                            <p>Offline-first workflows for technicians; sync and conflict handling built in from day one.</p>
+                        </div>
+                    </a>
+                    <a href="#contact" class="rs-work-item rs-reveal" style="transition-delay: 0.1s;">
+                        <div class="rs-work-visual" aria-hidden="true"></div>
+                        <div class="rs-work-body">
+                            <span class="rs-pill">Internal</span>
+                            <h3>Approval engine</h3>
+                            <p>Replaced email chains with auditable steps — finance and ops on the same source of truth.</p>
+                        </div>
+                    </a>
+                    <a href="#contact" class="rs-work-item rs-reveal" style="transition-delay: 0.15s;">
+                        <div class="rs-work-visual" aria-hidden="true"></div>
+                        <div class="rs-work-body">
+                            <span class="rs-pill">Automation</span>
+                            <h3>Integration layer</h3>
+                            <p>CRM, billing, and warehouse events in one pipeline — fewer manual exports, fewer mistakes.</p>
+                        </div>
+                    </a>
                 </div>
             </div>
+        </section>
 
-            <div class="hero-stats">
-                <div class="stat-card reveal reveal-d3">
-                    <div class="stat-num blue" data-count="100">0</div>
-                    <div class="stat-label">Prozent digital</div>
-                </div>
-                <div class="stat-card reveal reveal-d4">
-                    <div class="stat-num cyan" data-count="50">0</div>
-                    <div class="stat-label">% weniger Admin</div>
-                </div>
-                <div class="stat-card reveal reveal-d5">
-                    <div class="stat-num orange" data-count="24">0</div>
-                    <div class="stat-label">/7 Zugriff</div>
+        <section id="process" class="rs-section">
+            <div class="rs-container">
+                <header class="rs-section-head">
+                    <div class="rs-reveal">
+                        <p class="rs-eyebrow" style="margin-bottom: 14px;">How we work</p>
+                        <h2 class="rs-section-title">Three phases. No theatre.</h2>
+                    </div>
+                    <p class="rs-section-intro rs-reveal" style="transition-delay: 0.06s;">
+                        A straight line from ambiguity to something shippable — with checkpoints you can actually see.
+                    </p>
+                </header>
+                <div class="rs-process rs-reveal">
+                    <article class="rs-process-step">
+                        <span class="rs-process-node" aria-hidden="true"></span>
+                        <span class="rs-mono-index" style="display: block; margin-bottom: 10px;">Phase 01</span>
+                        <h3>Understand</h3>
+                        <p>We map constraints, users, and success metrics before writing production code — so scope stays honest.</p>
+                    </article>
+                    <article class="rs-process-step">
+                        <span class="rs-process-node" aria-hidden="true"></span>
+                        <span class="rs-mono-index" style="display: block; margin-bottom: 10px;">Phase 02</span>
+                        <h3>Build</h3>
+                        <p>Iterative delivery with visible milestones: APIs, UI, and infrastructure tested as we go.</p>
+                    </article>
+                    <article class="rs-process-step">
+                        <span class="rs-process-node" aria-hidden="true"></span>
+                        <span class="rs-mono-index" style="display: block; margin-bottom: 10px;">Phase 03</span>
+                        <h3>Deliver</h3>
+                        <p>Handover, documentation, and ownership — you are never left with a black box.</p>
+                    </article>
                 </div>
             </div>
-        </div>
-    </header>
+        </section>
 
-    <!-- ─── MARQUEE ─── -->
-    <div class="marquee-section">
-        <div class="marquee-track">
-            <span class="marquee-item">Projekte</span>
-            <span class="marquee-item">Serviceaufträge</span>
-            <span class="marquee-item">Kostenübersicht</span>
-            <span class="marquee-item">Materialverwaltung</span>
-            <span class="marquee-item">Zeiterfassung</span>
-            <span class="marquee-item">Baustellendoku</span>
-            <span class="marquee-item">Teamplanung</span>
-            <span class="marquee-item">Rapporte</span>
-            <span class="marquee-item">Archiv</span>
-            <span class="marquee-item">Offerten</span>
-            <span class="marquee-item">Projekte</span>
-            <span class="marquee-item">Serviceaufträge</span>
-            <span class="marquee-item">Kostenübersicht</span>
-            <span class="marquee-item">Materialverwaltung</span>
-            <span class="marquee-item">Zeiterfassung</span>
-            <span class="marquee-item">Baustellendoku</span>
-            <span class="marquee-item">Teamplanung</span>
-            <span class="marquee-item">Rapporte</span>
-            <span class="marquee-item">Archiv</span>
-            <span class="marquee-item">Offerten</span>
-        </div>
+        <section id="about" class="rs-section">
+            <div class="rs-container">
+                <header class="rs-section-head">
+                    <div class="rs-reveal">
+                        <p class="rs-eyebrow" style="margin-bottom: 14px;">About</p>
+                        <h2 class="rs-section-title">Technical founder. Real shipping history.</h2>
+                    </div>
+                    <p class="rs-section-intro rs-reveal" style="transition-delay: 0.06s;">
+                        Roos Studio is intentionally small — senior execution, explicit trade-offs, long-horizon thinking.
+                    </p>
+                </header>
+                <div class="rs-about">
+                    <div class="rs-about-copy rs-reveal">
+                        <p>
+                            Roos Studio is led by a technical founder who builds production systems — not pitch decks. We favour small, senior teams, explicit trade-offs, and software that still makes sense years after launch.
+                        </p>
+                        <p>
+                            If you need a partner who speaks both design and engineering fluently, we should talk.
+                        </p>
+                    </div>
+                    <aside class="rs-about-aside rs-reveal" style="transition-delay: 0.08s;" aria-label="Operating principles">
+                        <ul class="rs-about-list">
+                            <li>Scope tied to measurable outcomes, not feature laundry lists.</li>
+                            <li>UI that stays calm under real data and edge cases.</li>
+                            <li>Documentation and handover as part of delivery — not an afterthought.</li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="rs-cta">
+            <div class="rs-container">
+                <div class="rs-cta__surface rs-reveal">
+                    <div class="rs-cta__inner">
+                        <h2>Ready when you are.</h2>
+                        <p>Tell us what you are building — we will reply with a clear next step, not a generic intake form.</p>
+                        <a href="mailto:hello@roos.studio?subject=Project%20inquiry" class="rs-btn rs-btn--primary">Get in touch</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="rs-footer">
+            <div class="rs-container">
+                <div class="rs-footer__grid">
+                    <div class="rs-footer__logo">
+                        <img src="roos-studio-branding/logos/logo-primary-dark.png" alt="Roos Studio" width="120" height="20" decoding="async" />
+                    </div>
+                    <div class="rs-footer__meta">
+                        <div class="rs-footer__links">
+                            <a href="mailto:hello@roos.studio">hello@roos.studio</a>
+                            <a href="impressum.html">Impressum</a>
+                            <a href="datenschutz.html">Datenschutz</a>
+                        </div>
+                        <span class="rs-footer__fine">Roos Studio</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
-
-    <!-- ─── FUNKTIONEN ─── -->
-    <section id="funktionen">
-        <div class="container">
-            <div class="reveal">
-                <div class="section-label">Funktionen</div>
-                <h2 class="section-title">Alles, was dein Betrieb braucht.<br/>In einem System.</h2>
-                <p class="section-desc">Von der Offerte bis zum Rapport — WireTrack deckt den gesamten Baualltag ab. Kein Papierkram. Keine Insellösungen.</p>
-            </div>
-
-            <div class="features-grid">
-                <div class="feature-card reveal reveal-d1">
-                    <div class="feature-icon" style="background: rgba(59,130,246,0.1);">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="#3b82f6" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                    </div>
-                    <h3>Projektsteuerung</h3>
-                    <p>Plane, verfolge und steuere alle Bauprojekte zentral. Vom Angebot bis zur Schlussabrechnung — alles an einem Ort.</p>
-                </div>
-                <div class="feature-card reveal reveal-d2">
-                    <div class="feature-icon" style="background: rgba(6,182,212,0.1);">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="#06b6d4" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                    </div>
-                    <h3>Aufträge & Rapporte</h3>
-                    <p>Erstelle, verteile und verfolge Aufträge in Echtzeit. Rapporte direkt von der Baustelle erfassen — digital und nachvollziehbar.</p>
-                </div>
-                <div class="feature-card reveal reveal-d3">
-                    <div class="feature-icon" style="background: rgba(16,185,129,0.1);">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="#10b981" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    </div>
-                    <h3>Kostenübersicht</h3>
-                    <p>Material, Arbeitsstunden und Spesen auf einen Blick. Du weisst jederzeit, was jedes Projekt wirklich kostet.</p>
-                </div>
-                <div class="feature-card reveal reveal-d4">
-                    <div class="feature-icon" style="background: rgba(139,92,246,0.1);">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="#8b5cf6" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-                    </div>
-                    <h3>Materialverwaltung</h3>
-                    <p>Bestände, Bestellungen und Materialverbrauch pro Projekt — immer im Griff, nie zu viel, nie zu wenig.</p>
-                </div>
-                <div class="feature-card reveal reveal-d5">
-                    <div class="feature-icon" style="background: rgba(244,114,182,0.1);">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="#f472b6" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-                    </div>
-                    <h3>Teamplanung</h3>
-                    <p>Wer arbeitet wo? Plane dein Team über Baustellen hinweg ein und behalte den Überblick über Verfügbarkeiten.</p>
-                </div>
-                <div class="feature-card reveal reveal-d5">
-                    <div class="feature-icon" style="background: rgba(245,158,11,0.1);">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="#f59e0b" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                    </div>
-                    <h3>Baustellendokumentation</h3>
-                    <p>Fotos, Notizen und Fortschritt dokumentieren — direkt von der Baustelle. Alles automatisch zugeordnet und archiviert.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── SHOWCASE ─── -->
-    <section class="showcase">
-        <div class="container">
-            <div class="reveal" style="text-align: center;">
-                <div class="section-label" style="justify-content: center;">Einblick</div>
-                <h2 class="section-title" style="margin: 0 auto;">So sieht WireTrack in Aktion aus.</h2>
-                <p class="section-desc" style="margin: 16px auto 0; text-align: center; max-width: 580px;">Projektübersicht, Serviceaufträge und Detailansichten — alles durchdacht, alles an einem Ort.</p>
-            </div>
-            <div class="showcase-tabs reveal reveal-d1">
-                <div class="showcase-tab active" data-idx="0">Projektübersicht</div>
-                <div class="showcase-tab" data-idx="1">Serviceaufträge</div>
-                <div class="showcase-tab" data-idx="2">Auftragsdetail</div>
-            </div>
-
-            <div class="showcase-stage reveal reveal-d2">
-                <div class="showcase-screens" id="showcase-screens">
-                    <div class="showcase-screen center" data-idx="0">
-                        <div class="ss-browser">
-                            <div class="ss-bar">
-                                <div class="ss-dots"><span></span><span></span><span></span></div>
-                                <div class="ss-title">app.wiretrack.ch / übersicht</div>
-                            </div>
-                            <div class="app-mock">
-                                <div class="ov-header">
-                                    <div><span class="ov-title">🏗️ Übersicht</span><br><span class="ov-count">62 Einträge</span></div>
-                                    <div style="display:flex;gap:6px;">
-                                        <div class="ov-filter">Zurück</div><div class="ov-filter">Meine Aufgaben</div><div class="ov-filter">Dashboard</div>
-                                    </div>
-                                </div>
-                                <div class="ov-filters">
-                                    <div class="ov-filter active">Alle</div><div class="ov-filter">Offerten</div><div class="ov-filter">Projekte Elektro</div><div class="ov-filter">Projekte PV</div><div class="ov-filter">Sicherheit</div><div class="ov-filter">Ladestation</div><div class="ov-filter">Service</div>
-                                </div>
-                                <div class="ov-project">
-                                    <div class="ov-project-top">
-                                        <div><span class="ov-tag" style="background:rgba(16,185,129,0.15);color:#34d399;">Elektroprojekt</span> <span class="ov-project-name">Umbau Küche</span></div>
-                                        <span style="font-size:0.6rem;color:rgba(255,255,255,0.3);">Next: Offerte gesendet</span>
-                                    </div>
-                                    <div class="ov-project-info">Muster AG · Musterstrasse 12, 4500 Solothurn</div>
-                                    <div class="ov-steps"><div class="ov-step" style="background:#22c55e;"></div><div class="ov-step" style="background:#22c55e;"></div><div class="ov-step" style="background:#22c55e;"></div><div class="ov-step" style="background:#f59e0b;"></div><div class="ov-step" style="background:rgba(255,255,255,0.06);"></div><div class="ov-step" style="background:rgba(255,255,255,0.06);"></div><div class="ov-step" style="background:rgba(255,255,255,0.06);"></div></div>
-                                </div>
-                                <div class="ov-project">
-                                    <div class="ov-project-top">
-                                        <div><span class="ov-tag" style="background:rgba(239,68,68,0.15);color:#f87171;">Sicherheitsprojekt</span> <span class="ov-project-name">Kameras installieren</span></div>
-                                        <span style="font-size:0.6rem;color:rgba(255,255,255,0.3);">Next: Offerte gesendet</span>
-                                    </div>
-                                    <div class="ov-project-info">Demo GmbH · Hafenstrasse 20, 4500 Solothurn</div>
-                                    <div class="ov-steps"><div class="ov-step" style="background:#ef4444;"></div><div class="ov-step" style="background:#ef4444;"></div><div class="ov-step" style="background:#ef4444;"></div><div class="ov-step" style="background:#ef4444;"></div><div class="ov-step" style="background:#f59e0b;"></div><div class="ov-step" style="background:rgba(255,255,255,0.06);"></div></div>
-                                </div>
-                                <div class="ov-project" style="margin-bottom:0;">
-                                    <div class="ov-project-top">
-                                        <div><span class="ov-tag" style="background:rgba(168,85,247,0.15);color:#c084fc;">Ladestation</span> <span class="ov-project-name">Easee Ladestation</span></div>
-                                        <span style="font-size:0.6rem;color:rgba(255,255,255,0.3);">Next: Regie</span>
-                                    </div>
-                                    <div class="ov-project-info">Beispiel Corp · Schützenweg 2, 4710 Balsthal</div>
-                                    <div class="ov-steps"><div class="ov-step" style="background:#3b82f6;"></div><div class="ov-step" style="background:#3b82f6;"></div><div class="ov-step" style="background:#f59e0b;"></div><div class="ov-step" style="background:rgba(255,255,255,0.06);"></div><div class="ov-step" style="background:rgba(255,255,255,0.06);"></div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="showcase-screen right" data-idx="1">
-                        <div class="ss-browser">
-                            <div class="ss-bar">
-                                <div class="ss-dots"><span></span><span></span><span></span></div>
-                                <div class="ss-title">app.wiretrack.ch / service</div>
-                            </div>
-                            <div class="app-mock">
-                                <div class="ov-header">
-                                    <div><span class="ov-title">🔧 Service-Aufträge</span><br><span class="ov-count">21 Einträge</span></div>
-                                    <div style="display:flex;gap:6px;">
-                                        <div style="padding:5px 12px;background:rgba(239,68,68,0.15);color:#f87171;border-radius:7px;font-size:0.6rem;font-weight:600;">Neuer Service</div>
-                                        <div class="ov-filter">Dashboard</div>
-                                    </div>
-                                </div>
-                                <div class="am-search" style="margin:0 24px 16px;">🔍 Suche: Titel, Kunde, Adresse/Ort, Status...</div>
-                                <div class="ov-filters">
-                                    <div class="ov-filter active">Alle Status</div><div class="ov-filter active">Alle</div><div class="ov-filter">Garantie</div><div class="ov-filter">Kulanz</div><div class="ov-filter">⭐ Favoriten</div>
-                                </div>
-                                <div class="sv-cards">
-                                    <div class="sv-card">
-                                        <div class="sv-card-title">⭐ Störung Beleuchtung <span class="ov-tag" style="background:rgba(59,130,246,0.15);color:#60a5fa;">In Arbeit</span></div>
-                                        <div class="sv-card-sub">Muster AG<br>Hauptstrasse 15, 4500 Solothurn</div>
-                                        <div class="sv-card-bottom">
-                                            <div class="sv-card-avatars"><div class="sv-avatar" style="background:#8b5cf6;">MK</div><div class="sv-avatar" style="background:#3b82f6;">LW</div></div>
-                                            <div class="ov-filter" style="font-size:0.55rem;">Archivieren</div>
-                                        </div>
-                                        <div class="sv-card-progress"><div class="sv-card-progress-bar" style="width:33%;background:#ef4444;"></div></div>
-                                        <div class="sv-card-pct">33%</div>
-                                    </div>
-                                    <div class="sv-card">
-                                        <div class="sv-card-title">⭐ Steckdosen EG <span class="ov-tag" style="background:rgba(245,158,11,0.15);color:#fbbf24;">Garantie</span> <span class="ov-tag" style="background:rgba(59,130,246,0.15);color:#60a5fa;">In Arbeit</span></div>
-                                        <div class="sv-card-sub">Demo GmbH<br>Postfach, 8036 Zürich</div>
-                                        <div class="sv-card-bottom">
-                                            <div class="sv-card-avatars"><div class="sv-avatar" style="background:#f59e0b;">SR</div><div class="sv-avatar" style="background:#3b82f6;">LW</div></div>
-                                            <div class="ov-filter" style="font-size:0.55rem;">Archivieren</div>
-                                        </div>
-                                        <div class="sv-card-progress"><div class="sv-card-progress-bar" style="width:67%;background:#22c55e;"></div></div>
-                                        <div class="sv-card-pct">67%</div>
-                                    </div>
-                                    <div class="sv-card">
-                                        <div class="sv-card-title">⭐ Prüfung Sicherung <span class="ov-tag" style="background:rgba(16,185,129,0.15);color:#34d399;">Erledigt</span></div>
-                                        <div class="sv-card-sub">Beispiel Corp<br>Schützenweg 2, 4710 Balsthal</div>
-                                        <div class="sv-card-bottom">
-                                            <div class="sv-card-avatars"><div class="sv-avatar" style="background:#8b5cf6;">MK</div></div>
-                                            <div class="ov-filter" style="font-size:0.55rem;">Archivieren</div>
-                                        </div>
-                                        <div class="sv-card-progress"><div class="sv-card-progress-bar" style="width:56%;background:#f59e0b;"></div></div>
-                                        <div class="sv-card-pct">56%</div>
-                                    </div>
-                                    <div class="sv-card">
-                                        <div class="sv-card-title">⭐ Zählerkasten <span class="ov-tag" style="background:rgba(59,130,246,0.15);color:#60a5fa;">In Arbeit</span></div>
-                                        <div class="sv-card-sub">Hausverwaltung AG<br>Dornacherstr. 8, 4600 Olten</div>
-                                        <div class="sv-card-bottom">
-                                            <div class="sv-card-avatars"><div class="sv-avatar" style="background:#f59e0b;">SR</div></div>
-                                            <div class="ov-filter" style="font-size:0.55rem;">Archivieren</div>
-                                        </div>
-                                        <div class="sv-card-progress"><div class="sv-card-progress-bar" style="width:25%;background:#ef4444;"></div></div>
-                                        <div class="sv-card-pct">25%</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="showcase-screen hidden" data-idx="2">
-                        <div class="ss-browser">
-                            <div class="ss-bar">
-                                <div class="ss-dots"><span></span><span></span><span></span></div>
-                                <div class="ss-title">app.wiretrack.ch / auftrag</div>
-                            </div>
-                            <div class="app-mock" style="padding-bottom:16px;">
-                                <div class="ov-header">
-                                    <div><span class="ov-title">🔧 Störung Beleuchtung</span></div>
-                                    <div style="display:flex;gap:6px;">
-                                        <div class="ov-filter">Serviceliste</div><div class="ov-filter">Übersicht</div><div class="ov-filter">Dashboard</div>
-                                    </div>
-                                </div>
-                                <div style="margin:0 24px 16px; padding:20px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:12px;">
-                                    <div style="font-size:0.78rem;font-weight:700;color:#fff;margin-bottom:12px;">📋 Serviceinformation</div>
-                                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:0.65rem;">
-                                        <div>
-                                            <div style="color:rgba(255,255,255,0.3);text-transform:uppercase;font-weight:600;font-size:0.55rem;margin-bottom:4px;">Kunde</div>
-                                            <div style="color:#fff;font-weight:600;">Muster AG</div>
-                                            <div style="color:var(--muted);">Hauptstrasse 15<br>4500 Solothurn</div>
-                                            <div style="color:#60a5fa;margin-top:4px;">Tel: 032 123 45 67</div>
-                                        </div>
-                                        <div>
-                                            <div style="color:rgba(255,255,255,0.3);text-transform:uppercase;font-weight:600;font-size:0.55rem;margin-bottom:4px;">Mitarbeiter</div>
-                                            <div style="display:flex;gap:4px;margin:6px 0;"><div class="sv-avatar" style="background:#8b5cf6;margin:0;">MK</div><div class="sv-avatar" style="background:#3b82f6;margin:0;">LW</div></div>
-                                            <div style="margin-top:6px;">Status <span class="ov-tag" style="background:rgba(59,130,246,0.15);color:#60a5fa;">In Arbeit</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div style="margin:0 24px 8px;padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:10px;display:flex;align-items:center;justify-content:space-between;">
-                                    <span style="font-size:0.75rem;font-weight:600;color:#fff;">✅ Checkliste</span>
-                                    <span style="font-size:0.65rem;color:var(--muted);">3/9 · 33%</span>
-                                </div>
-                                <div style="margin:8px 24px;padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:10px;display:flex;align-items:center;justify-content:space-between;">
-                                    <span style="font-size:0.75rem;font-weight:600;color:#fff;">📁 Servicedokumente</span>
-                                    <span style="font-size:0.65rem;color:var(--muted);">2 Dateien</span>
-                                </div>
-                                <div style="margin:8px 24px;padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:10px;display:flex;align-items:center;justify-content:space-between;">
-                                    <span style="font-size:0.75rem;font-weight:600;color:#fff;">⏱ Stunden & Spesen</span>
-                                    <span style="font-size:0.65rem;color:var(--muted);">4.5 h · CHF 380.00</span>
-                                </div>
-                                <div style="margin:8px 24px;padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:10px;display:flex;align-items:center;justify-content:space-between;">
-                                    <span style="font-size:0.75rem;font-weight:600;color:#fff;">📦 Material</span>
-                                    <span style="font-size:0.65rem;color:var(--muted);">3 Pos. · CHF 124.50</span>
-                                </div>
-                                <div style="margin:8px 24px;padding:14px 16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:10px;display:flex;align-items:center;justify-content:space-between;">
-                                    <span style="font-size:0.75rem;font-weight:600;color:#fff;">📐 Messwerte</span>
-                                    <span style="font-size:0.65rem;color:var(--muted);">0 Einträge</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="showcase-label" id="showcase-label">
-                    <div class="showcase-label-title">Projektübersicht</div>
-                    <div class="showcase-label-sub">Alle Projekte auf einen Blick — mit Fortschritt, Status und Workflow-Stufen</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── VORTEILE ─── -->
-    <section id="vorteile">
-        <div class="container">
-            <div class="reveal">
-                <div class="section-label">Vorteile</div>
-                <h2 class="section-title">Warum Betriebe auf<br/>WireTrack setzen.</h2>
-                <p class="section-desc">Weniger Chaos, mehr Struktur. WireTrack bringt Ordnung in deinen Betrieb — und du sparst Zeit, Geld und Nerven.</p>
-            </div>
-
-            <div class="benefits-grid">
-                <div class="benefit-card reveal reveal-d1">
-                    <div class="benefit-num">01</div>
-                    <div>
-                        <h3>Alles an einem Ort</h3>
-                        <p>Schluss mit Excel, WhatsApp und Papierkram. WireTrack vereint alle Betriebsprozesse in einer Plattform.</p>
-                    </div>
-                </div>
-                <div class="benefit-card reveal reveal-d2">
-                    <div class="benefit-num">02</div>
-                    <div>
-                        <h3>Sofort einsatzbereit</h3>
-                        <p>Kein monatelanges Setup. WireTrack ist intuitiv — dein Team kann sofort loslegen.</p>
-                    </div>
-                </div>
-                <div class="benefit-card reveal reveal-d3">
-                    <div class="benefit-num">03</div>
-                    <div>
-                        <h3>Volle Transparenz</h3>
-                        <p>Kosten, Fortschritt und Verantwortlichkeiten — alles jederzeit sichtbar. Keine Überraschungen.</p>
-                    </div>
-                </div>
-                <div class="benefit-card reveal reveal-d4">
-                    <div class="benefit-num">04</div>
-                    <div>
-                        <h3>Schweizer Qualität</h3>
-                        <p>Gehostet in der Schweiz. Deine Daten bleiben hier — sicher, privat und konform.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── QUOTE ─── -->
-    <div class="quote-section">
-        <div class="container">
-            <div class="reveal">
-                <p class="quote-text">
-                    &laquo;Baubetriebe verdienen <span class="hl">digitale Werkzeuge</span>, die so zuverlässig arbeiten wie sie selbst.&raquo;
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- ─── ÜBER UNS ─── -->
-    <section id="ueber">
-        <div class="container">
-            <div class="reveal" style="text-align: center; max-width: 720px; margin: 0 auto;">
-                <div class="section-label" style="justify-content: center;">Über uns</div>
-                <h2 class="section-title" style="margin: 0 auto;">Gebaut von Praktikern,<br/>für Praktiker.</h2>
-                <p class="section-desc" style="margin: 20px auto 0; text-align: center; max-width: 580px;">
-                    WireTrack entstand aus dem Alltag der Baubranche. Wir wissen, wie Betriebe arbeiten — und was sie brauchen, um besser zu werden.
-                </p>
-                <div class="about-badges">
-                    <div class="about-badge reveal reveal-d1">
-                        <div class="about-badge-val">🇨🇭</div>
-                        <div class="about-badge-label">Schweizer Hosting</div>
-                    </div>
-                    <div class="about-badge reveal reveal-d2">
-                        <div class="about-badge-val">100%</div>
-                        <div class="about-badge-label">DSGVO-konform</div>
-                    </div>
-                    <div class="about-badge reveal reveal-d3">
-                        <div class="about-badge-val">24/7</div>
-                        <div class="about-badge-label">Verfügbarkeit</div>
-                    </div>
-                    <div class="about-badge reveal reveal-d4">
-                        <div class="about-badge-val">∞</div>
-                        <div class="about-badge-label">Skalierbar</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── KONTAKT ─── -->
-    <section id="kontakt">
-        <div class="container">
-            <div class="reveal">
-                <div class="section-label">Kontakt</div>
-                <h2 class="section-title">Bereit, durchzustarten?</h2>
-                <p class="section-desc">Schreib uns — wir zeigen dir, wie WireTrack deinen Betrieb voranbringt. Kostenlos und unverbindlich.</p>
-            </div>
-
-            <div class="contact-grid">
-                <div class="contact-info reveal reveal-d1">
-                    <h3>Lass uns reden</h3>
-                    <p>Ob Fragen, Demo-Anfrage oder einfach neugierig — wir freuen uns auf deine Nachricht und melden uns innert 24 Stunden.</p>
-
-                    <div class="contact-detail">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                        <a href="mailto:info@wiretrack.ch">info@wiretrack.ch</a>
-                    </div>
-                    <div class="contact-detail">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        <span>Schützenweg 2, 4710 Balsthal, Schweiz</span>
-                    </div>
-                    <div class="contact-detail">
-                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
-                        <a href="https://wiretrack.ch">wiretrack.ch</a>
-                    </div>
-                </div>
-
-                <form class="contact-form reveal reveal-d2" action="https://formsubmit.co/info@wiretrack.ch" method="POST">
-                    <input type="hidden" name="_subject" value="Neue Anfrage von wiretrack.ch 🚀">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="https://wiretrack.ch/danke.html">
-                    <input type="text" name="_honey" style="display:none">
-
-                    <div class="form-row two">
-                        <div class="form-group">
-                            <label for="name">Name *</label>
-                            <input type="text" id="name" name="name" placeholder="Dein Name" required />
-                        </div>
-                        <div class="form-group">
-                            <label for="email">E-Mail *</label>
-                            <input type="email" id="email" name="email" placeholder="deine@email.ch" required />
-                        </div>
-                    </div>
-                    <div class="form-row two">
-                        <div class="form-group">
-                            <label for="firma">Firma</label>
-                            <input type="text" id="firma" name="firma" placeholder="Firmenname" />
-                        </div>
-                        <div class="form-group">
-                            <label for="interesse">Interesse</label>
-                            <select id="interesse" name="interesse">
-                                <option value="demo">Kostenlose Demo</option>
-                                <option value="info">Allgemeine Infos</option>
-                                <option value="preise">Preise & Pakete</option>
-                                <option value="partner">Partnerschaft</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="nachricht">Nachricht</label>
-                        <textarea id="nachricht" name="nachricht" placeholder="Erzähl uns kurz, was du brauchst..."></textarea>
-                    </div>
-                    <button type="submit" class="form-submit">Nachricht senden →</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── FOOTER ─── -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-inner">
-                <div class="footer-left">
-                    <img src="/wrtk-glow.png" alt="WireTrack" />
-                    <span style="font-size: 0.85rem; color: var(--muted);" id="year-text"></span>
-                </div>
-                <div class="footer-links">
-                    <a href="mailto:info@wiretrack.ch">info@wiretrack.ch</a>
-                    <a href="/impressum.html">Impressum</a>
-                    <a href="/datenschutz.html">Datenschutz</a>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <script>
-        document.getElementById('year-text').textContent = '© ' + new Date().getFullYear() + ' WireTrack';
+        (function () {
+            var nav = document.getElementById('rs-nav');
+            var toggle = document.getElementById('rs-nav-toggle');
+            var drawer = document.getElementById('rs-drawer');
 
-        const progress = document.getElementById('progress');
-        const nav = document.getElementById('nav');
+            function setDrawerOpen(open) {
+                drawer.classList.toggle('is-open', open);
+                drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                toggle.setAttribute('aria-label', open ? 'Menu close' : 'Menu open');
+                document.body.style.overflow = open ? 'hidden' : '';
+            }
 
-        window.addEventListener('scroll', () => {
-            const h = document.documentElement;
-            progress.style.width = ((h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100) + '%';
-            nav.classList.toggle('scrolled', h.scrollTop > 60);
-        }, { passive: true });
-
-        const toggle = document.getElementById('mobile-toggle');
-        const menu = document.getElementById('mobile-menu');
-        toggle.addEventListener('click', () => menu.classList.toggle('open'));
-        function closeMobile() { menu.classList.remove('open'); }
-
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-        const cio = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const el = entry.target;
-                    const target = parseInt(el.dataset.count);
-                    const start = performance.now();
-                    const dur = 2200;
-                    const tick = (now) => {
-                        const p = Math.min((now - start) / dur, 1);
-                        const eased = 1 - Math.pow(1 - p, 4);
-                        el.textContent = Math.floor(target * eased);
-                        if (p < 1) requestAnimationFrame(tick);
-                    };
-                    requestAnimationFrame(tick);
-                    cio.unobserve(el);
+            window.addEventListener('scroll', function () {
+                var bar = nav && nav.querySelector('.rs-nav__bar');
+                if (bar) {
+                    bar.style.boxShadow = window.scrollY > 12
+                        ? '0 24px 80px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.06) inset'
+                        : '';
                 }
+            }, { passive: true });
+
+            toggle.addEventListener('click', function () {
+                setDrawerOpen(!drawer.classList.contains('is-open'));
             });
-        }, { threshold: 0.5 });
-        document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
 
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', (e) => {
-                const t = document.querySelector(a.getAttribute('href'));
-                if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-            });
-        });
+            window.closeRsDrawer = function () {
+                setDrawerOpen(false);
+            };
 
-        // 3D Screenshot Carousel
-        (function initShowcase() {
-            const screens = document.querySelectorAll('.showcase-screen');
-            const tabs = document.querySelectorAll('.showcase-tab');
-            const labelTitle = document.querySelector('.showcase-label-title');
-            const labelSub = document.querySelector('.showcase-label-sub');
-            const labels = [
-                { t: 'Projektübersicht', s: 'Alle Projekte auf einen Blick — mit Fortschritt, Status und Workflow-Stufen' },
-                { t: 'Serviceaufträge', s: 'Aufträge erstellen, zuweisen und den Status in Echtzeit verfolgen' },
-                { t: 'Auftragsdetail', s: 'Checklisten, Dokumente, Stunden, Material — alles pro Auftrag' },
-            ];
-            let current = 0;
-            const classes = ['center', 'right', 'hidden', 'left'];
-
-            function setPositions(idx) {
-                current = idx;
-                screens.forEach((s, i) => {
-                    s.className = 'showcase-screen';
-                    const diff = (i - idx + screens.length) % screens.length;
-                    s.classList.add(classes[diff] || 'hidden');
-                });
-                tabs.forEach((t, i) => { t.classList.toggle('active', i === idx); });
-                labelTitle.textContent = labels[idx].t;
-                labelSub.textContent = labels[idx].s;
-            }
-
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => setPositions(parseInt(tab.dataset.idx)));
-            });
-            screens.forEach(s => {
-                s.addEventListener('click', () => {
-                    const idx = parseInt(s.dataset.idx);
-                    if (idx !== current) setPositions(idx);
+            document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+                a.addEventListener('click', function (e) {
+                    var id = a.getAttribute('href');
+                    if (id.length > 1) {
+                        var t = document.querySelector(id);
+                        if (t) {
+                            e.preventDefault();
+                            t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            closeRsDrawer();
+                        }
+                    }
                 });
             });
 
-            let autoInterval = setInterval(() => setPositions((current + 1) % screens.length), 5000);
-            document.querySelector('.showcase-stage').addEventListener('mouseenter', () => clearInterval(autoInterval));
-            document.querySelector('.showcase-stage').addEventListener('mouseleave', () => {
-                autoInterval = setInterval(() => setPositions((current + 1) % screens.length), 5000);
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('is-visible');
+                        io.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
+
+            document.querySelectorAll('.rs-reveal').forEach(function (el) {
+                io.observe(el);
             });
-        })();
-
-        // Detect mobile
-        const isMobile = window.innerWidth < 768 || /Mobi|Android|iPhone/i.test(navigator.userAgent);
-
-        // Floating elements — limited on mobile
-        (function createConstructionBg() {
-            if (isMobile) return;
-            const container = document.getElementById('shapes');
-
-            const emojis = ['🏗️', '🔧', '⚙️', '🏢', '🧱', '📐', '🔩', '🏠', '🛠️', '🔨', '⛑️', '📋', '🚧', '💡'];
-
-            function spawn() {
-                const el = document.createElement('div');
-                el.className = 'shape-emoji';
-                el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                el.style.fontSize = (22 + Math.random() * 18) + 'px';
-                el.style.left = (3 + Math.random() * 94) + '%';
-                el.style.animationDuration = (40 + Math.random() * 40) + 's';
-                el.style.animationDelay = Math.random() * 3 + 's';
-                container.appendChild(el);
-                setTimeout(() => el.remove(), 85000);
-            }
-
-            for (let i = 0; i < 6; i++) setTimeout(() => spawn(), i * 3000);
-            setInterval(spawn, 8000);
-        })();
-
-        // Particles — only on desktop
-        (function createParticles() {
-            if (isMobile) return;
-            const container = document.getElementById('particles');
-            const colors = ['rgba(59,130,246,0.4)', 'rgba(6,182,212,0.35)', 'rgba(245,158,11,0.3)'];
-
-            function spawn() {
-                const el = document.createElement('div');
-                el.className = 'particle';
-                el.style.left = Math.random() * 100 + '%';
-                el.style.width = el.style.height = (1 + Math.random() * 2) + 'px';
-                el.style.background = colors[Math.floor(Math.random() * colors.length)];
-                el.style.animationDuration = (20 + Math.random() * 30) + 's';
-                container.appendChild(el);
-                setTimeout(() => el.remove(), 55000);
-            }
-
-            for (let i = 0; i < 12; i++) setTimeout(() => spawn(), i * 1000);
-            setInterval(spawn, 4000);
         })();
     </script>
 </body>

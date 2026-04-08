@@ -1,0 +1,20 @@
+ROOS STUDIO — LOGO USAGE
+
+1. Full logo:
+   - Use logo-primary-dark.png on dark backgrounds
+   - Use logo-primary-light.png on light backgrounds
+   - Use logo-transparent.png when placing on custom dark surfaces
+
+2. Favicon:
+   - Use only the single-color blue icon
+   - Do not use the full wordmark as favicon
+   - Keep favicon simple and readable at 16x16
+
+3. App icons:
+   - Use the rounded dark background version for installs / homescreen
+   - Keep icon centered with generous spacing
+
+4. Avoid:
+   - stretching or distorting the logo
+   - changing logo colors arbitrarily
+   - adding shadows or outlines to the full logo

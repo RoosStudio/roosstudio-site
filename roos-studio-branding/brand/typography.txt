@@ -1,0 +1,12 @@
+ROOS STUDIO — TYPOGRAPHY
+
+Primary font: Inter
+
+Recommended weights:
+- Heading: 600–700
+- Body: 400–500
+- UI / Buttons: 500
+
+Usage:
+- Use the full logo in headers, landing pages and documents.
+- Use the icon-only "R" for favicon, app icons and compact UI spaces.
