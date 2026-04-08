@@ -245,27 +245,79 @@ body.rs-page {
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
 }
 
-.rs-nav__logo {
+/* Nav „Titel“-Marke: grosses R + editorialer Text (kein klassisches Lockup) */
+.rs-nav__brand,
+.rs-subnav__brand {
   display: flex;
   align-items: center;
+  gap: clamp(10px, 2.5vw, 14px);
   text-decoration: none;
   flex-shrink: 0;
+  color: inherit;
 }
 
-.rs-nav__logo img {
-  height: clamp(34px, 6.5vw, 40px);
-  width: auto;
+.rs-nav__brand:hover .rs-nav__title-line--top,
+.rs-subnav__brand:hover .rs-nav__title-line--top {
+  color: #fff;
+}
+
+.rs-nav__mark,
+.rs-subnav__mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  filter: drop-shadow(0 8px 24px rgba(79, 140, 255, 0.35));
+}
+
+.rs-nav__mark img {
+  display: block;
+  width: clamp(48px, 12vw, 64px);
+  height: auto;
+  aspect-ratio: 1;
+  animation: rs-float 4.5s var(--rs-ease-out) infinite;
+}
+
+.rs-nav__title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.05;
+  gap: 2px;
+}
+
+.rs-nav__title-line {
   display: block;
 }
 
-@media (min-width: 900px) {
-  .rs-nav__logo img {
-    height: clamp(40px, 4.2vw, 48px);
-  }
+.rs-nav__title-line--top {
+  font-size: clamp(1.05rem, 2.8vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  color: var(--rs-text);
+  transition: color 0.25s var(--rs-ease);
 }
 
-.rs-nav__logo:hover {
-  opacity: 0.9;
+.rs-nav__title-line--bottom {
+  font-size: clamp(0.62rem, 1.6vw, 0.72rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  background: var(--rs-gradient);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: rs-gradient-shimmer 5s linear infinite;
+}
+
+.rs-subnav__mark img {
+  display: block;
+  width: clamp(44px, 11vw, 56px);
+  height: auto;
+  aspect-ratio: 1;
+  animation: rs-float 4.5s var(--rs-ease-out) infinite;
 }
 
 .rs-nav__links {
@@ -286,6 +338,16 @@ body.rs-page {
   color: var(--rs-text-secondary);
   text-decoration: none;
   transition: color 0.2s var(--rs-ease);
+}
+
+@media (min-width: 900px) and (max-width: 1120px) {
+  .rs-nav__links {
+    gap: 14px;
+  }
+
+  .rs-nav__links a {
+    font-size: 0.75rem;
+  }
 }
 
 .rs-nav__links a:hover {
@@ -395,7 +457,7 @@ body.rs-page {
   display: none;
   position: fixed;
   inset: 0;
-  top: clamp(84px, 18vw, 100px);
+  top: clamp(92px, 20vw, 112px);
   z-index: 150;
   flex-direction: column;
   align-items: stretch;
@@ -439,11 +501,53 @@ body.rs-page {
 
 .rs-hero {
   position: relative;
+  overflow: hidden;
   padding-top: clamp(132px, 20vw, 216px);
   padding-bottom: clamp(64px, 10vw, var(--rs-space-2xl));
   background:
     linear-gradient(180deg, rgba(11, 11, 15, 0.25) 0%, var(--rs-bg-deep) 100%),
     url("../roos-studio-branding/website/hero-bg.png") center top / cover no-repeat;
+}
+
+.rs-hero__blobs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.rs-hero__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+  opacity: 0.42;
+  animation: rs-blob-drift 14s ease-in-out infinite;
+}
+
+.rs-hero__blob--a {
+  width: min(440px, 85vw);
+  height: min(440px, 85vw);
+  top: -18%;
+  right: -22%;
+  background: radial-gradient(circle, rgba(79, 140, 255, 0.38) 0%, transparent 68%);
+}
+
+.rs-hero__blob--b {
+  width: min(340px, 70vw);
+  height: min(340px, 70vw);
+  bottom: 5%;
+  left: -18%;
+  background: radial-gradient(circle, rgba(157, 77, 255, 0.32) 0%, transparent 68%);
+  animation-delay: -5s;
+}
+
+.rs-hero > .rs-container {
+  position: relative;
+  z-index: 1;
+}
+
+.rs-eyebrow--pulse {
+  animation: rs-eyebrow-glow 3.5s ease-in-out infinite;
 }
 
 .rs-hero__grid {
@@ -611,6 +715,115 @@ body.rs-page {
 }
 
 /* -------------------------------------------------------------------------- */
+/* KI & Spaß — Beispielkarten                                                  */
+/* -------------------------------------------------------------------------- */
+
+.rs-fun {
+  padding-block: clamp(56px, 10vw, 96px);
+}
+
+.rs-fun-grid {
+  display: grid;
+  gap: var(--rs-space-md);
+}
+
+@media (min-width: 768px) {
+  .rs-fun-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.rs-fun-card {
+  position: relative;
+  padding: var(--rs-space-md);
+  border-radius: var(--rs-radius-lg);
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--rs-line);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition:
+    transform 0.4s var(--rs-ease-out),
+    border-color 0.35s var(--rs-ease-out),
+    box-shadow 0.4s var(--rs-ease-out);
+}
+
+.rs-fun-card:hover {
+  transform: translateY(-8px) rotate(-0.75deg);
+  border-color: rgba(79, 140, 255, 0.4);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.38),
+    0 0 40px rgba(79, 140, 255, 0.08);
+}
+
+.rs-fun-card:focus-visible {
+  outline: 2px solid var(--rs-accent-a);
+  outline-offset: 3px;
+}
+
+.rs-fun-card__emoji {
+  font-size: 1.85rem;
+  line-height: 1;
+  margin-bottom: 14px;
+  display: block;
+  animation: rs-emoji-bob 2.6s ease-in-out infinite;
+}
+
+.rs-fun-card:nth-child(2) .rs-fun-card__emoji {
+  animation-delay: -0.7s;
+}
+
+.rs-fun-card:nth-child(3) .rs-fun-card__emoji {
+  animation-delay: -1.4s;
+}
+
+.rs-fun-card h3 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin-bottom: 10px;
+}
+
+.rs-fun-card p {
+  font-size: 0.875rem;
+  color: var(--rs-text-secondary);
+  line-height: 1.62;
+}
+
+.rs-fun-card__tag {
+  margin-top: 16px;
+  font-family: var(--rs-mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rs-accent-a);
+}
+
+.rs-footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.rs-footer__brand .rs-nav__mark img {
+  width: 32px;
+  animation: none;
+  filter: drop-shadow(0 4px 14px rgba(79, 140, 255, 0.25));
+}
+
+.rs-footer__brand .rs-nav__title-line--top {
+  font-size: 0.95rem;
+}
+
+.rs-footer__brand .rs-nav__title-line--bottom {
+  font-size: 0.58rem;
+  animation: rs-gradient-shimmer 6s linear infinite;
+}
+
+/* -------------------------------------------------------------------------- */
 /* Capabilities — editorial rows (no card boxes)                               */
 /* -------------------------------------------------------------------------- */
 
@@ -757,13 +970,20 @@ body.rs-page {
 
 .rs-work-visual {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100px;
   border-radius: var(--rs-radius-md);
   background:
-    radial-gradient(circle at 30% 30%, rgba(79, 140, 255, 0.15), transparent 55%),
-    radial-gradient(circle at 80% 70%, rgba(157, 77, 255, 0.12), transparent 50%),
+    radial-gradient(circle at 30% 30%, rgba(79, 140, 255, 0.18), transparent 55%),
+    radial-gradient(circle at 80% 70%, rgba(157, 77, 255, 0.14), transparent 50%),
     var(--rs-surface-2);
   border: 1px solid var(--rs-line);
+  color: rgba(148, 178, 255, 0.92);
+  transition:
+    color 0.35s var(--rs-ease-out),
+    transform 0.35s var(--rs-ease-out);
 }
 
 @media (min-width: 768px) {
@@ -772,12 +992,15 @@ body.rs-page {
   }
 }
 
-.rs-work-visual::after {
-  content: "";
-  position: absolute;
-  inset: 12px;
-  border-radius: 8px;
-  border: 1px dashed rgba(255, 255, 255, 0.08);
+.rs-work-item:hover .rs-work-visual {
+  color: rgba(255, 255, 255, 0.95);
+  transform: scale(1.03);
+}
+
+.rs-work-visual__icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
 }
 
 .rs-work-body .rs-pill {
@@ -1013,10 +1236,26 @@ body.rs-page {
 }
 
 .rs-contact-form {
+  position: relative;
   display: grid;
   gap: var(--rs-space-md);
   text-align: left;
   margin-top: var(--rs-space-sm);
+}
+
+/* Honeypot — nur für Bots sichtbar */
+.rs-form-hp {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .rs-field label {
@@ -1155,6 +1394,64 @@ body.rs-page {
 }
 
 /* -------------------------------------------------------------------------- */
+/* Keyframes — Spiel & Bewegung                                                */
+/* -------------------------------------------------------------------------- */
+
+@keyframes rs-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes rs-gradient-shimmer {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes rs-blob-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  35% {
+    transform: translate(18px, -14px) scale(1.06);
+  }
+  70% {
+    transform: translate(-14px, 12px) scale(0.96);
+  }
+}
+
+@keyframes rs-emoji-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes rs-eyebrow-glow {
+  0%,
+  100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.88;
+    filter: brightness(1.12);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
 /* Motion — reveal                                                             */
 /* -------------------------------------------------------------------------- */
 
@@ -1189,6 +1486,24 @@ body.rs-page {
 
   .rs-vibe-marquee__track {
     animation: none;
+  }
+
+  .rs-nav__mark img,
+  .rs-subnav__mark img,
+  .rs-nav__title-line--bottom,
+  .rs-footer__brand .rs-nav__title-line--bottom,
+  .rs-hero__blob,
+  .rs-fun-card__emoji,
+  .rs-eyebrow--pulse {
+    animation: none;
+  }
+
+  .rs-fun-card:hover {
+    transform: none;
+  }
+
+  .rs-work-item:hover .rs-work-visual {
+    transform: none;
   }
 }
 
@@ -1229,18 +1544,6 @@ body.rs-page.rs-page--sub {
   backdrop-filter: blur(20px) saturate(1.2);
   -webkit-backdrop-filter: blur(20px) saturate(1.2);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-}
-
-.rs-subnav__logo img {
-  height: clamp(34px, 6.5vw, 40px);
-  width: auto;
-  display: block;
-}
-
-@media (min-width: 900px) {
-  .rs-subnav__logo img {
-    height: clamp(40px, 4.2vw, 48px);
-  }
 }
 
 .rs-subnav__back {

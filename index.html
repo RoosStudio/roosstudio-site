@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Roos Studio — Software, Tools &amp; Systeme</title>
-    <meta name="description" content="Roos Studio: Vibecoding trifft Production. Webanwendungen, interne Tools und digitale Systeme — mit Gründer-Energie und technischer Disziplin." />
+    <title>Roos Studio — KI-Ideen, Apps &amp; Spass (Schweiz)</title>
+    <meta name="description" content="Roos Studio: Von der verrückten KI-Idee bis zur fertigen App — lokal, fair, mit Hobby-Spass und ernsthafter Umsetzung. Schweiz." />
     <meta name="robots" content="index,follow" />
     <meta name="theme-color" content="#0B0B0F" />
     <meta property="og:title" content="Roos Studio" />
-    <meta property="og:description" content="Vibecoding trifft Production — Apps, Tools und Systeme von Roos Studio." />
+    <meta property="og:description" content="KI-Ideen bauen, die Spass machen — lokal &amp; günstig bis zur App. Roos Studio." />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="de_CH" />
 
@@ -29,17 +29,24 @@
     <div class="rs-wrap">
         <nav class="rs-nav" id="rs-nav" aria-label="Hauptnavigation">
             <div class="rs-nav__bar">
-                <a href="index.html" class="rs-nav__logo" aria-label="Roos Studio Startseite">
-                    <img src="roos-studio-branding/logos/logo-primary-dark.png" alt="Roos Studio" width="300" height="48" decoding="async" />
+                <a href="index.html" class="rs-nav__brand" aria-label="Roos Studio Startseite">
+                    <span class="rs-nav__mark" aria-hidden="true">
+                        <img src="roos-studio-branding/logos/logo-icon-gradient.png" alt="" width="64" height="64" decoding="async" />
+                    </span>
+                    <span class="rs-nav__title">
+                        <span class="rs-nav__title-line rs-nav__title-line--top">Roos</span>
+                        <span class="rs-nav__title-line rs-nav__title-line--bottom">Studio</span>
+                    </span>
                 </a>
                 <div class="rs-nav__links">
+                    <a href="#ki-spass">KI &amp; Spass</a>
                     <a href="#capabilities">Leistungen</a>
                     <a href="#work">Arbeit</a>
                     <a href="#process">Ablauf</a>
                     <a href="#about">Über uns</a>
                 </div>
                 <div class="rs-nav__actions">
-                    <a href="#contact" class="rs-btn rs-btn--primary">Projekt anfragen</a>
+                    <a href="#contact" class="rs-btn rs-btn--primary">Los geht’s</a>
                     <button type="button" class="rs-nav__toggle" id="rs-nav-toggle" aria-expanded="false" aria-controls="rs-drawer" aria-label="Menü öffnen">
                         <span></span>
                         <span></span>
@@ -49,6 +56,7 @@
         </nav>
 
         <div class="rs-drawer" id="rs-drawer" role="dialog" aria-label="Menü" aria-hidden="true">
+            <a href="#ki-spass">KI &amp; Spass</a>
             <a href="#capabilities">Leistungen</a>
             <a href="#work">Arbeit</a>
             <a href="#process">Ablauf</a>
@@ -57,51 +65,55 @@
         </div>
 
         <header class="rs-hero">
+            <div class="rs-hero__blobs" aria-hidden="true">
+                <span class="rs-hero__blob rs-hero__blob--a"></span>
+                <span class="rs-hero__blob rs-hero__blob--b"></span>
+            </div>
             <div class="rs-container">
                 <div class="rs-hero__grid">
                     <div>
-                        <p class="rs-eyebrow rs-reveal">Roos Studio</p>
+                        <p class="rs-eyebrow rs-eyebrow--pulse rs-reveal">Hobby-Werkstatt · KI · Schweiz</p>
                         <h1 class="rs-h1 rs-reveal" style="transition-delay: 0.04s;">
-                            Code mit Geschmack.<br />
-                            <span class="rs-gradient-text">Lieferung mit Substanz.</span>
+                            Verrückte Idee?<br />
+                            <span class="rs-gradient-text">Bauen wir uns aus dem Kopf.</span>
                         </h1>
                         <p class="rs-lead rs-reveal" style="transition-delay: 0.08s;">
-                            Hier trifft Vibecoding auf Production-Rigor: Webapps, interne Tools und Systeme, die auch nach dem Launch noch klar und wartbar bleiben.
+                            Von der närrischen KI-Idee bis zur kleinen App, die wirklich läuft — <strong>lokal</strong>, <strong>fair im Preis</strong>, mit Spass am Basteln und genug Ernst, damit es nicht am ersten Tag bricht.
                         </p>
                         <div class="rs-reveal" style="margin-top: var(--rs-space-lg); transition-delay: 0.12s;">
                             <a href="#contact" class="rs-btn rs-btn--primary">
-                                Projekt anfragen
+                                Idee loswerden
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                             </a>
                         </div>
                     </div>
-                    <aside class="rs-hero__panel rs-reveal" style="transition-delay: 0.1s;" aria-label="Studio-Snapshot">
+                    <aside class="rs-hero__panel rs-reveal" style="transition-delay: 0.1s;" aria-label="So könnte dein KI-Pipeline aussehen">
                         <div class="rs-hero__panel-inner">
                             <div class="rs-hero__panel-header">
-                                <span class="rs-hero__panel-title">build.config.ts</span>
+                                <span class="rs-hero__panel-title">idea → app (pseudo)</span>
                                 <span class="rs-hero__status">
                                     <span class="rs-hero__status-dot" aria-hidden="true"></span>
-                                    live
+                                    vibecoding
                                 </span>
                             </div>
-                            <pre class="rs-hero__code"><span class="kw">export const</span> studio = {
-  <span class="str">modus</span>: <span class="str">'vibecoding → ship'</span>,
-  <span class="str">stack</span>: <span class="str">'solide Basis, scharfe UI'</span>,
-  <span class="str">fokus</span>: <span class="str">'Senior-Umsetzung'</span>,
-  <span class="muted">// keine Slides — nur Deployables</span>
+                            <pre class="rs-hero__code"><span class="kw">const</span> flow = {
+  <span class="str">brainstorm</span>: <span class="str">'du + KI'</span>,
+  <span class="str">build</span>: <span class="str">'lokal, schlank'</span>,
+  <span class="str">ship</span>: <span class="str">'günstig &amp; gut'</span>,
+  <span class="muted">// von «was wäre wenn» bis «hier, klick mal»</span>
 }</pre>
                             <div class="rs-hero__metrics" role="presentation">
                                 <div class="rs-hero__metric">
-                                    <div class="rs-hero__metric-val">Senior</div>
-                                    <div class="rs-hero__metric-lbl">Team</div>
+                                    <div class="rs-hero__metric-val">CH</div>
+                                    <div class="rs-hero__metric-lbl">nah dran</div>
                                 </div>
                                 <div class="rs-hero__metric">
-                                    <div class="rs-hero__metric-val">Lieferbereit</div>
-                                    <div class="rs-hero__metric-lbl">Standard</div>
+                                    <div class="rs-hero__metric-val">KI</div>
+                                    <div class="rs-hero__metric-lbl">im Fluss</div>
                                 </div>
                                 <div class="rs-hero__metric">
-                                    <div class="rs-hero__metric-val">EU</div>
-                                    <div class="rs-hero__metric-lbl">Zeitzone</div>
+                                    <div class="rs-hero__metric-val">Spass</div>
+                                    <div class="rs-hero__metric-lbl">erlaubt</div>
                                 </div>
                             </div>
                         </div>
@@ -113,21 +125,55 @@
         <div class="rs-vibe-marquee" aria-hidden="true">
             <div class="rs-vibe-marquee__inner">
                 <div class="rs-vibe-marquee__track">
-                    <span>Vibecoding</span><span>Design-Tokens</span><span>TypeScript</span><span>wöchentlich liefern</span><span>Barrierefreiheit</span><span>edge-ready</span><span>interne Tools</span><span>Founder-getrieben</span><span>ruhige UI</span><span>echte Daten</span>
-                    <span>Vibecoding</span><span>Design-Tokens</span><span>TypeScript</span><span>wöchentlich liefern</span><span>Barrierefreiheit</span><span>edge-ready</span><span>interne Tools</span><span>Founder-getrieben</span><span>ruhige UI</span><span>echte Daten</span>
+                    <span>KI-Ideen</span><span>lokal bauen</span><span>günstig starten</span><span>Vibecoding</span><span>Prompt → Produkt</span><span>Weekend-Projekt</span><span>Schweiz</span><span>kein Bullshit</span><span>Spass mit Ernst</span><span>TypeScript</span>
+                    <span>KI-Ideen</span><span>lokal bauen</span><span>günstig starten</span><span>Vibecoding</span><span>Prompt → Produkt</span><span>Weekend-Projekt</span><span>Schweiz</span><span>kein Bullshit</span><span>Spass mit Ernst</span><span>TypeScript</span>
                 </div>
             </div>
         </div>
+
+        <section id="ki-spass" class="rs-fun">
+            <div class="rs-container">
+                <header class="rs-section-head">
+                    <div class="rs-reveal">
+                        <p class="rs-eyebrow" style="margin-bottom: 14px;">Was möglich ist</p>
+                        <h2 class="rs-section-title">Drei Spaß-Apps — nur Beispiele, damit’s klickt.</h2>
+                    </div>
+                    <p class="rs-section-intro rs-reveal" style="transition-delay: 0.06s;">
+                        Keine festen Produkte: Das sind <strong>Denkanstösse</strong>, wie aus einer verrückten Idee und KI-Hilfe schnell etwas Greifbares wird — <strong>bei dir in der Nähe</strong> gedacht, ohne gleich eine Silicon-Valley-Rechnung.
+                    </p>
+                </header>
+                <div class="rs-fun-grid">
+                    <a href="#contact" class="rs-fun-card rs-reveal">
+                        <span class="rs-fun-card__emoji" aria-hidden="true">🎲</span>
+                        <h3>WG-Entscheider 3000</h3>
+                        <p>«Was machen wir heute Abend?» — Mini-Webapp: Ihr gebt Stimmung und Budget ein, eine KI schlägt absurd passende Pläne vor. Zum Lachen und trotzdem nutzbar.</p>
+                        <span class="rs-fun-card__tag">KI · spontan · zusammen</span>
+                    </a>
+                    <a href="#contact" class="rs-fun-card rs-reveal" style="transition-delay: 0.06s;">
+                        <span class="rs-fun-card__emoji" aria-hidden="true">🎨</span>
+                        <h3>Inside-Joke-Stickerfabrik</h3>
+                        <p>Eure Gruppe hat diesen einen Spruch? App-Idee: Text + Stil wählen, KI generiert Sticker/Meme-Vorschläge — exportierbar für Chat. Total unnötig, total gut.</p>
+                        <span class="rs-fun-card__tag">KI-Bild · Gruppe · Kultur</span>
+                    </a>
+                    <a href="#contact" class="rs-fun-card rs-reveal" style="transition-delay: 0.12s;">
+                        <span class="rs-fun-card__emoji" aria-hidden="true">🌱</span>
+                        <h3>Mikro-Quest-Tagebuch</h3>
+                        <p>Jeden Tag eine winzige Challenge (30 Sekunden). KI formuliert freundliche Nudges, du hältst einen Streak — Gamification ohne Wellness-App-Firlefanz.</p>
+                        <span class="rs-fun-card__tag">Gewohnheit · leicht · motivierend</span>
+                    </a>
+                </div>
+            </div>
+        </section>
 
         <section id="capabilities" class="rs-section rs-section--tight-top">
             <div class="rs-container">
                 <header class="rs-section-head">
                     <div class="rs-reveal">
                         <p class="rs-eyebrow" style="margin-bottom: 14px;">Was wir bauen</p>
-                        <h2 class="rs-section-title">Drei Spuren — vom Prototyp bis zum betriebsreifen System.</h2>
+                        <h2 class="rs-section-title">Neben dem Spass: auch «ernsthafte» Software.</h2>
                     </div>
                     <p class="rs-section-intro rs-reveal" style="transition-delay: 0.06s;">
-                        Ob reiner Vibecoding-Modus oder Härtung für den Massstab: Wir fassen Leistung an messbaren Ergebnissen — Tempo, wo es zählt, und Leitplanken, wo sie fehlen.
+                        Vom schnellen KI-Prototyp bis zum Tool, das im Betrieb bleibt — wir fassen Umfang an dem fest, was <strong>wirklich</strong> rauskommen soll: Tempo, wo es Spass macht, Struktur, wo sie nötig ist.
                     </p>
                 </header>
                 <div class="rs-cap-list">
@@ -172,7 +218,14 @@
                 </header>
                 <div class="rs-work">
                     <a href="#contact" class="rs-work-item rs-reveal">
-                        <div class="rs-work-visual" aria-hidden="true"></div>
+                        <div class="rs-work-visual" aria-hidden="true">
+                            <svg class="rs-work-visual__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="3" y="3" width="7.5" height="7.5" rx="1.5" stroke="currentColor" stroke-width="1.35" />
+                                <rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5" stroke="currentColor" stroke-width="1.35" />
+                                <rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5" stroke="currentColor" stroke-width="1.35" />
+                                <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5" stroke="currentColor" stroke-width="1.35" />
+                            </svg>
+                        </div>
                         <div class="rs-work-body">
                             <span class="rs-pill">B2B SaaS</span>
                             <h3>Operations-Konsole</h3>
@@ -180,7 +233,12 @@
                         </div>
                     </a>
                     <a href="#contact" class="rs-work-item rs-reveal" style="transition-delay: 0.05s;">
-                        <div class="rs-work-visual" aria-hidden="true"></div>
+                        <div class="rs-work-visual" aria-hidden="true">
+                            <svg class="rs-work-visual__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="6.5" y="3" width="11" height="18" rx="2.25" stroke="currentColor" stroke-width="1.35" />
+                                <line x1="9" y1="18.5" x2="15" y2="18.5" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" />
+                            </svg>
+                        </div>
                         <div class="rs-work-body">
                             <span class="rs-pill">Mobile</span>
                             <h3>Field-Service-App</h3>
@@ -188,7 +246,14 @@
                         </div>
                     </a>
                     <a href="#contact" class="rs-work-item rs-reveal" style="transition-delay: 0.1s;">
-                        <div class="rs-work-visual" aria-hidden="true"></div>
+                        <div class="rs-work-visual" aria-hidden="true">
+                            <svg class="rs-work-visual__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" />
+                                <circle cx="7" cy="12" r="2.4" stroke="currentColor" stroke-width="1.35" />
+                                <circle cx="12" cy="12" r="2.4" stroke="currentColor" stroke-width="1.35" />
+                                <circle cx="17" cy="12" r="2.4" stroke="currentColor" stroke-width="1.35" fill="currentColor" fill-opacity="0.15" />
+                            </svg>
+                        </div>
                         <div class="rs-work-body">
                             <span class="rs-pill">Intern</span>
                             <h3>Freigabe-Engine</h3>
@@ -196,7 +261,14 @@
                         </div>
                     </a>
                     <a href="#contact" class="rs-work-item rs-reveal" style="transition-delay: 0.15s;">
-                        <div class="rs-work-visual" aria-hidden="true"></div>
+                        <div class="rs-work-visual" aria-hidden="true">
+                            <svg class="rs-work-visual__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="5" cy="12" r="2.35" stroke="currentColor" stroke-width="1.35" />
+                                <circle cx="12" cy="12" r="2.35" stroke="currentColor" stroke-width="1.35" />
+                                <circle cx="19" cy="12" r="2.35" stroke="currentColor" stroke-width="1.35" />
+                                <path d="M7.35 12h3.3M14.35 12h3.3M12 9.65v-2.5M12 14.35v2.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" />
+                            </svg>
+                        </div>
                         <div class="rs-work-body">
                             <span class="rs-pill">Automatisierung</span>
                             <h3>Integrationsschicht</h3>
@@ -246,26 +318,26 @@
                 <header class="rs-section-head">
                     <div class="rs-reveal">
                         <p class="rs-eyebrow" style="margin-bottom: 14px;">Über uns</p>
-                        <h2 class="rs-section-title">Technischer Gründer. Echte Lieferhistorie.</h2>
+                        <h2 class="rs-section-title">Technik, die nicht vergisst, dass’s Hobby sein darf.</h2>
                     </div>
                     <p class="rs-section-intro rs-reveal" style="transition-delay: 0.06s;">
-                        Roos Studio ist bewusst klein — Senior-Umsetzung, explizite Kompromisse, Denken über mehrere Jahre.
+                        Roos Studio ist klein, nahbar und technisch tief — wir lieben den Part, wo man nachts noch «nur kurz» an einer Idee schraubt, und den Part, wo dieselbe Idee <strong>stabil</strong> wird.
                     </p>
                 </header>
                 <div class="rs-about">
                     <div class="rs-about-copy rs-reveal">
                         <p>
-                            Roos Studio wird von einem technischen Gründer geführt, der Produktionssysteme baut — keine Pitch-Decks. Wir setzen auf kleine, erfahrene Teams, klare Entscheidungen und Software, die Jahre nach dem Launch noch Sinn ergibt.
+                            Ein technischer Gründer, der lieber shipped als Powerpoints malt. KI ist Werkzeug, kein Marketing-Magie — ob verrücktes Side-Projekt oder internes Tool: wir reden Klartext über Aufwand, Kosten und was realistisch ist.
                         </p>
                         <p>
-                            Wenn Sie jemanden suchen, der Design und Engineering gleichermassen spricht: Lassen Sie uns sprechen.
+                            Wenn Sie Lust auf Zusammenarbeit mit jemandem haben, der mitdenkt und mitbastelt: Melden Sie sich.
                         </p>
                     </div>
                     <aside class="rs-about-aside rs-reveal" style="transition-delay: 0.08s;" aria-label="Arbeitsprinzipien">
                         <ul class="rs-about-list">
-                            <li>Umfang an messbaren Ergebnissen — nicht an Feature-Listen.</li>
-                            <li>Oberflächen, die unter echten Daten und Grenzfällen ruhig bleiben.</li>
-                            <li>Dokumentation und Übergabe als Teil der Lieferung — nicht als Nachgedanke.</li>
+                            <li>Lokal &amp; direkt — wenig Overhead, viel Hands-on.</li>
+                            <li>KI dort einsetzen, wo sie wirklich hilft — nicht überall.</li>
+                            <li>Am Ende soll es <strong>Spass machen</strong> und trotzdem funktionieren.</li>
                         </ul>
                     </aside>
                 </div>
@@ -276,9 +348,13 @@
             <div class="rs-container">
                 <div class="rs-cta__surface rs-reveal">
                     <div class="rs-cta__inner rs-cta__inner--wide">
-                        <h2>Wenn Sie soweit sind.</h2>
-                        <p class="rs-cta__lead">Schreiben Sie uns, was Sie vorhaben — wir melden uns mit einem klaren nächsten Schritt. Das Formular öffnet Ihr E-Mail-Programm mit vorausgefüllter Nachricht an <strong>hi@roosstudio.ch</strong>.</p>
-                        <form id="rs-contact-form" class="rs-contact-form" method="get" action="#">
+                        <h2>Erzähl’s uns.</h2>
+                        <p class="rs-cta__lead">Verrückte KI-Idee, Weekend-Projekt oder «brauchen wir mal jemanden, der das baut» — schreiben Sie’s kurz. Beim Absenden geht die Nachricht <strong>direkt per E-Mail</strong> an uns (über einen sicheren Formular-Dienst). Kein Spam, nur Antwort.</p>
+                        <form id="rs-contact-form" class="rs-contact-form" method="post" action="https://formsubmit.co/hi@roosstudio.ch" accept-charset="UTF-8">
+                            <input type="hidden" name="_subject" value="Kontakt roosstudio.ch" />
+                            <input type="hidden" name="_next" value="https://roosstudio.ch/danke.html" />
+                            <input type="hidden" name="_captcha" value="false" />
+                            <input type="text" name="_gotcha" class="rs-form-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
                             <div class="rs-field">
                                 <label for="cf-name">Name</label>
                                 <input type="text" id="cf-name" name="name" required autocomplete="name" placeholder="Ihr Name" />
@@ -289,11 +365,11 @@
                             </div>
                             <div class="rs-field">
                                 <label for="cf-message">Nachricht</label>
-                                <textarea id="cf-message" name="message" required placeholder="Kurz: Ziel, Zeitrahmen, was Sie brauchen …"></textarea>
+                                <textarea id="cf-message" name="message" required placeholder="z. B. KI-Idee, Budget grob, Timeline, ob’s nur Spass oder auch ernst ist …"></textarea>
                             </div>
                             <button type="submit" class="rs-btn rs-btn--primary rs-btn--block">Nachricht senden</button>
                         </form>
-                        <p class="rs-cta__footer-note">Alternativ direkt: <a href="mailto:hi@roosstudio.ch?subject=Kontakt%20roosstudio.ch">hi@roosstudio.ch</a></p>
+                        <p class="rs-cta__footer-note">Alternativ direkt: <a href="mailto:hi@roosstudio.ch?subject=Kontakt%20roosstudio.ch">hi@roosstudio.ch</a> · <a href="datenschutz.html">Datenschutz</a> zum Formular</p>
                     </div>
                 </div>
             </div>
@@ -303,7 +379,15 @@
             <div class="rs-container">
                 <div class="rs-footer__grid">
                     <div class="rs-footer__logo">
-                        <img src="roos-studio-branding/logos/logo-primary-dark.png" alt="Roos Studio" width="180" height="28" decoding="async" />
+                        <a href="index.html" class="rs-footer__brand" aria-label="Roos Studio Startseite">
+                            <span class="rs-nav__mark" aria-hidden="true">
+                                <img src="roos-studio-branding/logos/logo-icon-gradient.png" alt="" width="32" height="32" decoding="async" />
+                            </span>
+                            <span class="rs-nav__title">
+                                <span class="rs-nav__title-line rs-nav__title-line--top">Roos</span>
+                                <span class="rs-nav__title-line rs-nav__title-line--bottom">Studio</span>
+                            </span>
+                        </a>
                     </div>
                     <div class="rs-footer__meta">
                         <div class="rs-footer__links">
@@ -375,34 +459,6 @@
             document.querySelectorAll('.rs-reveal').forEach(function (el) {
                 io.observe(el);
             });
-
-            var form = document.getElementById('rs-contact-form');
-            if (form) {
-                form.addEventListener('submit', function (e) {
-                    e.preventDefault();
-                    var nameEl = document.getElementById('cf-name');
-                    var emailEl = document.getElementById('cf-email');
-                    var msgEl = document.getElementById('cf-message');
-                    var name = nameEl && nameEl.value.trim();
-                    var email = emailEl && emailEl.value.trim();
-                    var msg = msgEl && msgEl.value.trim();
-                    if (!name || !email || !msg) {
-                        return;
-                    }
-                    var body =
-                        'Name: ' + name + '\n' +
-                        'E-Mail: ' + email + '\n\n' +
-                        'Nachricht:\n' + msg;
-                    var maxLen = 1800;
-                    if (body.length > maxLen) {
-                        body = body.substring(0, maxLen) + '\n\n[… Text gekürzt — bitte senden Sie den Rest in einer zweiten E-Mail.]';
-                    }
-                    var subject = 'Kontakt roosstudio.ch';
-                    window.location.href =
-                        'mailto:hi@roosstudio.ch?subject=' + encodeURIComponent(subject) +
-                        '&body=' + encodeURIComponent(body);
-                });
-            }
         })();
     </script>
 </body>
