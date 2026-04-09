@@ -1,0 +1,15 @@
+ROOS STUDIO — COLOR SYSTEM
+
+Primary background: #0B0B0F
+Surface: #111118
+Card: #1A1A22
+Border: #2A2A35
+
+Primary blue (favicon/icon): #4F8CFF
+Gradient start: #4F8CFF
+Gradient mid:   #6A5BFF
+Gradient end:   #9D4DFF
+
+Text primary: #FFFFFF
+Text secondary: #A1A1AA
+Muted text: #6B7280
