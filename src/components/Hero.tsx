@@ -1,8 +1,6 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 export function Hero() {
-  const reduceMotion = useReducedMotion()
-
   return (
     <section
       id="top"
@@ -41,7 +39,7 @@ export function Hero() {
         }}
       />
 
-      <div className="relative mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+      <div className="relative mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -54,113 +52,39 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.22, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-4xl text-4xl font-bold leading-[1.08] tracking-tight text-rs-text sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-7xl"
+          className="max-w-4xl text-4xl font-bold leading-[1.12] tracking-tight text-rs-text sm:text-5xl sm:leading-[1.14] md:text-6xl md:leading-[1.12] lg:text-[3.5rem] lg:leading-[1.1] xl:text-7xl xl:leading-[1.08]"
         >
-          Von Spielerei zu System.
+          Von „was wäre wenn“ bis zum ersten Klick.
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 0.55 }}
-          className="mt-6 max-w-2xl text-lg leading-relaxed text-rs-text-secondary sm:text-xl"
+          className="mt-8 max-w-xl text-lg leading-relaxed text-rs-text/80 sm:mt-9 sm:text-xl"
         >
-          Was als Experiment startet, wird bei uns zu Software, die hält: Apps
-          mit Charakter, Produkte mit Struktur — und der gleiche Anspruch an
-          Code, egal ob Rally, Kristall oder Enterprise.
+          Aus Ideen werden Anwendungen – und aus Anwendungen Systeme, die im
+          Alltag funktionieren.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.48, duration: 0.5 }}
-          className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center"
+          className="mt-12 flex flex-col items-start sm:mt-14"
         >
           <a
             href="#spass-apps"
-            className="inline-flex items-center justify-center rounded-full bg-rs-primary px-8 py-3.5 text-base font-semibold text-rs-bg transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg active:scale-[0.98]"
+            className="inline-flex items-center justify-center rounded-full bg-rs-primary px-8 py-3.5 text-base font-semibold text-rs-bg shadow-[0_0_0_1px_rgba(255,255,255,0.06)_inset,0_8px_28px_-10px_rgba(79,140,255,0.38)] transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg active:scale-[0.98]"
           >
-            Projekte entdecken
+            Projekte ansehen
           </a>
-          <a
-            href="#wiretrack"
-            className="inline-flex items-center justify-center rounded-full border border-rs-border bg-rs-card/80 px-8 py-3.5 text-base font-semibold text-rs-text backdrop-blur-sm transition-colors hover:border-rs-primary/50 hover:text-rs-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40"
+          <p
+            className="mt-4 font-mono text-[0.65rem] tracking-wide text-rs-text/40"
+            aria-hidden
           >
-            WireTrack ansehen
-          </a>
+            // jetzt klicken
+          </p>
         </motion.div>
       </div>
-
-      <motion.a
-        href="#spass-apps"
-        aria-label="Zu den Apps scrollen"
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.85, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2.5 rounded-2xl px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg sm:bottom-10"
-      >
-        <span className="text-[0.625rem] font-bold uppercase tracking-[0.32em] text-rs-text-secondary">
-          Mehr
-        </span>
-        <div className="relative">
-          <div
-            className="absolute -inset-3 rounded-full opacity-70 blur-xl"
-            style={{
-              background:
-                'radial-gradient(circle, rgba(79,140,255,0.45) 0%, rgba(157,77,255,0.2) 55%, transparent 70%)',
-            }}
-          />
-          <motion.div
-            className="relative flex h-14 w-9 flex-col items-center rounded-full border border-white/12 bg-rs-card/55 pt-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md"
-            animate={reduceMotion ? false : { y: [0, -5, 0] }}
-            transition={{
-              duration: 2.8,
-              repeat: reduceMotion ? 0 : Infinity,
-              ease: 'easeInOut',
-            }}
-          >
-            <motion.div
-              className="h-8 w-1 rounded-full shadow-[0_0_14px_rgba(79,140,255,0.85)]"
-              style={{
-                background:
-                  'linear-gradient(180deg, var(--color-rs-gradient-start) 0%, var(--color-rs-gradient-mid) 45%, var(--color-rs-gradient-end) 100%)',
-              }}
-              animate={
-                reduceMotion ? false : { y: [0, 14, 0], opacity: [1, 0.45, 1] }
-              }
-              transition={{
-                duration: 1.65,
-                repeat: reduceMotion ? 0 : Infinity,
-                ease: [0.45, 0, 0.55, 1],
-              }}
-            />
-          </motion.div>
-        </div>
-        <motion.span
-          className="flex flex-col items-center gap-0.5 text-rs-primary"
-          aria-hidden
-          animate={reduceMotion ? false : { y: [0, 3, 0] }}
-          transition={{
-            duration: 1.4,
-            repeat: reduceMotion ? 0 : Infinity,
-            ease: 'easeInOut',
-          }}
-        >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            className="opacity-90"
-          >
-            <path
-              d="M12 5v14M7 14l5 5 5-5"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </motion.span>
-      </motion.a>
     </section>
   )
 }

@@ -1,16 +1,14 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { useCallback, useId, useState, type ReactNode } from 'react'
-import { SectionReveal } from './SectionReveal'
 
 type Ripple = { id: string; x: number; y: number }
 
 type RippleCtaProps = {
   href: string
-  variant: 'primary' | 'secondary'
   children: ReactNode
 }
 
-function RippleCta({ href, variant, children }: RippleCtaProps) {
+function RippleCta({ href, children }: RippleCtaProps) {
   const reduceMotion = useReducedMotion()
   const [ripples, setRipples] = useState<Ripple[]>([])
   const uid = useId()
@@ -36,31 +34,24 @@ function RippleCta({ href, variant, children }: RippleCtaProps) {
     'relative inline-flex min-h-[3.25rem] items-center justify-center overflow-hidden rounded-full px-10 py-4 text-base font-semibold no-underline select-none'
 
   const primaryClass =
-    `${base} bg-rs-primary text-rs-bg shadow-[0_0_0_1px_rgba(255,255,255,0.08)_inset,0_12px_40px_-12px_rgba(79,140,255,0.65)] ` +
+    `${base} bg-rs-primary text-rs-bg shadow-[0_0_0_1px_rgba(255,255,255,0.06)_inset,0_8px_28px_-10px_rgba(79,140,255,0.38)] ` +
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg'
-
-  const secondaryClass =
-    `${base} border border-rs-border/90 bg-rs-surface/70 text-rs-text backdrop-blur-md shadow-[0_0_0_1px_rgba(255,255,255,0.04)_inset] ` +
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg'
-
-  const rippleClass =
-    variant === 'primary' ? 'bg-white/45' : 'bg-rs-primary/40'
 
   return (
     <motion.a
       href={href}
       onPointerDown={onPointerDown}
-      className={variant === 'primary' ? primaryClass : secondaryClass}
-      whileHover={reduceMotion ? undefined : { scale: 1.03, y: -1 }}
-      whileTap={reduceMotion ? undefined : { scale: 0.96 }}
-      transition={{ type: 'spring', stiffness: 420, damping: 22 }}
+      className={primaryClass}
+      whileHover={reduceMotion ? undefined : { scale: 1.02 }}
+      whileTap={reduceMotion ? undefined : { scale: 0.97 }}
+      transition={{ type: 'spring', stiffness: 420, damping: 24 }}
     >
       {!reduceMotion &&
         ripples.map((rip) => (
           <motion.span
             key={rip.id}
             aria-hidden
-            className={`pointer-events-none absolute rounded-full ${rippleClass}`}
+            className="pointer-events-none absolute rounded-full bg-white/40"
             style={{
               left: rip.x,
               top: rip.y,
@@ -81,21 +72,31 @@ function RippleCta({ href, variant, children }: RippleCtaProps) {
   )
 }
 
+const ease = [0.22, 1, 0.36, 1] as const
+const inView = { once: true, margin: '-50px' } as const
+
 export function ContactSection() {
   const reduceMotion = useReducedMotion()
+
+  const blockMotion = reduceMotion
+    ? {}
+    : {
+        initial: { opacity: 0, y: 10 } as const,
+        whileInView: { opacity: 1, y: 0 } as const,
+        viewport: inView,
+        transition: { duration: 0.5, ease },
+      }
 
   return (
     <section
       id="kontakt"
-      className="relative overflow-hidden border-t border-rs-border bg-rs-bg py-24 sm:py-32"
+      className="relative overflow-hidden border-t border-rs-border bg-rs-bg py-28 sm:py-36 md:py-40"
       aria-labelledby="kontakt-heading"
     >
-      {/* Basis-Verlauf */}
       <div
         className="pointer-events-none absolute inset-0 bg-gradient-to-b from-rs-surface/95 via-rs-card/40 to-rs-bg"
         aria-hidden
       />
-      {/* feines Raster */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.35]"
         style={{
@@ -106,12 +107,11 @@ export function ContactSection() {
         }}
         aria-hidden
       />
-      {/* animierte Brand-Orbs */}
       <div
         className="pointer-events-none absolute -left-1/4 top-0 h-[85%] w-[70%] rounded-full blur-[110px]"
         style={{
           background:
-            'radial-gradient(ellipse at center, rgba(79,140,255,0.22) 0%, transparent 62%)',
+            'radial-gradient(ellipse at center, rgba(79,140,255,0.16) 0%, transparent 62%)',
           animation: reduceMotion ? undefined : 'rs-gradient-shift 16s ease-in-out infinite',
         }}
         aria-hidden
@@ -120,7 +120,7 @@ export function ContactSection() {
         className="pointer-events-none absolute -right-1/4 bottom-0 h-[75%] w-[65%] rounded-full blur-[100px]"
         style={{
           background:
-            'radial-gradient(ellipse at center, rgba(157,77,255,0.2) 0%, transparent 60%)',
+            'radial-gradient(ellipse at center, rgba(157,77,255,0.14) 0%, transparent 60%)',
           animation: reduceMotion
             ? undefined
             : 'rs-gradient-shift 20s ease-in-out infinite reverse',
@@ -131,51 +131,44 @@ export function ContactSection() {
         className="pointer-events-none absolute left-1/2 top-1/2 h-[min(90vw,42rem)] w-[min(90vw,42rem)] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[90px]"
         style={{
           background:
-            'radial-gradient(circle, rgba(106,91,255,0.12) 0%, transparent 68%)',
+            'radial-gradient(circle, rgba(106,91,255,0.09) 0%, transparent 68%)',
           animation: reduceMotion ? undefined : 'rs-pulse-glow 8s ease-in-out infinite',
         }}
         aria-hidden
       />
-      {/* obere Lichtkante */}
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-rs-primary/35 to-transparent"
         aria-hidden
       />
 
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionReveal className="mx-auto max-w-3xl text-center">
+        <motion.div
+          className="mx-auto max-w-2xl text-center"
+          {...blockMotion}
+        >
           <h2
             id="kontakt-heading"
-            className="text-3xl font-bold tracking-tight text-rs-text sm:text-4xl md:text-5xl"
+            className="text-3xl font-bold tracking-tight text-rs-text sm:text-4xl md:text-[2.65rem] md:leading-tight"
           >
-            Lass uns bauen.
+            Lass uns etwas bauen, das läuft.
           </h2>
-          <p className="mt-5 text-lg text-rs-text-secondary">
-            Ob klare Spezifikation oder rohe Idee — wir übersetzen beides in
-            Software, die sich anfühlt wie Zukunft und sich verhält wie
-            Produktion.
+          <p className="mt-5 text-base leading-relaxed text-rs-text-secondary sm:text-lg">
+            Ideen sind schnell da.
           </p>
+          <p className="mt-2 text-base leading-relaxed text-rs-text-secondary sm:text-lg">
+            Entscheidend ist, was daraus wird.
+          </p>
+          <div className="mt-10 flex justify-center sm:mt-11">
+            <RippleCta href="mailto:hi@roosstudio.ch">Lass uns bauen</RippleCta>
+          </div>
           <a
+            id="kontakt-email"
             href="mailto:hi@roosstudio.ch"
-            className="mt-8 inline-block text-lg font-medium text-rs-primary underline-offset-4 transition-colors hover:text-rs-text hover:underline"
+            className="mt-8 inline-block scroll-mt-28 text-sm text-rs-text/65 underline-offset-4 transition-colors hover:text-rs-text-secondary hover:underline sm:scroll-mt-32"
           >
             hi@roosstudio.ch
           </a>
-          <div className="mt-12 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center sm:justify-center">
-            <RippleCta
-              href="mailto:hi@roosstudio.ch?subject=Projekt%20starten"
-              variant="primary"
-            >
-              Projekt starten
-            </RippleCta>
-            <RippleCta
-              href="mailto:hi@roosstudio.ch?subject=Idee%20umsetzen"
-              variant="secondary"
-            >
-              Idee umsetzen
-            </RippleCta>
-          </div>
-        </SectionReveal>
+        </motion.div>
       </div>
     </section>
   )

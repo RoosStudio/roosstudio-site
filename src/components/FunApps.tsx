@@ -13,6 +13,8 @@ type AppDef = {
   /** visuelle Rahmen-Variante zum Screenshot */
   frame: 'light' | 'rally' | 'crystal'
   imageSide: 'left' | 'right'
+  /** Bildausschnitt im Mockup (16:10-Rahmen) */
+  imageFocus?: 'top' | 'center'
 }
 
 const apps: AppDef[] = [
@@ -21,36 +23,39 @@ const apps: AppDef[] = [
     title: 'Lager-Fotos & Galerie',
     eyebrow: 'Foto',
     tag: 'Playground · Events',
-    desc: 'Alben, Lagerwoche, klarer Look: eine Galerie, die sich wie ein Produkt anfühlt — warm, ruhig, sofort verständlich.',
+    desc: 'Alle Lager-Momente an einem Ort. Klar strukturiert, schnell gefunden – und so aufgebaut, dass man sie gerne wieder anschaut.',
     screenshot: '/showcase/foto-lager-galerie.png',
     screenshotAlt:
-      'Oberfläche der Lager-Fotos-Galerie mit Wochentags-Alben und Roos-Studio-Dock',
+      'Foto Galerie: Lager-Kulisse mit Smartphone-Mockup und Wochentags-Alben',
     frame: 'light',
     imageSide: 'right',
+    imageFocus: 'center',
   },
   {
     id: 'rally',
     title: 'Rally · Roadtrip Journal',
     eyebrow: 'Rally',
     tag: 'Live Experience · Teams',
-    desc: 'Event-Lobby, Team-Codes, Mission-Flow: Tempo und Klarheit — damit Gäste sofort drin sind, ohne Chaos.',
+    desc: 'Sofort im Spiel – ohne Chaos. Klare Abläufe, schnelles Onboarding und ein Flow, der Teams direkt reinzieht.',
     screenshot: '/showcase/rally-roadtrip-lobby.png',
     screenshotAlt:
-      'Roadtrip Journal Event-Lobby mit Team-Login und Roadtrip-Branding',
+      'Vereinsreise 2026: Roadtrip Journal Lobby mit Event-Karte und Team-Code',
     frame: 'rally',
     imageSide: 'left',
+    imageFocus: 'center',
   },
   {
     id: 'kristall',
     title: 'Kristall Arena',
     eyebrow: 'Kristall Arena',
     tag: 'Echtzeit · Ranking',
-    desc: 'Podest, Scanner, Live-Feed: Arena-Feeling mit Struktur — für Events, die man spürt und steuern kann.',
+    desc: 'Live. Direkt. Wettbewerb. Punkte sammeln, Rankings steigen und das Spiel in Echtzeit erleben.',
     screenshot: '/showcase/kristall-arena.png',
     screenshotAlt:
-      'Kristall Arena Steuerung mit Podest, Rangliste und Echtzeit-Status',
+      'Kristall-Rangliste: Podest Plätze 1–3 und Liste ab Platz 4 im Weltraum-Look',
     frame: 'crystal',
     imageSide: 'right',
+    imageFocus: 'top',
   },
 ]
 
@@ -71,22 +76,25 @@ function ShowcaseMockup({
   src,
   alt,
   frame,
+  imageFocus = 'top',
 }: {
   src: string
   alt: string
   frame: AppDef['frame']
+  imageFocus?: AppDef['imageFocus']
 }) {
+  const focusClass = imageFocus === 'center' ? 'object-center' : 'object-top'
   return (
     <div
       className={`relative overflow-hidden rounded-2xl p-1 sm:rounded-3xl sm:p-1.5 ${frameClasses(frame)}`}
     >
-      <div className="overflow-hidden rounded-[0.875rem] bg-rs-bg sm:rounded-2xl">
+      <div className="aspect-[16/10] w-full overflow-hidden rounded-[0.875rem] bg-rs-bg sm:rounded-2xl">
         <motion.img
           src={src}
           alt={alt}
           loading="lazy"
           decoding="async"
-          className="h-auto w-full object-cover object-top"
+          className={`h-full w-full object-cover ${focusClass}`}
           width={1600}
           height={1000}
           whileHover={{ scale: 1.02 }}
@@ -140,7 +148,12 @@ function AppCard({ app, index }: { app: AppDef; index: number }) {
         }}
         aria-hidden
       />
-      <ShowcaseMockup src={app.screenshot} alt={app.screenshotAlt} frame={app.frame} />
+      <ShowcaseMockup
+        src={app.screenshot}
+        alt={app.screenshotAlt}
+        frame={app.frame}
+        imageFocus={app.imageFocus}
+      />
     </motion.div>
   )
 
@@ -206,11 +219,11 @@ export function FunApps() {
             id="spass-apps-heading"
             className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-rs-text sm:text-4xl md:text-5xl"
           >
-            Echte Oberflächen — kein Placeholder-Theater.
+            Echte Produkte — kein Placeholder.
           </h2>
           <p className="mt-5 max-w-2xl text-lg text-rs-text-secondary">
-            So sehen die Playground-Projekte aus, wenn sie laufen: Galerie, Rally
-            und Kristall Arena, jeweils mit eigenem Charakter.
+            Drei Anwendungen, drei unterschiedliche Erlebnisse: Galerie, Rally und
+            Kristall Arena – klar gebaut, sofort nutzbar.
           </p>
         </SectionReveal>
 

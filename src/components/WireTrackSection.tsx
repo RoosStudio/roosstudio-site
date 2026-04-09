@@ -1,26 +1,70 @@
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, useReducedMotion } from 'framer-motion'
+import { scrollToKontaktEmail } from '../lib/scrollToKontaktEmail'
 import { SectionReveal } from './SectionReveal'
+
+function TalkingMouthIcon({
+  active,
+  reduceMotion,
+}: {
+  active: boolean
+  reduceMotion: boolean | null
+}) {
+  return (
+    <svg
+      width="18"
+      height="14"
+      viewBox="0 0 18 14"
+      className="shrink-0 overflow-visible text-current"
+      aria-hidden
+    >
+      <motion.ellipse
+        cx="9"
+        cy="9"
+        rx="6.25"
+        ry="1.75"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        animate={
+          reduceMotion || !active
+            ? { ry: 1.75 }
+            : { ry: [1.75, 4.7, 2, 4.3, 1.75] }
+        }
+        transition={
+          reduceMotion || !active
+            ? { duration: 0.12 }
+            : { duration: 0.52, repeat: Infinity, ease: 'easeInOut' }
+        }
+      />
+    </svg>
+  )
+}
 
 const features = [
   {
     title: 'Projekte',
-    text: 'Von Scope bis Go-live — strukturiert, nachvollziehbar, lieferbar.',
+    text: 'Von Planung bis Umsetzung – klar strukturiert und zuverlässig umgesetzt.',
   },
   {
     title: 'Kunden',
-    text: 'Beziehungen statt Tickets: klar kommunizieren, Erwartungen halten.',
+    text: 'Klare Kommunikation, saubere Abläufe und verlässliche Zusammenarbeit.',
   },
   {
     title: 'Service',
-    text: 'Laufender Betrieb, der nicht laut ist — aber immer greifbar.',
+    text: 'Stabil im Betrieb, schnell erreichbar und jederzeit unter Kontrolle.',
   },
   {
     title: 'Systeme',
-    text: 'Integrationen, Datenflüsse, Stabilität: das Fundament für Wachstum.',
+    text: 'Saubere Integrationen und stabile Strukturen als Grundlage für Wachstum.',
   },
 ]
 
 export function WireTrackSection() {
+  const reduceMotion = useReducedMotion()
+  const [mouthHover, setMouthHover] = useState(false)
+
   return (
     <section
       id="wiretrack"
@@ -52,20 +96,26 @@ export function WireTrackSection() {
               </div>
             </div>
             <p className="mt-6 text-2xl font-semibold leading-snug text-rs-text sm:text-3xl">
-              Das ist kein Spiel mehr.
+              Aus Projekten wird echte Software.
             </p>
             <p className="mt-5 max-w-lg text-base leading-relaxed text-rs-text-secondary">
-              Hinter den Apps steht dieselbe DNA: Architektur, saubere Prozesse
-              und Lieferdisziplin. WireTrack ist der Rahmen, in dem echte
-              Kundenprojekte laufen — ruhig, professionell, skalierbar.
+              Klare Abläufe, saubere Prozesse und stabile Systeme. WireTrack
+              sorgt dafür, dass Projekte nicht nur starten – sondern laufen.
             </p>
             <motion.a
-              href="#kontakt"
+              href="#kontakt-email"
+              aria-label="Zur E-Mail-Adresse scrollen"
+              onClick={(e) => scrollToKontaktEmail(e, reduceMotion)}
+              onMouseEnter={() => setMouthHover(true)}
+              onMouseLeave={() => setMouthHover(false)}
+              onFocus={() => setMouthHover(true)}
+              onBlur={() => setMouthHover(false)}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="mt-10 inline-flex items-center justify-center rounded-full border border-rs-border bg-rs-card px-7 py-3 text-sm font-semibold text-rs-text transition-colors hover:border-rs-primary/45 hover:text-rs-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40"
+              className="mt-10 inline-flex items-center justify-center gap-2 rounded-full border border-rs-border bg-rs-card px-7 py-3 text-sm font-semibold text-rs-text transition-colors hover:border-rs-primary/45 hover:text-rs-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40"
             >
-              Gespräch anfragen
+              <TalkingMouthIcon active={mouthHover} reduceMotion={reduceMotion} />
+              Projekt besprechen
             </motion.a>
           </SectionReveal>
 
@@ -76,13 +126,13 @@ export function WireTrackSection() {
               transition={{ type: 'spring', stiffness: 280, damping: 22 }}
             >
               <div className="pointer-events-none absolute -inset-8 rounded-[2rem] bg-rs-primary/10 blur-3xl" />
-              <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/5">
+              <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl ring-1 ring-white/5">
                 <img
                   src="/showcase/wiretrack-dashboard.png"
-                  alt="WireTrack Dashboard mit Schnellzugriff, Widgets und persönlicher Begrüssung"
+                  alt="WireTrack Dashboard mit Schnellzugriff, Widgets und Begrüssung"
                   loading="lazy"
                   decoding="async"
-                  className="h-auto w-full object-cover object-top"
+                  className="h-full w-full object-cover object-top"
                   width={1600}
                   height={1000}
                 />
