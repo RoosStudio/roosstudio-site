@@ -36,7 +36,7 @@ const apps: AppDef[] = [
     title: 'Rally · Roadtrip Journal',
     eyebrow: 'Rally',
     tag: 'Live Experience · Teams',
-    desc: 'Sofort im Spiel – ohne Chaos. Klare Abläufe, schnelles Onboarding und ein Flow, der Teams direkt reinzieht.',
+    desc: 'Sofort im Spiel – ohne Chaos. Klare Abläufe, schnelles Onboarding, ein Flow, der Teams mitnimmt.',
     screenshot: '/showcase/rally-roadtrip-lobby.png',
     screenshotAlt:
       'Vereinsreise 2026: Roadtrip Journal Lobby mit Event-Karte und Team-Code',
@@ -49,7 +49,7 @@ const apps: AppDef[] = [
     title: 'Kristall Arena',
     eyebrow: 'Kristall Arena',
     tag: 'Echtzeit · Ranking',
-    desc: 'Live. Direkt. Wettbewerb. Punkte sammeln, Rankings steigen und das Spiel in Echtzeit erleben.',
+    desc: 'Punkte, Rankings, Spielstand – live und nachvollziehbar.',
     screenshot: '/showcase/kristall-arena.png',
     screenshotAlt:
       'Kristall-Rangliste: Podest Plätze 1–3 und Liste ab Platz 4 im Weltraum-Look',
@@ -97,8 +97,8 @@ function ShowcaseMockup({
           className={`h-full w-full object-cover ${focusClass}`}
           width={1600}
           height={1000}
-          whileHover={{ scale: 1.02 }}
-          transition={{ type: 'spring', stiffness: 260, damping: 22 }}
+          whileHover={{ scale: 1.01 }}
+          transition={{ type: 'spring', stiffness: 280, damping: 24 }}
         />
       </div>
     </div>
@@ -133,8 +133,8 @@ function AppCard({ app, index }: { app: AppDef; index: number }) {
   const imageBlock = (
     <motion.div
       className="relative"
-      whileHover={{ y: -4 }}
-      transition={{ type: 'spring', stiffness: 320, damping: 24 }}
+      whileHover={{ y: -2 }}
+      transition={{ type: 'spring', stiffness: 340, damping: 26 }}
     >
       <div
         className="pointer-events-none absolute -inset-4 rounded-3xl opacity-60 blur-3xl"
@@ -161,7 +161,7 @@ function AppCard({ app, index }: { app: AppDef; index: number }) {
     <motion.article
       ref={ref}
       style={{ y }}
-      className="group relative overflow-hidden rounded-3xl border border-rs-border bg-rs-card/40 p-6 backdrop-blur-sm sm:p-8 md:p-10"
+      className="group relative overflow-hidden rounded-3xl border border-rs-border bg-rs-card/40 p-6 backdrop-blur-sm transition-shadow duration-300 ease-out hover:shadow-[0_0_0_1px_rgba(79,140,255,0.14),0_24px_56px_-28px_rgba(0,0,0,0.55)] sm:p-8 md:p-10"
     >
       <div
         className={`pointer-events-none absolute inset-0 opacity-40 transition-opacity duration-500 group-hover:opacity-70 ${
@@ -206,7 +206,7 @@ export function FunApps() {
   return (
     <section
       id="spass-apps"
-      className="relative border-t border-rs-border bg-rs-bg py-24 sm:py-32"
+      className="relative border-t border-rs-border bg-rs-bg py-24 sm:py-32 md:py-36"
       aria-labelledby="spass-apps-heading"
     >
       <div className="pointer-events-none absolute left-0 top-1/4 h-72 w-72 rounded-full bg-rs-gradient-mid/10 blur-[100px]" />
@@ -219,7 +219,7 @@ export function FunApps() {
             id="spass-apps-heading"
             className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-rs-text sm:text-4xl md:text-5xl"
           >
-            Echte Produkte — kein Placeholder.
+            Gebaut, nicht nur gezeigt.
           </h2>
           <p className="mt-5 max-w-2xl text-lg text-rs-text-secondary">
             Drei Anwendungen, drei unterschiedliche Erlebnisse: Galerie, Rally und

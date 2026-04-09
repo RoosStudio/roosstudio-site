@@ -110,11 +110,11 @@ function RippleCta({ href, children }: RippleCtaProps) {
   )
 
   const base =
-    'relative inline-flex min-h-[3.25rem] items-center justify-center overflow-hidden rounded-full px-10 py-4 text-base font-semibold no-underline select-none'
+    'relative inline-flex min-h-[3.25rem] items-center justify-center overflow-hidden rounded-full px-10 py-3.5 text-base font-semibold no-underline select-none'
 
   const primaryClass =
     `${base} bg-rs-primary text-rs-bg shadow-[0_0_0_1px_rgba(255,255,255,0.06)_inset,0_8px_28px_-10px_rgba(79,140,255,0.38)] ` +
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg'
+    'transition-[transform] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg'
 
   return (
     <motion.a
@@ -123,7 +123,7 @@ function RippleCta({ href, children }: RippleCtaProps) {
       className={primaryClass}
       whileHover={reduceMotion ? undefined : { scale: 1.02 }}
       whileTap={reduceMotion ? undefined : { scale: 0.97 }}
-      transition={{ type: 'spring', stiffness: 420, damping: 24 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 28 }}
     >
       {!reduceMotion &&
         ripples.map((rip) => (
@@ -169,7 +169,7 @@ export function ContactSection() {
   return (
     <section
       id="kontakt"
-      className="relative overflow-hidden border-t border-rs-border bg-rs-bg py-28 sm:py-36 md:py-40"
+      className="relative overflow-hidden border-t border-rs-border bg-rs-bg py-24 sm:py-32 md:py-36"
       aria-labelledby="kontakt-heading"
     >
       <div
@@ -222,7 +222,7 @@ export function ContactSection() {
 
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <motion.div
-          className="mx-auto max-w-2xl text-center"
+          className="mx-auto max-w-xl text-center"
           {...blockMotion}
         >
           <h2
@@ -234,7 +234,7 @@ export function ContactSection() {
           <p className="mt-5 text-base leading-relaxed text-rs-text-secondary sm:text-lg">
             Ideen sind schnell da.
           </p>
-          <p className="mt-2 text-base leading-relaxed text-rs-text-secondary sm:text-lg">
+          <p className="mt-3.5 text-base leading-relaxed text-rs-text-secondary sm:mt-4 sm:text-lg">
             Entscheidend ist, was daraus wird.
           </p>
           <div className="mt-10 flex justify-center sm:mt-11">
@@ -246,7 +246,7 @@ export function ContactSection() {
           <a
             id="kontakt-email"
             href="mailto:hi@roosstudio.ch"
-            className="mt-8 inline-block scroll-mt-28 text-sm text-rs-text/65 underline-offset-4 transition-colors hover:text-rs-text-secondary hover:underline sm:scroll-mt-32"
+            className="mt-8 inline-block scroll-mt-28 text-sm text-rs-text/45 underline-offset-4 transition-colors duration-200 ease-out hover:text-rs-text-secondary/90 hover:underline sm:scroll-mt-32"
           >
             hi@roosstudio.ch
           </a>

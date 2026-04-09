@@ -76,7 +76,7 @@ export function WireTrackSection() {
   return (
     <section
       id="wiretrack"
-      className="relative border-t border-rs-border bg-rs-surface py-24 sm:py-32"
+      className="relative border-t border-rs-border bg-rs-surface py-24 sm:py-32 md:py-36"
       aria-labelledby="wiretrack-heading"
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-rs-primary/35 to-transparent" />
@@ -120,7 +120,8 @@ export function WireTrackSection() {
               onBlur={() => setMouthHover(false)}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="mt-10 inline-flex items-center justify-center gap-2 rounded-full border border-rs-border bg-rs-card px-7 py-3 text-sm font-semibold text-rs-text transition-colors hover:border-rs-primary/45 hover:text-rs-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40"
+              transition={{ type: 'spring', stiffness: 400, damping: 28 }}
+              className="mt-10 inline-flex min-h-[2.875rem] items-center justify-center gap-2 rounded-full border border-rs-border bg-rs-card px-6 py-2.5 text-sm font-semibold text-rs-text transition-[color,transform,border-color] duration-200 ease-out hover:border-rs-primary/45 hover:text-rs-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40"
             >
               <TalkingMouthIcon active={mouthHover} reduceMotion={reduceMotion} />
               Projekt besprechen
@@ -129,9 +130,9 @@ export function WireTrackSection() {
 
           <SectionReveal delay={0.08}>
             <motion.div
-              className="relative overflow-hidden rounded-3xl border border-rs-border/90 bg-rs-bg/90 p-1.5 shadow-[0_0_0_1px_rgba(79,140,255,0.12),0_32px_100px_-28px_rgba(0,0,0,0.85)]"
-              whileHover={{ y: -3 }}
-              transition={{ type: 'spring', stiffness: 280, damping: 22 }}
+              className="relative overflow-hidden rounded-3xl border border-rs-border bg-rs-bg/90 p-1.5 shadow-[0_0_0_1px_rgba(79,140,255,0.1),0_28px_80px_-32px_rgba(0,0,0,0.72)] transition-shadow duration-300 ease-out hover:shadow-[0_0_0_1px_rgba(79,140,255,0.16),0_32px_72px_-28px_rgba(0,0,0,0.65)]"
+              whileHover={{ y: -2 }}
+              transition={{ type: 'spring', stiffness: 320, damping: 24 }}
             >
               <div className="pointer-events-none absolute -inset-8 rounded-[2rem] bg-rs-primary/10 blur-3xl" />
               <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl ring-1 ring-white/5">
@@ -156,9 +157,9 @@ export function WireTrackSection() {
           {features.map((f, i) => (
             <SectionReveal key={f.title} delay={0.05 * i}>
               <motion.div
-                whileHover={{ y: -4 }}
-                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                className="h-full rounded-2xl border border-rs-border bg-rs-bg/80 p-6 shadow-none transition-shadow hover:shadow-[0_0_0_1px_rgba(79,140,255,0.15)]"
+                whileHover={{ y: -2 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 28 }}
+                className="h-full rounded-2xl border border-rs-border bg-rs-bg/80 p-6 shadow-none transition-shadow duration-300 ease-out hover:shadow-[0_0_0_1px_rgba(79,140,255,0.14),0_12px_40px_-24px_rgba(0,0,0,0.35)]"
               >
                 <h3 className="text-lg font-semibold text-rs-text">
                   {f.title}

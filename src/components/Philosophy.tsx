@@ -24,7 +24,7 @@ export function Philosophy() {
   return (
     <section
       id="philosophie"
-      className="relative border-t border-rs-border bg-rs-bg py-32 sm:py-40 md:py-44"
+      className="relative border-t border-rs-border bg-rs-bg py-24 sm:py-32 md:py-36"
       aria-labelledby="philosophie-heading"
     >
       <div className="mx-auto max-w-5xl px-5 sm:px-8">
@@ -49,7 +49,7 @@ export function Philosophy() {
             className="mt-5 text-[clamp(1.65rem,4.2vw,2.9rem)] font-bold leading-[1.12] tracking-tight text-rs-text sm:mt-6"
             {...motionProps(0.07)}
           >
-            Aus Anwendungen werden Systeme.
+            Aus Anwendungen wird Software, die läuft.
           </motion.p>
 
           <motion.p

@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { BrandLogo } from './BrandLogo'
 import { scrollToKontaktEmail } from '../lib/scrollToKontaktEmail'
 import { motion, useReducedMotion } from 'framer-motion'
@@ -12,8 +11,6 @@ const links = [
 
 export function Header() {
   const reduceMotion = useReducedMotion()
-  const [helloActive, setHelloActive] = useState(false)
-
   return (
     <motion.header
       initial={{ y: -16, opacity: 0 }}
@@ -45,33 +42,12 @@ export function Header() {
         </nav>
         <a
           href="#kontakt-email"
-          className="relative z-2 inline-flex shrink-0 cursor-pointer items-center justify-center gap-1.5 rounded-full border border-rs-border bg-rs-card px-3 py-2 text-xs font-semibold text-rs-text no-underline transition-colors hover:border-rs-primary/40 hover:text-rs-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/50 sm:gap-2 sm:px-5 sm:py-2.5 sm:text-sm"
+          className="relative z-2 inline-flex min-h-[2.75rem] shrink-0 cursor-pointer items-center justify-center rounded-full border border-rs-border bg-rs-card px-4 py-2 text-xs font-semibold text-rs-text no-underline transition-[color,transform,border-color] duration-200 ease-out hover:border-rs-primary/45 hover:text-rs-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/50 sm:min-h-[2.875rem] sm:px-6 sm:py-2.5 sm:text-sm"
           aria-label="Zur E-Mail-Adresse scrollen"
           onClick={(e) => scrollToKontaktEmail(e, reduceMotion)}
-          onMouseEnter={() => setHelloActive(true)}
-          onMouseLeave={() => setHelloActive(false)}
-          onFocus={() => setHelloActive(true)}
-          onBlur={() => setHelloActive(false)}
         >
-          <motion.span
-            aria-hidden
-            className="inline-block select-none text-[1rem] leading-none sm:text-[1.1rem]"
-            style={{ transformOrigin: '70% 85%' }}
-            animate={
-              reduceMotion || !helloActive
-                ? { rotate: 0 }
-                : { rotate: [0, 18, -12, 16, -10, 0] }
-            }
-            transition={
-              reduceMotion || !helloActive
-                ? { duration: 0.2 }
-                : { duration: 0.55, repeat: Infinity, ease: 'easeInOut' }
-            }
-          >
-            👋
-          </motion.span>
-          <span className="hidden sm:inline">Hallo sagen</span>
-          <span className="sm:hidden">Mail</span>
+          <span className="hidden whitespace-nowrap sm:inline">Lass uns bauen</span>
+          <span className="whitespace-nowrap sm:hidden">Bauen</span>
         </a>
       </div>
     </motion.header>
