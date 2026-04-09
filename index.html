@@ -121,19 +121,19 @@
                         </div>
                     </aside>
                 </div>
-                <figure class="rs-hero-strip rs-reveal rs-reveal--hero is-visible" aria-hidden="true">
-                    <img
-                        class="rs-hero-strip__img"
-                        src="roos-studio-branding/website/hero-bg.png"
-                        alt=""
-                        width="1600"
-                        height="500"
-                        decoding="async"
-                        fetchpriority="high"
-                    />
-                    <div class="rs-hero-strip__label">Lab · Motion · Produkt</div>
-                    <div class="rs-hero-strip__shine"></div>
-                </figure>
+                <div class="rs-hero-band rs-reveal rs-reveal--hero is-visible" role="region" aria-label="Kurz über Roos Studio">
+                    <div class="rs-hero-band__bg" aria-hidden="true"></div>
+                    <div class="rs-hero-band__wrap">
+                        <p class="rs-hero-band__lead">
+                            Dasselbe Qualitätsdenken fürs Interface — vom <strong>Lab</strong> und der <strong>Motion</strong> bis zum <strong>Kernprodukt</strong> WireTrack.
+                        </p>
+                        <div class="rs-hero-band__tags" aria-hidden="true">
+                            <span>Lab</span>
+                            <span>Motion</span>
+                            <span>Produkt</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </header>
 
@@ -184,7 +184,6 @@
                             <h3>Vom <span class="rs-gradient-text">Hack</span> zum Produkt.</h3>
                             <div class="rs-sequence__chips" role="tablist" aria-label="Storyline-Schritte">
                                 <span data-seq-chip="rally" class="is-active" role="tab">Rally</span>
-                                <span data-seq-chip="kristall" role="tab">Kristall Arena</span>
                                 <span data-seq-chip="wiretrack" role="tab">WireTrack</span>
                             </div>
                             <p class="rs-sequence__screen-copy" data-seq-copy>
@@ -198,13 +197,8 @@
                             <h3>Rally: Tempo, das nicht nervt.</h3>
                             <p>Schnelle States, klares Feedback — genau das, was später im echten Tool den Unterschied macht zwischen «geht so» und «oh nice».</p>
                         </article>
-                        <article class="rs-sequence__step rs-reveal" data-seq-step="kristall">
-                            <span class="rs-mono-index">02 · Creative Lab</span>
-                            <h3>Kristall Arena: Stimmung mit Kontrolle.</h3>
-                            <p>Cinematic heisst hier: Licht, Tiefe, Ruhe — nicht wildes Geflacker. Genug Drama für die Augen, genug Disziplin für den Code.</p>
-                        </article>
                         <article class="rs-sequence__step rs-reveal" data-seq-step="wiretrack">
-                            <span class="rs-mono-index">03 · Business Platform</span>
+                            <span class="rs-mono-index">02 · Business Platform</span>
                             <h3>WireTrack: wenn’s ernst wird.</h3>
                             <p>Struktur, Prozesse, Stabilität — das Teil soll morgen noch laufen, wenn heute Nacht nur «mal kurz» gebaut wurde.</p>
                         </article>
@@ -289,28 +283,21 @@
                             </article>
                         </div>
                     </div>
-                    <aside class="rs-wiretrack__panel rs-reveal" style="transition-delay: 0.06s;">
+                    <aside class="rs-wiretrack__panel rs-wiretrack__panel--biz rs-reveal" style="transition-delay: 0.06s;">
                         <div class="rs-panel-head">
-                            <span>Feature-Matrix</span>
+                            <span>Kernpunkte</span>
                             <span class="rs-pill rs-pill--neutral">Business-ready</span>
                         </div>
-                        <div class="rs-wiretrack__mock" aria-hidden="true">
-                            <div class="rs-wiretrack__mock-top">
-                                <span></span><span></span><span></span>
-                            </div>
-                            <div class="rs-wiretrack__mock-body">
-                                <div class="rs-wiretrack__mock-sidebar"></div>
-                                <div class="rs-wiretrack__mock-main">
-                                    <div class="rs-wiretrack__mock-row"></div>
-                                    <div class="rs-wiretrack__mock-row rs-wiretrack__mock-row--short"></div>
-                                    <div class="rs-wiretrack__mock-cards">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <figure class="rs-wiretrack__shot">
+                            <img
+                                src="roos-studio-branding/website/wiretrack-dashboard.png"
+                                alt="WireTrack: Dashboard mit Schnellzugriff (Darstellung anonymisiert)."
+                                width="1024"
+                                height="504"
+                                decoding="async"
+                                loading="lazy"
+                            />
+                        </figure>
                         <ul class="rs-wiretrack__features">
                             <li>Klare Rollen- und Prozesslogik für operative Teams.</li>
                             <li>Nachvollziehbare Datenflüsse statt fragmentierter Tool-Landschaften.</li>
@@ -486,7 +473,6 @@
             var sequenceCopy = document.querySelector('[data-seq-copy]');
             var sequenceTexts = {
                 rally: 'Speed und Klarheit: States, Feedback, Micro-Motion. Genau das Training, das Interfaces später schneller und angenehmer macht.',
-                kristall: 'Stimmung ohne Chaos: Licht, Tiefe, ruhige Transitions — cinematic, aber technisch sauber gebremst.',
                 wiretrack: 'Wenn der Spaß-Teil sitzt, kommt der Ernst-Teil: stabile Plattform, klare Prozesse, Software die nicht am Montag stirbt.'
             };
 
