@@ -1352,6 +1352,18 @@ body.rs-page {
   border-bottom-color: rgba(255, 255, 255, 0.2);
 }
 
+/* Kurzer Hinweis unter dem Formular — keine doppelten Links zum Footer */
+.rs-cta__fine-print {
+  margin-top: var(--rs-space-md);
+  margin-bottom: 0 !important;
+  max-width: 28rem;
+  margin-inline: auto;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--rs-text-muted);
+  line-height: 1.55;
+}
+
 /* -------------------------------------------------------------------------- */
 /* Footer                                                                      */
 /* -------------------------------------------------------------------------- */
