@@ -514,7 +514,7 @@ body.rs-page {
   padding-top: clamp(132px, 20vw, 216px);
   padding-bottom: clamp(64px, 10vw, var(--rs-space-2xl));
   background:
-    linear-gradient(180deg, rgba(11, 11, 15, 0.25) 0%, var(--rs-bg-deep) 100%),
+    linear-gradient(180deg, rgba(11, 11, 15, 0.18) 0%, var(--rs-bg-deep) 100%),
     url("../roos-studio-branding/website/hero-bg.png") center top / cover no-repeat;
 }
 
@@ -1860,14 +1860,32 @@ body.rs-page:not(.rs-page--sub) .rs-wrap .rs-cta__surface {
   min-height: 0;
   display: flex;
   align-items: center;
-  padding-top: clamp(108px, 14vw, 168px);
-  padding-bottom: clamp(40px, 6vw, 64px);
+  padding-top: clamp(92px, 11vw, 132px);
+  padding-bottom: clamp(24px, 4vw, 40px);
+  background:
+    linear-gradient(180deg, rgba(11, 11, 15, 0.32) 0%, rgba(11, 11, 15, 0.92) 100%),
+    url("../roos-studio-branding/website/hero-bg.png") center 28% / cover no-repeat;
 }
 
 .rs-hero-next__layout {
   display: grid;
-  gap: clamp(18px, 3vw, 40px);
-  align-items: end;
+  gap: clamp(14px, 2.4vw, 28px);
+  align-items: start;
+}
+
+.rs-hero-next__copy {
+  min-width: 0;
+}
+
+/* Above-the-fold: sofort sichtbar — kein Warten auf IntersectionObserver / keine Mask-Clips */
+.rs-hero .rs-reveal--hero {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+.rs-hero .rs-lead {
+  max-width: min(40rem, 100%);
 }
 
 @media (min-width: 1024px) {
@@ -1877,14 +1895,14 @@ body.rs-page:not(.rs-page--sub) .rs-wrap .rs-cta__surface {
 }
 
 .rs-hero-next__actions {
-  margin-top: var(--rs-space-lg);
+  margin-top: var(--rs-space-md);
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
 }
 
 .rs-hero-next__trust {
-  margin-top: 18px;
+  margin-top: 12px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px 10px;
