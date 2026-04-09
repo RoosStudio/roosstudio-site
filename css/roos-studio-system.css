@@ -1832,15 +1832,41 @@ body.rs-page.rs-page--thanks {
 /* Homepage vNext: dual positioning + cinematic motion                         */
 /* -------------------------------------------------------------------------- */
 
+/* Startseite: engerer vertikaler Rhythmus (weniger «Leerraum» zwischen Blöcken) */
+body.rs-page:not(.rs-page--sub) .rs-wrap > section.rs-section {
+  padding-block: clamp(28px, 4vw, 48px);
+}
+
+body.rs-page:not(.rs-page--sub) .rs-wrap .rs-section-head {
+  margin-bottom: clamp(18px, 3vw, 32px);
+  gap: var(--rs-space-sm);
+}
+
+@media (min-width: 768px) {
+  body.rs-page:not(.rs-page--sub) .rs-wrap .rs-section-head {
+    gap: var(--rs-space-md);
+  }
+}
+
+body.rs-page:not(.rs-page--sub) .rs-wrap .rs-cta {
+  padding-block: clamp(28px, 5vw, 56px);
+}
+
+body.rs-page:not(.rs-page--sub) .rs-wrap .rs-cta__surface {
+  padding: clamp(24px, 4.5vw, 44px);
+}
+
 .rs-hero--next {
-  min-height: min(960px, 100vh);
+  min-height: 0;
   display: flex;
   align-items: center;
+  padding-top: clamp(108px, 14vw, 168px);
+  padding-bottom: clamp(40px, 6vw, 64px);
 }
 
 .rs-hero-next__layout {
   display: grid;
-  gap: clamp(28px, 5vw, 72px);
+  gap: clamp(18px, 3vw, 40px);
   align-items: end;
 }
 
@@ -1953,8 +1979,7 @@ body.rs-page.rs-page--thanks {
 }
 
 .rs-showcase {
-  padding-top: clamp(84px, 12vw, 140px);
-  padding-bottom: clamp(84px, 12vw, 140px);
+  padding-block: 0;
   background:
     radial-gradient(ellipse 80% 55% at 50% 0%, rgba(79, 140, 255, 0.06), transparent 64%);
 }
@@ -1974,8 +1999,8 @@ body.rs-page.rs-page--thanks {
 
 .rs-project-slide {
   position: relative;
-  min-height: 380px;
-  padding: clamp(18px, 3vw, 28px);
+  min-height: 0;
+  padding: clamp(14px, 2.2vw, 22px);
   border-radius: var(--rs-radius-lg);
   border: 1px solid var(--rs-line);
   background: linear-gradient(162deg, rgba(20, 20, 30, 0.9) 0%, rgba(12, 12, 18, 0.95) 100%);
@@ -2035,7 +2060,7 @@ body.rs-page.rs-page--thanks {
 .rs-project-slide__media {
   position: relative;
   z-index: 1;
-  height: 176px;
+  height: 132px;
   border-radius: var(--rs-radius-md);
   border: 1px solid var(--rs-line);
   margin-bottom: 16px;
@@ -2095,8 +2120,7 @@ body.rs-page.rs-page--thanks {
 }
 
 .rs-positioning {
-  padding-top: clamp(96px, 13vw, 164px);
-  padding-bottom: clamp(88px, 12vw, 152px);
+  padding-block: 0;
   background:
     radial-gradient(ellipse 65% 48% at 20% 20%, rgba(157, 77, 255, 0.08), transparent 68%);
 }
@@ -2105,7 +2129,7 @@ body.rs-page.rs-page--thanks {
   position: relative;
   overflow: hidden;
   border-radius: calc(var(--rs-radius-lg) + 2px);
-  padding: clamp(28px, 4vw, 48px);
+  padding: clamp(20px, 3vw, 32px);
   background:
     radial-gradient(ellipse 90% 85% at 0% 0%, rgba(79, 140, 255, 0.14), transparent 62%),
     linear-gradient(145deg, rgba(19, 19, 28, 0.9) 0%, rgba(10, 10, 16, 0.94) 100%);
@@ -2124,7 +2148,7 @@ body.rs-page.rs-page--thanks {
 }
 
 .rs-sequence {
-  padding-top: clamp(32px, 6vw, 72px);
+  padding-block: 0;
 }
 
 .rs-sequence__grid {
@@ -2203,11 +2227,11 @@ body.rs-page.rs-page--thanks {
 
 .rs-sequence__steps {
   display: grid;
-  gap: var(--rs-space-md);
+  gap: var(--rs-space-sm);
 }
 
 .rs-sequence__step {
-  padding: clamp(20px, 3vw, 30px);
+  padding: clamp(16px, 2.5vw, 22px);
   border-radius: var(--rs-radius-lg);
   border: 1px solid var(--rs-line);
   background: rgba(255, 255, 255, 0.02);
@@ -2246,8 +2270,7 @@ body.rs-page.rs-page--thanks {
 }
 
 .rs-wiretrack {
-  padding-top: clamp(100px, 13vw, 170px);
-  padding-bottom: clamp(90px, 12vw, 150px);
+  padding-block: 0;
   background:
     radial-gradient(ellipse 75% 65% at 80% 12%, rgba(79, 140, 255, 0.09), transparent 68%);
 }
