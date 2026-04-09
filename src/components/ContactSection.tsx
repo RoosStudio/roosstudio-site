@@ -3,6 +3,85 @@ import { useCallback, useId, useState, type ReactNode } from 'react'
 
 type Ripple = { id: string; x: number; y: number }
 
+function BuildCraneIcon() {
+  const reduceMotion = useReducedMotion()
+  const hoist = !reduceMotion
+
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      className="shrink-0 text-current"
+      aria-hidden
+    >
+      <path
+        d="M7 20h10"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M12 20V5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M5 5h17"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+      <path
+        d="M12 8.5L17.5 5.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.25"
+        strokeLinecap="round"
+        opacity={0.88}
+      />
+      <motion.g
+        animate={
+          hoist
+            ? { y: [0, 1.35, 0.35, 1.1, 0] }
+            : { y: 0 }
+        }
+        transition={
+          hoist
+            ? { duration: 2.2, repeat: Infinity, ease: 'easeInOut' }
+            : { duration: 0.15 }
+        }
+      >
+        <path
+          d="M18 5v7.85"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.25"
+          strokeLinecap="round"
+        />
+        <path
+          d="M15.15 12.85h5.7"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.25"
+          strokeLinecap="round"
+        />
+        <path
+          d="M15.6 12.85v1.65M20.4 12.85v1.65"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.15"
+          strokeLinecap="round"
+        />
+      </motion.g>
+    </svg>
+  )
+}
+
 type RippleCtaProps = {
   href: string
   children: ReactNode
@@ -159,7 +238,10 @@ export function ContactSection() {
             Entscheidend ist, was daraus wird.
           </p>
           <div className="mt-10 flex justify-center sm:mt-11">
-            <RippleCta href="mailto:hi@roosstudio.ch">Lass uns bauen</RippleCta>
+            <RippleCta href="mailto:hi@roosstudio.ch">
+              <BuildCraneIcon />
+              Lass uns bauen
+            </RippleCta>
           </div>
           <a
             id="kontakt-email"
