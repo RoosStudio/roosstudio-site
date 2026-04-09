@@ -1860,7 +1860,7 @@ body.rs-page.rs-page--thanks {
   color: var(--rs-text-muted);
 }
 
-/* Vibecoding strip (home) */
+/* Marquee-Zeile (Startseite) */
 .rs-vibe-marquee {
   position: relative;
   border-block: 1px solid var(--rs-line);
