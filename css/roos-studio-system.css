@@ -265,6 +265,21 @@ body.rs-page {
   color: inherit;
 }
 
+/* Schlichte Eintritts-Animation (einmal Zoom-in), danach dezenter Hover */
+.rs-nav__brand {
+  transform-origin: left center;
+  animation: rs-nav-brand-in 0.58s var(--rs-ease-out) forwards;
+  transition: transform 0.35s var(--rs-ease-out);
+}
+
+.rs-nav__brand:hover {
+  transform: scale(1.03);
+}
+
+.rs-nav__brand:active {
+  transform: scale(0.99);
+}
+
 .rs-nav__brand:hover .rs-nav__title-line--top,
 .rs-subnav__brand:hover .rs-nav__title-line--top {
   color: #fff;
@@ -284,7 +299,6 @@ body.rs-page {
   width: clamp(48px, 12vw, 64px);
   height: auto;
   aspect-ratio: 1;
-  animation: rs-float 4.5s var(--rs-ease-out) infinite;
 }
 
 .rs-nav__title {
@@ -1416,6 +1430,17 @@ body.rs-page {
   }
 }
 
+@keyframes rs-nav-brand-in {
+  from {
+    opacity: 0.82;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @keyframes rs-gradient-shimmer {
   0% {
     background-position: 0% center;
@@ -1495,6 +1520,17 @@ body.rs-page {
 
   .rs-vibe-marquee__track {
     animation: none;
+  }
+
+  .rs-nav__brand {
+    animation: none;
+    transform: none;
+    transition: none;
+  }
+
+  .rs-nav__brand:hover,
+  .rs-nav__brand:active {
+    transform: none;
   }
 
   .rs-nav__mark img,
