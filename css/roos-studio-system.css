@@ -1833,7 +1833,7 @@ body.rs-page.rs-page--thanks {
 /* -------------------------------------------------------------------------- */
 
 .rs-hero--next {
-  min-height: min(900px, 100vh);
+  min-height: min(960px, 100vh);
   display: flex;
   align-items: center;
 }
@@ -1953,33 +1953,28 @@ body.rs-page.rs-page--thanks {
 }
 
 .rs-showcase {
-  padding-top: clamp(56px, 8vw, 96px);
+  padding-top: clamp(84px, 12vw, 140px);
+  padding-bottom: clamp(84px, 12vw, 140px);
   background:
     radial-gradient(ellipse 80% 55% at 50% 0%, rgba(79, 140, 255, 0.06), transparent 64%);
 }
 
-.rs-showcase-rail {
+.rs-showcase-grid {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(280px, 1fr);
+  grid-template-columns: 1fr;
   gap: var(--rs-space-md);
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
-  padding-bottom: 6px;
 }
 
-@media (min-width: 1200px) {
-  .rs-showcase-rail {
-    grid-auto-columns: minmax(260px, 1fr);
+@media (min-width: 900px) {
+  .rs-showcase-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(18px, 2.4vw, 28px);
   }
 }
 
 .rs-project-slide {
   position: relative;
-  scroll-snap-align: start;
-  min-height: 300px;
+  min-height: 380px;
   padding: clamp(18px, 3vw, 28px);
   border-radius: var(--rs-radius-lg);
   border: 1px solid var(--rs-line);
@@ -2023,7 +2018,7 @@ body.rs-page.rs-page--thanks {
   position: relative;
   z-index: 1;
   display: inline-flex;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   font-family: var(--rs-mono);
   font-size: 0.64rem;
   letter-spacing: 0.08em;
@@ -2035,6 +2030,52 @@ body.rs-page.rs-page--thanks {
 .rs-project-slide p {
   position: relative;
   z-index: 1;
+}
+
+.rs-project-slide__media {
+  position: relative;
+  z-index: 1;
+  height: 176px;
+  border-radius: var(--rs-radius-md);
+  border: 1px solid var(--rs-line);
+  margin-bottom: 16px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.rs-project-slide__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(11, 11, 15, 0.45) 100%);
+}
+
+.rs-project-slide__media--foto {
+  background-image:
+    linear-gradient(140deg, rgba(79, 140, 255, 0.45), rgba(157, 77, 255, 0.3)),
+    url("../roos-studio-branding/website/hero-bg.png");
+}
+
+.rs-project-slide__media--rally {
+  background-image:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.12), rgba(79, 140, 255, 0.35)),
+    url("../roos-studio-branding/website/hero-bg.png");
+  background-position: 55% 30%;
+}
+
+.rs-project-slide__media--kristall {
+  background-image:
+    linear-gradient(145deg, rgba(157, 77, 255, 0.42), rgba(79, 140, 255, 0.26)),
+    url("../roos-studio-branding/website/hero-bg.png");
+  background-position: 35% 65%;
+}
+
+.rs-project-slide__media--wiretrack {
+  background-image:
+    linear-gradient(145deg, rgba(45, 89, 190, 0.55), rgba(14, 20, 34, 0.55)),
+    url("../roos-studio-branding/website/hero-bg.png");
+  background-position: 50% 50%;
 }
 
 .rs-project-slide h3 {
@@ -2054,7 +2095,8 @@ body.rs-page.rs-page--thanks {
 }
 
 .rs-positioning {
-  padding-top: clamp(40px, 7vw, 88px);
+  padding-top: clamp(96px, 13vw, 164px);
+  padding-bottom: clamp(88px, 12vw, 152px);
   background:
     radial-gradient(ellipse 65% 48% at 20% 20%, rgba(157, 77, 255, 0.08), transparent 68%);
 }
@@ -2104,8 +2146,7 @@ body.rs-page.rs-page--thanks {
 
 @media (min-width: 1024px) {
   .rs-sequence__stage {
-    position: sticky;
-    top: 120px;
+    position: static;
   }
 }
 
@@ -2193,7 +2234,7 @@ body.rs-page.rs-page--thanks {
 
 .rs-sequence__step.is-active,
 .rs-sequence__step:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   border-color: rgba(116, 153, 255, 0.48);
   background: linear-gradient(155deg, rgba(79, 140, 255, 0.08), rgba(255, 255, 255, 0.02) 40%);
   box-shadow: 0 26px 74px rgba(0, 0, 0, 0.3);
@@ -2205,6 +2246,8 @@ body.rs-page.rs-page--thanks {
 }
 
 .rs-wiretrack {
+  padding-top: clamp(100px, 13vw, 170px);
+  padding-bottom: clamp(90px, 12vw, 150px);
   background:
     radial-gradient(ellipse 75% 65% at 80% 12%, rgba(79, 140, 255, 0.09), transparent 68%);
 }

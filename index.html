@@ -123,23 +123,27 @@
                     </p>
                 </header>
 
-                <div class="rs-showcase-rail rs-reveal" data-horizontal-rail>
+                <div class="rs-showcase-grid rs-reveal">
                     <article class="rs-project-slide is-active" data-slide>
+                        <div class="rs-project-slide__media rs-project-slide__media--foto" aria-hidden="true"></div>
                         <span class="rs-project-slide__type">Creative Lab</span>
                         <h3>Foto</h3>
                         <p>Eine visuelle Playground-App mit Fokus auf Bildwirkung, UI-Flow und micro-interactions. Ergebnis: klare Motion-Qualität und produktnahe UX-Experimente.</p>
                     </article>
                     <article class="rs-project-slide" data-slide>
+                        <div class="rs-project-slide__media rs-project-slide__media--rally" aria-hidden="true"></div>
                         <span class="rs-project-slide__type">Creative Lab</span>
                         <h3>Rally</h3>
                         <p>Spielerisches, schnelles Interface-Denken mit dynamischen States, präzisem Feedback und klarer Dramaturgie im Nutzerfluss.</p>
                     </article>
                     <article class="rs-project-slide" data-slide>
+                        <div class="rs-project-slide__media rs-project-slide__media--kristall" aria-hidden="true"></div>
                         <span class="rs-project-slide__type">Creative Lab</span>
                         <h3>Kristall Arena</h3>
                         <p>Showcase für atmosphärische Oberflächen, Kontrastführung und kontrollierte Animationen. Ziel: emotionales Erlebnis ohne technische Unruhe.</p>
                     </article>
                     <article class="rs-project-slide rs-project-slide--business" data-slide id="wiretrack-slide">
+                        <div class="rs-project-slide__media rs-project-slide__media--wiretrack" aria-hidden="true"></div>
                         <span class="rs-project-slide__type">Business Platform</span>
                         <h3>WireTrack</h3>
                         <p>Produktive Plattform mit klarer Informationsarchitektur, robusten Workflows und verlässlicher Performance im täglichen Betrieb.</p>
@@ -382,10 +386,8 @@
                 revealObserver.observe(el);
             });
 
-            var rail = document.querySelector('[data-horizontal-rail]');
-            var slides = rail ? rail.querySelectorAll('[data-slide]') : [];
-
-            if (rail && slides.length) {
+            var slides = document.querySelectorAll('[data-slide]');
+            if (slides.length) {
                 var slideObserver = new IntersectionObserver(function (entries) {
                     entries.forEach(function (entry) {
                         if (entry.isIntersecting) {
@@ -396,10 +398,9 @@
                         }
                     });
                 }, {
-                    root: rail,
-                    threshold: 0.75
+                    threshold: 0.48,
+                    rootMargin: '-10% 0px -20% 0px'
                 });
-
                 slides.forEach(function (slide) {
                     slideObserver.observe(slide);
                 });
