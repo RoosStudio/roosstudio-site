@@ -1,3 +1,5 @@
+import { BrandLogo } from './BrandLogo'
+
 export function Footer() {
   return (
     <footer className="border-t border-rs-border bg-rs-bg">
@@ -7,14 +9,9 @@ export function Footer() {
             <a
               href="#top"
               className="inline-block outline-none ring-rs-primary/40 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg"
+              aria-label="Roos Studio Startseite"
             >
-              <img
-                src="/roos-studio-branding/logos/logo-primary-dark.png"
-                alt="Roos Studio"
-                className="h-12 w-auto opacity-95 sm:h-14 md:h-[3.75rem]"
-                width={260}
-                height={65}
-              />
+              <BrandLogo placement="footer" />
             </a>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-rs-muted sm:text-base">
               Code, KI, klare Systeme — und der Wille, es immer wieder neu zu

@@ -79,3 +79,13 @@
     transform: translate3d(-24px, -18px, 0);
   }
 }
+
+@keyframes rs-logo-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 12px rgba(79, 140, 255, 0.38));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(157, 77, 255, 0.48));
+  }
+}

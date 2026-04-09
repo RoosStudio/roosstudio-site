@@ -1,3 +1,4 @@
+import { BrandLogo } from './BrandLogo'
 import { motion } from 'framer-motion'
 
 const links = [
@@ -19,14 +20,9 @@ export function Header() {
         <a
           href="#top"
           className="relative z-1 flex shrink-0 items-center py-1 outline-none ring-rs-primary/40 focus-visible:ring-2"
+          aria-label="Roos Studio Startseite"
         >
-          <img
-            src="/roos-studio-branding/logos/logo-primary-dark.png"
-            alt="Roos Studio"
-            className="h-11 w-auto sm:h-[3.25rem] md:h-[3.85rem]"
-            width={240}
-            height={60}
-          />
+          <BrandLogo placement="header" />
         </a>
         <nav
           className="flex min-w-0 justify-end gap-1 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] sm:justify-center sm:gap-6 md:gap-8 [&::-webkit-scrollbar]:hidden"
