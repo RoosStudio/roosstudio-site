@@ -29,7 +29,7 @@ export function WireTrackSection() {
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-rs-primary/35 to-transparent" />
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:items-start lg:gap-16">
+        <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:items-start lg:gap-16">
           <SectionReveal>
             <div className="flex items-center gap-4">
               <img
@@ -69,24 +69,48 @@ export function WireTrackSection() {
             </motion.a>
           </SectionReveal>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            {features.map((f, i) => (
-              <SectionReveal key={f.title} delay={0.05 * i}>
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-                  className="h-full rounded-2xl border border-rs-border bg-rs-bg/80 p-6 shadow-none transition-shadow hover:shadow-[0_0_0_1px_rgba(79,140,255,0.15)]"
-                >
-                  <h3 className="text-lg font-semibold text-rs-text">
-                    {f.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-rs-text-secondary">
-                    {f.text}
-                  </p>
-                </motion.div>
-              </SectionReveal>
-            ))}
-          </div>
+          <SectionReveal delay={0.08}>
+            <motion.div
+              className="relative overflow-hidden rounded-3xl border border-rs-border/90 bg-rs-bg/90 p-1.5 shadow-[0_0_0_1px_rgba(79,140,255,0.12),0_32px_100px_-28px_rgba(0,0,0,0.85)]"
+              whileHover={{ y: -3 }}
+              transition={{ type: 'spring', stiffness: 280, damping: 22 }}
+            >
+              <div className="pointer-events-none absolute -inset-8 rounded-[2rem] bg-rs-primary/10 blur-3xl" />
+              <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/5">
+                <img
+                  src="/showcase/wiretrack-dashboard.png"
+                  alt="WireTrack Dashboard mit Schnellzugriff, Widgets und persönlicher Begrüssung"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-auto w-full object-cover object-top"
+                  width={1600}
+                  height={1000}
+                />
+              </div>
+              <p className="relative mt-3 px-2 text-center text-xs font-medium text-rs-muted">
+                Produktiv im Alltag — Dashboard, Widgets, Schnellzugriff.
+              </p>
+            </motion.div>
+          </SectionReveal>
+        </div>
+
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {features.map((f, i) => (
+            <SectionReveal key={f.title} delay={0.05 * i}>
+              <motion.div
+                whileHover={{ y: -4 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+                className="h-full rounded-2xl border border-rs-border bg-rs-bg/80 p-6 shadow-none transition-shadow hover:shadow-[0_0_0_1px_rgba(79,140,255,0.15)]"
+              >
+                <h3 className="text-lg font-semibold text-rs-text">
+                  {f.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-rs-text-secondary">
+                  {f.text}
+                </p>
+              </motion.div>
+            </SectionReveal>
+          ))}
         </div>
       </div>
     </section>

@@ -1,10 +1,12 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 
 export function Hero() {
+  const reduceMotion = useReducedMotion()
+
   return (
     <section
       id="top"
-      className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden pt-[4.25rem]"
+      className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden pt-[5rem] sm:pt-[5.25rem]"
       aria-label="Einstieg"
     >
       <div
@@ -87,13 +89,78 @@ export function Hero() {
         </motion.div>
       </div>
 
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute bottom-8 left-1/2 h-10 w-6 -translate-x-1/2 rounded-full border border-rs-border/80"
-        style={{ animation: 'rs-float 3s ease-in-out infinite' }}
+      <motion.a
+        href="#spass-apps"
+        aria-label="Zu den Apps scrollen"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.85, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2.5 rounded-2xl px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg sm:bottom-10"
       >
-        <div className="mx-auto mt-2 h-2 w-1 rounded-full bg-rs-primary/80" />
-      </motion.div>
+        <span className="text-[0.625rem] font-bold uppercase tracking-[0.32em] text-rs-text-secondary">
+          Mehr
+        </span>
+        <div className="relative">
+          <div
+            className="absolute -inset-3 rounded-full opacity-70 blur-xl"
+            style={{
+              background:
+                'radial-gradient(circle, rgba(79,140,255,0.45) 0%, rgba(157,77,255,0.2) 55%, transparent 70%)',
+            }}
+          />
+          <motion.div
+            className="relative flex h-14 w-9 flex-col items-center rounded-full border border-white/12 bg-rs-card/55 pt-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md"
+            animate={reduceMotion ? false : { y: [0, -5, 0] }}
+            transition={{
+              duration: 2.8,
+              repeat: reduceMotion ? 0 : Infinity,
+              ease: 'easeInOut',
+            }}
+          >
+            <motion.div
+              className="h-8 w-1 rounded-full shadow-[0_0_14px_rgba(79,140,255,0.85)]"
+              style={{
+                background:
+                  'linear-gradient(180deg, var(--color-rs-gradient-start) 0%, var(--color-rs-gradient-mid) 45%, var(--color-rs-gradient-end) 100%)',
+              }}
+              animate={
+                reduceMotion ? false : { y: [0, 14, 0], opacity: [1, 0.45, 1] }
+              }
+              transition={{
+                duration: 1.65,
+                repeat: reduceMotion ? 0 : Infinity,
+                ease: [0.45, 0, 0.55, 1],
+              }}
+            />
+          </motion.div>
+        </div>
+        <motion.span
+          className="flex flex-col items-center gap-0.5 text-rs-primary"
+          aria-hidden
+          animate={reduceMotion ? false : { y: [0, 3, 0] }}
+          transition={{
+            duration: 1.4,
+            repeat: reduceMotion ? 0 : Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            className="opacity-90"
+          >
+            <path
+              d="M12 5v14M7 14l5 5 5-5"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </motion.span>
+      </motion.a>
     </section>
   )
 }

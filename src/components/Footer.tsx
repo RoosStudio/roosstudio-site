@@ -4,14 +4,19 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div>
-            <img
-              src="/roos-studio-branding/logos/logo-primary-dark.png"
-              alt="Roos Studio"
-              className="h-8 w-auto opacity-90"
-              width={140}
-              height={36}
-            />
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-rs-muted">
+            <a
+              href="#top"
+              className="inline-block outline-none ring-rs-primary/40 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg"
+            >
+              <img
+                src="/roos-studio-branding/logos/logo-primary-dark.png"
+                alt="Roos Studio"
+                className="h-12 w-auto opacity-95 sm:h-14 md:h-[3.75rem]"
+                width={260}
+                height={65}
+              />
+            </a>
+            <p className="mt-5 max-w-sm text-sm leading-relaxed text-rs-muted sm:text-base">
               Code, KI, klare Systeme — und der Wille, es immer wieder neu zu
               probieren.
             </p>
