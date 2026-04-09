@@ -10,34 +10,42 @@ function TalkingMouthIcon({
   active: boolean
   reduceMotion: boolean | null
 }) {
+  const talking = Boolean(active && !reduceMotion)
+  const stroke = {
+    fill: 'none' as const,
+    stroke: 'currentColor',
+    strokeWidth: 1.35,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+  }
   return (
     <svg
-      width="18"
+      width="20"
       height="14"
-      viewBox="0 0 18 14"
+      viewBox="0 0 20 14"
       className="shrink-0 overflow-visible text-current"
       aria-hidden
     >
-      <motion.ellipse
-        cx="9"
-        cy="9"
-        rx="6.25"
-        ry="1.75"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
+      {/* Oberlippe mit leichter Cupid’s-Bow-Mitte */}
+      <path
+        d="M 3.2 5.85 C 5.8 4.15, 8.2 4.55, 10 5.05 C 11.8 4.55, 14.2 4.15, 16.8 5.85"
+        {...stroke}
+      />
+      <motion.g
         animate={
-          reduceMotion || !active
-            ? { ry: 1.75 }
-            : { ry: [1.75, 4.7, 2, 4.3, 1.75] }
+          talking ? { y: [0, 1.05, 0.35, 0.9, 0] } : { y: 0 }
         }
         transition={
-          reduceMotion || !active
-            ? { duration: 0.12 }
-            : { duration: 0.52, repeat: Infinity, ease: 'easeInOut' }
+          talking
+            ? { duration: 0.52, repeat: Infinity, ease: 'easeInOut' }
+            : { duration: 0.12 }
         }
-      />
+      >
+        <path
+          d="M 3.2 7.35 C 5.8 9.35, 14.2 9.35, 16.8 7.35"
+          {...stroke}
+        />
+      </motion.g>
     </svg>
   )
 }
