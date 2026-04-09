@@ -4,11 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Roos Studio — Software, Prototyping &amp; WireTrack</title>
-    <meta name="description" content="Roos Studio: Interface-Engineering und betriebsfähige Plattformen aus der Schweiz — von Prototyping und Referenz-Demos (Rally, Kristall Arena) bis zum Kernprodukt WireTrack." />
+    <meta name="description" content="Roos Studio: Hochwertige Software, Prototyping und betriebsfähige Plattformen aus der Schweiz — von Rally und Kristall Arena bis zum Kernprodukt WireTrack." />
     <meta name="robots" content="index,follow" />
     <meta name="theme-color" content="#08080C" />
     <meta property="og:title" content="Roos Studio" />
-    <meta property="og:description" content="Software mit Anspruch: Prototyping, präzise UX — und WireTrack für den Betrieb. Roos Studio, Schweiz." />
+    <meta property="og:description" content="Software mit Anspruch: hochwertige Demos, klare Interfaces und WireTrack für den operativen Alltag." />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="de_CH" />
 
@@ -19,14 +19,16 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/roos-studio-system.css" />
 </head>
-<body class="rs-page rs-page--vibe">
+<body class="rs-page rs-page--vibe rs-page--showcase">
     <div class="rs-atmosphere" aria-hidden="true"></div>
     <div class="rs-aurora" aria-hidden="true"></div>
     <div class="rs-noise" aria-hidden="true"></div>
     <div class="rs-grid-overlay" aria-hidden="true"></div>
+    <div class="rs-spotlight rs-spotlight--a" aria-hidden="true"></div>
+    <div class="rs-spotlight rs-spotlight--b" aria-hidden="true"></div>
 
     <div class="rs-wrap">
         <nav class="rs-nav" id="rs-nav" aria-label="Hauptnavigation">
@@ -41,13 +43,13 @@
                     </span>
                 </a>
                 <div class="rs-nav__links">
-                    <a href="#showcase">Projekte</a>
-                    <a href="#prototyping">Prototyping</a>
+                    <a href="#showcase">Showcase</a>
+                    <a href="#proof">Referenzen</a>
                     <a href="#wiretrack">WireTrack</a>
                     <a href="#contact">Kontakt</a>
                 </div>
                 <div class="rs-nav__actions">
-                    <a href="#prototyping" class="rs-btn rs-btn--ghost">Prototyping</a>
+                    <a href="#proof" class="rs-btn rs-btn--ghost">Einblick</a>
                     <a href="#contact" class="rs-btn rs-btn--primary">Projekt anfragen</a>
                     <button type="button" class="rs-nav__toggle" id="rs-nav-toggle" aria-expanded="false" aria-controls="rs-drawer" aria-label="Menü öffnen">
                         <span></span>
@@ -58,264 +60,242 @@
         </nav>
 
         <div class="rs-drawer" id="rs-drawer" role="dialog" aria-label="Menü" aria-hidden="true">
-            <a href="#showcase">Projekte</a>
-            <a href="#prototyping">Prototyping</a>
+            <a href="#showcase">Showcase</a>
+            <a href="#proof">Referenzen</a>
             <a href="#wiretrack">WireTrack</a>
             <a href="#contact">Kontakt</a>
         </div>
 
-        <header class="rs-hero rs-hero--next">
+        <header class="rs-hero rs-hero--premium">
             <div class="rs-hero__blobs" aria-hidden="true">
                 <span class="rs-hero__blob rs-hero__blob--a"></span>
                 <span class="rs-hero__blob rs-hero__blob--b"></span>
             </div>
             <div class="rs-container">
-                <div class="rs-hero-next__layout">
-                    <div class="rs-hero-next__copy rs-reveal rs-reveal--hero is-visible">
-                        <p class="rs-eyebrow rs-eyebrow--pulse">Software-Studio · Interface &amp; Plattform · Schweiz</p>
+                <div class="rs-hero-premium__layout">
+                    <div class="rs-hero-premium__copy rs-reveal rs-reveal--hero is-visible">
+                        <p class="rs-eyebrow rs-eyebrow--pulse">Schweizer Software-Studio · Prototyping · Produktbau</p>
                         <h1 class="rs-h1">
-                            Software mit Anspruch.<br />
-                            <span class="rs-gradient-text">Von Prototyping bis WireTrack.</span>
+                            Interfaces, die nach <span class="rs-gradient-text">Produkt</span> aussehen —<br />
+                            nicht nach Bastellösung.
                         </h1>
-                        <p class="rs-lead">
-                            Wir verbinden präzises Interface-Engineering mit betriebstauglicher Plattform-Logik — von interaktiven <strong>Referenz-Demos</strong> (<strong>Rally</strong>, <strong>Kristall Arena</strong>) bis zum <strong>WireTrack</strong> für operative Teams.
+                        <p class="rs-lead rs-lead--wide">
+                            Roos Studio baut digitale Oberflächen mit Präsenz: <strong>klare UX</strong>, <strong>spürbare Qualität</strong> und <strong>saubere technische Umsetzung</strong>. Von schnellen Referenz-Demos wie <strong>Rally</strong> und <strong>Kristall Arena</strong> bis zum produktiven System <strong>WireTrack</strong>.
                         </p>
-                        <div class="rs-hero-next__trust">
-                            <span>TypeScript</span>
-                            <span>UX &amp; Motion</span>
-                            <span>Schweiz</span>
-                            <span>Rapid Delivery</span>
+                        <div class="rs-hero-premium__meta">
+                            <span>UI mit Tiefe</span>
+                            <span>Motion mit Kontrolle</span>
+                            <span>Business-Logik</span>
+                            <span>Rapid Iteration</span>
                         </div>
-                        <div class="rs-hero-next__actions">
-                            <a href="#showcase" class="rs-btn rs-btn--primary">Referenzen ansehen</a>
-                            <a href="#contact" class="rs-btn rs-btn--ghost">Erstgespräch</a>
+                        <div class="rs-hero-premium__actions">
+                            <a href="#showcase" class="rs-btn rs-btn--primary">Showcase ansehen</a>
+                            <a href="#contact" class="rs-btn rs-btn--ghost">Projekt starten</a>
                         </div>
                     </div>
-                    <aside class="rs-hero-next__panel rs-reveal rs-reveal--hero is-visible rs-hero-next__panel--code" aria-label="Von Anforderung zu Release">
-                        <div class="rs-panel-head">
-                            <span>spec → release</span>
-                            <span class="rs-hero__status">
-                                <span class="rs-hero__status-dot" aria-hidden="true"></span>
-                                iteration
-                            </span>
-                        </div>
-                        <pre class="rs-hero__code"><span class="kw">const</span> delivery = {
-  <span class="str">discovery</span>: <span class="str">'Anforderung &amp; Scope'</span>,
-  <span class="str">build</span>: <span class="str">'iterativ, messbar'</span>,
-  <span class="str">ship</span>: <span class="str">'stabil &amp; wartbar'</span>,
-  <span class="muted">// von Proof-of-Concept bis Betrieb</span>
-}</pre>
-                        <div class="rs-hero__metrics" role="presentation">
-                            <div class="rs-hero__metric">
-                                <div class="rs-hero__metric-val">CH</div>
-                                <div class="rs-hero__metric-lbl">Partner</div>
-                            </div>
-                            <div class="rs-hero__metric">
-                                <div class="rs-hero__metric-val">KI</div>
-                                <div class="rs-hero__metric-lbl">wo sinnvoll</div>
-                            </div>
-                            <div class="rs-hero__metric">
-                                <div class="rs-hero__metric-val">QA</div>
-                                <div class="rs-hero__metric-lbl">im Fokus</div>
-                            </div>
+
+                    <aside class="rs-hero-premium__visual rs-reveal rs-reveal--hero is-visible" aria-label="Produkt-Showcase">
+                        <div class="rs-premium-stack">
+                            <article class="rs-premium-shot rs-premium-shot--front">
+                                <div class="rs-premium-shot__label">
+                                    <span>Live Showcase</span>
+                                    <span class="rs-pill rs-pill--neutral">Kristall Arena</span>
+                                </div>
+                                <img
+                                    src="roos-studio-branding/website/kristall-arena.png"
+                                    alt="Kristall Arena: Echtzeit-Rangliste mit Podest und Live-Event-Steuerung."
+                                    width="1600"
+                                    height="900"
+                                    decoding="async"
+                                    fetchpriority="high"
+                                />
+                            </article>
+                            <article class="rs-premium-shot rs-premium-shot--back">
+                                <div class="rs-premium-shot__label">
+                                    <span>Kernprodukt</span>
+                                    <span class="rs-pill rs-pill--neutral">WireTrack</span>
+                                </div>
+                                <img
+                                    src="roos-studio-branding/website/wiretrack-dashboard.png"
+                                    alt="WireTrack Dashboard mit Modulen und Schnellzugriff."
+                                    width="1600"
+                                    height="900"
+                                    decoding="async"
+                                    loading="lazy"
+                                />
+                            </article>
                         </div>
                     </aside>
                 </div>
-                <div class="rs-hero-band rs-reveal rs-reveal--hero is-visible" role="region" aria-label="Kurz über Roos Studio">
-                    <div class="rs-hero-band__bg" aria-hidden="true"></div>
-                    <div class="rs-hero-band__wrap">
-                        <p class="rs-hero-band__lead">
-                            Ein Qualitätsmassstab für alle Oberflächen — von <strong>Prototyping</strong> und <strong>Motion</strong> bis zum <strong>Kernprodukt</strong> WireTrack.
-                        </p>
-                        <div class="rs-hero-band__tags" aria-hidden="true">
-                            <span>Prototyping</span>
-                            <span>Motion</span>
-                            <span>Produkt</span>
-                        </div>
-                    </div>
+
+                <div class="rs-hero-proof rs-reveal rs-reveal--hero is-visible" aria-label="Qualitätsversprechen">
+                    <article>
+                        <span class="rs-mono-index">01</span>
+                        <h3>Visuelle Reife</h3>
+                        <p>Interfaces, die hochwertig wirken, ohne ihre Funktionalität hinter Effekten zu verstecken.</p>
+                    </article>
+                    <article>
+                        <span class="rs-mono-index">02</span>
+                        <h3>Schnelle Iteration</h3>
+                        <p>Von Idee über Demo bis zu belastbaren Oberflächen in kurzen, klaren Zyklen.</p>
+                    </article>
+                    <article>
+                        <span class="rs-mono-index">03</span>
+                        <h3>Produktive Systeme</h3>
+                        <p>Nicht nur schöne Mockups, sondern Strukturen, die im Alltag bestehen und wachsen können.</p>
+                    </article>
                 </div>
             </div>
         </header>
 
-        <div class="rs-vibe-marquee" aria-hidden="true">
-            <div class="rs-vibe-marquee__inner">
-                <div class="rs-vibe-marquee__track">
-                    <span>Prototyping</span><span>Design Systems</span><span>TypeScript</span><span>Rally · Kristall Arena</span><span>WireTrack</span><span>Workflow-UX</span><span>Performance</span><span>Schweiz</span><span>Integration</span><span>Enterprise-ready</span>
-                    <span>Prototyping</span><span>Design Systems</span><span>TypeScript</span><span>Rally · Kristall Arena</span><span>WireTrack</span><span>Workflow-UX</span><span>Performance</span><span>Schweiz</span><span>Integration</span><span>Enterprise-ready</span>
-                </div>
-            </div>
-        </div>
-
-        <section id="showcase" class="rs-section rs-showcase">
+        <section id="showcase" class="rs-section rs-showcase rs-showcase--premium">
             <div class="rs-container">
-                <div class="rs-showcase-grid rs-reveal rs-showcase-grid--motion rs-showcase-grid--three">
-                    <article class="rs-project-slide is-active" data-slide>
-                        <div class="rs-project-slide__media rs-project-slide__media--rally" aria-hidden="true"></div>
-                        <span class="rs-project-slide__type">Interface-Demo</span>
-                        <h3>Rally</h3>
-                        <p>Schnelle Interaktion, klare Zustände, präzises Feedback — Referenz für Tempo und Usability im Enterprise-UI.</p>
+                <div class="rs-section-head rs-reveal">
+                    <p class="rs-eyebrow">Showcase</p>
+                    <h2 class="rs-section-title">Zwei Ebenen. Eine Handschrift.</h2>
+                    <p class="rs-section-copy">Die Demo-Seite zeigt Stimmung, Präsenz und Interaktion. Die Business-Seite zeigt Struktur, Ordnung und Stabilität. Beides gehört zusammen.</p>
+                </div>
+
+                <div class="rs-showcase-premium__grid">
+                    <article class="rs-showcase-card rs-showcase-card--feature rs-reveal">
+                        <div class="rs-showcase-card__top">
+                            <span class="rs-pill rs-pill--neutral">Interface-Demo</span>
+                            <span class="rs-showcase-card__hint">Echtzeit · Event · Atmosphäre</span>
+                        </div>
+                        <div class="rs-showcase-card__media rs-showcase-card__media--lift">
+                            <img
+                                src="roos-studio-branding/website/kristall-arena.png"
+                                alt="Kristall Arena: Premium-Interface mit Rangliste, Live-Event-Status und Siegerpodest."
+                                width="1600"
+                                height="900"
+                                decoding="async"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="rs-showcase-card__body">
+                            <h3>Kristall Arena</h3>
+                            <p>Eine Referenz dafür, wie digitale Oberflächen Stimmung erzeugen können: Licht, Hierarchie, Tiefe und klare Echtzeit-Kommunikation in einem Bild.</p>
+                            <ul>
+                                <li>Podest-Inszenierung mit Fokusführung</li>
+                                <li>Event-Feeling ohne visuelles Chaos</li>
+                                <li>Showcase für Motion, Feed und Ranking-Logik</li>
+                            </ul>
+                        </div>
                     </article>
-                    <article class="rs-project-slide" data-slide>
-                        <div class="rs-project-slide__media rs-project-slide__media--kristall" aria-hidden="true"></div>
-                        <span class="rs-project-slide__type">Interface-Demo</span>
-                        <h3>Kristall Arena</h3>
-                        <p>Atmosphäre, Licht, Tiefe — cinematic, aber nicht kitschig. Zeigt, wie wir Stimmung bauen, ohne die Performance zu vergessen.</p>
-                    </article>
-                    <article class="rs-project-slide rs-project-slide--business" data-slide id="wiretrack-slide">
-                        <div class="rs-project-slide__media rs-project-slide__media--wiretrack" aria-hidden="true"></div>
-                        <span class="rs-project-slide__type">Business Platform</span>
-                        <h3>WireTrack</h3>
-                        <p>Und wenn’s nicht nur Demo ist: klare Struktur, robuste Workflows, verlässlich im Alltag — das ist unser ernst gemeintes Kernprodukt.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
 
-        <section class="rs-section rs-sequence rs-sequence--vibe" id="sequence">
-            <div class="rs-container">
-                <div class="rs-sequence__grid">
-                    <aside class="rs-sequence__stage rs-reveal">
-                        <div class="rs-sequence__screen">
-                            <div class="rs-sequence__screen-top" aria-hidden="true">
-                                <span class="rs-sequence__live"><span class="rs-sequence__live-dot"></span> storyline</span>
-                                <span class="rs-sequence__badge">engineering</span>
-                            </div>
-                            <p class="rs-eyebrow">Product Story</p>
-                            <h3>Vom <span class="rs-gradient-text">Prototyp</span> zum Produkt.</h3>
-                            <div class="rs-sequence__chips" role="tablist" aria-label="Storyline-Schritte">
-                                <span data-seq-chip="rally" class="is-active" role="tab">Rally</span>
-                                <span data-seq-chip="wiretrack" role="tab">WireTrack</span>
-                            </div>
-                            <p class="rs-sequence__screen-copy" data-seq-copy>
-                                Speed und Klarheit: States, Feedback, Micro-Motion — genau das Training, das Interfaces später schneller und angenehmer macht.
-                            </p>
+                    <article class="rs-showcase-card rs-showcase-card--feature rs-reveal" style="transition-delay: 0.06s;">
+                        <div class="rs-showcase-card__top">
+                            <span class="rs-pill rs-pill--neutral">Business Platform</span>
+                            <span class="rs-showcase-card__hint">Struktur · Zugriff · Alltag</span>
                         </div>
-                    </aside>
-                    <div class="rs-sequence__steps">
-                        <article class="rs-sequence__step rs-reveal is-active" data-seq-step="rally">
-                            <span class="rs-mono-index">01 · Prototyping</span>
-                            <h3>Rally: Tempo, das nicht nervt.</h3>
-                            <p>Schnelle States, klares Feedback — die Basis dafür, dass produktive Tools im Alltag professionell statt «gerade noch akzeptabel» wirken.</p>
-                        </article>
-                        <article class="rs-sequence__step rs-reveal" data-seq-step="wiretrack">
-                            <span class="rs-mono-index">02 · Business Platform</span>
-                            <h3>WireTrack: wenn’s ernst wird.</h3>
-                            <p>Struktur, Prozesse, Stabilität — ausgelegt für Last, klare Rollen und Wachstum, ohne dass das System unter eigenen Anforderungen bricht.</p>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="prototyping" class="rs-section rs-wiretrack rs-wiretrack--lab">
-            <div class="rs-container">
-                <div class="rs-wiretrack__grid">
-                    <div class="rs-wiretrack__copy rs-reveal">
-                        <p class="rs-eyebrow">Prototyping</p>
-                        <h2 class="rs-section-title">Schnelle Iteration, produktreife Qualität.</h2>
-                        <div class="rs-wiretrack__stats">
-                            <article>
-                                <span>Fokus</span>
-                                <strong>Motion &amp; Interface-Details</strong>
-                            </article>
-                            <article>
-                                <span>Referenzen</span>
-                                <strong>Rally · Kristall Arena</strong>
-                            </article>
-                            <article>
-                                <span>Modus</span>
-                                <strong>Proof of Concept · Live-Demo</strong>
-                            </article>
-                        </div>
-                    </div>
-                    <aside class="rs-wiretrack__panel rs-wiretrack__panel--lab rs-reveal">
-                        <div class="rs-panel-head">
-                            <span>Demo-Oberfläche</span>
-                            <span class="rs-pill rs-pill--neutral">Demo-bereit</span>
-                        </div>
-                        <div class="rs-wiretrack__mock rs-wiretrack__mock--lab" aria-hidden="true">
-                            <div class="rs-wiretrack__mock-top">
-                                <span></span><span></span><span></span>
-                            </div>
-                            <div class="rs-wiretrack__mock-body">
-                                <div class="rs-wiretrack__mock-sidebar"></div>
-                                <div class="rs-wiretrack__mock-main">
-                                    <div class="rs-wiretrack__mock-row"></div>
-                                    <div class="rs-wiretrack__mock-row rs-wiretrack__mock-row--short"></div>
-                                    <div class="rs-wiretrack__mock-cards">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <ul class="rs-wiretrack__features">
-                            <li>Kurze Zyklen: Hypothesen und Oberflächen testen, bevor Budget in die falsche Richtung fliesst.</li>
-                            <li>Micro-Interactions und Motion — gezielt eingesetzt, messbar im Erlebnis, ohne Show statt Substanz.</li>
-                            <li>Polierte Details, die im B2B-UI den Unterschied zwischen «Standard» und «verlässlich hochwertig» ausmachen.</li>
-                            <li>Zeigt unsere Arbeitsweise neben WireTrack: dieselbe Sorgfalt, andere Geschwindigkeit.</li>
-                        </ul>
-                        <a href="#contact" class="rs-btn rs-btn--primary rs-btn--block">Prototyping besprechen</a>
-                    </aside>
-                </div>
-            </div>
-        </section>
-
-        <section id="wiretrack" class="rs-section rs-wiretrack rs-wiretrack--biz">
-            <div class="rs-container">
-                <div class="rs-wiretrack__grid">
-                    <div class="rs-wiretrack__copy rs-reveal">
-                        <p class="rs-eyebrow">WireTrack</p>
-                        <h2 class="rs-section-title">Das ernst gemeinte Kernprodukt.</h2>
-                        <div class="rs-wiretrack__stats">
-                            <article>
-                                <span>Architektur</span>
-                                <strong>Modular &amp; wartbar</strong>
-                            </article>
-                            <article>
-                                <span>Betrieb</span>
-                                <strong>Performance-fokussiert</strong>
-                            </article>
-                            <article>
-                                <span>Produkt</span>
-                                <strong>Workflow-first UX</strong>
-                            </article>
-                        </div>
-                    </div>
-                    <aside class="rs-wiretrack__panel rs-wiretrack__panel--biz rs-reveal" style="transition-delay: 0.06s;">
-                        <div class="rs-panel-head">
-                            <span>Kernpunkte</span>
-                            <span class="rs-pill rs-pill--neutral">Business-ready</span>
-                        </div>
-                        <figure class="rs-wiretrack__shot">
+                        <div class="rs-showcase-card__media rs-showcase-card__media--lift">
                             <img
                                 src="roos-studio-branding/website/wiretrack-dashboard.png"
-                                alt="WireTrack: Dashboard mit Schnellzugriff (Darstellung anonymisiert)."
-                                width="1024"
-                                height="504"
+                                alt="WireTrack Dashboard: modulare Business-Plattform mit Schnellzugriff und Widgets."
+                                width="1600"
+                                height="900"
+                                decoding="async"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="rs-showcase-card__body">
+                            <h3>WireTrack</h3>
+                            <p>Der Gegenpol zur Demo: eine robuste Plattform mit echter Arbeitslogik. Klare Navigation, modulare Bereiche und eine Oberfläche, die im Alltag trägt.</p>
+                            <ul>
+                                <li>Workflow-first statt Effekt-first</li>
+                                <li>Modularer Ausbau für reale Teams</li>
+                                <li>Professionelle UX für operative Nutzung</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="proof" class="rs-section rs-proof">
+            <div class="rs-container">
+                <div class="rs-proof__grid">
+                    <div class="rs-proof__copy rs-reveal">
+                        <p class="rs-eyebrow">Warum das stark wirkt</p>
+                        <h2 class="rs-section-title">Nicht mehr drei lose Kacheln — sondern ein sauberer Spannungsbogen.</h2>
+                        <p class="rs-section-copy">Oft wirken drei starke Referenzen nebeneinander gleich gewichtet — obwohl sie verschiedene Rollen haben. Dann geht die dramaturgische Klarheit verloren.</p>
+                        <p class="rs-section-copy">Die bessere Dramaturgie ist: <strong>erst Eindruck</strong>, dann <strong>Beweis</strong>, dann <strong>Produkt</strong>. Genau das macht diese Struktur.</p>
+                    </div>
+                    <div class="rs-proof__cards rs-reveal" style="transition-delay: 0.04s;">
+                        <article>
+                            <span class="rs-mono-index">A</span>
+                            <h3>Hero = Wow + Klarheit</h3>
+                            <p>Direkt zeigen, dass du starke Oberflächen bauen kannst — mit echten Screens, nicht mit Platzhaltern.</p>
+                        </article>
+                        <article>
+                            <span class="rs-mono-index">B</span>
+                            <h3>Showcase = Beweis</h3>
+                            <p>Kristall Arena und WireTrack nebeneinander, damit die Bandbreite sofort greifbar wird.</p>
+                        </article>
+                        <article>
+                            <span class="rs-mono-index">C</span>
+                            <h3>Kontakt = klare Conversion</h3>
+                            <p>Weniger Gelaber, mehr Substanz. Der CTA kommt erst, wenn das Qualitätsbild sauber gesetzt ist.</p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="wiretrack" class="rs-section rs-wiretrack rs-wiretrack--biz rs-wiretrack--premium">
+            <div class="rs-container">
+                <div class="rs-wiretrack__grid rs-wiretrack__grid--premium">
+                    <div class="rs-wiretrack__copy rs-reveal">
+                        <p class="rs-eyebrow">WireTrack</p>
+                        <h2 class="rs-section-title">Wenn aus starker Oberfläche operative Software wird.</h2>
+                        <div class="rs-wiretrack__stats">
+                            <article>
+                                <span>Ansatz</span>
+                                <strong>Workflow-first UX</strong>
+                            </article>
+                            <article>
+                                <span>Aufbau</span>
+                                <strong>Modular &amp; erweiterbar</strong>
+                            </article>
+                            <article>
+                                <span>Ziel</span>
+                                <strong>Stabil im Alltag</strong>
+                            </article>
+                        </div>
+                        <ul class="rs-wiretrack__features rs-wiretrack__features--clean">
+                            <li>Klare Rollen, nachvollziehbare Prozesse und modulare Logik für echte Teams.</li>
+                            <li>Funktioniert nicht nur in der Präsentation, sondern in produktiven Abläufen.</li>
+                            <li>Saubere Basis für weitere Module, Integrationen und internes Wachstum.</li>
+                        </ul>
+                        <a href="#contact" class="rs-btn rs-btn--primary">WireTrack besprechen</a>
+                    </div>
+                    <aside class="rs-wiretrack__panel rs-wiretrack__panel--biz rs-reveal" style="transition-delay: 0.05s;">
+                        <div class="rs-panel-head">
+                            <span>Produktansicht</span>
+                            <span class="rs-pill rs-pill--neutral">Live-System</span>
+                        </div>
+                        <figure class="rs-wiretrack__shot rs-wiretrack__shot--premium">
+                            <img
+                                src="roos-studio-branding/website/wiretrack-dashboard.png"
+                                alt="WireTrack Dashboard mit Modulen, Widgets und Schnellzugriff."
+                                width="1600"
+                                height="900"
                                 decoding="async"
                                 loading="lazy"
                             />
                         </figure>
-                        <ul class="rs-wiretrack__features">
-                            <li>Klare Rollen- und Prozesslogik für operative Teams.</li>
-                            <li>Nachvollziehbare Datenflüsse statt fragmentierter Tool-Landschaften.</li>
-                            <li>Hohe Stabilität unter Last durch kontrollierte State-Übergänge.</li>
-                            <li>Skalierbares Fundament für neue Module und Integrationen.</li>
-                        </ul>
-                        <a href="#contact" class="rs-btn rs-btn--primary rs-btn--block">WireTrack im Detail besprechen</a>
                     </aside>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="rs-cta">
+        <section id="contact" class="rs-cta rs-cta--premium">
             <div class="rs-container">
                 <div class="rs-cta__surface rs-reveal">
                     <div class="rs-cta__inner rs-cta__inner--wide">
-                        <h2>Kontakt aufnehmen</h2>
-                        <p class="rs-cta__lead">Ob neues Modul, WireTrack-Erweiterung oder Greenfield — kurz beschreiben, was Sie brauchen. Wir melden uns mit klaren nächsten Schritten, nicht mit Folien.</p>
+                        <p class="rs-eyebrow">Kontakt</p>
+                        <h2>Projekt besprechen</h2>
+                        <p class="rs-cta__lead">Ob neue Plattform, internes Tool oder starke Referenz-Demo: kurz schildern, was du brauchst. Danach gibt es klare nächste Schritte statt heisse Luft.</p>
                         <form id="rs-contact-form" class="rs-contact-form" method="post" action="https://formsubmit.co/hi@roosstudio.ch" accept-charset="UTF-8">
                             <input type="hidden" name="_subject" value="Kontakt roosstudio.ch" />
                             <input type="hidden" name="_next" value="https://roosstudio.ch/danke.html" />
@@ -331,11 +311,10 @@
                             </div>
                             <div class="rs-field">
                                 <label for="cf-message">Nachricht</label>
-                                <textarea id="cf-message" name="message" required placeholder="Thema (z. B. Prototyping, WireTrack, Custom), grober Rahmen, Zeitfenster …"></textarea>
+                                <textarea id="cf-message" name="message" required placeholder="Projekt, Ziel, Zeitfenster, gewünschter Umfang …"></textarea>
                             </div>
                             <button type="submit" class="rs-btn rs-btn--primary rs-btn--block">Nachricht senden</button>
                         </form>
-                        <p class="rs-cta__fine-print">Übertragung per Formular-Dienst. Kontakt und Rechtstexte findest du im Seitenfuss.</p>
                     </div>
                 </div>
             </div>
@@ -392,9 +371,11 @@
                 }
             }, { passive: true });
 
-            toggle.addEventListener('click', function () {
-                setDrawerOpen(!drawer.classList.contains('is-open'));
-            });
+            if (toggle && drawer) {
+                toggle.addEventListener('click', function () {
+                    setDrawerOpen(!drawer.classList.contains('is-open'));
+                });
+            }
 
             window.closeRsDrawer = function () {
                 setDrawerOpen(false);
@@ -427,36 +408,24 @@
                 revealObserver.observe(el);
             });
 
-            var slides = document.querySelectorAll('[data-slide]');
-            if (slides.length) {
-                var slideObserver = new IntersectionObserver(function (entries) {
-                    entries.forEach(function (entry) {
-                        if (entry.isIntersecting) {
-                            slides.forEach(function (slide) {
-                                slide.classList.remove('is-active');
-                            });
-                            entry.target.classList.add('is-active');
-                        }
-                    });
-                }, {
-                    threshold: 0.48,
-                    rootMargin: '-10% 0px -20% 0px'
-                });
-                slides.forEach(function (slide) {
-                    slideObserver.observe(slide);
-                });
-            }
-
             if (!prefersReducedMotion) {
-                var parallaxElements = document.querySelectorAll('.rs-hero__blob');
+                var parallaxElements = document.querySelectorAll('.rs-hero__blob, .rs-spotlight');
+                var premiumShots = document.querySelectorAll('.rs-premium-shot');
                 var ticking = false;
 
                 function updateParallax() {
                     var scrollY = window.scrollY || window.pageYOffset;
                     parallaxElements.forEach(function (el, index) {
-                        var strength = index === 0 ? 0.03 : -0.02;
+                        var strength = index % 2 === 0 ? 0.03 : -0.018;
                         el.style.transform = 'translate3d(0,' + (scrollY * strength).toFixed(2) + 'px,0)';
                     });
+
+                    premiumShots.forEach(function (shot, index) {
+                        var rotate = index === 0 ? -6 : 8;
+                        var translate = index === 0 ? -scrollY * 0.006 : scrollY * 0.004;
+                        shot.style.transform = 'perspective(1600px) rotateY(' + rotate + 'deg) translate3d(0,' + translate.toFixed(2) + 'px,0)';
+                    });
+
                     ticking = false;
                 }
 
@@ -466,39 +435,6 @@
                         ticking = true;
                     }
                 }, { passive: true });
-            }
-
-            var sequenceSteps = document.querySelectorAll('[data-seq-step]');
-            var sequenceChips = document.querySelectorAll('[data-seq-chip]');
-            var sequenceCopy = document.querySelector('[data-seq-copy]');
-            var sequenceTexts = {
-                rally: 'Speed und Klarheit: States, Feedback, Micro-Motion. Genau das Training, das Interfaces später schneller und angenehmer macht.',
-                wiretrack: 'Nach validierten Demos skaliert die Plattform: WireTrack — stabil, nachvollziehbar, für echte operative Last ausgelegt.'
-            };
-
-            if (sequenceSteps.length && sequenceChips.length && sequenceCopy) {
-                var sequenceObserver = new IntersectionObserver(function (entries) {
-                    entries.forEach(function (entry) {
-                        if (entry.isIntersecting) {
-                            var key = entry.target.getAttribute('data-seq-step');
-                            sequenceSteps.forEach(function (step) {
-                                step.classList.toggle('is-active', step === entry.target);
-                            });
-                            sequenceChips.forEach(function (chip) {
-                                chip.classList.toggle('is-active', chip.getAttribute('data-seq-chip') === key);
-                            });
-                            if (sequenceTexts[key]) {
-                                sequenceCopy.textContent = sequenceTexts[key];
-                            }
-                        }
-                    });
-                }, {
-                    threshold: 0.62
-                });
-
-                sequenceSteps.forEach(function (step) {
-                    sequenceObserver.observe(step);
-                });
             }
         })();
     </script>
