@@ -39,13 +39,13 @@
                     </span>
                 </a>
                 <div class="rs-nav__links">
-                    <a href="#showcase">Lab &amp; Projekte</a>
-                    <a href="#positioning">Warum beides</a>
+                    <a href="#showcase">Projekte</a>
+                    <a href="#lab-spass">Lab &amp; Spass</a>
                     <a href="#wiretrack">WireTrack</a>
                     <a href="#contact">Kontakt</a>
                 </div>
                 <div class="rs-nav__actions">
-                    <a href="#wiretrack" class="rs-btn rs-btn--ghost">WireTrack</a>
+                    <a href="#lab-spass" class="rs-btn rs-btn--ghost">Lab</a>
                     <a href="#contact" class="rs-btn rs-btn--primary">Idee loswerden</a>
                     <button type="button" class="rs-nav__toggle" id="rs-nav-toggle" aria-expanded="false" aria-controls="rs-drawer" aria-label="Menü öffnen">
                         <span></span>
@@ -56,8 +56,8 @@
         </nav>
 
         <div class="rs-drawer" id="rs-drawer" role="dialog" aria-label="Menü" aria-hidden="true">
-            <a href="#showcase">Lab &amp; Projekte</a>
-            <a href="#positioning">Warum beides</a>
+            <a href="#showcase">Projekte</a>
+            <a href="#lab-spass">Lab &amp; Spass</a>
             <a href="#wiretrack">WireTrack</a>
             <a href="#contact">Kontakt</a>
         </div>
@@ -133,16 +133,6 @@
 
         <section id="showcase" class="rs-section rs-showcase">
             <div class="rs-container">
-                <header class="rs-section-head">
-                    <div class="rs-reveal">
-                        <p class="rs-eyebrow">Projekt-Showcase</p>
-                        <h2 class="rs-section-title">Lab-Spass trifft Business-Stabilität.</h2>
-                    </div>
-                    <p class="rs-section-intro rs-reveal" style="transition-delay: 0.06s;">
-                        Zwei Lab-Builds (Rally, Kristall Arena) und WireTrack fürs Business — alles mit Liebe zu Motion, UI und sauberem Code.
-                    </p>
-                </header>
-
                 <div class="rs-showcase-grid rs-reveal rs-showcase-grid--motion rs-showcase-grid--three">
                     <article class="rs-project-slide is-active" data-slide>
                         <div class="rs-project-slide__media rs-project-slide__media--rally" aria-hidden="true"></div>
@@ -162,21 +152,6 @@
                         <h3>WireTrack</h3>
                         <p>Und wenn’s nicht nur Demo ist: klare Struktur, robuste Workflows, verlässlich im Alltag — das ist unser ernst gemeintes Kernprodukt.</p>
                     </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="positioning" class="rs-section rs-positioning">
-            <div class="rs-container">
-                <div class="rs-positioning__panel rs-reveal rs-mask-reveal">
-                    <p class="rs-eyebrow">Warum das zusammengehört</p>
-                    <h2 class="rs-section-title">Hobby-Apps sind kein Widerspruch zu Business-Software.</h2>
-                    <p>
-                        Im Lab üben wir Mut, UI-Details und Motion — das merkt man später in jedem Screen. Wer nur «ernst» baut, vergisst oft, wie sich gute Software anfühlt.
-                    </p>
-                    <p>
-                        WireTrack ist der Beweis, dass wir auch liefern, wenn’s nicht mehr nur Spaß ist: stabil, strukturiert, produktionsreif.
-                    </p>
                 </div>
             </div>
         </section>
@@ -223,15 +198,67 @@
             </div>
         </section>
 
-        <section id="wiretrack" class="rs-section rs-wiretrack">
+        <section id="lab-spass" class="rs-section rs-wiretrack rs-wiretrack--lab">
+            <div class="rs-container">
+                <div class="rs-wiretrack__grid">
+                    <div class="rs-wiretrack__copy rs-reveal">
+                        <p class="rs-eyebrow">Lab &amp; Spass</p>
+                        <h2 class="rs-section-title">Vibecoding mit Herz &amp; Hirn.</h2>
+                        <div class="rs-wiretrack__stats">
+                            <article>
+                                <span>Fokus</span>
+                                <strong>Motion &amp; UI-Spass</strong>
+                            </article>
+                            <article>
+                                <span>Projekte</span>
+                                <strong>Rally · Kristall Arena</strong>
+                            </article>
+                            <article>
+                                <span>Modus</span>
+                                <strong>Experiment · Showcase</strong>
+                            </article>
+                        </div>
+                    </div>
+                    <aside class="rs-wiretrack__panel rs-wiretrack__panel--lab rs-reveal">
+                        <div class="rs-panel-head">
+                            <span>Playground</span>
+                            <span class="rs-pill rs-pill--neutral">Lab-ready</span>
+                        </div>
+                        <div class="rs-wiretrack__mock rs-wiretrack__mock--lab" aria-hidden="true">
+                            <div class="rs-wiretrack__mock-top">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="rs-wiretrack__mock-body">
+                                <div class="rs-wiretrack__mock-sidebar"></div>
+                                <div class="rs-wiretrack__mock-main">
+                                    <div class="rs-wiretrack__mock-row"></div>
+                                    <div class="rs-wiretrack__mock-row rs-wiretrack__mock-row--short"></div>
+                                    <div class="rs-wiretrack__mock-cards">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="rs-wiretrack__features">
+                            <li>Schnelle Iteration: Ideen sichtbar machen, bevor sie «perfekt» sind.</li>
+                            <li>UI-Details &amp; Micro-Motion, die Freude machen — ohne Chaos.</li>
+                            <li>Spielraum für den unnötig guten Moment, der trotzdem produktnah bleibt.</li>
+                            <li>Perfekter Gegenpol zu «nur Business»: zeigt, wie wir denken und bauen.</li>
+                        </ul>
+                        <a href="#contact" class="rs-btn rs-btn--primary rs-btn--block">Lab-Idee anfragen</a>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section id="wiretrack" class="rs-section rs-wiretrack rs-wiretrack--biz">
             <div class="rs-container">
                 <div class="rs-wiretrack__grid">
                     <div class="rs-wiretrack__copy rs-reveal">
                         <p class="rs-eyebrow">WireTrack</p>
                         <h2 class="rs-section-title">Das ernst gemeinte Kernprodukt.</h2>
-                        <p class="rs-section-intro">
-                            Kein Lab-Gag: WireTrack ist für Teams gedacht, die Zuverlässigkeit brauchen — mit klarer UX und Architektur, die mitwächst.
-                        </p>
                         <div class="rs-wiretrack__stats">
                             <article>
                                 <span>Architektur</span>
@@ -419,13 +446,13 @@
             }
 
             if (!prefersReducedMotion) {
-                var parallaxElements = document.querySelectorAll('.rs-hero__blob, .rs-wiretrack__panel');
+                var parallaxElements = document.querySelectorAll('.rs-hero__blob');
                 var ticking = false;
 
                 function updateParallax() {
                     var scrollY = window.scrollY || window.pageYOffset;
                     parallaxElements.forEach(function (el, index) {
-                        var strength = index === 0 ? 0.03 : index === 1 ? -0.02 : 0.015;
+                        var strength = index === 0 ? 0.03 : -0.02;
                         el.style.transform = 'translate3d(0,' + (scrollY * strength).toFixed(2) + 'px,0)';
                     });
                     ticking = false;
