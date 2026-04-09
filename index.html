@@ -181,17 +181,21 @@
             </div>
         </section>
 
-        <section class="rs-section rs-sequence" id="sequence">
+        <section class="rs-section rs-sequence rs-sequence--vibe" id="sequence">
             <div class="rs-container">
                 <div class="rs-sequence__grid">
                     <aside class="rs-sequence__stage rs-reveal">
                         <div class="rs-sequence__screen">
+                            <div class="rs-sequence__screen-top" aria-hidden="true">
+                                <span class="rs-sequence__live"><span class="rs-sequence__live-dot"></span> storyline</span>
+                                <span class="rs-sequence__badge">vibecoding</span>
+                            </div>
                             <p class="rs-eyebrow">Studio Storyline</p>
-                            <h3>Vom Hack zum Produkt.</h3>
-                            <div class="rs-sequence__chips">
-                                <span data-seq-chip="rally" class="is-active">Rally</span>
-                                <span data-seq-chip="kristall">Kristall Arena</span>
-                                <span data-seq-chip="wiretrack">WireTrack</span>
+                            <h3>Vom <span class="rs-gradient-text">Hack</span> zum Produkt.</h3>
+                            <div class="rs-sequence__chips" role="tablist" aria-label="Storyline-Schritte">
+                                <span data-seq-chip="rally" class="is-active" role="tab">Rally</span>
+                                <span data-seq-chip="kristall" role="tab">Kristall Arena</span>
+                                <span data-seq-chip="wiretrack" role="tab">WireTrack</span>
                             </div>
                             <p class="rs-sequence__screen-copy" data-seq-copy>
                                 Speed und Klarheit: States, Feedback, Micro-Motion — genau das Training, das Interfaces später schneller und angenehmer macht.
