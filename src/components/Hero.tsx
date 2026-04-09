@@ -77,12 +77,6 @@ export function Hero() {
           >
             Projekte ansehen
           </a>
-          <p
-            className="mt-4 font-mono text-[0.65rem] tracking-wide text-rs-text/40"
-            aria-hidden
-          >
-            // jetzt klicken
-          </p>
         </motion.div>
       </div>
     </section>
