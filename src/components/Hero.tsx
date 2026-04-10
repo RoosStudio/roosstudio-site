@@ -1,48 +1,9 @@
-import { motion, useReducedMotion } from 'framer-motion'
-import { useCallback, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
 
-function pupilTowardPointer(
-  e: React.MouseEvent,
-  eyeRef: React.RefObject<HTMLDivElement | null>,
-  maxPx: number,
-) {
-  const el = eyeRef.current
-  if (!el) return { x: 0, y: 0 }
-  const r = el.getBoundingClientRect()
-  const ecx = r.left + r.width / 2
-  const ecy = r.top + r.height / 2
-  const dx = e.clientX - ecx
-  const dy = e.clientY - ecy
-  const dist = Math.hypot(dx, dy)
-  if (!dist) return { x: 0, y: 0 }
-  const pull = Math.min(maxPx, dist * 0.14)
-  return {
-    x: (dx / dist) * pull,
-    y: (dy / dist) * pull,
-  }
-}
+const eyeShell =
+  'relative flex h-8 w-8 origin-center items-center justify-center overflow-hidden rounded-full bg-white/88 shadow-[inset_0_1px_3px_rgba(0,0,0,0.12)] ring-1 ring-white/50 transition-[box-shadow] duration-200 group-hover:ring-rs-primary/45 group-focus-visible:ring-rs-primary/45 sm:h-9 sm:w-9 motion-reduce:group-focus-visible:animate-none motion-reduce:group-hover:animate-none motion-safe:group-focus-visible:animate-[rs-eye-blink_2.8s_ease-in-out_infinite] motion-safe:group-hover:animate-[rs-eye-blink_2.8s_ease-in-out_infinite]'
 
 export function Hero() {
-  const reduceMotion = useReducedMotion()
-  const leftEyeRef = useRef<HTMLDivElement>(null)
-  const rightEyeRef = useRef<HTMLDivElement>(null)
-  const [pupilL, setPupilL] = useState({ x: 0, y: 0 })
-  const [pupilR, setPupilR] = useState({ x: 0, y: 0 })
-
-  const onCtaEyeMove = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (reduceMotion) return
-      setPupilL(pupilTowardPointer(e, leftEyeRef, 5.5))
-      setPupilR(pupilTowardPointer(e, rightEyeRef, 5.5))
-    },
-    [reduceMotion],
-  )
-
-  const onCtaEyeLeave = useCallback(() => {
-    setPupilL({ x: 0, y: 0 })
-    setPupilR({ x: 0, y: 0 })
-  }, [])
-
   return (
     <section
       id="top"
@@ -116,41 +77,17 @@ export function Hero() {
         >
           <a
             href="#spass-apps"
-            onMouseMove={onCtaEyeMove}
-            onMouseLeave={onCtaEyeLeave}
             className="rs-cta group !min-h-[3.25rem] !gap-3 !py-3.5 !pl-6 !pr-10 focus-visible:outline-none sm:!gap-3.5 sm:!pl-7 sm:!pr-12"
           >
             <div
               className="flex shrink-0 gap-2 sm:gap-2.5"
               aria-hidden
             >
-              <div
-                ref={leftEyeRef}
-                className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-white/88 shadow-[inset_0_1px_3px_rgba(0,0,0,0.12)] ring-1 ring-white/50 transition-[box-shadow] duration-200 group-hover:ring-rs-primary/45 group-focus-visible:ring-rs-primary/45 sm:h-9 sm:w-9"
-              >
-                <motion.span
-                  className="block h-2 w-2 rounded-full bg-rs-bg sm:h-2.5 sm:w-2.5"
-                  animate={{ x: pupilL.x, y: pupilL.y }}
-                  transition={
-                    reduceMotion
-                      ? { duration: 0 }
-                      : { type: 'spring', stiffness: 380, damping: 28 }
-                  }
-                />
+              <div className={eyeShell}>
+                <span className="block h-2 w-2 rounded-full bg-rs-bg sm:h-2.5 sm:w-2.5" />
               </div>
-              <div
-                ref={rightEyeRef}
-                className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-white/88 shadow-[inset_0_1px_3px_rgba(0,0,0,0.12)] ring-1 ring-white/50 transition-[box-shadow] duration-200 group-hover:ring-rs-primary/45 group-focus-visible:ring-rs-primary/45 sm:h-9 sm:w-9"
-              >
-                <motion.span
-                  className="block h-2 w-2 rounded-full bg-rs-bg sm:h-2.5 sm:w-2.5"
-                  animate={{ x: pupilR.x, y: pupilR.y }}
-                  transition={
-                    reduceMotion
-                      ? { duration: 0 }
-                      : { type: 'spring', stiffness: 380, damping: 28 }
-                  }
-                />
+              <div className={eyeShell}>
+                <span className="block h-2 w-2 rounded-full bg-rs-bg sm:h-2.5 sm:w-2.5" />
               </div>
             </div>
             <span className="rs-cta-text-rest">Apps</span>

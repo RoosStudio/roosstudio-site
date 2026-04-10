@@ -246,16 +246,15 @@ export function ContactSection() {
             <RippleCta
               href="mailto:hi@roosstudio.ch"
               ariaLabel="E-Mail an Roos Studio öffnen"
-              leading={<BuildCraneIcon />}
               hoverContent={
                 <>
                   <span
-                    className="inline-block text-[1.15rem] leading-none motion-reduce:group-hover:animate-none motion-reduce:group-focus-visible:animate-none motion-safe:origin-[70%_100%] motion-safe:group-hover:animate-[rs-wave-hand_0.75s_ease-in-out_infinite] motion-safe:group-focus-visible:animate-[rs-wave-hand_0.75s_ease-in-out_infinite]"
+                    className="inline-flex shrink-0 items-center text-rs-primary"
                     aria-hidden
                   >
-                    👋
+                    <BuildCraneIcon />
                   </span>
-                  <span className="rs-cta-text-hover">Hi sagen</span>
+                  <span className="rs-cta-text-hover">Lass uns bauen</span>
                 </>
               }
             >

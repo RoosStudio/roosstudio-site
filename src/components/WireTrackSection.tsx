@@ -118,12 +118,19 @@ export function WireTrackSection() {
               onFocus={() => setMouthHover(true)}
               onBlur={() => setMouthHover(false)}
               transition={{ type: 'spring', stiffness: 400, damping: 28 }}
-              className="rs-cta rs-cta--sm group mt-10 !gap-2 focus-visible:outline-none"
+              className="rs-cta rs-cta--sm group mt-10 focus-visible:outline-none"
             >
-              <span className="inline-flex shrink-0 items-center text-white transition-colors duration-200 group-hover:text-rs-primary group-focus-visible:text-rs-primary">
-                <TalkingMouthIcon active={mouthHover} reduceMotion={reduceMotion} />
+              <span className="relative z-10 inline-grid min-w-0 grid-cols-1 grid-rows-1 place-items-center">
+                <span className="col-start-1 row-start-1 flex min-w-0 items-center justify-center transition-opacity duration-200 ease-out group-focus-visible:pointer-events-none group-focus-visible:opacity-0 group-hover:pointer-events-none group-hover:opacity-0">
+                  <span className="rs-cta-text-rest">reden wir!</span>
+                </span>
+                <span className="col-start-1 row-start-1 flex min-w-0 items-center justify-center gap-2 opacity-0 transition-opacity duration-200 ease-out group-focus-visible:opacity-100 group-hover:opacity-100">
+                  <span className="inline-flex shrink-0 items-center text-rs-primary">
+                    <TalkingMouthIcon active={mouthHover} reduceMotion={reduceMotion} />
+                  </span>
+                  <span className="rs-cta-text-hover">reden wir!</span>
+                </span>
               </span>
-              <span className="rs-cta-text-rest">Reden wir’s?</span>
             </motion.a>
           </SectionReveal>
 
