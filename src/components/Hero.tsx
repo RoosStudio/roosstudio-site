@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 
 const eyeShell =
-  'relative flex h-8 w-8 origin-center items-center justify-center overflow-hidden rounded-full bg-white/88 shadow-[inset_0_1px_3px_rgba(0,0,0,0.12)] ring-1 ring-white/50 transition-[box-shadow] duration-200 group-hover:ring-rs-primary/45 group-focus-visible:ring-rs-primary/45 sm:h-9 sm:w-9 motion-reduce:group-focus-visible:animate-none motion-reduce:group-hover:animate-none motion-safe:group-focus-visible:animate-[rs-eye-blink_2.8s_ease-in-out_infinite] motion-safe:group-hover:animate-[rs-eye-blink_2.8s_ease-in-out_infinite]'
+  'rs-hero-cta-eye rs-hero-cta-eye--blink relative flex h-[0.9375rem] w-[0.9375rem] shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/90 shadow-[inset_0_1px_2px_rgba(0,0,0,0.1)] ring-1 ring-white/45 transition-[box-shadow] duration-200 group-hover:ring-rs-primary/50 group-focus-visible:ring-rs-primary/50 sm:h-4 sm:w-4'
 
 export function Hero() {
   return (
@@ -77,20 +77,17 @@ export function Hero() {
         >
           <a
             href="#spass-apps"
-            className="rs-cta group !min-h-[3.25rem] !gap-3 !py-3.5 !pl-6 !pr-10 focus-visible:outline-none sm:!gap-3.5 sm:!pl-7 sm:!pr-12"
+            className="rs-cta rs-cta--compact group focus-visible:outline-none"
           >
-            <div
-              className="flex shrink-0 gap-2 sm:gap-2.5"
-              aria-hidden
-            >
+            <div className="flex shrink-0 items-center gap-[0.2rem] sm:gap-1" aria-hidden>
               <div className={eyeShell}>
-                <span className="block h-2 w-2 rounded-full bg-rs-bg sm:h-2.5 sm:w-2.5" />
+                <span className="block h-[3px] w-[3px] rounded-full bg-rs-bg sm:h-1 sm:w-1" />
               </div>
               <div className={eyeShell}>
-                <span className="block h-2 w-2 rounded-full bg-rs-bg sm:h-2.5 sm:w-2.5" />
+                <span className="block h-[3px] w-[3px] rounded-full bg-rs-bg sm:h-1 sm:w-1" />
               </div>
             </div>
-            <span className="rs-cta-text-rest">Apps</span>
+            <span className="rs-cta-text-rest font-semibold tracking-tight">Apps</span>
           </a>
         </motion.div>
       </div>

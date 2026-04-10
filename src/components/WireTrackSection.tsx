@@ -122,13 +122,13 @@ export function WireTrackSection() {
             >
               <span className="relative z-10 inline-grid min-w-0 grid-cols-1 grid-rows-1 place-items-center">
                 <span className="col-start-1 row-start-1 flex min-w-0 items-center justify-center transition-opacity duration-200 ease-out group-focus-visible:pointer-events-none group-focus-visible:opacity-0 group-hover:pointer-events-none group-hover:opacity-0">
-                  <span className="rs-cta-text-rest">reden wir!</span>
+                  <span className="rs-cta-text-rest">Reden wir!</span>
                 </span>
                 <span className="col-start-1 row-start-1 flex min-w-0 items-center justify-center gap-2 opacity-0 transition-opacity duration-200 ease-out group-focus-visible:opacity-100 group-hover:opacity-100">
                   <span className="inline-flex shrink-0 items-center text-rs-primary">
                     <TalkingMouthIcon active={mouthHover} reduceMotion={reduceMotion} />
                   </span>
-                  <span className="rs-cta-text-hover">reden wir!</span>
+                  <span className="rs-cta-text-hover">Reden wir!</span>
                 </span>
               </span>
             </motion.a>

@@ -42,7 +42,7 @@ function BuildCraneIcon() {
         opacity={0.88}
       />
       <g
-        className="motion-reduce:group-focus-visible:animate-none motion-reduce:group-hover:animate-none motion-safe:group-focus-visible:animate-[rs-crane-build_1.75s_ease-in-out_infinite] motion-safe:group-hover:animate-[rs-crane-build_1.75s_ease-in-out_infinite]"
+        className="motion-reduce:animate-none motion-safe:animate-[rs-crane-build_1.75s_ease-in-out_infinite]"
         style={{ transformBox: 'fill-box' }}
       >
         <path
@@ -245,20 +245,10 @@ export function ContactSection() {
           <div className="mt-10 flex justify-center sm:mt-11">
             <RippleCta
               href="mailto:hi@roosstudio.ch"
-              ariaLabel="E-Mail an Roos Studio öffnen"
-              hoverContent={
-                <>
-                  <span
-                    className="inline-flex shrink-0 items-center text-rs-primary"
-                    aria-hidden
-                  >
-                    <BuildCraneIcon />
-                  </span>
-                  <span className="rs-cta-text-hover">Lass uns bauen</span>
-                </>
-              }
+              ariaLabel="E-Mail an Roos Studio öffnen: Lass uns bauen"
+              leading={<BuildCraneIcon />}
             >
-              Schreib mir
+              <span className="uppercase tracking-[0.12em]">Lass uns bauen</span>
             </RippleCta>
           </div>
           <a
