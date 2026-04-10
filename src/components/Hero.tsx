@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 
 const eyeShell =
-  'rs-hero-cta-eye rs-hero-cta-eye--blink relative flex h-[0.9375rem] w-[0.9375rem] shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/90 shadow-[inset_0_1px_2px_rgba(0,0,0,0.1)] ring-1 ring-white/45 transition-[box-shadow] duration-200 group-hover:ring-rs-primary/50 group-focus-visible:ring-rs-primary/50 sm:h-4 sm:w-4'
+  'rs-hero-cta-eye rs-hero-cta-eye--blink-hover relative flex h-[0.9375rem] w-[0.9375rem] shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/90 shadow-[inset_0_1px_2px_rgba(0,0,0,0.1)] ring-1 ring-white/45 transition-[box-shadow] duration-200 group-hover:ring-rs-primary/50 group-focus-visible:ring-rs-primary/50 sm:h-4 sm:w-4'
 
 export function Hero() {
   return (
@@ -77,17 +77,27 @@ export function Hero() {
         >
           <a
             href="#spass-apps"
-            className="rs-cta rs-cta--compact group focus-visible:outline-none"
+            className="rs-cta rs-cta--sm group focus-visible:outline-none"
           >
-            <div className="flex shrink-0 items-center gap-[0.2rem] sm:gap-1" aria-hidden>
-              <div className={eyeShell}>
-                <span className="block h-[3px] w-[3px] rounded-full bg-rs-bg sm:h-1 sm:w-1" />
-              </div>
-              <div className={eyeShell}>
-                <span className="block h-[3px] w-[3px] rounded-full bg-rs-bg sm:h-1 sm:w-1" />
-              </div>
-            </div>
-            <span className="rs-cta-text-rest font-semibold tracking-tight">Apps</span>
+            <span className="inline-grid min-w-0 grid-cols-1 grid-rows-1 place-items-center">
+              <span className="col-start-1 row-start-1 flex min-w-0 items-center justify-center transition-opacity duration-200 ease-out group-focus-visible:pointer-events-none group-focus-visible:opacity-0 group-hover:pointer-events-none group-hover:opacity-0">
+                <span className="rs-cta-text-rest whitespace-nowrap">Apps</span>
+              </span>
+              <span className="col-start-1 row-start-1 flex min-w-0 items-center justify-center gap-1.5 whitespace-nowrap opacity-0 transition-opacity duration-200 ease-out group-focus-visible:opacity-100 group-hover:opacity-100 sm:gap-2">
+                <div
+                  className="flex shrink-0 items-center gap-[0.2rem] sm:gap-1"
+                  aria-hidden
+                >
+                  <div className={eyeShell}>
+                    <span className="block h-[3px] w-[3px] rounded-full bg-rs-bg sm:h-1 sm:w-1" />
+                  </div>
+                  <div className={eyeShell}>
+                    <span className="block h-[3px] w-[3px] rounded-full bg-rs-bg sm:h-1 sm:w-1" />
+                  </div>
+                </div>
+                <span className="rs-cta-text-hover whitespace-nowrap">Apps</span>
+              </span>
+            </span>
           </a>
         </motion.div>
       </div>

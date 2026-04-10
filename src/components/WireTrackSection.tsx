@@ -3,14 +3,15 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { scrollToKontaktEmail } from '../lib/scrollToKontaktEmail'
 import { SectionReveal } from './SectionReveal'
 
-function TalkingMouthIcon({
+/** Sprechblase + drei Punkte — passt zu „Reden wir!“ */
+function SpeechBubbleIcon({
   active,
   reduceMotion,
 }: {
   active: boolean
   reduceMotion: boolean | null
 }) {
-  const talking = Boolean(active && !reduceMotion)
+  const pulse = Boolean(active && !reduceMotion)
   const stroke = {
     fill: 'none' as const,
     stroke: 'currentColor',
@@ -18,34 +19,46 @@ function TalkingMouthIcon({
     strokeLinecap: 'round' as const,
     strokeLinejoin: 'round' as const,
   }
+  const dotTransition = pulse
+    ? { duration: 0.45, repeat: Infinity, ease: 'easeInOut' as const }
+    : { duration: 0.12 }
+
   return (
     <svg
-      width="20"
-      height="14"
-      viewBox="0 0 20 14"
+      width="22"
+      height="18"
+      viewBox="0 0 22 18"
       className="shrink-0 overflow-visible text-current"
       aria-hidden
     >
-      {/* Oberlippe mit leichter Cupid’s-Bow-Mitte */}
       <path
-        d="M 3.2 5.85 C 5.8 4.15, 8.2 4.55, 10 5.05 C 11.8 4.55, 14.2 4.15, 16.8 5.85"
+        d="M5 2.75h11.5a2.25 2.25 0 012.25 2.25v6.25a2.25 2.25 0 01-2.25 2.25h-4.9l-2.35 3.35c-.35.5-1.1.15-.95-.45l.65-2.9H5A2.25 2.25 0 012.75 11.25V5A2.25 2.25 0 015 2.75z"
         {...stroke}
       />
-      <motion.g
-        animate={
-          talking ? { y: [0, 1.05, 0.35, 0.9, 0] } : { y: 0 }
-        }
-        transition={
-          talking
-            ? { duration: 0.52, repeat: Infinity, ease: 'easeInOut' }
-            : { duration: 0.12 }
-        }
-      >
-        <path
-          d="M 3.2 7.35 C 5.8 9.35, 14.2 9.35, 16.8 7.35"
-          {...stroke}
-        />
-      </motion.g>
+      <motion.circle
+        cx="8.25"
+        cy="8.25"
+        r="0.9"
+        fill="currentColor"
+        animate={pulse ? { y: [0, -1.15, 0] } : { y: 0 }}
+        transition={{ ...dotTransition, delay: 0 }}
+      />
+      <motion.circle
+        cx="11"
+        cy="8.25"
+        r="0.9"
+        fill="currentColor"
+        animate={pulse ? { y: [0, -1.15, 0] } : { y: 0 }}
+        transition={{ ...dotTransition, delay: 0.12 }}
+      />
+      <motion.circle
+        cx="13.75"
+        cy="8.25"
+        r="0.9"
+        fill="currentColor"
+        animate={pulse ? { y: [0, -1.15, 0] } : { y: 0 }}
+        transition={{ ...dotTransition, delay: 0.24 }}
+      />
     </svg>
   )
 }
@@ -71,7 +84,7 @@ const features = [
 
 export function WireTrackSection() {
   const reduceMotion = useReducedMotion()
-  const [mouthHover, setMouthHover] = useState(false)
+  const [ctaIconHover, setCtaIconHover] = useState(false)
 
   return (
     <section
@@ -113,10 +126,10 @@ export function WireTrackSection() {
               href="#kontakt-email"
               aria-label="Zur E-Mail-Adresse weiter unten springen"
               onClick={(e) => scrollToKontaktEmail(e, reduceMotion)}
-              onMouseEnter={() => setMouthHover(true)}
-              onMouseLeave={() => setMouthHover(false)}
-              onFocus={() => setMouthHover(true)}
-              onBlur={() => setMouthHover(false)}
+              onMouseEnter={() => setCtaIconHover(true)}
+              onMouseLeave={() => setCtaIconHover(false)}
+              onFocus={() => setCtaIconHover(true)}
+              onBlur={() => setCtaIconHover(false)}
               transition={{ type: 'spring', stiffness: 400, damping: 28 }}
               className="rs-cta rs-cta--sm group mt-10 focus-visible:outline-none"
             >
@@ -126,7 +139,7 @@ export function WireTrackSection() {
                 </span>
                 <span className="col-start-1 row-start-1 flex min-w-0 items-center justify-center gap-2 opacity-0 transition-opacity duration-200 ease-out group-focus-visible:opacity-100 group-hover:opacity-100">
                   <span className="inline-flex shrink-0 items-center text-rs-primary">
-                    <TalkingMouthIcon active={mouthHover} reduceMotion={reduceMotion} />
+                    <SpeechBubbleIcon active={ctaIconHover} reduceMotion={reduceMotion} />
                   </span>
                   <span className="rs-cta-text-hover">Reden wir!</span>
                 </span>
