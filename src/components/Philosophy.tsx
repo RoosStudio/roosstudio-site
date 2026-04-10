@@ -23,17 +23,17 @@ export function Philosophy() {
 
   return (
     <section
-      id="philosophie"
+      id="haltung"
       className="relative border-t border-rs-border bg-rs-bg py-24 sm:py-32 md:py-36"
-      aria-labelledby="philosophie-heading"
+      aria-labelledby="haltung-heading"
     >
       <div className="mx-auto max-w-5xl px-5 sm:px-8">
         <SectionReveal>
           <p
-            id="philosophie-heading"
+            id="haltung-heading"
             className="text-sm font-semibold uppercase tracking-[0.22em] text-rs-primary"
           >
-            WARUM
+            Haltung
           </p>
         </SectionReveal>
 
@@ -42,21 +42,15 @@ export function Philosophy() {
             className="text-[clamp(1.65rem,4.2vw,2.9rem)] font-bold leading-[1.12] tracking-tight text-rs-text"
             {...motionProps(0)}
           >
-            Aus Ideen entstehen Anwendungen.
+            Lieber bauen als drumherumreden.
           </motion.p>
 
           <motion.p
-            className="mt-5 text-[clamp(1.65rem,4.2vw,2.9rem)] font-bold leading-[1.12] tracking-tight text-rs-text sm:mt-6"
+            className="mt-5 max-w-3xl text-[clamp(1.15rem,2.8vw,1.65rem)] font-medium leading-snug text-rs-text-secondary sm:mt-6"
             {...motionProps(0.07)}
           >
-            Aus Anwendungen wird Software, die läuft.
-          </motion.p>
-
-          <motion.p
-            className="mt-14 max-w-2xl text-lg font-medium leading-snug text-rs-text-secondary sm:mt-16 sm:text-xl md:mt-20 md:text-2xl"
-            {...motionProps(0.12)}
-          >
-            Genau das macht den Unterschied.
+            Spass-Apps halten mich wach; WireTrack ist für den Teil, wo’s im
+            Alltag zählt. Wenn’s knallt, wird gefixt – nicht wegpräsentiert.
           </motion.p>
         </div>
       </div>

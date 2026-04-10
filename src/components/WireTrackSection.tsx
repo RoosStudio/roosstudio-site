@@ -53,19 +53,19 @@ function TalkingMouthIcon({
 const features = [
   {
     title: 'Projekte',
-    text: 'Von Planung bis Umsetzung – klar strukturiert und zuverlässig umgesetzt.',
+    text: 'Was offen ist, wer dran ist, was als Nächstes fällig ist – ohne dass du drei Tabellen synchron halten musst.',
   },
   {
-    title: 'Kunden',
-    text: 'Klare Kommunikation, saubere Abläufe und verlässliche Zusammenarbeit.',
+    title: 'Leute & Zugriff',
+    text: 'Teams, Rollen, Berechtigungen. Damit nicht jeder alles sieht, aber niemand ständig nach Admin fragt.',
   },
   {
-    title: 'Service',
-    text: 'Stabil im Betrieb, schnell erreichbar und jederzeit unter Kontrolle.',
+    title: 'Vorgänge',
+    text: 'Tickets und Abläufe festhalten statt im Chat zu vergessen. Wenn’s brennt, siehst du, wo’s klemmt.',
   },
   {
-    title: 'Systeme',
-    text: 'Saubere Integrationen und stabile Strukturen als Grundlage für Wachstum.',
+    title: 'Anbindungen',
+    text: 'Daten rein und raus, ohne dass jede kleine Änderung ein Glücksspiel wird.',
   },
 ]
 
@@ -93,7 +93,7 @@ export function WireTrackSection() {
               />
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-rs-muted">
-                  Enterprise
+                  Fürs Tagesgeschäft
                 </p>
                 <h2
                   id="wiretrack-heading"
@@ -104,15 +104,17 @@ export function WireTrackSection() {
               </div>
             </div>
             <p className="mt-6 text-2xl font-semibold leading-snug text-rs-text sm:text-3xl">
-              Aus Projekten wird echte Software.
+              Der ernste Teil: wenn’s nicht nur um einen Prototyp geht.
             </p>
             <p className="mt-5 max-w-lg text-base leading-relaxed text-rs-text-secondary">
-              Klare Abläufe, saubere Prozesse und stabile Systeme. WireTrack
-              sorgt dafür, dass Projekte nicht nur starten – sondern laufen.
+              WireTrack ist das System für Planung, Zuweisung und Nachhalten –
+              für Teams, die jeden Tag damit arbeiten. Kein Buzzword-Bingo,
+              sondern Oberflächen und Logik, die ich selber mitdenke und
+              ausbaue.
             </p>
             <motion.a
               href="#kontakt-email"
-              aria-label="Zur E-Mail-Adresse scrollen"
+              aria-label="Zur E-Mail-Adresse weiter unten springen"
               onClick={(e) => scrollToKontaktEmail(e, reduceMotion)}
               onMouseEnter={() => setMouthHover(true)}
               onMouseLeave={() => setMouthHover(false)}
@@ -124,7 +126,7 @@ export function WireTrackSection() {
               className="mt-10 inline-flex min-h-[2.875rem] items-center justify-center gap-2 rounded-full border border-rs-border bg-rs-card px-6 py-2.5 text-sm font-semibold text-rs-text transition-[color,transform,border-color] duration-200 ease-out hover:border-rs-primary/45 hover:text-rs-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40"
             >
               <TalkingMouthIcon active={mouthHover} reduceMotion={reduceMotion} />
-              Projekt besprechen
+              Passt das für euch?
             </motion.a>
           </SectionReveal>
 
@@ -138,7 +140,7 @@ export function WireTrackSection() {
               <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl ring-1 ring-white/5">
                 <img
                   src="/showcase/wiretrack-dashboard.png"
-                  alt="WireTrack Dashboard mit Schnellzugriff, Widgets und Begrüssung"
+                  alt="WireTrack: Dashboard mit Schnellzugriff und Übersicht"
                   loading="lazy"
                   decoding="async"
                   className="h-full w-full object-cover object-top"
@@ -147,7 +149,7 @@ export function WireTrackSection() {
                 />
               </div>
               <p className="relative mt-3 px-2 text-center text-xs font-medium text-rs-muted">
-                Produktiv im Alltag — Dashboard, Widgets, Schnellzugriff.
+                Ein Blick rein: Dashboard, Widgets, Schnellzugriff.
               </p>
             </motion.div>
           </SectionReveal>

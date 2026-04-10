@@ -29,8 +29,8 @@ export function Hero() {
   const [pupilL, setPupilL] = useState({ x: 0, y: 0 })
   const [pupilR, setPupilR] = useState({ x: 0, y: 0 })
 
-  const onEyeZoneMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
+  const onCtaEyeMove = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
       if (reduceMotion) return
       setPupilL(pupilTowardPointer(e, leftEyeRef, 5.5))
       setPupilR(pupilTowardPointer(e, rightEyeRef, 5.5))
@@ -38,7 +38,7 @@ export function Hero() {
     [reduceMotion],
   )
 
-  const onEyeZoneLeave = useCallback(() => {
+  const onCtaEyeLeave = useCallback(() => {
     setPupilL({ x: 0, y: 0 })
     setPupilR({ x: 0, y: 0 })
   }, [])
@@ -96,7 +96,8 @@ export function Hero() {
           transition={{ delay: 0.22, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-4xl text-4xl font-bold leading-[1.12] tracking-tight text-rs-text sm:text-5xl sm:leading-[1.14] md:text-6xl md:leading-[1.12] lg:text-[3.5rem] lg:leading-[1.1] xl:text-7xl xl:leading-[1.08]"
         >
-          Von „was wäre wenn“ bis zum ersten Klick
+          <span className="block">Ich baue Apps.</span>
+          <span className="block">Die laufen auch wirklich.</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 16 }}
@@ -104,55 +105,56 @@ export function Hero() {
           transition={{ delay: 0.35, duration: 0.55 }}
           className="mt-8 max-w-xl text-lg leading-relaxed text-rs-text/80 sm:mt-9 sm:text-xl"
         >
-          Aus Ideen werden Anwendungen – und aus Anwendungen Systeme, die im
-          Alltag funktionieren.
+          Drunter: Sachen aus Spass und Neugier – wirklich live, nicht nur
+          Mockup. Daneben WireTrack, wenn du etwas brauchst, das im Alltag
+          nicht aus der Puste fällt.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.48, duration: 0.5 }}
-          className="mt-12 flex flex-col items-start sm:mt-14"
-          onMouseMove={onEyeZoneMove}
-          onMouseLeave={onEyeZoneLeave}
+          className="mt-12 sm:mt-14"
         >
-          <div
-            className="mb-3 flex gap-3 sm:mb-3.5 sm:gap-3.5"
-            aria-hidden
-          >
-            <div
-              ref={leftEyeRef}
-              className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-white/88 shadow-[inset_0_1px_3px_rgba(0,0,0,0.12)] ring-1 ring-white/50 sm:h-10 sm:w-10"
-            >
-              <motion.span
-                className="block h-2.5 w-2.5 rounded-full bg-rs-bg sm:h-3 sm:w-3"
-                animate={{ x: pupilL.x, y: pupilL.y }}
-                transition={
-                  reduceMotion
-                    ? { duration: 0 }
-                    : { type: 'spring', stiffness: 380, damping: 28 }
-                }
-              />
-            </div>
-            <div
-              ref={rightEyeRef}
-              className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-white/88 shadow-[inset_0_1px_3px_rgba(0,0,0,0.12)] ring-1 ring-white/50 sm:h-10 sm:w-10"
-            >
-              <motion.span
-                className="block h-2.5 w-2.5 rounded-full bg-rs-bg sm:h-3 sm:w-3"
-                animate={{ x: pupilR.x, y: pupilR.y }}
-                transition={
-                  reduceMotion
-                    ? { duration: 0 }
-                    : { type: 'spring', stiffness: 380, damping: 28 }
-                }
-              />
-            </div>
-          </div>
           <a
             href="#spass-apps"
-            className="inline-flex min-h-[3.25rem] items-center justify-center rounded-full bg-rs-primary px-10 py-3.5 text-base font-semibold text-rs-bg shadow-[0_0_0_1px_rgba(255,255,255,0.06)_inset,0_8px_28px_-10px_rgba(79,140,255,0.38)] transition-[transform] duration-200 ease-out hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg active:scale-[0.97]"
+            onMouseMove={onCtaEyeMove}
+            onMouseLeave={onCtaEyeLeave}
+            className="inline-flex min-h-[3.25rem] items-center justify-center gap-3 rounded-full bg-rs-primary pl-6 pr-10 py-3.5 text-base font-semibold text-rs-bg shadow-[0_0_0_1px_rgba(255,255,255,0.06)_inset,0_8px_28px_-10px_rgba(79,140,255,0.38)] transition-[transform] duration-200 ease-out hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg active:scale-[0.97] sm:gap-3.5 sm:pl-7 sm:pr-12"
           >
-            Projekte ansehen
+            <div
+              className="flex shrink-0 gap-2 sm:gap-2.5"
+              aria-hidden
+            >
+              <div
+                ref={leftEyeRef}
+                className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-white/88 shadow-[inset_0_1px_3px_rgba(0,0,0,0.12)] ring-1 ring-white/50 sm:h-9 sm:w-9"
+              >
+                <motion.span
+                  className="block h-2 w-2 rounded-full bg-rs-bg sm:h-2.5 sm:w-2.5"
+                  animate={{ x: pupilL.x, y: pupilL.y }}
+                  transition={
+                    reduceMotion
+                      ? { duration: 0 }
+                      : { type: 'spring', stiffness: 380, damping: 28 }
+                  }
+                />
+              </div>
+              <div
+                ref={rightEyeRef}
+                className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-white/88 shadow-[inset_0_1px_3px_rgba(0,0,0,0.12)] ring-1 ring-white/50 sm:h-9 sm:w-9"
+              >
+                <motion.span
+                  className="block h-2 w-2 rounded-full bg-rs-bg sm:h-2.5 sm:w-2.5"
+                  animate={{ x: pupilR.x, y: pupilR.y }}
+                  transition={
+                    reduceMotion
+                      ? { duration: 0 }
+                      : { type: 'spring', stiffness: 380, damping: 28 }
+                  }
+                />
+              </div>
+            </div>
+            Zu den Apps
           </a>
         </motion.div>
       </div>

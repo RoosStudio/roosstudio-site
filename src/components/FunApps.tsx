@@ -22,8 +22,8 @@ const apps: AppDef[] = [
     id: 'foto',
     title: 'Lager-Fotos & Galerie',
     eyebrow: 'Foto',
-    tag: 'Playground · Events',
-    desc: 'Alle Lager-Momente an einem Ort. Klar strukturiert, schnell gefunden – und so aufgebaut, dass man sie gerne wieder anschaut.',
+    tag: 'Lager · getestet im Feld',
+    desc: 'Fotos vom Lager, sortiert nach Tag – weil’s am Event einfach Spass gemacht hat und danach trotzdem noch nutzbar sein sollte. Läuft, wird benutzt.',
     screenshot: '/showcase/foto-lager-galerie.png',
     screenshotAlt:
       'Foto Galerie: Lager-Kulisse mit Smartphone-Mockup und Wochentags-Alben',
@@ -35,8 +35,8 @@ const apps: AppDef[] = [
     id: 'rally',
     title: 'Rally · Roadtrip Journal',
     eyebrow: 'Rally',
-    tag: 'Live Experience · Teams',
-    desc: 'Sofort im Spiel – ohne Chaos. Klare Abläufe, schnelles Onboarding, ein Flow, der Teams mitnimmt.',
+    tag: 'Vereinsfahrt · ohne Admin-Stress',
+    desc: 'Team-Code, Karte, Aufgaben – damit niemand auf dem Trip Excel oder WhatsApp-Chaos spielen muss. Einstieg schnell, auch wenn die Leute müde sind.',
     screenshot: '/showcase/rally-roadtrip-lobby.png',
     screenshotAlt:
       'Vereinsreise 2026: Roadtrip Journal Lobby mit Event-Karte und Team-Code',
@@ -48,8 +48,8 @@ const apps: AppDef[] = [
     id: 'kristall',
     title: 'Kristall Arena',
     eyebrow: 'Kristall Arena',
-    tag: 'Echtzeit · Ranking',
-    desc: 'Punkte, Rankings, Spielstand – live und nachvollziehbar.',
+    tag: 'Live-Score · sichtbar für alle',
+    desc: 'Punkte und Rangliste in Echtzeit – damit keiner fragen muss, wer gerade vorne liegt. Optik übertrieben, Logik simpel.',
     screenshot: '/showcase/kristall-arena.png',
     screenshotAlt:
       'Kristall-Rangliste: Podest Plätze 1–3 und Liste ab Platz 4 im Weltraum-Look',
@@ -219,11 +219,12 @@ export function FunApps() {
             id="spass-apps-heading"
             className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-rs-text sm:text-4xl md:text-5xl"
           >
-            Gebaut, nicht nur gezeigt.
+            Aus Spass entstanden. Trotzdem echt.
           </h2>
           <p className="mt-5 max-w-2xl text-lg text-rs-text-secondary">
-            Drei Anwendungen, drei unterschiedliche Erlebnisse: Galerie, Rally und
-            Kristall Arena – klar gebaut, sofort nutzbar.
+            Kein Moodboard: Galerie fürs Lager, Rally fürs Vereins-Event,
+            Kristall Arena fürs Mitfiebern – alles gebaut, ausprobiert und
+            irgendwo schon mal live gehabt.
           </p>
         </SectionReveal>
 

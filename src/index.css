@@ -89,3 +89,39 @@
     filter: drop-shadow(0 0 20px rgba(157, 77, 255, 0.48));
   }
 }
+
+@keyframes rs-wave-hand {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(16deg);
+  }
+  50% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(12deg);
+  }
+}
+
+/* Kran-Haken: nur sichtbar aktiv bei Hover auf den CTA (group) */
+@keyframes rs-crane-build {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  18% {
+    transform: translate3d(0, 3px, 0);
+  }
+  38% {
+    transform: translate3d(0, 0.5px, 0);
+  }
+  58% {
+    transform: translate3d(0, 2.25px, 0);
+  }
+  78% {
+    transform: translate3d(0, 0, 0);
+  }
+}

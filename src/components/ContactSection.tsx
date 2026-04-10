@@ -4,9 +4,6 @@ import { useCallback, useId, useState, type ReactNode } from 'react'
 type Ripple = { id: string; x: number; y: number }
 
 function BuildCraneIcon() {
-  const reduceMotion = useReducedMotion()
-  const hoist = !reduceMotion
-
   return (
     <svg
       width="20"
@@ -44,17 +41,9 @@ function BuildCraneIcon() {
         strokeLinecap="round"
         opacity={0.88}
       />
-      <motion.g
-        animate={
-          hoist
-            ? { y: [0, 1.35, 0.35, 1.1, 0] }
-            : { y: 0 }
-        }
-        transition={
-          hoist
-            ? { duration: 2.2, repeat: Infinity, ease: 'easeInOut' }
-            : { duration: 0.15 }
-        }
+      <g
+        className="motion-reduce:group-focus-visible:animate-none motion-reduce:group-hover:animate-none motion-safe:group-focus-visible:animate-[rs-crane-build_1.75s_ease-in-out_infinite] motion-safe:group-hover:animate-[rs-crane-build_1.75s_ease-in-out_infinite]"
+        style={{ transformBox: 'fill-box' }}
       >
         <path
           d="M18 5v7.85"
@@ -77,7 +66,7 @@ function BuildCraneIcon() {
           strokeWidth="1.15"
           strokeLinecap="round"
         />
-      </motion.g>
+      </g>
     </svg>
   )
 }
@@ -85,9 +74,14 @@ function BuildCraneIcon() {
 type RippleCtaProps = {
   href: string
   children: ReactNode
+  hoverContent?: ReactNode
+  /** Bleibt bei Hover sichtbar (z. B. Kran-Icon). */
+  leading?: ReactNode
+  /** Wenn gesetzt, sind die Kinder rein visuell (z. B. bei Hover-Wechsel). */
+  ariaLabel?: string
 }
 
-function RippleCta({ href, children }: RippleCtaProps) {
+function RippleCta({ href, children, hoverContent, leading, ariaLabel }: RippleCtaProps) {
   const reduceMotion = useReducedMotion()
   const [ripples, setRipples] = useState<Ripple[]>([])
   const uid = useId()
@@ -113,12 +107,13 @@ function RippleCta({ href, children }: RippleCtaProps) {
     'relative inline-flex min-h-[3.25rem] items-center justify-center overflow-hidden rounded-full px-10 py-3.5 text-base font-semibold no-underline select-none'
 
   const primaryClass =
-    `${base} bg-rs-primary text-rs-bg shadow-[0_0_0_1px_rgba(255,255,255,0.06)_inset,0_8px_28px_-10px_rgba(79,140,255,0.38)] ` +
+    `${base} group bg-rs-primary text-rs-bg shadow-[0_0_0_1px_rgba(255,255,255,0.06)_inset,0_8px_28px_-10px_rgba(79,140,255,0.38)] ` +
     'transition-[transform] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg'
 
   return (
     <motion.a
       href={href}
+      aria-label={ariaLabel}
       onPointerDown={onPointerDown}
       className={primaryClass}
       whileHover={reduceMotion ? undefined : { scale: 1.02 }}
@@ -144,8 +139,23 @@ function RippleCta({ href, children }: RippleCtaProps) {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           />
         ))}
-      <span className="relative z-10 flex items-center justify-center gap-2">
-        {children}
+      <span
+        className="relative z-10 flex items-center justify-center gap-2"
+        aria-hidden={ariaLabel ? true : undefined}
+      >
+        {leading ? <span className="shrink-0">{leading}</span> : null}
+        {hoverContent ? (
+          <span className="inline-grid min-w-0 grid-cols-1 grid-rows-1 place-items-center">
+            <span className="col-start-1 row-start-1 flex min-w-0 items-center justify-center gap-2 transition-opacity duration-200 ease-out group-focus-visible:pointer-events-none group-focus-visible:opacity-0 group-hover:pointer-events-none group-hover:opacity-0">
+              {children}
+            </span>
+            <span className="col-start-1 row-start-1 flex min-w-0 items-center justify-center gap-2 opacity-0 transition-opacity duration-200 ease-out group-focus-visible:opacity-100 group-hover:opacity-100">
+              {hoverContent}
+            </span>
+          </span>
+        ) : (
+          children
+        )}
       </span>
     </motion.a>
   )
@@ -229,18 +239,30 @@ export function ContactSection() {
             id="kontakt-heading"
             className="text-3xl font-bold tracking-tight text-rs-text sm:text-4xl md:text-[2.65rem] md:leading-tight"
           >
-            Lass uns etwas bauen, das läuft.
+            Eine Mail reicht.
           </h2>
           <p className="mt-5 text-base leading-relaxed text-rs-text-secondary sm:text-lg">
-            Ideen sind schnell da.
-          </p>
-          <p className="mt-3.5 text-base leading-relaxed text-rs-text-secondary sm:mt-4 sm:text-lg">
-            Entscheidend ist, was daraus wird.
+            Kurz, wer du bist und was du brauchst – kein Formular, kein
+            Sales-Tanz. Ich antworte selbst, aus der Schweiz.
           </p>
           <div className="mt-10 flex justify-center sm:mt-11">
-            <RippleCta href="mailto:hi@roosstudio.ch">
-              <BuildCraneIcon />
-              Lass uns bauen
+            <RippleCta
+              href="mailto:hi@roosstudio.ch"
+              ariaLabel="E-Mail an Roos Studio öffnen"
+              leading={<BuildCraneIcon />}
+              hoverContent={
+                <>
+                  <span
+                    className="inline-block text-[1.15rem] leading-none motion-reduce:group-hover:animate-none motion-safe:origin-[70%_100%] motion-safe:group-hover:animate-[rs-wave-hand_0.75s_ease-in-out_infinite]"
+                    aria-hidden
+                  >
+                    👋
+                  </span>
+                  Hi sagen
+                </>
+              }
+            >
+              Schreib mir
             </RippleCta>
           </div>
           <a
