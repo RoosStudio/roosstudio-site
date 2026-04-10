@@ -22,8 +22,8 @@ const apps: AppDef[] = [
     id: 'foto',
     title: 'Lager-Fotos & Galerie',
     eyebrow: 'Foto',
-    tag: 'Lager · getestet im Feld',
-    desc: 'Fotos vom Lager, sortiert nach Tag – weil’s am Event einfach Spass gemacht hat und danach trotzdem noch nutzbar sein sollte. Läuft, wird benutzt.',
+    tag: 'Lager · live',
+    desc: 'Fotos nach Tag. Vom Event. Noch da. Wird angeschaut.',
     screenshot: '/showcase/foto-lager-galerie.png',
     screenshotAlt:
       'Foto Galerie: Lager-Kulisse mit Smartphone-Mockup und Wochentags-Alben',
@@ -35,8 +35,8 @@ const apps: AppDef[] = [
     id: 'rally',
     title: 'Rally · Roadtrip Journal',
     eyebrow: 'Rally',
-    tag: 'Vereinsfahrt · ohne Admin-Stress',
-    desc: 'Team-Code, Karte, Aufgaben – damit niemand auf dem Trip Excel oder WhatsApp-Chaos spielen muss. Einstieg schnell, auch wenn die Leute müde sind.',
+    tag: 'Vereinsfahrt',
+    desc: 'Code, Karte, Tasks. Kein Excel. Kein Gruppenwahnsinn. Schnell rein.',
     screenshot: '/showcase/rally-roadtrip-lobby.png',
     screenshotAlt:
       'Vereinsreise 2026: Roadtrip Journal Lobby mit Event-Karte und Team-Code',
@@ -48,8 +48,8 @@ const apps: AppDef[] = [
     id: 'kristall',
     title: 'Kristall Arena',
     eyebrow: 'Kristall Arena',
-    tag: 'Live-Score · sichtbar für alle',
-    desc: 'Punkte und Rangliste in Echtzeit – damit keiner fragen muss, wer gerade vorne liegt. Optik übertrieben, Logik simpel.',
+    tag: 'Live',
+    desc: 'Punkte live. Rangliste klar. Look laut, Hirn ruhig.',
     screenshot: '/showcase/kristall-arena.png',
     screenshotAlt:
       'Kristall-Rangliste: Podest Plätze 1–3 und Liste ab Platz 4 im Weltraum-Look',
@@ -219,12 +219,10 @@ export function FunApps() {
             id="spass-apps-heading"
             className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-rs-text sm:text-4xl md:text-5xl"
           >
-            Aus Spass entstanden. Trotzdem echt.
+            Einfach gebaut. Wird benutzt.
           </h2>
           <p className="mt-5 max-w-2xl text-lg text-rs-text-secondary">
-            Kein Moodboard: Galerie fürs Lager, Rally fürs Vereins-Event,
-            Kristall Arena fürs Mitfiebern – alles gebaut, ausprobiert und
-            irgendwo schon mal live gehabt.
+            Galerie, Rally, Kristall. Schon mal live. Fertig.
           </p>
         </SectionReveal>
 

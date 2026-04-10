@@ -103,12 +103,8 @@ function RippleCta({ href, children, hoverContent, leading, ariaLabel }: RippleC
     [reduceMotion, uid],
   )
 
-  const base =
-    'relative inline-flex min-h-[3.25rem] items-center justify-center overflow-hidden rounded-full px-10 py-3.5 text-base font-semibold no-underline select-none'
-
   const primaryClass =
-    `${base} group bg-rs-primary text-rs-bg shadow-[0_0_0_1px_rgba(255,255,255,0.06)_inset,0_8px_28px_-10px_rgba(79,140,255,0.38)] ` +
-    'transition-[transform] duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg'
+    'rs-cta group relative overflow-hidden !px-10 !py-3.5 focus-visible:outline-none'
 
   return (
     <motion.a
@@ -116,8 +112,6 @@ function RippleCta({ href, children, hoverContent, leading, ariaLabel }: RippleC
       aria-label={ariaLabel}
       onPointerDown={onPointerDown}
       className={primaryClass}
-      whileHover={reduceMotion ? undefined : { scale: 1.02 }}
-      whileTap={reduceMotion ? undefined : { scale: 0.97 }}
       transition={{ type: 'spring', stiffness: 400, damping: 28 }}
     >
       {!reduceMotion &&
@@ -125,7 +119,7 @@ function RippleCta({ href, children, hoverContent, leading, ariaLabel }: RippleC
           <motion.span
             key={rip.id}
             aria-hidden
-            className="pointer-events-none absolute rounded-full bg-white/40"
+            className="pointer-events-none absolute rounded-full bg-white/35 group-hover:bg-rs-primary/30"
             style={{
               left: rip.x,
               top: rip.y,
@@ -143,18 +137,22 @@ function RippleCta({ href, children, hoverContent, leading, ariaLabel }: RippleC
         className="relative z-10 flex items-center justify-center gap-2"
         aria-hidden={ariaLabel ? true : undefined}
       >
-        {leading ? <span className="shrink-0">{leading}</span> : null}
+        {leading ? (
+          <span className="shrink-0 text-white transition-colors duration-200 group-hover:text-rs-primary group-focus-visible:text-rs-primary">
+            {leading}
+          </span>
+        ) : null}
         {hoverContent ? (
           <span className="inline-grid min-w-0 grid-cols-1 grid-rows-1 place-items-center">
             <span className="col-start-1 row-start-1 flex min-w-0 items-center justify-center gap-2 transition-opacity duration-200 ease-out group-focus-visible:pointer-events-none group-focus-visible:opacity-0 group-hover:pointer-events-none group-hover:opacity-0">
-              {children}
+              <span className="rs-cta-text-rest">{children}</span>
             </span>
             <span className="col-start-1 row-start-1 flex min-w-0 items-center justify-center gap-2 opacity-0 transition-opacity duration-200 ease-out group-focus-visible:opacity-100 group-hover:opacity-100">
-              {hoverContent}
+              <span className="flex min-w-0 items-center justify-center gap-2">{hoverContent}</span>
             </span>
           </span>
         ) : (
-          children
+          <span className="rs-cta-text-rest">{children}</span>
         )}
       </span>
     </motion.a>
@@ -239,11 +237,10 @@ export function ContactSection() {
             id="kontakt-heading"
             className="text-3xl font-bold tracking-tight text-rs-text sm:text-4xl md:text-[2.65rem] md:leading-tight"
           >
-            Eine Mail reicht.
+            Idee? Schreib mir.
           </h2>
           <p className="mt-5 text-base leading-relaxed text-rs-text-secondary sm:text-lg">
-            Kurz, wer du bist und was du brauchst – kein Formular, kein
-            Sales-Tanz. Ich antworte selbst, aus der Schweiz.
+            Kurz. Mail. Antwort von mir.
           </p>
           <div className="mt-10 flex justify-center sm:mt-11">
             <RippleCta
@@ -253,12 +250,12 @@ export function ContactSection() {
               hoverContent={
                 <>
                   <span
-                    className="inline-block text-[1.15rem] leading-none motion-reduce:group-hover:animate-none motion-safe:origin-[70%_100%] motion-safe:group-hover:animate-[rs-wave-hand_0.75s_ease-in-out_infinite]"
+                    className="inline-block text-[1.15rem] leading-none motion-reduce:group-hover:animate-none motion-reduce:group-focus-visible:animate-none motion-safe:origin-[70%_100%] motion-safe:group-hover:animate-[rs-wave-hand_0.75s_ease-in-out_infinite] motion-safe:group-focus-visible:animate-[rs-wave-hand_0.75s_ease-in-out_infinite]"
                     aria-hidden
                   >
                     👋
                   </span>
-                  Hi sagen
+                  <span className="rs-cta-text-hover">Hi sagen</span>
                 </>
               }
             >

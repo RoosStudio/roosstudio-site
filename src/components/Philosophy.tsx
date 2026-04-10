@@ -49,8 +49,7 @@ export function Philosophy() {
             className="mt-5 max-w-3xl text-[clamp(1.15rem,2.8vw,1.65rem)] font-medium leading-snug text-rs-text-secondary sm:mt-6"
             {...motionProps(0.07)}
           >
-            Spass-Apps halten mich wach; WireTrack ist für den Teil, wo’s im
-            Alltag zählt. Wenn’s knallt, wird gefixt – nicht wegpräsentiert.
+            Spass hält scharf. WireTrack, wenn’s zählt. Fix statt Folie.
           </motion.p>
         </div>
       </div>

@@ -42,24 +42,24 @@ export function Header() {
         </nav>
         <a
           href="#kontakt-email"
-          className="group relative z-2 inline-flex min-h-[2.75rem] shrink-0 cursor-pointer items-center justify-center rounded-full border border-rs-border bg-rs-card px-4 py-2 text-xs font-semibold text-rs-text no-underline transition-[color,transform,border-color] duration-200 ease-out hover:border-rs-primary/45 hover:text-rs-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/50 sm:min-h-[2.875rem] sm:px-6 sm:py-2.5 sm:text-sm"
+          className="rs-cta rs-cta--sm group relative z-2 shrink-0 cursor-pointer focus-visible:outline-none"
           aria-label="Zum Kontakt mit E-Mail-Adresse scrollen"
           onClick={(e) => scrollToKontaktEmail(e, reduceMotion)}
         >
           <span className="inline-grid grid-cols-1 grid-rows-1 place-items-center" aria-hidden>
             <span className="col-start-1 row-start-1 whitespace-nowrap transition-opacity duration-200 ease-out group-focus-visible:pointer-events-none group-focus-visible:opacity-0 group-hover:pointer-events-none group-hover:opacity-0">
-              <span className="hidden sm:inline">Schreib mir</span>
-              <span className="sm:hidden">Mail</span>
+              <span className="rs-cta-text-rest hidden sm:inline">Schreib mir</span>
+              <span className="rs-cta-text-rest sm:hidden">Mail</span>
             </span>
             <span className="col-start-1 row-start-1 flex items-center justify-center gap-1.5 whitespace-nowrap opacity-0 transition-opacity duration-200 ease-out group-focus-visible:opacity-100 group-hover:opacity-100 sm:gap-2">
               <span
-                className="inline-block text-[1.05rem] leading-none motion-reduce:group-hover:animate-none motion-safe:origin-[70%_100%] motion-safe:group-hover:animate-[rs-wave-hand_0.75s_ease-in-out_infinite] sm:text-[1.1rem]"
+                className="inline-block text-[1.05rem] leading-none motion-reduce:group-hover:animate-none motion-safe:origin-[70%_100%] motion-safe:group-hover:animate-[rs-wave-hand_0.75s_ease-in-out_infinite] motion-safe:group-focus-visible:animate-[rs-wave-hand_0.75s_ease-in-out_infinite] sm:text-[1.1rem]"
                 aria-hidden
               >
                 👋
               </span>
-              <span className="hidden sm:inline">Hi sagen</span>
-              <span className="sm:hidden">Hi</span>
+              <span className="rs-cta-text-hover hidden sm:inline">Hi sagen</span>
+              <span className="rs-cta-text-hover sm:hidden">Hi</span>
             </span>
           </span>
         </a>

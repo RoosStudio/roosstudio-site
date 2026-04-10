@@ -53,19 +53,19 @@ function TalkingMouthIcon({
 const features = [
   {
     title: 'Projekte',
-    text: 'Was offen ist, wer dran ist, was als Nächstes fällig ist – ohne dass du drei Tabellen synchron halten musst.',
+    text: 'Offen, wer dran, was als Nächstes – ein Ort.',
   },
   {
     title: 'Leute & Zugriff',
-    text: 'Teams, Rollen, Berechtigungen. Damit nicht jeder alles sieht, aber niemand ständig nach Admin fragt.',
+    text: 'Rollen fest. Zugriff klar. Punkt.',
   },
   {
     title: 'Vorgänge',
-    text: 'Tickets und Abläufe festhalten statt im Chat zu vergessen. Wenn’s brennt, siehst du, wo’s klemmt.',
+    text: 'Tickets hier. Nicht im Chat versenkt.',
   },
   {
     title: 'Anbindungen',
-    text: 'Daten rein und raus, ohne dass jede kleine Änderung ein Glücksspiel wird.',
+    text: 'Daten rein, raus, ohne Update-Panik.',
   },
 ]
 
@@ -93,7 +93,7 @@ export function WireTrackSection() {
               />
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-rs-muted">
-                  Fürs Tagesgeschäft
+                  Alltag
                 </p>
                 <h2
                   id="wiretrack-heading"
@@ -103,14 +103,11 @@ export function WireTrackSection() {
                 </h2>
               </div>
             </div>
-            <p className="mt-6 text-2xl font-semibold leading-snug text-rs-text sm:text-3xl">
-              Der ernste Teil: wenn’s nicht nur um einen Prototyp geht.
+            <p className="mt-6 text-2xl font-bold leading-[1.15] tracking-tight text-rs-text sm:text-3xl md:text-[2.15rem] md:leading-[1.12]">
+              Wenn’s laufen muss.
             </p>
             <p className="mt-5 max-w-lg text-base leading-relaxed text-rs-text-secondary">
-              WireTrack ist das System für Planung, Zuweisung und Nachhalten –
-              für Teams, die jeden Tag damit arbeiten. Kein Buzzword-Bingo,
-              sondern Oberflächen und Logik, die ich selber mitdenke und
-              ausbaue.
+              Planung, Leute, Tickets, Daten. Mitgedacht. Mitgebaut.
             </p>
             <motion.a
               href="#kontakt-email"
@@ -120,13 +117,13 @@ export function WireTrackSection() {
               onMouseLeave={() => setMouthHover(false)}
               onFocus={() => setMouthHover(true)}
               onBlur={() => setMouthHover(false)}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 400, damping: 28 }}
-              className="mt-10 inline-flex min-h-[2.875rem] items-center justify-center gap-2 rounded-full border border-rs-border bg-rs-card px-6 py-2.5 text-sm font-semibold text-rs-text transition-[color,transform,border-color] duration-200 ease-out hover:border-rs-primary/45 hover:text-rs-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40"
+              className="rs-cta rs-cta--sm group mt-10 !gap-2 focus-visible:outline-none"
             >
-              <TalkingMouthIcon active={mouthHover} reduceMotion={reduceMotion} />
-              Passt das für euch?
+              <span className="inline-flex shrink-0 items-center text-white transition-colors duration-200 group-hover:text-rs-primary group-focus-visible:text-rs-primary">
+                <TalkingMouthIcon active={mouthHover} reduceMotion={reduceMotion} />
+              </span>
+              <span className="rs-cta-text-rest">Reden wir’s?</span>
             </motion.a>
           </SectionReveal>
 
@@ -149,7 +146,7 @@ export function WireTrackSection() {
                 />
               </div>
               <p className="relative mt-3 px-2 text-center text-xs font-medium text-rs-muted">
-                Ein Blick rein: Dashboard, Widgets, Schnellzugriff.
+                Dashboard. Widgets. Kurz.
               </p>
             </motion.div>
           </SectionReveal>

@@ -14,11 +14,10 @@ export function Footer() {
               <BrandLogo placement="footer" />
             </a>
             <p className="mt-6 text-base font-medium leading-snug text-rs-text sm:text-[1.05rem]">
-              Apps aus Spass, Systeme fürs Tagesgeschäft.
+              Apps. Systeme. Eine Hand.
             </p>
             <p className="mt-2.5 max-w-sm text-sm leading-relaxed text-rs-text-secondary">
-              Gebaut, getestet, nachgezogen – nicht nur verkauft. Wenn du
-              WireTrack oder was Eigenes brauchst: einfach melden.
+              Nicht verkauft und weg. Meld dich.
             </p>
           </div>
           <nav

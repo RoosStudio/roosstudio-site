@@ -97,7 +97,7 @@ export function Hero() {
           className="max-w-4xl text-4xl font-bold leading-[1.12] tracking-tight text-rs-text sm:text-5xl sm:leading-[1.14] md:text-6xl md:leading-[1.12] lg:text-[3.5rem] lg:leading-[1.1] xl:text-7xl xl:leading-[1.08]"
         >
           <span className="block">Ich baue Apps.</span>
-          <span className="block">Die laufen auch wirklich.</span>
+          <span className="block">Die laufen.</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 16 }}
@@ -105,9 +105,8 @@ export function Hero() {
           transition={{ delay: 0.35, duration: 0.55 }}
           className="mt-8 max-w-xl text-lg leading-relaxed text-rs-text/80 sm:mt-9 sm:text-xl"
         >
-          Drunter: Sachen aus Spass und Neugier – wirklich live, nicht nur
-          Mockup. Daneben WireTrack, wenn du etwas brauchst, das im Alltag
-          nicht aus der Puste fällt.
+          <span className="block">Ein Teil aus Spass.</span>
+          <span className="block">Ein Teil läuft im Alltag.</span>
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -119,7 +118,7 @@ export function Hero() {
             href="#spass-apps"
             onMouseMove={onCtaEyeMove}
             onMouseLeave={onCtaEyeLeave}
-            className="inline-flex min-h-[3.25rem] items-center justify-center gap-3 rounded-full bg-rs-primary pl-6 pr-10 py-3.5 text-base font-semibold text-rs-bg shadow-[0_0_0_1px_rgba(255,255,255,0.06)_inset,0_8px_28px_-10px_rgba(79,140,255,0.38)] transition-[transform] duration-200 ease-out hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg active:scale-[0.97] sm:gap-3.5 sm:pl-7 sm:pr-12"
+            className="rs-cta group !min-h-[3.25rem] !gap-3 !py-3.5 !pl-6 !pr-10 focus-visible:outline-none sm:!gap-3.5 sm:!pl-7 sm:!pr-12"
           >
             <div
               className="flex shrink-0 gap-2 sm:gap-2.5"
@@ -127,7 +126,7 @@ export function Hero() {
             >
               <div
                 ref={leftEyeRef}
-                className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-white/88 shadow-[inset_0_1px_3px_rgba(0,0,0,0.12)] ring-1 ring-white/50 sm:h-9 sm:w-9"
+                className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-white/88 shadow-[inset_0_1px_3px_rgba(0,0,0,0.12)] ring-1 ring-white/50 transition-[box-shadow] duration-200 group-hover:ring-rs-primary/45 group-focus-visible:ring-rs-primary/45 sm:h-9 sm:w-9"
               >
                 <motion.span
                   className="block h-2 w-2 rounded-full bg-rs-bg sm:h-2.5 sm:w-2.5"
@@ -141,7 +140,7 @@ export function Hero() {
               </div>
               <div
                 ref={rightEyeRef}
-                className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-white/88 shadow-[inset_0_1px_3px_rgba(0,0,0,0.12)] ring-1 ring-white/50 sm:h-9 sm:w-9"
+                className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-white/88 shadow-[inset_0_1px_3px_rgba(0,0,0,0.12)] ring-1 ring-white/50 transition-[box-shadow] duration-200 group-hover:ring-rs-primary/45 group-focus-visible:ring-rs-primary/45 sm:h-9 sm:w-9"
               >
                 <motion.span
                   className="block h-2 w-2 rounded-full bg-rs-bg sm:h-2.5 sm:w-2.5"
@@ -154,7 +153,7 @@ export function Hero() {
                 />
               </div>
             </div>
-            Zu den Apps
+            <span className="rs-cta-text-rest">Apps</span>
           </a>
         </motion.div>
       </div>
