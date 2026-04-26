@@ -52,7 +52,7 @@ export function ProductSplitSection() {
             className="mt-12 grid gap-5 sm:mt-16 lg:mt-20 lg:grid-cols-2 lg:items-stretch lg:gap-8"
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.15, margin: '0 0 -10% 0' }}
+            viewport={{ once: true, amount: 0.15, margin: '0px 0px -10% 0px' }}
             variants={parentV}
           >
             <motion.div variants={childV} className="min-h-0">

@@ -124,7 +124,7 @@ export function ProofSection() {
             className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-4 md:mt-16 lg:gap-5"
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.12, margin: '0 0 -8% 0' }}
+            viewport={{ once: true, amount: 0.12, margin: '0px 0px -8% 0px' }}
             variants={gridV}
           >
             {site.proof.items.map((item) => (

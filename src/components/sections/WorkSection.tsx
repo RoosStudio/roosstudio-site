@@ -37,7 +37,7 @@ export function WorkSection() {
               className="flex flex-col gap-0.5 py-5 sm:py-6"
               initial={reduce ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y: 12, x: -8 }}
               whileInView={{ opacity: 1, y: 0, x: 0 }}
-              viewport={{ once: true, amount: 0.35, margin: '0 0 -10% 0' }}
+              viewport={{ once: true, amount: 0.35, margin: '0px 0px -10% 0px' }}
               transition={{ delay: 0.04 * i, duration: 0.48, ease: EASE }}
             >
               <div className="flex items-baseline justify-between gap-3">

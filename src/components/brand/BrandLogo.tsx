@@ -48,7 +48,7 @@ export function BrandLogo({ placement, className = '' }: BrandLogoProps) {
       : {
           initial: 'hidden' as const,
           whileInView: 'show' as const,
-          viewport: { once: true, margin: '-32px' },
+          viewport: { once: true, margin: '-32px -32px -32px -32px' },
         }
 
   if (reduceMotion) {

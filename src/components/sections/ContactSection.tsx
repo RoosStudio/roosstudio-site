@@ -23,7 +23,7 @@ export function ContactSection() {
             ? {}
             : {
                 whileInView: { opacity: 1, y: 0, scale: 1 },
-                viewport: { once: true, amount: 0.35, margin: '-5% 0' },
+                viewport: { once: true, amount: 0.35, margin: '0px 0px 0px 0px' },
                 transition: { type: 'spring' as const, stiffness: 70, damping: 20, mass: 0.8 },
               })}
         >
