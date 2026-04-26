@@ -1,10 +1,11 @@
-import { BrandLogo } from './BrandLogo'
+import { site } from '../../content/site'
+import { BrandLogo } from '../brand/BrandLogo'
 
 export function Footer() {
   return (
-    <footer className="border-t border-rs-border bg-rs-bg">
-      <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
-        <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between md:gap-16">
+    <footer className="border-t border-white/[0.05] bg-gradient-to-b from-rs-bg to-[#08080c]">
+      <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between md:gap-16">
           <div className="max-w-md">
             <a
               href="#top"
@@ -13,26 +14,23 @@ export function Footer() {
             >
               <BrandLogo placement="footer" />
             </a>
-            <p className="mt-6 text-base font-medium leading-snug text-rs-text sm:text-[1.05rem]">
-              Apps. Systeme. Eine Hand.
-            </p>
-            <p className="mt-2.5 max-w-sm text-sm leading-relaxed text-rs-text-secondary">
-              Nicht verkauft und weg. Meld dich.
+            <p className="mt-5 text-sm font-medium leading-relaxed text-rs-text-secondary sm:mt-6 sm:text-base">
+              {site.footer.tagline}
             </p>
           </div>
           <nav
-            className="flex flex-wrap gap-x-10 gap-y-2 text-xs font-normal tracking-wide text-rs-text-secondary sm:text-sm"
+            className="flex flex-wrap gap-x-8 gap-y-2 text-sm text-rs-text-secondary/90"
             aria-label="Rechtliches"
           >
             <a
               href="#impressum"
-              className="transition-colors hover:text-rs-text/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/35"
+              className="transition-colors hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/35"
             >
               Impressum
             </a>
             <a
               href="#datenschutz"
-              className="transition-colors hover:text-rs-text/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/35"
+              className="transition-colors hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/35"
             >
               Datenschutz
             </a>
@@ -41,25 +39,23 @@ export function Footer() {
 
         <div
           id="impressum"
-          className="mt-20 scroll-mt-28 border-t border-rs-border/60 pt-14 sm:mt-24 sm:pt-16"
+          className="mt-16 scroll-mt-28 border-t border-white/[0.04] pt-12 sm:mt-20 sm:pt-16"
         >
-          <h2 className="text-base font-semibold text-rs-text sm:text-lg">
-            Impressum
-          </h2>
-          <div className="mt-5 max-w-2xl space-y-4 text-[0.8125rem] leading-relaxed text-rs-text/70 sm:text-sm">
+          <h2 className="text-sm font-semibold text-rs-text sm:text-base">Impressum</h2>
+          <div className="mt-4 max-w-2xl space-y-3 text-[0.8125rem] leading-relaxed text-rs-text/70 sm:text-sm">
             <p>
               <strong className="font-medium text-rs-text">Roos Studio</strong>
             </p>
             <p>
               Kontakt:{' '}
               <a
-                href="mailto:hi@roosstudio.ch"
+                href={`mailto:${site.meta.email}`}
                 className="text-rs-primary/90 underline-offset-2 transition-colors hover:text-rs-primary hover:underline"
               >
-                hi@roosstudio.ch
+                {site.meta.email}
               </a>
             </p>
-            <p className="text-rs-text/65">
+            <p className="text-rs-text/60">
               Inhaltlich Verantwortlicher gemäss geltendem Recht: Roos Studio
               (Kontakt wie oben).
             </p>
@@ -68,12 +64,10 @@ export function Footer() {
 
         <div
           id="datenschutz"
-          className="mt-16 scroll-mt-28 border-t border-rs-border/60 pt-14 sm:mt-20 sm:pt-16"
+          className="mt-12 scroll-mt-28 border-t border-white/[0.04] pt-12 sm:mt-16 sm:pt-16"
         >
-          <h2 className="text-base font-semibold text-rs-text sm:text-lg">
-            Datenschutz
-          </h2>
-          <div className="mt-5 max-w-2xl space-y-4 text-[0.8125rem] leading-relaxed text-rs-text/70 sm:text-sm">
+          <h2 className="text-sm font-semibold text-rs-text sm:text-base">Datenschutz</h2>
+          <div className="mt-4 max-w-2xl space-y-3 text-[0.8125rem] leading-relaxed text-rs-text/70 sm:text-sm">
             <p>
               Diese Website erhebt keine personenbezogenen Daten über Formulare.
               Beim Aufruf können technisch notwendige Server- und
@@ -85,20 +79,20 @@ export function Footer() {
               Bei E-Mail-Kontakt werden die von dir übermittelten Angaben nur zur
               Bearbeitung der Anfrage verwendet.
             </p>
-            <p className="text-rs-text/65">
+            <p className="text-rs-text/60">
               Stand: April 2026. Bei Fragen:{' '}
               <a
-                href="mailto:hi@roosstudio.ch"
+                href={`mailto:${site.meta.email}`}
                 className="text-rs-primary/90 underline-offset-2 transition-colors hover:text-rs-primary hover:underline"
               >
-                hi@roosstudio.ch
+                {site.meta.email}
               </a>
               .
             </p>
           </div>
         </div>
 
-        <p className="mt-16 text-center text-[0.6875rem] tracking-wide text-rs-muted sm:mt-20 sm:text-xs">
+        <p className="mt-12 text-center text-xs tracking-wide text-rs-muted sm:mt-16">
           © {new Date().getFullYear()} Roos Studio
         </p>
       </div>

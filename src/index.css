@@ -12,7 +12,11 @@
   --color-rs-text: #ffffff;
   --color-rs-text-secondary: #a1a1aa;
   --color-rs-muted: #6b7280;
+  /* WireTrack / Enterprise: kühler, ruhiger */
+  --color-rs-wt-body: #9ca3af;
+  --color-rs-wt-muted: #6b7080;
   --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
 }
 
 @layer base {
@@ -27,6 +31,16 @@
     color: var(--color-rs-text);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .font-display {
+    font-family: var(--font-display);
   }
 
   ::selection {
@@ -48,102 +62,6 @@
   66% {
     transform: translate(-6%, 5%) scale(1.05);
     opacity: 0.6;
-  }
-}
-
-@keyframes rs-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-12px);
-  }
-}
-
-@keyframes rs-pulse-glow {
-  0%,
-  100% {
-    opacity: 0.35;
-  }
-  50% {
-    opacity: 0.65;
-  }
-}
-
-@keyframes rs-drift {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-24px, -18px, 0);
-  }
-}
-
-@keyframes rs-logo-glow {
-  0%,
-  100% {
-    filter: drop-shadow(0 0 12px rgba(79, 140, 255, 0.38));
-  }
-  50% {
-    filter: drop-shadow(0 0 20px rgba(157, 77, 255, 0.48));
-  }
-}
-
-@keyframes rs-wave-hand {
-  0%,
-  100% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(16deg);
-  }
-  50% {
-    transform: rotate(-10deg);
-  }
-  75% {
-    transform: rotate(12deg);
-  }
-}
-
-/* Hero-CTA Augen: sichtbares Doppelblinzeln, Endlosschleife */
-@keyframes rs-eye-blink {
-  0%,
-  68%,
-  100% {
-    transform: scaleY(1);
-  }
-  70% {
-    transform: scaleY(0.06);
-  }
-  72% {
-    transform: scaleY(1);
-  }
-  74% {
-    transform: scaleY(0.06);
-  }
-  76% {
-    transform: scaleY(1);
-  }
-}
-
-/* Kran-Haken: nur sichtbar aktiv bei Hover auf den CTA (group) */
-@keyframes rs-crane-build {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  18% {
-    transform: translate3d(0, 3px, 0);
-  }
-  38% {
-    transform: translate3d(0, 0.5px, 0);
-  }
-  58% {
-    transform: translate3d(0, 2.25px, 0);
-  }
-  78% {
-    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -187,28 +105,6 @@
     transform: scale(0.97);
   }
 
-  .rs-hero-cta-eye {
-    transform-origin: center center;
-    will-change: transform;
-  }
-
-  /* Augen blinzeln nur bei Hover/Fokus auf den Button (.group am Link) */
-  .rs-hero-cta-eye--blink-hover {
-    animation: none;
-  }
-
-  .group:hover .rs-hero-cta-eye--blink-hover,
-  .group:focus-visible .rs-hero-cta-eye--blink-hover {
-    animation: rs-eye-blink 2.35s ease-in-out infinite;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .group:hover .rs-hero-cta-eye--blink-hover,
-    .group:focus-visible .rs-hero-cta-eye--blink-hover {
-      animation: none;
-    }
-  }
-
   .rs-cta--sm {
     min-height: 2.75rem;
     padding: 0.5rem 1.35rem;
@@ -243,11 +139,8 @@
   }
 
   .rs-cta-text-rest {
-    color: #fafafa;
-    text-shadow:
-      0 0 18px rgba(255, 255, 255, 0.22),
-      0 0 36px rgba(255, 185, 130, 0.18),
-      0 1px 2px rgba(0, 0, 0, 0.9);
+    color: #f4f4f5;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.65);
     transition: color 0.2s ease, text-shadow 0.2s ease;
   }
 
@@ -271,5 +164,38 @@
     .rs-cta:active {
       transform: none;
     }
+  }
+
+  .rs-surface-fun {
+    background: linear-gradient(150deg, rgba(255, 255, 255, 0.04) 0%, transparent 48%);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.05),
+      0 16px 48px -32px rgba(0, 0, 0, 0.55);
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .rs-surface-fun:hover {
+    box-shadow:
+      0 0 0 1px rgba(79, 140, 255, 0.08),
+      0 18px 52px -30px rgba(0, 0, 0, 0.5);
+  }
+
+  /* WireTrack: tief, seriös, hochwertig */
+  .rs-surface-enterprise {
+    position: relative;
+    background: linear-gradient(180deg, #0c0c12 0%, #08080d 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(79, 140, 255, 0.07),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+      0 0 0 1px rgba(0, 0, 0, 0.35),
+      0 32px 88px -36px rgba(0, 0, 0, 0.82);
+  }
+
+  .rs-surface-enterprise:hover {
+    box-shadow:
+      inset 0 1px 0 rgba(79, 140, 255, 0.1),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+      0 0 0 1px rgba(79, 140, 255, 0.08),
+      0 36px 96px -32px rgba(0, 0, 0, 0.78);
   }
 }

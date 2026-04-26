@@ -41,20 +41,21 @@ export function BrandLogo({ placement, className = '' }: BrandLogoProps) {
       ? 'block text-[0.58rem] font-medium uppercase leading-none tracking-[0.32em] text-rs-text-secondary sm:text-[0.62rem] md:text-xs'
       : 'block text-[0.65rem] font-medium uppercase leading-none tracking-[0.34em] text-rs-text-secondary sm:text-xs md:text-sm'
 
-  const entrance =
-    reduceMotion
-      ? {}
-      : placement === 'header'
-        ? { initial: 'hidden' as const, animate: 'show' as const }
-        : {
-            initial: 'hidden' as const,
-            whileInView: 'show' as const,
-            viewport: { once: true, margin: '-32px' },
-          }
+  const entrance = reduceMotion
+    ? {}
+    : placement === 'header'
+      ? { initial: 'hidden' as const, animate: 'show' as const }
+      : {
+          initial: 'hidden' as const,
+          whileInView: 'show' as const,
+          viewport: { once: true, margin: '-32px' },
+        }
 
   if (reduceMotion) {
     return (
-      <div className={`grid grid-cols-[auto_1fr] grid-rows-2 items-center gap-x-2.5 gap-y-1 sm:gap-x-3 ${className}`}>
+      <div
+        className={`grid grid-cols-[auto_1fr] grid-rows-2 items-center gap-x-2.5 gap-y-1 sm:gap-x-3 ${className}`}
+      >
         <div className="row-span-2 flex items-center">
           <img
             src={ICON_SRC}
@@ -77,37 +78,26 @@ export function BrandLogo({ placement, className = '' }: BrandLogoProps) {
       variants={list}
       {...entrance}
     >
-      <motion.div
-        variants={fadeUp}
-        className="row-span-2 flex items-center"
-        whileHover={{
-          scale: 1.06,
-          transition: { type: 'spring', stiffness: 420, damping: 20 },
-        }}
-      >
-        <span className="relative inline-flex">
-          <span
-            className="pointer-events-none absolute inset-[-8px] rounded-2xl opacity-60 blur-xl"
-            style={{
-              background:
-                'radial-gradient(circle, rgba(79,140,255,0.4) 0%, rgba(157,77,255,0.18) 55%, transparent 72%)',
-            }}
-            aria-hidden
-          />
-          <img
-            src={ICON_SRC}
-            alt=""
-            width={128}
-            height={128}
-            decoding="async"
-            className={`relative z-10 object-contain ${iconSizes} motion-safe:animate-[rs-logo-glow_5s_ease-in-out_infinite]`}
-          />
-        </span>
+      <motion.div variants={fadeUp} className="row-span-2 flex items-center">
+        <img
+          src={ICON_SRC}
+          alt=""
+          width={128}
+          height={128}
+          decoding="async"
+          className={`object-contain ${iconSizes} drop-shadow-[0_0_10px_rgba(79,140,255,0.2)]`}
+        />
       </motion.div>
-      <motion.span className={`${roosClass} col-start-2 row-start-1 self-end`} variants={fadeUp}>
+      <motion.span
+        className={`${roosClass} col-start-2 row-start-1 self-end`}
+        variants={fadeUp}
+      >
         ROOS
       </motion.span>
-      <motion.span className={`${studioClass} col-start-2 row-start-2 self-start`} variants={fadeUp}>
+      <motion.span
+        className={`${studioClass} col-start-2 row-start-2 self-start`}
+        variants={fadeUp}
+      >
         STUDIO
       </motion.span>
     </motion.div>

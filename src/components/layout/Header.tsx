@@ -1,0 +1,57 @@
+import { useReducedMotion } from 'framer-motion'
+import { site } from '../../content/site'
+import { scrollToKontaktEmail } from '../../lib/scrollToKontaktEmail'
+import { BrandLogo } from '../brand/BrandLogo'
+
+export function Header() {
+  const reduceMotion = useReducedMotion()
+  return (
+    <header className="pointer-events-auto fixed inset-x-0 top-0 z-100 border-b border-white/[0.06] bg-rs-bg/90 backdrop-blur-md">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-8">
+        <a
+          href="#top"
+          className="flex shrink-0 items-center py-0.5 outline-none ring-rs-primary/45 focus-visible:ring-2"
+          aria-label="Roos Studio Startseite"
+        >
+          <BrandLogo placement="header" />
+        </a>
+        <nav
+          className="hidden min-w-0 flex-1 justify-center gap-1 sm:flex md:gap-2"
+          aria-label="Hauptnavigation"
+        >
+          {site.header.nav.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="rounded-md px-2.5 py-1.5 text-sm font-medium text-rs-text-secondary transition-colors hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40 md:px-3"
+            >
+              {l.label}
+            </a>
+          ))}
+        </nav>
+        <a
+          href="#kontakt-email"
+          className="rs-cta rs-cta--sm focus-visible:outline-none"
+          aria-label={site.header.cta.aria}
+          onClick={(e) => scrollToKontaktEmail(e, reduceMotion)}
+        >
+          <span className="rs-cta-text-rest">{site.header.cta.long}</span>
+        </a>
+      </div>
+      <nav
+        className="flex border-t border-white/[0.04] px-2 py-2 sm:hidden"
+        aria-label="Hauptnavigation mobil"
+      >
+        {site.header.nav.map((l) => (
+          <a
+            key={l.href}
+            href={l.href}
+            className="min-w-0 flex-1 truncate text-center text-[0.7rem] font-medium text-rs-text-secondary"
+          >
+            {l.label}
+          </a>
+        ))}
+      </nav>
+    </header>
+  )
+}
