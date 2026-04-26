@@ -1,12 +1,19 @@
-import { useReducedMotion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { site } from '../../content/site'
 import { scrollToKontaktEmail } from '../../lib/scrollToKontaktEmail'
+import { EASE } from '../../lib/motionPresets'
 import { BrandLogo } from '../brand/BrandLogo'
 
 export function Header() {
   const reduceMotion = useReducedMotion()
+
   return (
-    <header className="pointer-events-auto fixed inset-x-0 top-0 z-100 border-b border-white/[0.06] bg-rs-bg/90 backdrop-blur-md">
+    <motion.header
+      className="pointer-events-auto fixed inset-x-0 top-0 z-100 border-b border-white/[0.05] bg-[color-mix(in_srgb,var(--color-rs-bg)_82%,transparent)] backdrop-blur-xl backdrop-saturate-150"
+      initial={reduceMotion ? { y: 0, opacity: 1 } : { y: -14, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.45, ease: EASE, delay: reduceMotion ? 0 : 0.04 }}
+    >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-8">
         <a
           href="#top"
@@ -23,7 +30,7 @@ export function Header() {
             <a
               key={l.href}
               href={l.href}
-              className="rounded-md px-2.5 py-1.5 text-sm font-medium text-rs-text-secondary transition-colors hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40 md:px-3"
+              className="rounded-md px-2.5 py-1.5 text-sm font-medium text-rs-text-secondary transition-colors duration-200 hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40 md:px-3"
             >
               {l.label}
             </a>
@@ -31,7 +38,7 @@ export function Header() {
         </nav>
         <a
           href="#kontakt-email"
-          className="rs-cta rs-cta--sm focus-visible:outline-none"
+          className="rs-cta rs-cta--sm rs-cta--shine focus-visible:outline-none"
           aria-label={site.header.cta.aria}
           onClick={(e) => scrollToKontaktEmail(e, reduceMotion)}
         >
@@ -52,6 +59,6 @@ export function Header() {
           </a>
         ))}
       </nav>
-    </header>
+    </motion.header>
   )
 }

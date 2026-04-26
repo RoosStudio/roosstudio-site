@@ -1,17 +1,33 @@
+import { motion, useReducedMotion, type Variants } from 'framer-motion'
 import { site, type ProofItem } from '../../content/site'
+import { EASE, springSoft } from '../../lib/motionPresets'
 import { SectionReveal } from '../ui/SectionReveal'
 
+const gridV: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.07, delayChildren: 0.08 } },
+}
+
+const itemV: Variants = {
+  hidden: { opacity: 0, y: 22, scale: 0.99 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.5, ease: EASE },
+  },
+}
+
 function ProofCard({ item, id }: { item: ProofItem; id?: string }) {
+  const reduce = useReducedMotion()
   const isEnt = item.variant === 'enterprise'
-  return (
-    <article
-      id={id}
-      className={
-        isEnt
-          ? 'rs-surface-enterprise flex h-full flex-col overflow-hidden rounded-xl border border-white/[0.06] sm:rounded-2xl'
-          : 'flex h-full flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-rs-card/40 sm:rounded-2xl'
-      }
-    >
+  const shell =
+    isEnt
+      ? 'rs-surface-enterprise flex h-full flex-col overflow-hidden rounded-xl border border-white/[0.06] sm:rounded-2xl'
+      : 'flex h-full flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-rs-card/50 sm:rounded-2xl'
+
+  const inner = (
+    <>
       <div
         className={`relative aspect-[16/10] w-full overflow-hidden bg-black/40 ${
           isEnt ? 'ring-1 ring-inset ring-white/[0.04]' : ''
@@ -34,24 +50,43 @@ function ProofCard({ item, id }: { item: ProofItem; id?: string }) {
             : 'border-t border-white/[0.04] px-4 py-3.5 sm:px-5 sm:py-4'
         }
       >
-        <h3 className="text-base font-semibold text-rs-text sm:text-lg">
-          {item.title}
-        </h3>
+        <h3 className="text-base font-semibold text-rs-text sm:text-lg">{item.title}</h3>
         <p
           className={
-            isEnt
-              ? 'mt-0.5 text-sm text-rs-wt-body'
-              : 'mt-0.5 text-sm text-rs-text-secondary'
+            isEnt ? 'mt-0.5 text-sm text-rs-wt-body' : 'mt-0.5 text-sm text-rs-text-secondary'
           }
         >
           {item.line}
         </p>
       </div>
-    </article>
+    </>
+  )
+
+  if (reduce) {
+    return (
+      <article id={id} className={shell}>
+        {inner}
+      </article>
+    )
+  }
+
+  return (
+    <motion.article
+      id={id}
+      className={shell}
+      variants={itemV}
+      whileHover={{ y: -3, scale: 1.006 }}
+      whileTap={{ scale: 0.997 }}
+      transition={springSoft}
+    >
+      {inner}
+    </motion.article>
   )
 }
 
 export function ProofSection() {
+  const reduce = useReducedMotion()
+
   return (
     <section
       id="proof"
@@ -59,7 +94,7 @@ export function ProofSection() {
       aria-labelledby="proof-heading"
     >
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionReveal>
+        <SectionReveal strength="bold" useSpring>
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-rs-primary/90 sm:text-sm">
             {site.proof.sectionEyebrow}
           </p>
@@ -74,16 +109,33 @@ export function ProofSection() {
           </p>
         </SectionReveal>
 
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-4 md:mt-16 lg:grid-cols-2 lg:gap-5">
-          {site.proof.items.map((item, i) => (
-            <SectionReveal key={item.id} delay={0.04 * i}>
+        {reduce ? (
+          <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-4 md:mt-16 lg:gap-5">
+            {site.proof.items.map((item) => (
               <ProofCard
+                key={item.id}
                 item={item}
                 id={item.id === 'wiretrack' ? 'proof-wiretrack' : undefined}
               />
-            </SectionReveal>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <motion.div
+            className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-4 md:mt-16 lg:gap-5"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.12, margin: '0 0 -8% 0' }}
+            variants={gridV}
+          >
+            {site.proof.items.map((item) => (
+              <ProofCard
+                key={item.id}
+                item={item}
+                id={item.id === 'wiretrack' ? 'proof-wiretrack' : undefined}
+              />
+            ))}
+          </motion.div>
+        )}
       </div>
     </section>
   )

@@ -18,10 +18,11 @@ export const site = {
   },
 
   hero: {
-    eyebrow: 'Roos Studio',
-    h1: 'Echte Software. Von Event-Apps bis Operations.',
+    eyebrow: 'Schweiz · Software-Studio',
+    h1Line1: 'Echte Software.',
+    h1Line2: 'Von Event-Apps bis Operations.',
     lede:
-      'Wir entwickeln, was wirklich läuft: experimentelle Live-Apps (Foto, Rally, Kristall) und WireTrack — unsere Plattform für Projekte, Rechte und Betrieb, wenn’s ernst wird.',
+      'Live-Apps, die wirklich laufen. WireTrack, wenn eure Organisation es braucht — nicht nur Präsentation, sondern Betrieb.',
     primaryCta: { label: 'Kontakt', href: '#kontakt-email' },
     secondaryCta: { label: 'Projekte ansehen', href: '#proof' },
   },

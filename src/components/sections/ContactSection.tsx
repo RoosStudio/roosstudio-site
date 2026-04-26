@@ -1,12 +1,13 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { site } from '../../content/site'
+import { springTap } from '../../lib/motionPresets'
 
 const mailtoHref = `mailto:${site.meta.email}?subject=${encodeURIComponent(
   site.contact.mailtoSubject,
 )}`
 
 export function ContactSection() {
-  const reduceMotion = useReducedMotion()
+  const reduce = useReducedMotion()
 
   return (
     <section
@@ -16,14 +17,14 @@ export function ContactSection() {
     >
       <div className="mx-auto max-w-lg px-5 sm:px-8">
         <motion.div
-          className="rounded-2xl border border-white/[0.07] bg-rs-surface/60 p-8 text-center sm:p-10"
-          initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
-          {...(reduceMotion
+          className="rounded-2xl border border-white/[0.08] bg-gradient-to-b from-rs-surface/50 to-rs-card/30 p-8 text-center shadow-[0_24px_64px_-40px_rgba(0,0,0,0.65)] sm:p-10"
+          initial={reduce ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 16, scale: 0.99 }}
+          {...(reduce
             ? {}
             : {
-                whileInView: { opacity: 1, y: 0 },
-                viewport: { once: true, margin: '-40px' },
-                transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const },
+                whileInView: { opacity: 1, y: 0, scale: 1 },
+                viewport: { once: true, amount: 0.35, margin: '-5% 0' },
+                transition: { type: 'spring' as const, stiffness: 70, damping: 20, mass: 0.8 },
               })}
         >
           <h2
@@ -32,16 +33,19 @@ export function ContactSection() {
           >
             {site.contact.sectionTitle}
           </h2>
-          <a
+          <motion.a
             href={mailtoHref}
-            className="rs-cta mx-auto mt-8 inline-flex w-full max-w-sm justify-center focus-visible:outline-none"
+            className="rs-cta rs-cta--shine mx-auto mt-8 inline-flex w-full max-w-sm justify-center focus-visible:outline-none"
+            whileHover={reduce ? undefined : { scale: 1.02 }}
+            whileTap={reduce ? undefined : { scale: 0.98 }}
+            transition={springTap}
           >
             <span className="rs-cta-text-rest">{site.contact.cta}</span>
-          </a>
+          </motion.a>
           <a
             id="kontakt-email"
             href={mailtoHref}
-            className="mt-6 block scroll-mt-32 font-mono text-sm text-rs-primary/95 hover:text-rs-primary sm:scroll-mt-40 sm:text-base"
+            className="mt-6 block scroll-mt-32 font-mono text-sm text-rs-primary/95 transition-colors hover:text-white sm:scroll-mt-40 sm:text-base"
           >
             {site.meta.email}
           </a>

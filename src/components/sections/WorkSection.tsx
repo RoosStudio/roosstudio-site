@@ -1,22 +1,10 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { site } from '../../content/site'
+import { EASE } from '../../lib/motionPresets'
 import { SectionReveal } from '../ui/SectionReveal'
 
-const ease = [0.22, 1, 0.36, 1] as const
-const inView = { once: true, margin: '-50px' } as const
-
 export function WorkSection() {
-  const reduceMotion = useReducedMotion()
-
-  const pMotion = (delay: number) =>
-    reduceMotion
-      ? {}
-      : {
-          initial: { opacity: 0, y: 6 } as const,
-          whileInView: { opacity: 1, y: 0 } as const,
-          viewport: inView,
-          transition: { duration: 0.4, delay, ease },
-        }
+  const reduce = useReducedMotion()
 
   return (
     <section
@@ -25,7 +13,7 @@ export function WorkSection() {
       aria-labelledby="arbeit-heading"
     >
       <div className="mx-auto max-w-2xl px-5 sm:px-8">
-        <SectionReveal>
+        <SectionReveal strength="bold" useSpring>
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-rs-primary/90 sm:text-sm">
             {site.work.sectionEyebrow}
           </p>
@@ -44,22 +32,29 @@ export function WorkSection() {
           role="list"
         >
           {site.work.principles.map((p, i) => (
-            <li key={p.title} className="flex flex-col gap-0.5 py-5 sm:py-6">
+            <motion.li
+              key={p.title}
+              className="flex flex-col gap-0.5 py-5 sm:py-6"
+              initial={reduce ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y: 12, x: -8 }}
+              whileInView={{ opacity: 1, y: 0, x: 0 }}
+              viewport={{ once: true, amount: 0.35, margin: '0 0 -10% 0' }}
+              transition={{ delay: 0.04 * i, duration: 0.48, ease: EASE }}
+            >
               <div className="flex items-baseline justify-between gap-3">
                 <h3 className="font-display text-lg font-bold text-rs-text sm:text-xl">
                   {p.title}
                 </h3>
-                <span className="font-mono text-[0.7rem] tabular-nums text-rs-muted" aria-hidden>
+                <span
+                  className="font-mono text-[0.7rem] tabular-nums text-rs-muted"
+                  aria-hidden
+                >
                   0{i + 1}
                 </span>
               </div>
-              <motion.p
-                className="text-sm leading-relaxed text-rs-text-secondary sm:text-base"
-                {...pMotion(0.04 * i)}
-              >
+              <p className="text-sm leading-relaxed text-rs-text-secondary sm:text-base">
                 {p.line}
-              </motion.p>
-            </li>
+              </p>
+            </motion.li>
           ))}
         </ul>
       </div>

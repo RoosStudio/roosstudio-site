@@ -1,3 +1,5 @@
+import { Atmosphere } from './components/ui/Atmosphere'
+import { ScrollProgress } from './components/ui/ScrollProgress'
 import { Header } from './components/layout/Header'
 import { Footer } from './components/layout/Footer'
 import { ContactSection } from './components/sections/ContactSection'
@@ -8,16 +10,20 @@ import { WorkSection } from './components/sections/WorkSection'
 
 function App() {
   return (
-    <div className="min-h-dvh bg-rs-bg text-rs-text antialiased">
-      <Header />
-      <main>
-        <HeroSection />
-        <ProductSplitSection />
-        <ProofSection />
-        <WorkSection />
-        <ContactSection />
-      </main>
-      <Footer />
+    <div className="relative min-h-dvh bg-rs-bg text-rs-text antialiased">
+      <Atmosphere />
+      <ScrollProgress />
+      <div className="relative z-10">
+        <Header />
+        <main>
+          <HeroSection />
+          <ProductSplitSection />
+          <ProofSection />
+          <WorkSection />
+          <ContactSection />
+        </main>
+        <Footer />
+      </div>
     </div>
   )
 }
