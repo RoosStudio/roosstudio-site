@@ -26,30 +26,25 @@ export function ProductSplitSection() {
   return (
     <section
       id="angebot"
-      className="scroll-mt-24 border-t border-rs-border/80 bg-rs-bg py-20 sm:scroll-mt-28 sm:py-28 md:py-32"
+      className="rs-section-scroll-mt rs-section-border bg-rs-bg rs-section-y"
       aria-labelledby="angebot-title"
     >
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+      <div className="rs-section-inner">
         <SectionReveal strength="bold" useSpring>
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-rs-primary/90 sm:text-sm">
-            {site.split.sectionEyebrow}
-          </p>
-          <h2
-            id="angebot-title"
-            className="mt-2 max-w-2xl font-display text-2xl font-bold leading-tight tracking-tight text-rs-text sm:mt-3 sm:text-4xl md:text-[2.35rem] md:leading-[1.15]"
-          >
+          <p className="rs-eyebrow">{site.split.sectionEyebrow}</p>
+          <h2 id="angebot-title" className="rs-section-title">
             {site.split.sectionTitle}
           </h2>
         </SectionReveal>
 
         {reduce ? (
-          <div className="mt-12 grid gap-5 sm:mt-16 lg:mt-20 lg:grid-cols-2 lg:items-stretch lg:gap-8">
+          <div className="mt-12 grid gap-5 sm:mt-14 md:mt-16 lg:grid-cols-2 lg:items-stretch lg:gap-8">
             <FunCard />
             <WTCard />
           </div>
         ) : (
           <motion.div
-            className="mt-12 grid gap-5 sm:mt-16 lg:mt-20 lg:grid-cols-2 lg:items-stretch lg:gap-8"
+            className="mt-12 grid gap-5 sm:mt-14 md:mt-16 lg:grid-cols-2 lg:items-stretch lg:gap-8"
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.15, margin: '0px 0px -10% 0px' }}
@@ -93,7 +88,7 @@ function FunCard() {
       </ul>
       <a
         href="#proof"
-        className="mt-auto inline-flex w-fit items-center pt-7 text-sm font-semibold text-rs-primary transition hover:text-white"
+        className="rs-link-ghost mt-auto inline-flex w-fit items-center rounded-sm pt-7 text-sm font-semibold text-rs-primary ring-offset-rs-bg transition hover:text-white"
       >
         Projekte
         <span className="ml-1" aria-hidden>
@@ -148,7 +143,7 @@ function WTCard() {
         </ul>
         <a
           href="#proof-wiretrack"
-          className="mt-auto inline-flex w-fit items-center pt-5 text-sm font-medium text-white/90 transition hover:text-white"
+          className="rs-link-ghost mt-auto inline-flex w-fit items-center rounded-sm pt-5 text-sm font-medium text-white/90 ring-offset-[#08080d] transition hover:text-white"
         >
           Im Überblick
           <span className="ml-1 text-rs-primary" aria-hidden>

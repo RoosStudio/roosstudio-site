@@ -30,7 +30,7 @@ export function Header() {
             <a
               key={l.href}
               href={l.href}
-              className="rounded-md px-2.5 py-1.5 text-sm font-medium text-rs-text-secondary transition-colors duration-200 hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40 md:px-3"
+              className="rounded-md px-2.5 py-1.5 text-sm font-medium text-rs-text-secondary transition-colors duration-200 hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[color-mix(in_srgb,var(--color-rs-bg)_82%,transparent)] md:px-3"
             >
               {l.label}
             </a>
@@ -46,14 +46,14 @@ export function Header() {
         </a>
       </div>
       <nav
-        className="flex border-t border-white/[0.04] px-2 py-2 sm:hidden"
+        className="flex gap-0.5 border-t border-white/[0.04] px-2 pb-2.5 pt-1 sm:hidden"
         aria-label="Hauptnavigation mobil"
       >
         {site.header.nav.map((l) => (
           <a
             key={l.href}
             href={l.href}
-            className="min-w-0 flex-1 truncate text-center text-[0.7rem] font-medium text-rs-text-secondary"
+            className="min-w-0 flex-1 truncate rounded-md px-1 py-2.5 text-center text-[0.7rem] font-medium text-rs-text-secondary transition-colors hover:bg-white/[0.04] hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/45 focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg"
           >
             {l.label}
           </a>

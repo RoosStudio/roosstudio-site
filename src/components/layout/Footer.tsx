@@ -24,13 +24,13 @@ export function Footer() {
           >
             <a
               href="#impressum"
-              className="transition-colors hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/35"
+              className="rounded-sm transition-colors hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg"
             >
               Impressum
             </a>
             <a
               href="#datenschutz"
-              className="transition-colors hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/35"
+              className="rounded-sm transition-colors hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg"
             >
               Datenschutz
             </a>
@@ -80,7 +80,7 @@ export function Footer() {
               Bearbeitung der Anfrage verwendet.
             </p>
             <p className="text-rs-text/60">
-              Stand: April 2026. Bei Fragen:{' '}
+              Stand: Mai 2026. Bei Fragen:{' '}
               <a
                 href={`mailto:${site.meta.email}`}
                 className="text-rs-primary/90 underline-offset-2 transition-colors hover:text-rs-primary hover:underline"

@@ -19,7 +19,7 @@ export function ScrollProgress() {
       style={{ marginTop: '-0.5px' }}
     >
       <motion.div
-        className="h-full w-full origin-left rounded-full bg-gradient-to-r from-rs-primary/25 via-white/50 to-rs-primary/20"
+        className="h-full w-full origin-left rounded-full bg-gradient-to-r from-rs-primary/90 via-[color-mix(in_srgb,var(--color-rs-gradient-mid)_75%,#fff_25%)] to-cyan-400/75 shadow-[0_0_12px_color-mix(in_srgb,var(--color-rs-primary)_40%,transparent)]"
         style={{ scaleX, transformOrigin: '0% 50%' }}
       />
     </div>

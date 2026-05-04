@@ -27,7 +27,7 @@ export function HeroSection() {
     <section
       ref={ref}
       id="top"
-      className="relative flex min-h-[100dvh] flex-col justify-center overflow-hidden pt-[5.5rem] sm:pt-24"
+      className="relative flex min-h-dvh flex-col justify-center overflow-hidden pt-22 sm:pt-24"
       aria-label="Einstieg"
     >
       <div
@@ -72,17 +72,14 @@ export function HeroSection() {
         aria-hidden
       />
 
-      <motion.div
-        className="relative mx-auto w-full max-w-6xl px-5 sm:px-8"
-        style={{ y: contentY }}
-      >
+      <motion.div className="rs-section-inner relative" style={{ y: contentY }}>
         <div className="mt-0 flex items-center gap-3.5 sm:gap-4">
           <span className="rs-eyebrow-tick" aria-hidden />
           <motion.p
             initial={reduce ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 6, scale: 0.99 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.5, ease: EASE }}
-            className="text-[0.7rem] font-medium uppercase tracking-[0.32em] text-zinc-500 sm:text-xs"
+            className="font-mono text-[0.65rem] font-medium uppercase tracking-[0.2em] text-zinc-400 sm:text-xs sm:tracking-[0.24em]"
           >
             {site.hero.eyebrow}
           </motion.p>
@@ -108,7 +105,7 @@ export function HeroSection() {
         >
           <motion.a
             href={site.hero.primaryCta.href}
-            className="rs-cta rs-cta--shine min-w-[10rem] justify-center focus-visible:outline-none"
+            className="rs-cta rs-cta--shine min-w-40 justify-center focus-visible:outline-none"
             onClick={(e) => scrollToKontaktEmail(e, reduce)}
             whileHover={reduce ? undefined : { scale: 1.03 }}
             whileTap={reduce ? undefined : { scale: 0.98 }}
@@ -118,7 +115,7 @@ export function HeroSection() {
           </motion.a>
           <motion.a
             href={site.hero.secondaryCta.href}
-            className="group inline-flex items-center border-b border-white/0 pb-0.5 text-sm font-medium text-rs-text/90 sm:text-base"
+            className="rs-link-ghost group inline-flex items-center rounded-sm border-b border-white/0 pb-0.5 text-sm font-medium text-rs-text/90 ring-offset-rs-bg sm:text-base"
             initial={reduce ? { opacity: 1 } : { opacity: 0, x: -6 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.85, duration: 0.4, ease: EASE }}

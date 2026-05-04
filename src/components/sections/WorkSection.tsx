@@ -9,26 +9,19 @@ export function WorkSection() {
   return (
     <section
       id="arbeit"
-      className="scroll-mt-24 border-t border-rs-border/80 bg-rs-bg py-20 sm:scroll-mt-28 sm:py-28 md:py-32"
+      className="rs-section-scroll-mt rs-section-border bg-rs-bg rs-section-y"
       aria-labelledby="arbeit-heading"
     >
-      <div className="mx-auto max-w-2xl px-5 sm:px-8">
+      <div className="rs-section-inner">
         <SectionReveal strength="bold" useSpring>
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-rs-primary/90 sm:text-sm">
-            {site.work.sectionEyebrow}
-          </p>
-          <h2
-            id="arbeit-heading"
-            className="mt-2 font-display text-2xl font-bold leading-tight sm:text-4xl"
-          >
+          <p className="rs-eyebrow">{site.work.sectionEyebrow}</p>
+          <h2 id="arbeit-heading" className="rs-section-title">
             {site.work.title}
           </h2>
-          <p className="mt-3 text-sm text-rs-text-secondary sm:mt-4 sm:text-base">
-            {site.work.intro}
-          </p>
+          <p className="rs-section-lede max-w-3xl">{site.work.intro}</p>
         </SectionReveal>
         <ul
-          className="mt-10 divide-y divide-white/[0.06] border-t border-b border-white/[0.06] sm:mt-12"
+          className="mt-12 max-w-2xl divide-y divide-white/[0.06] border-t border-b border-white/[0.06] sm:mt-14"
           role="list"
         >
           {site.work.principles.map((p, i) => (

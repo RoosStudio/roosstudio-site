@@ -18,7 +18,15 @@ const itemV: Variants = {
   },
 }
 
-function ProofCard({ item, id }: { item: ProofItem; id?: string }) {
+function ProofCard({
+  item,
+  id,
+  sizes,
+}: {
+  item: ProofItem
+  id?: string
+  sizes: string
+}) {
   const reduce = useReducedMotion()
   const isEnt = item.variant === 'enterprise'
   const shell =
@@ -38,6 +46,7 @@ function ProofCard({ item, id }: { item: ProofItem; id?: string }) {
           alt={item.alt}
           loading="lazy"
           decoding="async"
+          sizes={sizes}
           className="h-full w-full object-cover object-top"
           width={1600}
           height={1000}
@@ -84,44 +93,40 @@ function ProofCard({ item, id }: { item: ProofItem; id?: string }) {
   )
 }
 
+const proofImgSizes = '(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 34rem'
+
 export function ProofSection() {
   const reduce = useReducedMotion()
 
   return (
     <section
       id="proof"
-      className="scroll-mt-24 border-t border-rs-border/80 bg-[color-mix(in_srgb,var(--color-rs-surface)_88%,#000_12%)] py-16 sm:scroll-mt-28 sm:py-24 md:py-28"
+      className="rs-section-scroll-mt rs-section-border bg-[color-mix(in_srgb,var(--color-rs-surface)_88%,#000_12%)] rs-section-y"
       aria-labelledby="proof-heading"
     >
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+      <div className="rs-section-inner">
         <SectionReveal strength="bold" useSpring>
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-rs-primary/90 sm:text-sm">
-            {site.proof.sectionEyebrow}
-          </p>
-          <h2
-            id="proof-heading"
-            className="mt-2 max-w-2xl font-display text-2xl font-bold leading-tight sm:text-4xl"
-          >
+          <p className="rs-eyebrow">{site.proof.sectionEyebrow}</p>
+          <h2 id="proof-heading" className="rs-section-title">
             {site.proof.sectionTitle}
           </h2>
-          <p className="mt-3 max-w-xl text-sm text-rs-text-secondary sm:mt-4 sm:text-base">
-            {site.proof.lede}
-          </p>
+          <p className="rs-section-lede">{site.proof.lede}</p>
         </SectionReveal>
 
         {reduce ? (
-          <div className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-4 md:mt-16 lg:gap-5">
+          <div className="mt-12 grid grid-cols-1 gap-4 sm:mt-14 sm:grid-cols-2 sm:gap-5 md:mt-16 lg:gap-6">
             {site.proof.items.map((item) => (
               <ProofCard
                 key={item.id}
                 item={item}
+                sizes={proofImgSizes}
                 id={item.id === 'wiretrack' ? 'proof-wiretrack' : undefined}
               />
             ))}
           </div>
         ) : (
           <motion.div
-            className="mt-10 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-4 md:mt-16 lg:gap-5"
+            className="mt-12 grid grid-cols-1 gap-4 sm:mt-14 sm:grid-cols-2 sm:gap-5 md:mt-16 lg:gap-6"
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.12, margin: '0px 0px -8% 0px' }}
@@ -131,6 +136,7 @@ export function ProofSection() {
               <ProofCard
                 key={item.id}
                 item={item}
+                sizes={proofImgSizes}
                 id={item.id === 'wiretrack' ? 'proof-wiretrack' : undefined}
               />
             ))}

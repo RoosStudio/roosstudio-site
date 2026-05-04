@@ -1,5 +1,5 @@
 /**
- * Zentrale Inhalte — Roos Studio. Ton: Studio/Marke («Wir»), B2B-tauglich, ohne Buzzwords.
+ * Zentrale Inhalte — Roos Studio. Ton: Studio/Marke («Wir»), B2B-tauglich, klar & mit Biss.
  */
 export const site = {
   meta: {
@@ -9,8 +9,8 @@ export const site = {
 
   header: {
     nav: [
-      { href: '#angebot', label: 'Zwei Linien' },
-      { href: '#proof', label: 'Projekte' },
+      { href: '#angebot', label: 'Live & Ops' },
+      { href: '#proof', label: 'Screens' },
       { href: '#arbeit', label: 'Arbeitsweise' },
       { href: '#kontakt', label: 'Kontakt' },
     ] as const,
@@ -18,25 +18,25 @@ export const site = {
   },
 
   hero: {
-    eyebrow: 'Schweiz · Software-Studio',
-    h1Line1: 'Echte Software.',
-    h1Line2: 'Von Event-Apps bis Operations.',
+    eyebrow: 'Idee → Deploy · Schweiz',
+    h1Line1: 'Von der Idee',
+    h1Line2: 'zu Software zum Anfassen.',
     lede:
-      'Live-Apps, die wirklich laufen. WireTrack, wenn eure Organisation es braucht — nicht nur Präsentation, sondern Betrieb.',
+      'Klar, modern, hochwertig: Live-Apps, die vor Publikum bestehen — und WireTrack, wenn bei euch Operations zählt. Nicht nur schön im Deck, sondern klickbar im Alltag.',
     primaryCta: { label: 'Kontakt', href: '#kontakt-email' },
-    secondaryCta: { label: 'Projekte ansehen', href: '#proof' },
+    secondaryCta: { label: 'Screens ansehen', href: '#proof' },
   },
 
   split: {
-    sectionEyebrow: 'Position',
-    sectionTitle: 'Eine Werkstatt, zwei Schwerpunkte.',
+    sectionEyebrow: 'Zwei Geschwindigkeiten',
+    sectionTitle: 'Eine Werkstatt — Spielraum für Events, Tiefgang für Operations.',
     fun: {
-      kicker: 'Experimente & Live-Apps',
+      kicker: 'Live & Experimente',
       title: 'Foto, Rally, Kristall',
       lede:
-        'Hochwertig umgesetzt, live im Einsatz: Galerien, Roadtrip, Scoreboards — sichtbar, nicht Deko.',
+        'Verspielt im Auftritt, seriös im Code: Galerien, Roadtrip, Scoreboards — live, messbar, ohne Deko-UI.',
       products: [
-        { name: 'Foto', note: 'Events & Gallerie' },
+        { name: 'Foto', note: 'Events & Galerie' },
         { name: 'Rally', note: 'Roadtrip & Tasks' },
         { name: 'Kristall', note: 'Live-Score' },
       ] as const,
@@ -45,19 +45,20 @@ export const site = {
       kicker: 'Produkt',
       title: 'WireTrack',
       tagline: 'Operations-Plattform',
-      lede: 'Projekte, Rollen, Tickets, Anbindungen — ein System für Teams, die liefern müssen.',
+      lede:
+        'Tickets, Rollen, Projekte, Anbindungen — ein System für Teams, die liefern müssen, nicht nur reporten.',
       pillars: [
-        { t: 'Operations', b: 'Projekte und Status ohne Tool-Sprawl.' },
+        { t: 'Operations', b: 'Status und Arbeit ohne Tool-Sprawl.' },
         { t: 'Kontrolle', b: 'Rechte, Teams, nachvollziehbar.' },
-        { t: 'Anschluss', b: 'Schnittstellen statt E-Mail-Grab.' },
+        { t: 'Anschluss', b: 'APIs & Integration statt E-Mail-Grab.' },
       ] as const,
     },
   },
 
   proof: {
-    sectionEyebrow: 'Produkte',
-    sectionTitle: 'Gebaut. Genutzt. Messbar.',
-    lede: 'Echte Oberflächen, echte Einsätze — kein konzipiertes Mockup.',
+    sectionEyebrow: 'Nachweis',
+    sectionTitle: 'Screens — nicht Storyboards.',
+    lede: 'Echte Oberflächen in echten Einsätzen. Kein Mockup-Fake, kein Moodboard-Hochglanz.',
     items: [
       {
         id: 'foto',
@@ -96,23 +97,33 @@ export const site = {
 
   work: {
     sectionEyebrow: 'Arbeitsweise',
-    title: 'Schnell, klar, betriebsfest.',
-    intro: 'Kein Theorie-Werk. Wir arbeiten so, dass Software in eurer Organisation bestehen kann.',
+    title: 'Schnell bauen. Hart testen. Sauber betreiben.',
+    intro:
+      'Kein Theorie-Werk: Wir liefern so, dass eure Software in der Organisation übersteht — nicht nur am Launch-Tag glänzt.',
     principles: [
-      { title: 'Schnell bauen', line: 'Erste funktionierende Version vor der endlosen Abstimmungsschleife.' },
-      { title: 'Klar testen', line: 'Use Cases, Randfälle, Echtgerät — bevor’s die Nutzer treffen.' },
-      { title: 'Stabil betreiben', line: 'Wartung und Anbindung mitgedacht, nicht «mal live schalten».' },
+      {
+        title: 'Schnell bauen',
+        line: 'Erste Version, die sich anfühlt — bevor die Abstimmungsschleife ewig wird.',
+      },
+      {
+        title: 'Klar testen',
+        line: 'Use Cases, Randfälle, echtes Gerät — bevor’s die Gäste oder Teams treffen.',
+      },
+      {
+        title: 'Stabil betreiben',
+        line: 'Deploy, Wartung, Anbindung mitgedacht — nicht «mal live» und dann Funkstille.',
+      },
     ] as const,
   },
 
   contact: {
-    sectionTitle: 'Projekt im Kopf? Schreibt uns.',
+    sectionTitle: 'Projekt im Kopf? Machen wir’s greifbar.',
     cta: 'E-Mail',
     mailtoSubject: 'Anfrage — Roos Studio',
   },
 
   footer: {
-    tagline: 'Software-Studio. Schweiz. Kreativ gebaut, seriös betrieben.',
+    tagline: 'Roos Studio · Schweiz · Idee wird Produkt',
   },
 } as const
 

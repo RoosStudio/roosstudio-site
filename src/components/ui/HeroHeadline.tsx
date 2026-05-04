@@ -17,7 +17,7 @@ export function HeroHeadline({ line1, line2, className = '' }: HeroHeadlineProps
 
   return (
     <h1
-      className={`font-display text-[clamp(2.1rem,5.6vw,3.55rem)] font-semibold leading-[1.04] tracking-[-0.035em] text-white ${className}`}
+      className={`rs-hero-h1 font-display text-[clamp(2.35rem,6.2vw,4rem)] font-semibold leading-[1.03] tracking-[-0.038em] text-white ${className}`}
     >
       {reduce ? (
         <>
@@ -36,7 +36,7 @@ export function HeroHeadline({ line1, line2, className = '' }: HeroHeadlineProps
             />
           </span>
           <motion.span
-            className="rs-h1-subline mt-1.5 block bg-gradient-to-br from-zinc-100/95 via-zinc-300/90 to-zinc-500/80 bg-clip-text font-medium text-transparent [text-wrap:balance] sm:mt-2"
+            className="rs-h1-subline mt-1.5 block bg-gradient-to-br from-white via-[color-mix(in_srgb,var(--color-rs-primary)_38%,#fff_62%)] to-[color-mix(in_srgb,var(--color-rs-gradient-end)_55%,#a1a1aa_45%)] bg-clip-text font-medium text-transparent [text-wrap:balance] sm:mt-2"
             style={{ willChange: 'clip-path' }}
             initial={{ clipPath: 'inset(0 0 0 100%)' }}
             animate={{ clipPath: 'inset(0 0 0 0%)' }}

@@ -21,8 +21,22 @@
 }
 
 @layer base {
+  /* Hero: dezenter Bloom — „Signature“, ohne Kitsch */
+  .rs-hero-h1 {
+    text-shadow:
+      0 1px 0 rgba(0, 0, 0, 0.35),
+      0 0 42px color-mix(in srgb, var(--color-rs-primary) 22%, transparent),
+      0 0 88px color-mix(in srgb, var(--color-rs-gradient-end) 12%, transparent);
+  }
+
   html {
     scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   body {
@@ -343,5 +357,42 @@
     height: 1.125rem;
     background: linear-gradient(180deg, var(--color-rs-primary) 0%, rgba(255, 255, 255, 0.06) 100%);
     border-radius: 999px;
+  }
+
+  /* Einheitliches Seitenraster (Container, Flächen, Typo) */
+  .rs-section-inner {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .rs-section-y {
+    @apply py-20 sm:py-28 md:py-32;
+  }
+
+  .rs-section-scroll-mt {
+    @apply scroll-mt-24 sm:scroll-mt-28;
+  }
+
+  .rs-section-border {
+    @apply border-t border-rs-border/80;
+  }
+
+  .rs-eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.22em] text-rs-primary/90 sm:text-sm;
+  }
+
+  .rs-section-title {
+    @apply mt-2 max-w-3xl font-display text-2xl font-bold leading-[1.12] tracking-tight text-rs-text sm:mt-3 sm:text-4xl md:text-[2.35rem] md:leading-[1.15];
+  }
+
+  .rs-section-lede {
+    @apply mt-3 max-w-2xl text-sm leading-relaxed text-rs-text-secondary sm:mt-4 sm:text-base;
+  }
+
+  .rs-link-ghost {
+    @apply outline-none transition-colors focus-visible:ring-2 focus-visible:ring-rs-primary/45 focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg;
+  }
+
+  .rs-skip {
+    @apply pointer-events-auto fixed top-3 left-3 z-[300] -translate-y-16 rounded-md border border-white/10 bg-rs-surface px-4 py-2 text-sm font-medium text-rs-text shadow-lg transition focus:translate-y-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/50;
   }
 }
