@@ -51,6 +51,10 @@ function ProofCard({
           width={1600}
           height={1000}
         />
+        <div
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-[color-mix(in_srgb,var(--color-rs-primary)_12%,transparent)] opacity-0 transition-opacity duration-500 motion-safe:group-hover/proof:opacity-100"
+          aria-hidden
+        />
       </div>
       <div
         className={

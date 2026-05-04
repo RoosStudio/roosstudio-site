@@ -16,7 +16,7 @@ export function HeroHeadline({ line1, line2, className = '' }: HeroHeadlineProps
 
   return (
     <h1
-      className={`font-display text-[clamp(2.55rem,7.2vw,4.65rem)] font-semibold leading-[1.02] tracking-[-0.04em] ${className}`}
+      className={`font-display text-[clamp(2.75rem,8.2vw,5.35rem)] font-semibold leading-[1.01] tracking-[-0.042em] ${className}`}
     >
       {reduce ? (
         <>
