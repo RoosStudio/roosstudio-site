@@ -19,7 +19,7 @@ export function ScrollProgress() {
       style={{ marginTop: '-0.5px' }}
     >
       <motion.div
-        className="h-full w-full origin-left rounded-full bg-gradient-to-r from-rs-primary/90 via-[color-mix(in_srgb,var(--color-rs-gradient-mid)_75%,#fff_25%)] to-cyan-400/75 shadow-[0_0_12px_color-mix(in_srgb,var(--color-rs-primary)_40%,transparent)]"
+        className="h-full w-full origin-left rounded-full bg-gradient-to-r from-rs-primary via-[color-mix(in_srgb,var(--color-rs-gradient-mid)_88%,#fff_12%)] via-50% to-cyan-300 shadow-[0_0_16px_rgba(79,140,255,0.55),0_0_28px_rgba(157,77,255,0.25)]"
         style={{ scaleX, transformOrigin: '0% 50%' }}
       />
     </div>

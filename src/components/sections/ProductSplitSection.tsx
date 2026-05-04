@@ -65,7 +65,7 @@ export function ProductSplitSection() {
 
 function FunCard() {
   return (
-    <article className="rs-surface-fun flex h-full min-h-[min(22rem,70vh)] flex-col rounded-2xl border border-white/10 p-7 sm:rounded-3xl sm:p-9">
+    <article className="rs-surface-fun flex h-full min-h-[min(22rem,70vh)] flex-col rounded-2xl border border-white/12 p-7 sm:rounded-3xl sm:p-9 max-md:hover:translate-y-0 md:hover:-translate-y-2 motion-reduce:md:hover:translate-y-0">
       <p className="text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-rs-primary">
         {site.split.fun.kicker}
       </p>
@@ -79,7 +79,7 @@ function FunCard() {
         {site.split.fun.products.map((p) => (
           <li
             key={p.name}
-            className="inline-flex items-baseline gap-1.5 rounded-lg border border-white/[0.08] bg-white/[0.04] px-2.5 py-1.5"
+            className="inline-flex items-baseline gap-1.5 rounded-lg border border-white/[0.1] bg-white/[0.05] px-2.5 py-1.5 transition-all duration-300 hover:border-rs-primary/35 hover:bg-white/[0.09] hover:shadow-[0_0_20px_-6px_rgba(79,140,255,0.35)]"
           >
             <span className="text-sm font-semibold text-rs-text">{p.name}</span>
             <span className="text-xs text-rs-text-secondary">{p.note}</span>
@@ -101,7 +101,7 @@ function FunCard() {
 
 function WTCard() {
   return (
-    <article className="rs-surface-enterprise relative flex h-full min-h-[min(22rem,70vh)] flex-col overflow-hidden rounded-2xl p-7 sm:rounded-3xl sm:p-9">
+    <article className="rs-surface-enterprise relative flex h-full min-h-[min(22rem,70vh)] flex-col overflow-hidden rounded-2xl p-7 sm:rounded-3xl sm:p-9 max-md:hover:translate-y-0 md:hover:-translate-y-1.5 motion-reduce:md:hover:translate-y-0">
       <div
         className="rs-wt-beam-line pointer-events-none absolute left-0 right-0 top-0 z-10 h-px sm:left-0 sm:right-0"
         aria-hidden

@@ -31,8 +31,8 @@ function ProofCard({
   const isEnt = item.variant === 'enterprise'
   const shell =
     isEnt
-      ? 'rs-surface-enterprise flex h-full flex-col overflow-hidden rounded-xl border border-white/[0.06] sm:rounded-2xl'
-      : 'flex h-full flex-col overflow-hidden rounded-xl border border-white/[0.08] bg-rs-card/50 sm:rounded-2xl'
+      ? 'group/proof rs-surface-enterprise flex h-full flex-col overflow-hidden rounded-xl border border-white/[0.08] sm:rounded-2xl'
+      : 'group/proof flex h-full flex-col overflow-hidden rounded-xl border border-white/[0.1] bg-rs-card/55 shadow-[0_0_0_1px_rgba(255,255,255,0.04)] backdrop-blur-[2px] sm:rounded-2xl'
 
   const inner = (
     <>
@@ -47,7 +47,7 @@ function ProofCard({
           loading="lazy"
           decoding="async"
           sizes={sizes}
-          className="h-full w-full object-cover object-top"
+          className="h-full w-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.33,1,0.68,1)] motion-safe:group-hover/proof:scale-[1.06]"
           width={1600}
           height={1000}
         />
@@ -84,7 +84,7 @@ function ProofCard({
       id={id}
       className={shell}
       variants={itemV}
-      whileHover={{ y: -3, scale: 1.006 }}
+      whileHover={{ y: -10, scale: 1.008 }}
       whileTap={{ scale: 0.997 }}
       transition={springSoft}
     >

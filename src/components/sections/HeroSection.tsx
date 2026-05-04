@@ -30,17 +30,22 @@ export function HeroSection() {
       className="relative flex min-h-dvh flex-col justify-center overflow-hidden pt-22 sm:pt-24"
       aria-label="Einstieg"
     >
+      <div className="rs-hero-mesh pointer-events-none absolute inset-0" aria-hidden />
       <div
-        className="rs-hero-mesh pointer-events-none absolute inset-0 opacity-40"
+        className="rs-hero-aurora-burst pointer-events-none absolute -left-1/4 top-1/4 h-[120%] w-[150%] blur-3xl"
+        aria-hidden
+      />
+      <div
+        className="rs-hero-film-streak pointer-events-none absolute inset-0 mix-blend-overlay"
         aria-hidden
       />
       <motion.div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_100%_80%_at_30%_20%,rgba(79,140,255,0.12),transparent_55%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_100%_85%_at_30%_18%,rgba(79,140,255,0.22),transparent_52%)]"
         style={{ opacity: bgOp }}
         aria-hidden
       />
       <motion.div
-        className="pointer-events-none absolute -left-1/3 top-0 h-full w-2/3 opacity-90 blur-3xl will-change-transform"
+        className="pointer-events-none absolute -left-1/3 top-0 h-full w-2/3 opacity-100 blur-3xl will-change-transform"
         style={{ y: blob1Y }}
         aria-hidden
       >
@@ -54,7 +59,7 @@ export function HeroSection() {
         />
       </motion.div>
       <motion.div
-        className="pointer-events-none absolute -right-1/4 bottom-0 h-4/5 w-1/2 opacity-80 blur-3xl will-change-transform"
+        className="pointer-events-none absolute -right-1/4 bottom-0 h-4/5 w-1/2 opacity-95 blur-3xl will-change-transform"
         style={{ y: blob2Y }}
         aria-hidden
       >
@@ -73,16 +78,22 @@ export function HeroSection() {
       />
 
       <motion.div className="rs-section-inner relative" style={{ y: contentY }}>
-        <div className="mt-0 flex items-center gap-3.5 sm:gap-4">
-          <span className="rs-eyebrow-tick" aria-hidden />
-          <motion.p
-            initial={reduce ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 6, scale: 0.99 }}
+        <div className="mt-0 flex items-center gap-3 sm:gap-4">
+          <span className="rs-eyebrow-tick hidden sm:block" aria-hidden />
+          <motion.div
+            initial={reduce ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 8, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.5, ease: EASE }}
-            className="font-mono text-[0.65rem] font-medium uppercase tracking-[0.2em] text-zinc-400 sm:text-xs sm:tracking-[0.24em]"
+            transition={{ duration: 0.55, ease: EASE }}
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3.5 py-2 shadow-[0_0_36px_-8px_rgba(79,140,255,0.45)] backdrop-blur-xl sm:px-4"
           >
-            {site.hero.eyebrow}
-          </motion.p>
+            <span
+              className="motion-safe:animate-pulse h-1.5 w-1.5 shrink-0 rounded-full bg-rs-primary shadow-[0_0_12px_rgba(79,140,255,0.9)] sm:hidden"
+              aria-hidden
+            />
+            <p className="font-mono text-[0.65rem] font-medium uppercase tracking-[0.2em] text-zinc-300 sm:text-xs sm:tracking-[0.22em]">
+              {site.hero.eyebrow}
+            </p>
+          </motion.div>
         </div>
 
         <div className="mt-5 max-w-[20rem] sm:mt-6 sm:max-w-none">
@@ -93,7 +104,7 @@ export function HeroSection() {
           initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.55, duration: 0.5, ease: EASE }}
-          className="mt-6 max-w-2xl text-base leading-relaxed text-rs-text-secondary sm:mt-8 sm:text-lg"
+          className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:mt-8 sm:text-lg sm:text-zinc-400/95"
         >
           {site.hero.lede}
         </motion.p>
@@ -115,7 +126,7 @@ export function HeroSection() {
           </motion.a>
           <motion.a
             href={site.hero.secondaryCta.href}
-            className="rs-link-ghost group inline-flex items-center rounded-sm border-b border-white/0 pb-0.5 text-sm font-medium text-rs-text/90 ring-offset-rs-bg sm:text-base"
+            className="rs-link-ghost group inline-flex items-center rounded-sm border-b border-transparent pb-0.5 text-sm font-medium text-white/90 ring-offset-rs-bg transition-colors hover:border-rs-primary/50 sm:text-base"
             initial={reduce ? { opacity: 1 } : { opacity: 0, x: -6 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.85, duration: 0.4, ease: EASE }}

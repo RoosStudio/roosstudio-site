@@ -5,6 +5,8 @@ type SplitTextProps = {
   text: string
   as?: 'h1' | 'h2' | 'p' | 'span'
   className?: string
+  /** Zusatz-Klassen pro Wort (z. B. Gradient) */
+  wordClassName?: string
   /** Start-Verzögerung vor dem ersten Wort (s) */
   delayStart?: number
   /** Stagger pro Wort (s) */
@@ -21,6 +23,7 @@ export function SplitText({
   text,
   as: Tag = 'span',
   className = '',
+  wordClassName = '',
   delayStart = 0.06,
   stagger = 0.04,
   emphasis = 'normal',
@@ -29,7 +32,11 @@ export function SplitText({
   const words = text.split(' ').filter(Boolean)
 
   if (reduce) {
-    return <Tag className={className}>{text}</Tag>
+    return (
+      <Tag className={className}>
+        <span className={wordClassName}>{text}</span>
+      </Tag>
+    )
   }
 
   const dy = emphasis === 'dramatic' ? 28 : 16
@@ -39,7 +46,7 @@ export function SplitText({
       {words.map((word, i) => (
         <span key={`${i}-${word}`} className="inline [contain:layout]">
           <motion.span
-            className="inline-block will-change-transform"
+            className={['inline-block will-change-transform', wordClassName].filter(Boolean).join(' ')}
             style={{ backfaceVisibility: 'hidden' }}
             initial={{ opacity: 0, y: dy }}
             animate={{ opacity: 1, y: 0 }}
