@@ -9,6 +9,7 @@ export const site = {
 
   header: {
     nav: [
+      { href: '#screens', label: 'Screens' },
       { href: '#tests', label: 'Tests' },
       { href: '#angebot', label: 'Angebot' },
       { href: '#ablauf', label: 'Ablauf' },

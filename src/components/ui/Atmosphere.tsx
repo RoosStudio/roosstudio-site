@@ -1,6 +1,5 @@
 /**
- * Voller Canvas-Hintergrund: Vignette, ruhige Lichtfläche, langsamer Grid-Flow,
- * Film-Rauschen — alles pointer-events: none, für prefers-reduced-motion reduziert/abschaltbar.
+ * Ruhiger Seitenhintergrund — dezente Brand-Glows, kein Grid/Noise.
  */
 export function Atmosphere() {
   return (
@@ -10,8 +9,6 @@ export function Atmosphere() {
     >
       <div className="rs-bg-depth absolute inset-0" />
       <div className="rs-ambient-field absolute inset-0" />
-      <div className="rs-page-grid rs-page-grid--flow absolute inset-0" />
-      <div className="rs-page-noise rs-page-noise--drift absolute inset-0" />
     </div>
   )
 }

@@ -7,6 +7,7 @@ import { Footer } from './components/layout/Footer'
 import { ContactSection } from './components/sections/ContactSection'
 import { HeroSection } from './components/sections/HeroSection'
 import { ProductSplitSection } from './components/sections/ProductSplitSection'
+import { ShowcaseSection } from './components/sections/ShowcaseSection'
 import { TestLabSection } from './components/sections/TestLabSection'
 import { WorkSection } from './components/sections/WorkSection'
 
@@ -21,6 +22,7 @@ function App() {
         <Header />
         <main id="main" tabIndex={-1} aria-label="Hauptinhalt">
           <HeroSection />
+          <ShowcaseSection />
           <TestLabSection />
           <ProductSplitSection />
           <WorkSection />

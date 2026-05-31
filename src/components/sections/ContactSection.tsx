@@ -12,55 +12,43 @@ export function ContactSection() {
   return (
     <section
       id="kontakt"
-      className="rs-section-scroll-mt rs-section-border relative overflow-hidden bg-[#050505] py-20 sm:py-28"
+      className="rs-section-scroll-mt rs-section-border relative overflow-hidden rs-section-y"
       aria-labelledby="kontakt-heading"
     >
-      <div className="pointer-events-none absolute inset-0" aria-hidden>
-        <img
-          src="/showcase/wiretrack-dashboard.png"
-          alt=""
-          role="presentation"
-          loading="lazy"
-          decoding="async"
-          width={1600}
-          height={900}
-          className="absolute right-[-12%] top-8 hidden h-[82%] w-[58rem] object-cover object-top opacity-[0.16] blur-[1px] saturate-75 lg:block"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,#050505_0%,rgba(5,5,5,0.9)_46%,rgba(5,5,5,0.64)_100%)]" />
-        <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(142,230,201,0.52),transparent)]" />
-      </div>
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_100%_0%,rgba(79,140,255,0.06),transparent_60%)]"
+        aria-hidden
+      />
 
       <div className="rs-section-inner relative z-10">
         <motion.div
-          className="grid gap-8 lg:grid-cols-[1fr_27rem] lg:items-stretch"
-          initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+          className="grid gap-10 lg:grid-cols-[1fr_24rem] lg:items-start lg:gap-16"
+          initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
           {...(reduce
             ? {}
             : {
                 whileInView: { opacity: 1, y: 0 },
-                viewport: { once: true, amount: 0.32, margin: '0px 0px -8% 0px' },
-                transition: { duration: 0.55, ease: EASE },
+                viewport: { once: true, amount: 0.32 },
+                transition: { duration: 0.5, ease: EASE },
               })}
         >
-          <div className="flex min-h-[26rem] flex-col justify-between border-y border-white/[0.08] py-8 sm:py-10">
-            <div className="max-w-3xl">
-              <p className="rs-eyebrow">Kontakt</p>
-              <h2
-                id="kontakt-heading"
-                className="mt-3 max-w-3xl font-display text-3xl font-bold leading-[1.08] tracking-normal text-rs-text sm:text-4xl md:text-5xl"
-              >
-                {site.contact.sectionTitle}
-              </h2>
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-rs-text-secondary sm:text-lg">
-                {site.contact.lede}
-              </p>
-            </div>
+          <div className="max-w-2xl">
+            <p className="rs-eyebrow">Kontakt</p>
+            <h2
+              id="kontakt-heading"
+              className="mt-4 text-3xl font-semibold leading-[1.08] tracking-[-0.03em] text-rs-text sm:text-4xl md:text-5xl"
+            >
+              {site.contact.sectionTitle}
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-rs-text-secondary sm:text-lg">
+              {site.contact.lede}
+            </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <motion.a
                 href={mailtoHref}
-                className="rs-cta rs-cta--shine inline-flex min-w-56 justify-center focus-visible:outline-none"
-                whileHover={reduce ? undefined : { y: -2 }}
+                className="rs-cta rs-cta--shine inline-flex min-w-48 justify-center focus-visible:outline-none"
+                whileHover={reduce ? undefined : { y: -1 }}
                 whileTap={reduce ? undefined : { scale: 0.98 }}
                 transition={springTap}
               >
@@ -69,7 +57,7 @@ export function ContactSection() {
               <a
                 id="kontakt-email"
                 href={mailtoHref}
-                className="rs-link-ghost scroll-mt-32 rounded-sm font-mono text-sm text-rs-primary/95 transition-colors ring-offset-rs-bg hover:text-white sm:scroll-mt-40 sm:text-base"
+                className="rs-link-ghost scroll-mt-32 rounded-sm font-mono text-sm text-rs-primary transition-colors hover:text-rs-text sm:scroll-mt-40"
               >
                 {site.meta.email}
               </a>
@@ -79,14 +67,11 @@ export function ContactSection() {
           <ContactPanel />
         </motion.div>
 
-        <ul
-          className="mt-5 grid gap-3 text-sm text-rs-text-secondary sm:grid-cols-3"
-          role="list"
-        >
+        <ul className="mt-10 grid gap-3 sm:grid-cols-3" role="list">
           {site.contact.facts.map((fact) => (
             <li
               key={fact}
-              className="flex items-center gap-2 rounded-lg border border-white/[0.07] bg-white/[0.025] px-3 py-3"
+              className="flex items-center gap-2.5 rounded-full border border-rs-border bg-rs-surface/50 px-4 py-3 text-sm text-rs-text-secondary"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-rs-primary" aria-hidden />
               <span>{fact}</span>
@@ -100,40 +85,36 @@ export function ContactSection() {
 
 function ContactPanel() {
   return (
-    <aside className="relative overflow-hidden rounded-lg border border-rs-primary/20 bg-[linear-gradient(180deg,rgba(142,230,201,0.08),rgba(255,255,255,0.025))] p-5 sm:p-6">
-      <div
-        className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:32px_32px] opacity-50"
-        aria-hidden
-      />
-      <div className="relative z-10">
-        <p className="text-xs font-semibold uppercase text-rs-primary">
-          {site.contact.panel.eyebrow}
-        </p>
-        <h3 className="mt-2 font-display text-2xl font-bold text-white">
-          {site.contact.panel.title}
-        </h3>
+    <aside className="rs-surface-card border-rs-primary/20 p-6 sm:p-7">
+      <p className="text-xs font-medium uppercase tracking-[0.1em] text-rs-primary">
+        {site.contact.panel.eyebrow}
+      </p>
+      <h3 className="mt-2 text-xl font-semibold tracking-[-0.02em] text-rs-text sm:text-2xl">
+        {site.contact.panel.title}
+      </h3>
 
-        <dl className="mt-8 space-y-3">
-          {site.contact.panel.rows.map((row) => (
-            <div
-              key={row.label}
-              className="grid grid-cols-[2.25rem_1fr] items-center gap-3 rounded-lg border border-white/[0.08] bg-black/24 p-3"
-            >
-              <dt className="flex h-9 w-9 items-center justify-center rounded-md bg-rs-primary/10 font-mono text-xs text-rs-primary">
-                {row.label}
-              </dt>
-              <dd className="text-sm font-medium text-zinc-200">{row.value}</dd>
-            </div>
-          ))}
-        </dl>
-
-        <div className="mt-8 rounded-lg border border-white/[0.08] bg-black/26 p-4">
-          <p className="font-mono text-[0.7rem] uppercase text-zinc-500">Status</p>
-          <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/[0.08]">
-            <div className="h-full w-[72%] rounded-full bg-[linear-gradient(90deg,var(--color-rs-primary),#f6c766)]" />
+      <dl className="mt-6 space-y-3">
+        {site.contact.panel.rows.map((row) => (
+          <div
+            key={row.label}
+            className="grid grid-cols-[2.25rem_1fr] items-center gap-3 rounded-lg border border-rs-border bg-rs-bg/40 p-3"
+          >
+            <dt className="flex h-8 w-8 items-center justify-center rounded-full bg-rs-primary/10 font-mono text-xs text-rs-primary">
+              {row.label}
+            </dt>
+            <dd className="text-sm font-medium text-rs-text-secondary">{row.value}</dd>
           </div>
-          <p className="mt-3 text-sm text-rs-text-secondary">Testumgebung zuerst. Livebetrieb danach.</p>
+        ))}
+      </dl>
+
+      <div className="mt-6 rounded-lg border border-rs-border bg-rs-bg/40 p-4">
+        <p className="font-mono text-[0.6875rem] uppercase tracking-wider text-rs-muted">Status</p>
+        <div className="mt-3 h-1 overflow-hidden rounded-full bg-rs-border">
+          <div className="h-full w-[72%] rounded-full bg-gradient-to-r from-rs-primary to-rs-accent" />
         </div>
+        <p className="mt-3 text-sm text-rs-text-secondary">
+          Testumgebung zuerst. Livebetrieb danach.
+        </p>
       </div>
     </aside>
   )
