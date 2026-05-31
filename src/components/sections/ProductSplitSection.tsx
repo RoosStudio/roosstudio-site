@@ -114,10 +114,10 @@ function FunCard() {
         ))}
       </ul>
       <a
-        href="#proof"
+        href="#tests"
         className="rs-link-ghost mt-auto inline-flex w-fit items-center rounded-sm pt-7 text-sm font-semibold text-rs-primary ring-offset-rs-bg transition hover:text-white"
       >
-        Live-Arbeiten ansehen
+        Testumgebungen ansehen
         <span className="ml-1" aria-hidden>
           →
         </span>
@@ -183,10 +183,10 @@ function WTCard() {
           ))}
         </ul>
         <a
-          href="#proof-wiretrack"
+          href="#tests"
           className="rs-link-ghost mt-auto inline-flex w-fit items-center rounded-sm pt-5 text-sm font-medium text-white/90 ring-offset-[#08080d] transition hover:text-white"
         >
-          WireTrack ansehen
+          WireTrack Test ansehen
           <span className="ml-1 text-rs-primary" aria-hidden>
             →
           </span>

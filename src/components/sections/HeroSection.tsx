@@ -163,7 +163,7 @@ export function HeroSection() {
           {previewItems.map((item) => (
             <a
               key={item.id}
-              href={item.id === 'wiretrack' ? '#proof-wiretrack' : '#proof'}
+              href={item.id === 'wiretrack' ? '#tests' : '#angebot'}
               className="group relative aspect-[16/10] overflow-hidden rounded-lg border border-white/[0.08] bg-black/30 outline-none transition focus-visible:ring-2 focus-visible:ring-rs-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg"
             >
               <img

@@ -1,5 +1,5 @@
 /**
- * Zentrale Inhalte — Roos Studio. Ton: Studio/Marke («Wir»), B2B-tauglich, klar und präzise.
+ * Zentrale Inhalte - Roos Studio. Ton: direkt, hochwertig, produktnah.
  */
 export const site = {
   meta: {
@@ -9,10 +9,9 @@ export const site = {
 
   header: {
     nav: [
-      { href: '#reel', label: 'Reel' },
+      { href: '#tests', label: 'Tests' },
       { href: '#angebot', label: 'Angebot' },
-      { href: '#proof', label: 'Arbeiten' },
-      { href: '#arbeit', label: 'Prozess' },
+      { href: '#ablauf', label: 'Ablauf' },
       { href: '#kontakt', label: 'Kontakt' },
     ] as const,
     cta: { short: 'Kontakt', long: 'Kontakt', aria: 'Zum Kontakt scrollen' },
@@ -23,19 +22,59 @@ export const site = {
     h1Line1: 'Roos Studio',
     h1Line2: 'macht Ideen produktreif.',
     lede:
-      'Wir bauen Web-Apps, Live-Erlebnisse und Operations-Systeme, die schnell echt werden und im Alltag halten. Klar im Interface, sauber im Betrieb, greifbar ab dem ersten Klick.',
+      'Wir bauen Web-Apps, Live-Erlebnisse und Operations-Systeme, die schnell testbar werden und im Alltag halten. Erst eine echte Testumgebung, dann sauber live.',
     primaryCta: { label: 'Projekt starten', href: '#kontakt-email' },
-    secondaryCta: { label: 'Arbeiten ansehen', href: '#proof' },
+    secondaryCta: { label: 'Testumgebungen', href: '#tests' },
     signals: [
-      { value: 'Live', label: 'Event-Tools für Publikum und Teams' },
-      { value: 'Ops', label: 'WireTrack für steuerbare Abläufe' },
-      { value: 'CH', label: 'nah, direkt, produktorientiert' },
+      { value: 'Tests', label: 'WireTrack und NexPlay getrennt vom Livebetrieb' },
+      { value: 'Ops', label: 'Deployments, Rollen und Betrieb von Anfang an mitgedacht' },
+      { value: 'CH', label: 'direkt, pragmatisch, produktorientiert' },
+    ] as const,
+  },
+
+  testlab: {
+    sectionEyebrow: 'Testumgebungen',
+    sectionTitle: 'Besser erst anfassen, dann live schalten.',
+    lede:
+      'Ja, das macht Sinn: jede App bekommt eine eigene Test-URL. WireTrack kann dort geprüft werden, NexPlay bekommt denselben Weg, sobald die erste Version steht.',
+    environments: [
+      {
+        id: 'wiretrack',
+        name: 'WireTrack',
+        kicker: 'Operations-App',
+        status: 'Test bereit',
+        urlLabel: 'test.roosstudio.ch/wiretrack',
+        title: 'Ein sauberer Spielraum für echte Abläufe.',
+        description:
+          'Dashboard, Rollen, Projekte und Widgets werden auf einer getrennten URL geprüft, bevor etwas auf die Live-Umgebung geht.',
+        image: '/showcase/wiretrack-dashboard.png',
+        alt: 'WireTrack Test-Dashboard',
+        bullets: ['eigene Testdaten', 'Rollen und Rechte prüfen', 'Deployment vor Livegang'],
+      },
+      {
+        id: 'nexplay',
+        name: 'NexPlay',
+        kicker: 'Nächste App',
+        status: 'Slot geplant',
+        urlLabel: 'test.roosstudio.ch/nexplay',
+        title: 'Der nächste Testlink ist schon im System gedacht.',
+        description:
+          'Sobald NexPlay als erste Version steht, läuft es ebenfalls als Preview: testen, Feedback sammeln, erst danach live ziehen.',
+        image: null,
+        alt: '',
+        bullets: ['Preview-Link', 'Feedback-Runden', 'Live-Freigabe erst danach'],
+      },
+    ] as const,
+    rules: [
+      { label: 'Getrennte URLs', value: 'Tests bleiben weg von der Live-Seite' },
+      { label: 'Ein Deploy', value: './deploy.sh baut und veröffentlicht' },
+      { label: 'Klare Freigabe', value: 'Preview wird erst nach Check live' },
     ] as const,
   },
 
   split: {
     sectionEyebrow: 'Angebot',
-    sectionTitle: 'Eine Werkstatt für schnelle Live-Produkte und belastbare Operations-Software.',
+    sectionTitle: 'Apps, die nicht nur gut aussehen, sondern in echten Situationen tragen.',
     fun: {
       kicker: 'Live Apps',
       title: 'Event-Software, die sofort verstanden wird.',
@@ -62,7 +101,7 @@ export const site = {
   },
 
   proof: {
-    sectionEyebrow: 'Arbeiten',
+    sectionEyebrow: 'Screens',
     sectionTitle: 'Echte Oberflächen statt Präsentationsnebel.',
     lede: 'Die Screens zeigen, was tatsächlich benutzt wird: klare Zustände, starke Momente und Interfaces, die unter Druck lesbar bleiben.',
     items: [
@@ -101,49 +140,54 @@ export const site = {
     ],
   },
 
-  /** Scroll-Showreel (Trailer-Feeling): Bildbeats aus proof — oder optional MP4 per Scroll scrubben. */
-  cinematic: {
-    sectionId: 'reel',
-    /** z.B. "/showreel.mp4" ins `public/`-Verzeichnis legen — dann Scroll steuert die Timeline. */
-    videoSrc: null as string | null,
-    /** Bildmodus: Scroll-Höhe pro Beat (vh) × Anzahl Screens */
-    vhPerBeat: 115,
-    /** Video-Modus: Gesamt-Scroll-Höhe (vh) zum Durchscrubben */
-    videoScrollVh: 340,
-  },
-
   work: {
-    sectionEyebrow: 'Prozess',
-    title: 'Schnell zur echten Version, sauber bis in den Betrieb.',
+    sectionEyebrow: 'Ablauf',
+    title: 'Von Testlink zu Livebetrieb, ohne Theater.',
     intro:
-      'Wir halten den Weg kurz: erst ein greifbarer Kern, dann die harten Details, dann ein Deployment, das nicht am Launch-Tag endet.',
+      'Der Ablauf wird greifbar: erst eine testbare Version auf dem Server, dann Feedback aus echten Flows, dann ein Deployment, das du wiederholen kannst.',
     principles: [
       {
-        title: 'Kern finden',
-        line: 'Wir schneiden die Idee auf den Moment zu, in dem Nutzer sofort verstehen, warum es das Produkt gibt.',
+        title: 'Testumgebung aufsetzen',
+        line: 'WireTrack und später NexPlay laufen auf eigenen Test-URLs. So kann man klicken, prüfen und entscheiden, ohne die Live-Seite anzufassen.',
       },
       {
-        title: 'Echt testen',
-        line: 'Wir prüfen Flows, Randfälle, Geräte und Belastung, bevor Publikum oder Teams darauf angewiesen sind.',
+        title: 'Echt prüfen',
+        line: 'Wir testen Rollen, Geräte, Inhalte, Randfälle und Belastung mit realistischen Daten statt mit hübschen Folien.',
       },
       {
-        title: 'Sauber betreiben',
-        line: 'Hosting, Deployments, Wartung und Schnittstellen sind Teil der Lösung, nicht ein Nachsatz.',
+        title: 'Live ziehen',
+        line: 'Wenn alles passt, baut das Deploy-Skript die neue Version und legt sie dort ab, wo nginx sie wirklich ausliefert.',
       },
+    ] as const,
+    lanes: [
+      { label: 'Stage', value: 'test.roosstudio.ch' },
+      { label: 'Deploy', value: './deploy.sh' },
+      { label: 'Live', value: 'roosstudio.ch' },
     ] as const,
   },
 
   contact: {
-    sectionTitle: 'Aus einer Idee wird nur dann ein Produkt, wenn man sie anfassen kann.',
-    lede: 'Schick die grobe Richtung. Wir sortieren gemeinsam, was zuerst gebaut werden muss und was warten kann.',
-    cta: 'Projekt anfragen',
-    mailtoSubject: 'Anfrage — Roos Studio',
-    facts: ['Antwort direkt per E-Mail', 'Schweiz / Remote', 'Erste Richtung statt langer Briefings'] as const,
+    sectionTitle: 'Lass uns den ersten Testlink sauber machen.',
+    lede:
+      'Schick die grobe Richtung. Wir sortieren, welche App zuerst auf eine Test-URL gehört und was für den Livebetrieb wirklich nötig ist.',
+    cta: 'Testlink anfragen',
+    mailtoSubject: 'Anfrage - Testumgebung / Roos Studio',
+    facts: ['Antwort direkt per E-Mail', 'Schweiz / Remote', 'Test zuerst, live danach'] as const,
+    panel: {
+      eyebrow: 'Nächster Schritt',
+      title: 'Kurzer Check, dann Test-URL.',
+      rows: [
+        { label: '1', value: 'Welche App?' },
+        { label: '2', value: 'Welche URL?' },
+        { label: '3', value: 'Was muss getestet werden?' },
+      ] as const,
+    },
   },
 
   footer: {
-    tagline: 'Roos Studio · Schweiz · Software zum Anfassen',
+    tagline: 'Roos Studio - Schweiz - Software zum Anfassen',
   },
 } as const
 
 export type ProofItem = (typeof site.proof.items)[number]
+export type TestEnvironment = (typeof site.testlab.environments)[number]
