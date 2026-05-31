@@ -5,6 +5,7 @@ import { SkipToMain } from './components/ui/SkipToMain'
 import { Header } from './components/layout/Header'
 import { Footer } from './components/layout/Footer'
 import { ContactSection } from './components/sections/ContactSection'
+import { CinematicScrollSection } from './components/sections/CinematicScrollSection'
 import { HeroSection } from './components/sections/HeroSection'
 import { ProductSplitSection } from './components/sections/ProductSplitSection'
 import { ProofSection } from './components/sections/ProofSection'
@@ -21,6 +22,7 @@ function App() {
         <Header />
         <main id="main" tabIndex={-1} aria-label="Hauptinhalt">
           <HeroSection />
+          <CinematicScrollSection />
           <ProductSplitSection />
           <ProofSection />
           <WorkSection />

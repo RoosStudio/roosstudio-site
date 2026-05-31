@@ -11,43 +11,37 @@ import type { MouseEvent as ReactMouseEvent } from 'react'
 import { site } from '../../content/site'
 import { scrollToKontaktEmail } from '../../lib/scrollToKontaktEmail'
 import { EASE, springTap } from '../../lib/motionPresets'
-import { HeroFloatingSparks } from '../ui/HeroFloatingSparks'
 import { HeroHeadline } from '../ui/HeroHeadline'
+
+const heroImage = site.proof.items[0]
+const previewItems = site.proof.items
 
 export function HeroSection() {
   const ref = useRef<HTMLElement | null>(null)
   const reduce = useReducedMotion()
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
-  const smoothX = useSpring(mouseX, { stiffness: 52, damping: 22, mass: 0.35 })
-  const smoothY = useSpring(mouseY, { stiffness: 52, damping: 22, mass: 0.35 })
+  const smoothX = useSpring(mouseX, { stiffness: 48, damping: 24, mass: 0.35 })
+  const smoothY = useSpring(mouseY, { stiffness: 48, damping: 24, mass: 0.35 })
 
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start start', 'end start'],
   })
 
-  const y1 = useTransform(scrollYProgress, [0, 0.45], [0, 120])
-  const y2 = useTransform(scrollYProgress, [0, 0.45], [0, -90])
-  const yContent = useTransform(scrollYProgress, [0, 0.4], [0, 40])
-  const opBg = useTransform(scrollYProgress, [0, 0.5], [1, 0.5])
-
-  const blob1x = useTransform(smoothX, (v) => v * 56)
-  const blob1y = useTransform(smoothY, (v) => v * 42)
-  const blob2x = useTransform(smoothX, (v) => v * -48)
-  const blob2y = useTransform(smoothY, (v) => v * -36)
-  const contentMoveX = useTransform(smoothX, (v) => v * 22)
-  const contentYSpring = useTransform([yContent, smoothY], ([cy, my]) => Number(cy) + Number(my) * 14)
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, 140])
+  const contentY = useTransform(scrollYProgress, [0, 0.85], [0, 44])
+  const sceneOpacity = useTransform(scrollYProgress, [0, 0.72], [1, 0.46])
+  const previewX = useTransform(smoothX, (v) => v * 22)
+  const previewY = useTransform(smoothY, (v) => v * 16)
 
   const handlePointer = (e: ReactMouseEvent<HTMLElement>) => {
     if (reduce) return
     const el = ref.current
     if (!el) return
     const r = el.getBoundingClientRect()
-    const x = ((e.clientX - r.left) / r.width - 0.5) * 2
-    const y = ((e.clientY - r.top) / r.height - 0.5) * 2
-    mouseX.set(x)
-    mouseY.set(y)
+    mouseX.set(((e.clientX - r.left) / r.width - 0.5) * 2)
+    mouseY.set(((e.clientY - r.top) / r.height - 0.5) * 2)
   }
 
   const clearPointer = () => {
@@ -55,149 +49,138 @@ export function HeroSection() {
     mouseY.set(0)
   }
 
-  const blob1Y = reduce ? 0 : y1
-  const blob2Y = reduce ? 0 : y2
-  const bgOp = reduce ? 1 : opBg
-
   return (
     <section
       ref={ref}
       id="top"
-      className="relative flex min-h-dvh flex-col justify-center overflow-hidden pt-22 sm:pt-24"
+      className="relative min-h-[92svh] overflow-hidden pt-24 pb-10 sm:pt-28"
       aria-label="Einstieg"
       onMouseMove={handlePointer}
       onMouseLeave={clearPointer}
     >
-      <div className="rs-hero-mesh pointer-events-none absolute inset-0" aria-hidden />
-      <div
-        className="rs-hero-aurora-burst pointer-events-none absolute -left-1/4 top-1/4 h-[120%] w-[150%] blur-3xl"
-        aria-hidden
-      />
-      <div
-        className="rs-hero-film-streak pointer-events-none absolute inset-0 mix-blend-overlay"
-        aria-hidden
-      />
-      <div
-        className="rs-hero-orbit pointer-events-none absolute left-1/2 top-1/2 z-[2] h-[min(120vw,900px)] w-[min(120vw,900px)] -translate-x-1/2 -translate-y-1/2"
-        aria-hidden
-      />
-      <div
-        className="rs-hero-orbit rs-hero-orbit--inner pointer-events-none absolute left-1/2 top-1/2 z-[2] h-[min(65vw,480px)] w-[min(65vw,480px)] -translate-x-1/2 -translate-y-1/2"
-        aria-hidden
-      />
       <motion.div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_100%_85%_at_30%_18%,rgba(79,140,255,0.28),transparent_50%)]"
-        style={{ opacity: bgOp }}
-        aria-hidden
-      />
-      <motion.div
-        className="pointer-events-none absolute -left-1/3 top-0 h-full w-2/3 opacity-100 blur-3xl will-change-transform"
-        style={{ y: blob1Y }}
+        className="pointer-events-none absolute inset-0"
+        style={{ y: reduce ? 0 : bgY, opacity: reduce ? 1 : sceneOpacity }}
         aria-hidden
       >
-        <motion.div
-          className="h-full w-full will-change-transform"
-          style={reduce ? undefined : { x: blob1x, y: blob1y }}
-        >
-          <div
-            className="h-full w-full"
-            style={{
-              background:
-                'radial-gradient(ellipse at 50% 40%, var(--color-rs-gradient-start) 0%, transparent 58%)',
-              animation: reduce ? undefined : 'rs-gradient-shift 18s ease-in-out infinite',
-            }}
-          />
-        </motion.div>
+        <img
+          src={heroImage.image}
+          alt=""
+          role="presentation"
+          width={1920}
+          height={1080}
+          className="h-[112%] w-full scale-[1.03] object-cover object-center opacity-70 saturate-[0.9]"
+          loading="eager"
+          decoding="async"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,5,5,0.98)_0%,rgba(5,5,5,0.76)_43%,rgba(5,5,5,0.9)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.76)_0%,rgba(5,5,5,0.18)_42%,#050505_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_95%_62%_at_24%_24%,rgba(116,215,255,0.18),transparent_58%)]" />
       </motion.div>
-      <motion.div
-        className="pointer-events-none absolute -right-1/4 bottom-0 h-4/5 w-1/2 opacity-100 blur-3xl will-change-transform"
-        style={{ y: blob2Y }}
-        aria-hidden
-      >
-        <motion.div
-          className="h-full w-full will-change-transform"
-          style={reduce ? undefined : { x: blob2x, y: blob2y }}
-        >
-          <div
-            className="h-full w-full"
-            style={{
-              background:
-                'radial-gradient(ellipse at center, var(--color-rs-gradient-end) 0%, transparent 56%)',
-              animation: reduce ? undefined : 'rs-gradient-shift 22s ease-in-out infinite reverse',
-            }}
-          />
-        </motion.div>
-      </motion.div>
-      <div className="rs-hero-vignette pointer-events-none absolute inset-0" aria-hidden />
 
-      {!reduce ? <HeroFloatingSparks /> : null}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-rs-bg to-transparent" />
 
       <motion.div
-        className="rs-section-inner relative z-10"
-        style={{ y: reduce ? 0 : contentYSpring, x: reduce ? 0 : contentMoveX }}
+        className="rs-section-inner relative z-10 flex min-h-[calc(92svh-8.5rem)] flex-col justify-end"
+        style={{ y: reduce ? 0 : contentY }}
       >
-        <div className="mt-0 flex items-center gap-3 sm:gap-4">
-          <span className="rs-eyebrow-tick hidden sm:block" aria-hidden />
-          <motion.div
-            initial={reduce ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 8, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.55, ease: EASE }}
-            className="rs-hero-eyebrow-glow inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.07] px-3.5 py-2 shadow-[0_0_48px_-6px_rgba(79,140,255,0.55),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl sm:px-4"
+        <div className="max-w-4xl">
+          <motion.p
+            initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: EASE }}
+            className="text-xs font-semibold uppercase text-rs-primary sm:text-sm"
           >
-            <span
-              className="motion-safe:animate-pulse h-1.5 w-1.5 shrink-0 rounded-full bg-rs-primary shadow-[0_0_14px_rgba(79,140,255,1)] sm:hidden"
-              aria-hidden
-            />
-            <p className="font-mono text-[0.65rem] font-medium uppercase tracking-[0.2em] text-zinc-200 sm:text-xs sm:tracking-[0.22em]">
-              {site.hero.eyebrow}
-            </p>
+            {site.hero.eyebrow}
+          </motion.p>
+
+          <div className="mt-5 max-w-[23rem] sm:max-w-[44rem] md:max-w-[58rem]">
+            <HeroHeadline line1={site.hero.h1Line1} line2={site.hero.h1Line2} />
+          </div>
+
+          <motion.p
+            initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.42, duration: 0.5, ease: EASE }}
+            className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-300 sm:mt-7 sm:text-lg"
+          >
+            {site.hero.lede}
+          </motion.p>
+
+          <motion.div
+            initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.58, duration: 0.45, ease: EASE }}
+            className="mt-8 flex flex-wrap items-center gap-3 sm:mt-10"
+          >
+            <motion.a
+              href={site.hero.primaryCta.href}
+              className="rs-cta rs-cta--shine min-w-44 justify-center focus-visible:outline-none"
+              onClick={(e) => scrollToKontaktEmail(e, reduce)}
+              whileHover={reduce ? undefined : { y: -2 }}
+              whileTap={reduce ? undefined : { scale: 0.98 }}
+              transition={springTap}
+            >
+              <span className="rs-cta-text-rest">{site.hero.primaryCta.label}</span>
+            </motion.a>
+            <motion.a
+              href={site.hero.secondaryCta.href}
+              className="rs-link-ghost inline-flex min-h-12 items-center rounded-lg border border-white/12 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-rs-primary/45 hover:bg-white/[0.07] sm:text-base"
+              whileHover={reduce ? undefined : { y: -2 }}
+              whileTap={reduce ? undefined : { scale: 0.98 }}
+              transition={springTap}
+            >
+              {site.hero.secondaryCta.label}
+            </motion.a>
           </motion.div>
         </div>
 
-        <div className="relative mt-5 max-w-[20rem] sm:mt-6 sm:max-w-none">
-          <HeroHeadline line1={site.hero.h1Line1} line2={site.hero.h1Line2} />
-        </div>
-
-        <motion.p
-          initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.55, duration: 0.5, ease: EASE }}
-          className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:mt-8 sm:text-lg sm:text-zinc-300/95"
-        >
-          {site.hero.lede}
-        </motion.p>
         <motion.div
-          initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+          className="mt-10 grid gap-3 sm:grid-cols-3 lg:max-w-3xl"
+          initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.72, duration: 0.45, ease: EASE }}
-          className="mt-10 flex flex-wrap items-center gap-4 sm:mt-12"
+          transition={{ delay: 0.72, duration: 0.5, ease: EASE }}
         >
-          <motion.a
-            href={site.hero.primaryCta.href}
-            className="rs-cta rs-cta--shine rs-cta--wow min-w-40 justify-center focus-visible:outline-none"
-            onClick={(e) => scrollToKontaktEmail(e, reduce)}
-            whileHover={reduce ? undefined : { scale: 1.05 }}
-            whileTap={reduce ? undefined : { scale: 0.97 }}
-            transition={springTap}
-          >
-            <span className="rs-cta-text-rest">{site.hero.primaryCta.label}</span>
-          </motion.a>
-          <motion.a
-            href={site.hero.secondaryCta.href}
-            className="rs-link-ghost group inline-flex items-center gap-1 rounded-sm border-b border-transparent pb-0.5 text-sm font-semibold text-white ring-offset-rs-bg transition-colors hover:border-rs-primary/70 sm:text-base"
-            initial={reduce ? { opacity: 1 } : { opacity: 0, x: -6 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.85, duration: 0.4, ease: EASE }}
-            whileHover={reduce ? undefined : { x: 4 }}
-          >
-            {site.hero.secondaryCta.label}
-            <span
-              className="ml-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full border border-rs-primary/35 bg-rs-primary/10 text-rs-primary shadow-[0_0_20px_rgba(79,140,255,0.35)] transition-transform group-hover:translate-y-0.5 group-hover:shadow-[0_0_28px_rgba(79,140,255,0.55)]"
-              aria-hidden
+          {site.hero.signals.map((signal) => (
+            <div
+              key={signal.value}
+              className="rounded-lg border border-white/[0.08] bg-black/20 px-4 py-3 backdrop-blur-md"
             >
-              ↓
-            </span>
-          </motion.a>
+              <p className="font-display text-xl font-semibold text-white">{signal.value}</p>
+              <p className="mt-1 text-sm leading-snug text-zinc-400">{signal.label}</p>
+            </div>
+          ))}
+        </motion.div>
+
+        <motion.div
+          className="mt-8 grid grid-cols-2 gap-2 sm:grid-cols-4"
+          style={reduce ? undefined : { x: previewX, y: previewY }}
+          initial={reduce ? { opacity: 1 } : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.84, duration: 0.55, ease: EASE }}
+          aria-label="Produktvorschau"
+        >
+          {previewItems.map((item) => (
+            <a
+              key={item.id}
+              href={item.id === 'wiretrack' ? '#proof-wiretrack' : '#proof'}
+              className="group relative aspect-[16/10] overflow-hidden rounded-lg border border-white/[0.08] bg-black/30 outline-none transition focus-visible:ring-2 focus-visible:ring-rs-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg"
+            >
+              <img
+                src={item.image}
+                alt=""
+                role="presentation"
+                loading={item.id === heroImage.id ? 'eager' : 'lazy'}
+                decoding="async"
+                width={720}
+                height={450}
+                className="h-full w-full object-cover object-center opacity-70 transition duration-500 group-hover:scale-[1.04] group-hover:opacity-95"
+              />
+              <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/86 to-transparent px-3 pb-2 pt-8 text-xs font-semibold text-white">
+                {item.title}
+              </span>
+            </a>
+          ))}
         </motion.div>
       </motion.div>
     </section>

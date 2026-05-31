@@ -31,13 +31,13 @@ function ProofCard({
   const isEnt = item.variant === 'enterprise'
   const shell =
     isEnt
-      ? 'group/proof rs-surface-enterprise flex h-full flex-col overflow-hidden rounded-xl border border-white/[0.08] sm:rounded-2xl'
-      : 'group/proof flex h-full flex-col overflow-hidden rounded-xl border border-white/[0.1] bg-rs-card/55 shadow-[0_0_0_1px_rgba(255,255,255,0.04)] backdrop-blur-[2px] sm:rounded-2xl'
+      ? 'group/proof rs-surface-enterprise flex h-full flex-col overflow-hidden rounded-lg border border-white/[0.08] lg:col-span-2'
+      : 'group/proof flex h-full flex-col overflow-hidden rounded-lg border border-white/[0.1] bg-rs-card/55 shadow-[0_0_0_1px_rgba(255,255,255,0.04)] backdrop-blur-[2px]'
 
   const inner = (
     <>
       <div
-        className={`relative aspect-[16/10] w-full overflow-hidden bg-black/40 ${
+        className={`relative w-full overflow-hidden bg-black/40 ${isEnt ? 'aspect-[16/7.6]' : 'aspect-[16/10]'} ${
           isEnt ? 'ring-1 ring-inset ring-white/[0.04]' : ''
         }`}
       >
@@ -47,7 +47,9 @@ function ProofCard({
           loading="lazy"
           decoding="async"
           sizes={sizes}
-          className="h-full w-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.33,1,0.68,1)] motion-safe:group-hover/proof:scale-[1.06]"
+          className={`h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.33,1,0.68,1)] motion-safe:group-hover/proof:scale-[1.06] ${
+            item.id === 'foto' ? 'scale-[1.12] object-[70%_center]' : 'object-top'
+          }`}
           width={1600}
           height={1000}
         />
@@ -97,7 +99,7 @@ function ProofCard({
   )
 }
 
-const proofImgSizes = '(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 34rem'
+const proofImgSizes = '(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 46rem'
 
 export function ProofSection() {
   const reduce = useReducedMotion()
@@ -118,7 +120,7 @@ export function ProofSection() {
         </SectionReveal>
 
         {reduce ? (
-          <div className="mt-12 grid grid-cols-1 gap-4 sm:mt-14 sm:grid-cols-2 sm:gap-5 md:mt-16 lg:gap-6">
+          <div className="mt-12 grid grid-cols-1 gap-4 sm:mt-14 sm:grid-cols-2 sm:gap-5 md:mt-16 lg:grid-cols-3 lg:gap-6">
             {site.proof.items.map((item) => (
               <ProofCard
                 key={item.id}
@@ -130,7 +132,7 @@ export function ProofSection() {
           </div>
         ) : (
           <motion.div
-            className="mt-12 grid grid-cols-1 gap-4 sm:mt-14 sm:grid-cols-2 sm:gap-5 md:mt-16 lg:gap-6"
+            className="mt-12 grid grid-cols-1 gap-4 sm:mt-14 sm:grid-cols-2 sm:gap-5 md:mt-16 lg:grid-cols-3 lg:gap-6"
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.12, margin: '0px 0px -8% 0px' }}

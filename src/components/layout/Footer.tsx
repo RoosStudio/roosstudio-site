@@ -92,7 +92,7 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="mt-12 text-center text-xs tracking-wide text-rs-muted sm:mt-16">
+        <p className="mt-12 text-center text-xs tracking-normal text-rs-muted sm:mt-16">
           © {new Date().getFullYear()} Roos Studio
         </p>
       </div>

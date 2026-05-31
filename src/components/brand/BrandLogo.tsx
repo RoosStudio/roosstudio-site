@@ -28,18 +28,18 @@ export function BrandLogo({ placement, className = '' }: BrandLogoProps) {
 
   const iconSizes =
     placement === 'header'
-      ? 'h-10 w-10 sm:h-11 sm:w-11 md:h-[3.35rem] md:w-[3.35rem]'
+      ? 'h-9 w-9 sm:h-10 sm:w-10 md:h-11 md:w-11'
       : 'h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16'
 
   const roosClass =
     placement === 'header'
-      ? 'block text-[1.05rem] font-bold leading-none tracking-tight text-rs-text sm:text-lg md:text-xl'
-      : 'block text-xl font-bold leading-none tracking-tight text-rs-text sm:text-2xl md:text-3xl'
+      ? 'block text-[1.05rem] font-bold leading-none tracking-normal text-rs-text sm:text-lg'
+      : 'block text-xl font-bold leading-none tracking-normal text-rs-text sm:text-2xl md:text-3xl'
 
   const studioClass =
     placement === 'header'
-      ? 'block text-[0.58rem] font-medium uppercase leading-none tracking-[0.32em] text-rs-text-secondary sm:text-[0.62rem] md:text-xs'
-      : 'block text-[0.65rem] font-medium uppercase leading-none tracking-[0.34em] text-rs-text-secondary sm:text-xs md:text-sm'
+      ? 'block text-[0.6rem] font-medium uppercase leading-none tracking-normal text-rs-text-secondary sm:text-xs'
+      : 'block text-[0.7rem] font-medium uppercase leading-none tracking-normal text-rs-text-secondary sm:text-sm'
 
   const entrance = reduceMotion
     ? {}

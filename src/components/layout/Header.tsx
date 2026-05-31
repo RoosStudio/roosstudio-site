@@ -9,7 +9,7 @@ export function Header() {
 
   return (
     <motion.header
-      className="pointer-events-auto fixed inset-x-0 top-0 z-100 border-b border-white/[0.05] bg-[color-mix(in_srgb,var(--color-rs-bg)_82%,transparent)] backdrop-blur-xl backdrop-saturate-150"
+      className="pointer-events-auto fixed inset-x-0 top-0 z-100 border-b border-white/[0.06] bg-[color-mix(in_srgb,var(--color-rs-bg)_88%,transparent)] backdrop-blur-xl backdrop-saturate-150"
       initial={reduceMotion ? { y: 0, opacity: 1 } : { y: -14, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.45, ease: EASE, delay: reduceMotion ? 0 : 0.04 }}
@@ -30,7 +30,7 @@ export function Header() {
             <a
               key={l.href}
               href={l.href}
-              className="rounded-md px-2.5 py-1.5 text-sm font-medium text-rs-text-secondary transition-colors duration-200 hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[color-mix(in_srgb,var(--color-rs-bg)_82%,transparent)] md:px-3"
+              className="rounded-md px-2.5 py-1.5 text-sm font-medium text-rs-text-secondary transition-colors duration-200 hover:bg-white/[0.04] hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[color-mix(in_srgb,var(--color-rs-bg)_82%,transparent)] md:px-3"
             >
               {l.label}
             </a>
@@ -46,14 +46,14 @@ export function Header() {
         </a>
       </div>
       <nav
-        className="flex gap-0.5 border-t border-white/[0.04] px-2 pb-2.5 pt-1 sm:hidden"
+        className="flex gap-1 overflow-x-auto border-t border-white/[0.04] px-2 pb-2.5 pt-1 sm:hidden"
         aria-label="Hauptnavigation mobil"
       >
         {site.header.nav.map((l) => (
           <a
             key={l.href}
             href={l.href}
-            className="min-w-0 flex-1 truncate rounded-md px-1 py-2.5 text-center text-[0.7rem] font-medium text-rs-text-secondary transition-colors hover:bg-white/[0.04] hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/45 focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg"
+            className="shrink-0 rounded-md px-3 py-2.5 text-center text-xs font-medium text-rs-text-secondary transition-colors hover:bg-white/[0.04] hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/45 focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg"
           >
             {l.label}
           </a>

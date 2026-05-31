@@ -9,14 +9,14 @@ type HeroHeadlineProps = {
 }
 
 /**
- * H1: erste Zeile mit Neon-Gradient pro Wort, zweite Zeile mit fliessendem Verlauf + Reveal.
+ * H1: erste Zeile mit ruhigem Gradient pro Wort, zweite Zeile mit dezentem Verlauf + Reveal.
  */
 export function HeroHeadline({ line1, line2, className = '' }: HeroHeadlineProps) {
   const reduce = useReducedMotion()
 
   return (
     <h1
-      className={`font-display text-[clamp(2.75rem,8.2vw,5.35rem)] font-semibold leading-[1.01] tracking-[-0.042em] ${className}`}
+      className={`font-display text-5xl font-semibold leading-[1.02] tracking-normal sm:text-6xl md:text-7xl lg:text-8xl ${className}`}
     >
       {reduce ? (
         <>

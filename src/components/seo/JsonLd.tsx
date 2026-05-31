@@ -15,7 +15,7 @@ const graph = {
       },
       email: site.meta.email,
       description:
-        'Software-Studio aus der Schweiz: Live-Apps (Foto, Rally, Kristall) und WireTrack als Operations-Plattform.',
+        'Software-Studio aus der Schweiz für Web-Apps, Live-Erlebnisse und WireTrack als Operations-Plattform.',
       areaServed: 'CH',
       availableLanguage: ['de-CH'],
     },
