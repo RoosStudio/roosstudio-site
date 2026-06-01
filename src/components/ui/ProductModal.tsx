@@ -2,7 +2,6 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { useEffect } from 'react'
 import type { Example } from '../../content/site'
 import { EASE } from '../../lib/motionPresets'
-import { ProductCinemaFrame } from './ProductCinemaFrame'
 
 type ProductModalProps = {
   product: Example | null
@@ -30,18 +29,18 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
     <AnimatePresence>
       {product ? (
         <motion.div
-          className="rs-product-modal fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-8"
+          className="rs-product-modal fixed inset-0 z-[250]"
           role="dialog"
           aria-modal="true"
           aria-labelledby="product-modal-title"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.25 }}
+          transition={{ duration: 0.35 }}
         >
           <motion.button
             type="button"
-            className="absolute inset-0 bg-black/85 backdrop-blur-lg"
+            className="absolute inset-0"
             aria-label="Schliessen"
             onClick={onClose}
             initial={{ opacity: 0 }}
@@ -49,32 +48,52 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
             exit={{ opacity: 0 }}
           />
 
-          <motion.div
-            className="rs-product-modal-panel relative z-[1] flex max-h-[94dvh] w-full max-w-6xl flex-col overflow-y-auto rounded-2xl border border-rs-border bg-rs-bg shadow-2xl"
-            initial={reduce ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
-            transition={{ duration: 0.45, ease: EASE }}
-          >
+          <motion.img
+            src={product.image}
+            alt=""
+            aria-hidden
+            className="rs-product-modal-bg"
+            initial={reduce ? { scale: 1.1, opacity: 0.3 } : { scale: 1.2, opacity: 0 }}
+            animate={{ scale: 1.12, opacity: 0.55 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.7, ease: EASE }}
+          />
+          <div className="rs-product-modal-scrim" aria-hidden />
+
+          <div className="rs-product-modal-content">
             <button
               type="button"
               onClick={onClose}
-              className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/50 text-lg text-white backdrop-blur-sm transition hover:bg-black/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary"
+              className="rs-product-modal-close"
               aria-label="Schliessen"
             >
               ×
             </button>
 
-            <ProductCinemaFrame
-              src={product.image}
-              alt={product.alt}
-              className="rounded-t-2xl border-0"
-              frameClassName="min-h-[40dvh] sm:min-h-[50dvh] md:min-h-[58dvh]"
-              loading="eager"
-            />
+            <motion.div
+              className="rs-product-modal-hero"
+              initial={reduce ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.88 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.94 }}
+              transition={{ duration: 0.55, ease: EASE, delay: 0.05 }}
+            >
+              <img
+                src={product.image}
+                alt={product.alt}
+                className="rs-product-modal-img"
+                width={1920}
+                height={1080}
+              />
+            </motion.div>
 
-            <div className="p-6 sm:p-8 md:p-10">
-              <div className="flex items-start gap-4">
+            <motion.div
+              className="rs-product-modal-panel"
+              initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 24 }}
+              transition={{ duration: 0.5, ease: EASE, delay: 0.12 }}
+            >
+              <div className="flex flex-wrap items-start gap-4">
                 {product.logo ? (
                   <img
                     src={product.logo}
@@ -84,21 +103,38 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
                     height={56}
                   />
                 ) : null}
-                <div className="min-w-0 flex-1">
+                <div>
                   <h2
                     id="product-modal-title"
-                    className="font-display text-3xl font-bold tracking-[-0.03em] text-rs-text sm:text-4xl"
+                    className="font-display text-3xl font-bold tracking-[-0.04em] text-rs-text sm:text-4xl md:text-5xl"
                   >
                     {product.name}
                   </h2>
-                  <p className="mt-2 text-lg font-medium text-rs-text-secondary sm:text-xl">
-                    {product.pitch}
-                  </p>
+                  <p className="mt-2 text-lg text-rs-text-secondary sm:text-xl">{product.pitch}</p>
                 </div>
               </div>
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-rs-muted sm:text-lg">
+
+              <p className="mt-5 max-w-3xl text-base leading-relaxed text-rs-muted sm:text-lg">
                 {product.description}
               </p>
+
+              <dl className="mt-8 grid gap-4 sm:grid-cols-3">
+                {(
+                  [
+                    ['Was', product.details.was],
+                    ['Wie', product.details.wie],
+                    ['Wo', product.details.wo],
+                  ] as const
+                ).map(([label, value]) => (
+                  <div key={label} className="rs-product-detail-card">
+                    <dt className="rs-product-detail-label">{label}</dt>
+                    <dd className="mt-2 text-sm leading-relaxed text-rs-text-secondary sm:text-base">
+                      {value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+
               <a
                 href="#kontakt-email"
                 onClick={onClose}
@@ -106,8 +142,8 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
               >
                 Ähnliche App anfragen
               </a>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </motion.div>
       ) : null}
     </AnimatePresence>

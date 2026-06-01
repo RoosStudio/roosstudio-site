@@ -1,5 +1,5 @@
 /**
- * Zentrale Inhalte — Roos Studio. Ton: klar, einladend, produktnah.
+ * Zentrale Inhalte — Roos Studio. Ton: klar, jung, motiviert.
  */
 export const site = {
   meta: {
@@ -18,22 +18,22 @@ export const site = {
   },
 
   hero: {
-    eyebrow: 'App-Entwicklung · Schweiz',
+    eyebrow: 'App-Studio · Schweiz',
     h1Line1: 'Roos Studio',
     h1Line2: 'Deine Idee. Unsere App.',
     lede:
-      'Du hast eine Idee für eine Web-App oder Plattform? Wir entwickeln sie mit dir — modern, mit KI im Werkzeugkasten und so, dass du sie früh testen kannst, bevor sie live geht.',
+      'Wir sind ein junges Team, das Apps baut — mit KI, Handwerk und dem Anspruch, dass du dein Produkt früh anfassen kannst.',
     primaryCta: { label: 'Idee besprechen', href: '#kontakt-email' },
-    secondaryCta: { label: 'Produkte entdecken', href: '#beispiele' },
+    secondaryCta: { label: 'Produkte scrollen', href: '#beispiele' },
     flagshipId: 'wiretrack',
-    flagshipHint: 'Klicken zum Vergrössern',
+    flagshipHint: 'Vollbild öffnen',
   },
 
   services: {
     sectionEyebrow: 'Leistungen',
     sectionTitle: 'Wir bauen Apps — für dich, nicht nur für uns.',
     lede:
-      'Eigene Produkte betreiben wir parallel. Für Kunden und Partner übersetzen wir Ideen in Software: von der ersten Version bis zum stabilen Livebetrieb.',
+      'Eigene Produkte betreiben wir parallel. Für Kunden und Partner übersetzen wir Ideen in Software: von der ersten Version bis zum stabilen Launch.',
     items: [
       {
         title: 'App aus deiner Idee',
@@ -41,16 +41,15 @@ export const site = {
       },
       {
         title: 'Mit KI effizient umsetzen',
-        line: 'KI beschleunigt Entwicklung, Prototypen und Iteration. Du profitierst von Tempo, ohne auf Qualität und Klarheit zu verzichten.',
+        line: 'KI beschleunigt Entwicklung, Prototypen und Iteration. Du profitierst von Tempo, ohne auf Qualität zu verzichten.',
       },
       {
-        title: 'Testbar bis Live',
+        title: 'Testbar bis Launch',
         line: 'Eigene Test-URL, echte Flows, sauberer Deploy — damit du siehst, was kommt, bevor es öffentlich wird.',
       },
     ] as const,
   },
 
-  /** Auszug aus eigener Werkstatt — als Referenz, nicht als festes Sortiment. */
   examples: [
     {
       id: 'wiretrack',
@@ -63,6 +62,11 @@ export const site = {
       pitch: 'Alles Steuern — Dashboard, Tickets, Rollen und Projekte in einer Oberfläche.',
       description:
         'WireTrack zeigt, wie wir komplexe B2B-Software klar halten: Widgets, Rechte und Abläufe, die im Alltag funktionieren.',
+      details: {
+        was: 'Operations-Plattform für Teams — Tickets, Projekte, Rollen und Widgets in einem Dashboard.',
+        wie: 'Web-App mit modularem Widget-System, klaren Rechten und eigenem Test-Deploy.',
+        wo: 'Intern produktiv & auf test.roosstudio.ch/wiretrack zum Anfassen.',
+      },
     },
     {
       id: 'nexplay',
@@ -75,6 +79,11 @@ export const site = {
       pitch: 'Skalierbare Plattform-Architektur — gebaut für Wachstum und klare Releases.',
       description:
         'NexPlay steht für unseren Anspruch an grössere Produkte: strukturiert entwickeln, früh testen, sauber ausrollen.',
+      details: {
+        was: 'Nächste Enterprise-Plattform — Content, Lobby, Scores und Live-Momente in einem System.',
+        wie: 'Gleicher Qualitäts-Stack wie WireTrack: Preview-Slot, klare Module, iteratives Release.',
+        wo: 'In Entwicklung — Preview-Slot auf test.roosstudio.ch/nexplay vorgesehen.',
+      },
     },
     {
       id: 'lagerfotos',
@@ -87,6 +96,11 @@ export const site = {
       pitch: 'Tausende Fotos, sofort gefunden — mobil und klar strukturiert.',
       description:
         'Lagerfotos ist unsere Referenz für Erlebnis-Apps: schnell, visuell stark und unter Last stabil.',
+      details: {
+        was: 'Event-Galerie mit Tagesalben — Fotos hochladen, sortieren und mobil durchsuchen.',
+        wie: 'Mobile-first UI, schnelle Suche, klare Album-Struktur für Events mit vielen Bildern.',
+        wo: 'Im Einsatz bei Events und Lagern — optimiert für Handy und Tablet.',
+      },
     },
     {
       id: 'rally',
@@ -99,6 +113,11 @@ export const site = {
       pitch: 'Lobby, Karte und Aufgaben — Gruppenfahrten mit echtem Spielgefühl.',
       description:
         'Rally Quest verbindet Karte, Team-Logik und Aufgaben zu einer App, die bei Events sofort verstanden wird.',
+      details: {
+        was: 'Roadtrip- und Event-App mit Lobby, Team-Codes, Karte und Aufgaben.',
+        wie: 'Echtzeit-Lobby, Aufgaben-Flows und Kartenansicht — gebaut für viele gleichzeitige Spieler.',
+        wo: 'Für Gruppenfahrten und Events — mobil first, sofort verständlich.',
+      },
     },
     {
       id: 'punkte-arena',
@@ -111,74 +130,82 @@ export const site = {
       pitch: 'Ranglisten und Team-Stände — lesbar aus zehn Metern Entfernung.',
       description:
         'Punkte-Arena ist für den Bühnenmoment gebaut: klare Typo, starke Kontraste, null Ablenkung.',
+      details: {
+        was: 'Live-Scoreboard für Shows — Teams, Punkte und Rankings in Echtzeit.',
+        wie: 'Grosse Typografie, klare Zustände, Ansichten für Bühne, Backstage und Publikum.',
+        wo: 'Für Events und Bühnen — show-ready auf Grossleinwand und Handy.',
+      },
     },
   ] as const,
 
   work: {
     sectionEyebrow: 'Produkte',
     sectionTitle: 'Apps, die für sich sprechen.',
-    lede: 'Scroll — jedes Produkt bekommt seinen Moment. Bilder vollständig, Zoom beim Scrollen.',
+    lede: 'Scroll durch unsere Werkstatt — jedes Produkt bekommt seinen Moment.',
   },
 
   approach: {
     sectionEyebrow: 'Vorgehen',
-    sectionTitle: 'Von der Idee zur App, die trägt.',
+    sectionTitle: 'Schnell bauen. Sauber liefern.',
     lede:
-      'Egal ob dein Projekt oder unseres: derselbe Weg — verstehen, bauen, testen, live schalten.',
+      'Kein Konzern-Overhead — ein klares Setup, das wir für unsere Apps und dein Projekt gleichermassen fahren.',
+    vibe: 'Junges Team · motiviert · direkt aus der Schweiz',
     test: {
-      title: 'Testen',
-      line: 'Eigene Preview-URL — du klickst durch echte Flows, ohne die Live-Seite anzufassen.',
+      title: 'Stage',
+      line: 'Eigene Preview-URL. Klicken, testen, Feedback — ohne die Live-Seite anzufassen.',
       url: 'test.roosstudio.ch',
     },
     deploy: {
-      title: 'Deploy',
-      line: 'Reproduzierbarer Build und klarer Live-Pfad.',
+      title: 'Build',
+      line: 'Ein Skript, ein reproduzierbarer Weg — kein Deploy-Rätselraten.',
       command: './deploy.sh',
     },
     launch: {
       title: 'Launch',
-      line: 'Freigabe, wenn es passt — dann stabil ausliefern.',
+      line: 'Freigabe wenn es passt. Dann stabil raus — nicht „hoffentlich geht’s“.',
       url: 'roosstudio.ch',
     },
     principles: [
       {
         step: '01',
-        title: 'Idee klären',
-        line: 'Was soll die App können, für wen, und was ist Version eins?',
+        title: 'Verstehen',
+        line: 'Was soll die App? Für wen? Was ist Version 1 — und was bewusst nicht?',
       },
       {
         step: '02',
-        title: 'Bauen & testen',
-        line: 'Schnelle Iteration mit KI und Handwerk — auf Stage mit realistischen Daten.',
+        title: 'Bauen',
+        line: 'KI + Handwerk: schnell iterieren, auf Stage testen, ehrliches Feedback einbauen.',
       },
       {
         step: '03',
-        title: 'Launch',
-        line: 'Deploy, Check, Übergabe — wiederholbar und nachvollziehbar.',
+        title: 'Ship it',
+        line: 'Deploy, Check, Übergabe. Wiederholbar — damit Launch kein Einmal-Event ist.',
       },
     ] as const,
   },
 
   contact: {
-    sectionTitle: 'Du hast eine Idee?',
+    sectionEyebrow: 'Kontakt',
+    sectionTitle: 'Lass uns deine App bauen.',
     lede:
-      'Erzähl uns in ein paar Sätzen, was du vorhast. Wir antworten per E-Mail — ohne Formular, ohne Umwege.',
-    cta: 'Idee per E-Mail senden',
+      'Du hast eine Idee im Kopf? Schreib uns — wir sind ein kleines, motiviertes Team und melden uns persönlich zurück.',
+    cta: 'Mail schreiben',
     mailtoSubject: 'App-Idee — Roos Studio',
-    facts: ['Antwort per E-Mail', 'Schweiz / Remote', 'Unverbindlich starten'] as const,
+    facts: ['Persönliche Antwort', 'Schweiz & Remote', 'Unverbindlich starten'] as const,
+    highlight: 'Kein Formular. Kein Sales-Funnel. Einfach eine Mail — wir finden den Rest.',
     panel: {
-      eyebrow: 'Reicht schon',
-      title: 'Kurz reicht für den ersten Schritt.',
+      eyebrow: 'Startup-Modus',
+      title: 'Drei Sätze reichen.',
       rows: [
-        { label: 'Idee', value: 'Was soll die App können?' },
-        { label: 'Für wen', value: 'Team, Kunden, Event, …?' },
-        { label: 'Timing', value: 'Grob: wann soll etwas testbar sein?' },
+        { label: 'Was', value: 'Was soll die App können?' },
+        { label: 'Wer', value: 'Für wen ist sie gedacht?' },
+        { label: 'Wann', value: 'Grob: ab wann soll etwas testbar sein?' },
       ] as const,
     },
   },
 
   footer: {
-    tagline: 'Roos Studio — Apps bauen mit Idee, KI und Anspruch',
+    tagline: 'Roos Studio — junges Team, klare Apps, Schweiz',
   },
 } as const
 

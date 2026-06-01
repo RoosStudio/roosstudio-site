@@ -3,13 +3,14 @@ import { site } from '../../content/site'
 import { scrollToKontaktEmail } from '../../lib/scrollToKontaktEmail'
 import { EASE } from '../../lib/motionPresets'
 import { BrandLogo } from '../brand/BrandLogo'
+import { HeaderAppTeasers } from './HeaderAppTeasers'
 
 export function Header() {
   const reduceMotion = useReducedMotion()
 
   return (
     <motion.header
-      className="pointer-events-auto fixed inset-x-0 top-0 z-100 border-b border-rs-border/50 bg-rs-bg/80 backdrop-blur-xl backdrop-saturate-150"
+      className="pointer-events-auto fixed inset-x-0 top-0 z-100 border-b border-rs-border/50 bg-rs-bg/70 backdrop-blur-xl backdrop-saturate-150"
       initial={reduceMotion ? { y: 0, opacity: 1 } : { y: -8, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4, ease: EASE }}
@@ -59,6 +60,7 @@ export function Header() {
           </a>
         ))}
       </nav>
+      <HeaderAppTeasers />
     </motion.header>
   )
 }

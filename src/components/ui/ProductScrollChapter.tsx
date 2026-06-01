@@ -1,6 +1,7 @@
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import type { Example } from '../../content/site'
+import { useProductTeaser } from '../../context/ProductTeaserContext'
 import { ProductCinemaFrame } from './ProductCinemaFrame'
 
 type ProductScrollChapterProps = {
@@ -18,6 +19,7 @@ export function ProductScrollChapter({
 }: ProductScrollChapterProps) {
   const ref = useRef<HTMLElement>(null)
   const reduce = useReducedMotion()
+  const { setActiveId } = useProductTeaser()
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -30,6 +32,19 @@ export function ProductScrollChapter({
   const copyY = useTransform(scrollYProgress, [0.06, 0.28], [32, 0])
   const lineScale = useTransform(scrollYProgress, [0.1, 0.45, 0.55, 0.9], [0, 1, 1, 0])
 
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) setActiveId(product.id)
+      },
+      { rootMargin: '-35% 0px -35% 0px', threshold: 0.1 },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [product.id, setActiveId])
+
   const chapterLabel = `${String(index + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`
 
   return (
@@ -40,11 +55,14 @@ export function ProductScrollChapter({
       aria-label={product.name}
     >
       <div className="rs-cinema-chapter-sticky">
-        <motion.div
-          className="rs-cinema-chapter-glow pointer-events-none"
-          style={{ opacity: reduce ? 0.6 : glowOpacity }}
+        <motion.img
+          src={product.image}
+          alt=""
           aria-hidden
+          className="rs-cinema-chapter-bg"
+          style={{ opacity: reduce ? 0.25 : glowOpacity }}
         />
+        <div className="rs-cinema-chapter-bg-scrim" aria-hidden />
 
         <div className="rs-cinema-chapter-layout">
           <motion.div
@@ -69,6 +87,21 @@ export function ProductScrollChapter({
             <p className="mt-3 max-w-xl text-lg text-rs-text-secondary sm:text-xl md:text-2xl">
               {product.pitch}
             </p>
+
+            <dl className="mt-6 space-y-3">
+              {(
+                [
+                  ['Was', product.details.was],
+                  ['Wie', product.details.wie],
+                ] as const
+              ).map(([label, value]) => (
+                <div key={label} className="rs-chapter-detail-row">
+                  <dt className="rs-chapter-detail-label">{label}</dt>
+                  <dd className="mt-1 text-sm leading-relaxed text-rs-muted sm:text-base">{value}</dd>
+                </div>
+              ))}
+            </dl>
+
             <motion.div
               className="mt-5 h-px max-w-xs origin-left bg-gradient-to-r from-rs-primary to-transparent"
               style={reduce ? undefined : { scaleX: lineScale }}
@@ -77,10 +110,10 @@ export function ProductScrollChapter({
             <button
               type="button"
               onClick={() => onOpen(product)}
-              className="rs-cinema-detail-link mt-6"
+              className="rs-cinema-detail-link rs-cinema-detail-link--lg mt-6"
             >
               Mehr erfahren
-              <span aria-hidden>→</span>
+              <span aria-hidden>⊕</span>
             </button>
           </motion.div>
 

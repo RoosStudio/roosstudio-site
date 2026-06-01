@@ -2,6 +2,7 @@ import { JsonLd } from './components/seo/JsonLd'
 import { Atmosphere } from './components/ui/Atmosphere'
 import { ScrollProgress } from './components/ui/ScrollProgress'
 import { SkipToMain } from './components/ui/SkipToMain'
+import { ProductTeaserProvider } from './context/ProductTeaserContext'
 import { Header } from './components/layout/Header'
 import { Footer } from './components/layout/Footer'
 import { ApproachSection } from './components/sections/ApproachSection'
@@ -18,14 +19,16 @@ function App() {
       <Atmosphere />
       <ScrollProgress />
       <div className="relative z-10">
-        <Header />
-        <main id="main" tabIndex={-1} aria-label="Hauptinhalt">
-          <HeroSection />
-          <ServicesSection />
-          <AppsSection />
-          <ApproachSection />
-          <ContactSection />
-        </main>
+        <ProductTeaserProvider>
+          <Header />
+          <main id="main" tabIndex={-1} aria-label="Hauptinhalt">
+            <HeroSection />
+            <ServicesSection />
+            <AppsSection />
+            <ApproachSection />
+            <ContactSection />
+          </main>
+        </ProductTeaserProvider>
         <Footer />
       </div>
     </div>

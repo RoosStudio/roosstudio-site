@@ -1,30 +1,31 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { useCallback, useState } from 'react'
 import { site } from '../../content/site'
+import { useProductTeaser } from '../../context/ProductTeaserContext'
 import { scrollToKontaktEmail } from '../../lib/scrollToKontaktEmail'
 import { EASE, springTap } from '../../lib/motionPresets'
+import { HeroAppBackdrop } from '../layout/HeaderAppTeasers'
 import { HeroHeadline } from '../ui/HeroHeadline'
 import { ProductCinemaFrame } from '../ui/ProductCinemaFrame'
 import { ProductModal } from '../ui/ProductModal'
 
-const flagship =
-  site.examples.find((e) => e.id === site.hero.flagshipId) ?? site.examples[0]
-
 export function HeroSection() {
   const reduce = useReducedMotion()
+  const { active } = useProductTeaser()
   const [modalOpen, setModalOpen] = useState(false)
 
-  const openFlagship = useCallback(() => setModalOpen(true), [])
+  const openProduct = useCallback(() => setModalOpen(true), [])
   const closeModal = useCallback(() => setModalOpen(false), [])
 
   return (
     <>
       <section
         id="top"
-        className="relative flex min-h-[100svh] flex-col overflow-hidden pt-28 pb-10 sm:pt-32 sm:pb-14"
+        className="relative flex min-h-[100svh] flex-col overflow-hidden pt-[7.5rem] pb-10 sm:pt-[8.5rem] sm:pb-14"
         aria-label="Einstieg"
       >
-        <div className="rs-hero-aurora pointer-events-none absolute inset-0 opacity-70" aria-hidden />
+        <HeroAppBackdrop />
+        <div className="rs-hero-aurora pointer-events-none absolute inset-0 opacity-40" aria-hidden />
 
         <div className="rs-section-inner rs-section-inner--wide relative z-10 flex flex-1 flex-col">
           <div className="max-w-3xl">
@@ -80,42 +81,40 @@ export function HeroSection() {
 
           <motion.div
             className="mt-10 flex min-h-0 flex-1 flex-col sm:mt-12 lg:mt-14"
-            initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            key={active.id}
+            initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.65, ease: EASE }}
+            transition={{ duration: 0.5, ease: EASE }}
           >
             <ProductCinemaFrame
-              src={flagship.image}
-              alt={flagship.alt}
-              onClick={openFlagship}
+              src={active.image}
+              alt={active.alt}
+              onClick={openProduct}
               loading="eager"
               className="rs-cinema-frame--hero flex-1"
             />
             <div className="mt-5 flex flex-wrap items-end justify-between gap-4 sm:mt-6">
-              <div>
-                <p className="font-display text-2xl font-bold tracking-[-0.03em] text-rs-text sm:text-3xl">
-                  {flagship.name}
+              <div className="max-w-2xl">
+                <p className="font-display text-2xl font-bold tracking-[-0.03em] text-rs-text sm:text-3xl md:text-4xl">
+                  {active.name}
                 </p>
-                <p className="mt-1 max-w-2xl text-base text-rs-text-secondary sm:text-lg">
-                  {flagship.pitch}
-                </p>
+                <p className="mt-2 text-base text-rs-text-secondary sm:text-lg">{active.pitch}</p>
+                <p className="mt-3 hidden text-sm text-rs-muted sm:block">{active.details.was}</p>
               </div>
-              <a
-                href="#beispiele"
-                className="rs-cinema-scroll-cue"
-                aria-label="Zu den Produkten scrollen"
+              <button
+                type="button"
+                onClick={openProduct}
+                className="rs-cinema-detail-link rs-cinema-detail-link--lg"
               >
-                Scroll
-                <span className="rs-cinema-scroll-cue-arrow" aria-hidden>
-                  ↓
-                </span>
-              </a>
+                {site.hero.flagshipHint}
+                <span aria-hidden>⊕</span>
+              </button>
             </div>
           </motion.div>
         </div>
       </section>
 
-      <ProductModal product={modalOpen ? flagship : null} onClose={closeModal} />
+      <ProductModal product={modalOpen ? active : null} onClose={closeModal} />
     </>
   )
 }
