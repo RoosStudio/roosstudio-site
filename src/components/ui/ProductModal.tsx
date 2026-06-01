@@ -104,17 +104,19 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
                   />
                 ) : null}
                 <div>
+                  <p className="text-xs font-medium uppercase tracking-wider text-rs-muted">
+                    {product.category}
+                  </p>
                   <h2
                     id="product-modal-title"
-                    className="font-display text-3xl font-bold tracking-[-0.04em] text-rs-text sm:text-4xl md:text-5xl"
+                    className="font-display text-3xl font-bold tracking-[-0.04em] text-rs-text sm:text-4xl"
                   >
                     {product.name}
                   </h2>
-                  <p className="mt-2 text-lg text-rs-text-secondary sm:text-xl">{product.pitch}</p>
                 </div>
               </div>
 
-              <p className="mt-5 max-w-3xl text-base leading-relaxed text-rs-muted sm:text-lg">
+              <p className="mt-5 max-w-2xl text-base leading-relaxed text-rs-text-secondary sm:text-lg">
                 {product.description}
               </p>
 

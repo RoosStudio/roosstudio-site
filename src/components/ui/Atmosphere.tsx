@@ -9,9 +9,9 @@ export function Atmosphere() {
     >
       <div className="rs-bg-depth absolute inset-0" />
       <div className="rs-ambient-field absolute inset-0" />
-      <div className="rs-orb rs-orb--a" />
-      <div className="rs-orb rs-orb--b" />
-      <div className="rs-page-grid absolute inset-0 opacity-20" />
+      <div className="rs-orb rs-orb--a opacity-40" />
+      <div className="rs-orb rs-orb--b opacity-30" />
+      <div className="rs-page-grid absolute inset-0 opacity-[0.06]" />
     </div>
   )
 }

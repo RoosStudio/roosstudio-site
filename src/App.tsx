@@ -1,15 +1,12 @@
 import { JsonLd } from './components/seo/JsonLd'
 import { Atmosphere } from './components/ui/Atmosphere'
-import { ScrollProgress } from './components/ui/ScrollProgress'
 import { SkipToMain } from './components/ui/SkipToMain'
-import { ProductTeaserProvider } from './context/ProductTeaserContext'
 import { Header } from './components/layout/Header'
 import { Footer } from './components/layout/Footer'
 import { ApproachSection } from './components/sections/ApproachSection'
-import { AppsSection } from './components/sections/AppsSection'
 import { ContactSection } from './components/sections/ContactSection'
 import { HeroSection } from './components/sections/HeroSection'
-import { ServicesSection } from './components/sections/ServicesSection'
+import { ProductsSection } from './components/sections/ProductsSection'
 
 function App() {
   return (
@@ -17,18 +14,14 @@ function App() {
       <JsonLd />
       <SkipToMain />
       <Atmosphere />
-      <ScrollProgress />
       <div className="relative z-10">
-        <ProductTeaserProvider>
-          <Header />
-          <main id="main" tabIndex={-1} aria-label="Hauptinhalt">
-            <HeroSection />
-            <ServicesSection />
-            <AppsSection />
-            <ApproachSection />
-            <ContactSection />
-          </main>
-        </ProductTeaserProvider>
+        <Header />
+        <main id="main" tabIndex={-1} aria-label="Hauptinhalt">
+          <HeroSection />
+          <ProductsSection />
+          <ApproachSection />
+          <ContactSection />
+        </main>
         <Footer />
       </div>
     </div>

@@ -33,7 +33,7 @@ export function HeroHeadline({ line1, line2, className = '' }: HeroHeadlineProps
               wordClassName="rs-hero-gradient-word"
               delayStart={0.06}
               stagger={0.045}
-              emphasis="dramatic"
+              emphasis="normal"
             />
           </span>
           <motion.span
