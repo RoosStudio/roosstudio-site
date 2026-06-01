@@ -16,7 +16,7 @@ export function ContactSection() {
       aria-labelledby="kontakt-heading"
     >
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_100%_0%,rgba(79,140,255,0.06),transparent_60%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(79,140,255,0.35),transparent)]"
         aria-hidden
       />
 
@@ -85,7 +85,12 @@ export function ContactSection() {
 
 function ContactPanel() {
   return (
-    <aside className="rs-surface-card border-rs-primary/20 p-6 sm:p-7">
+    <aside className="rs-surface-card relative overflow-hidden border-rs-primary/25 p-6 sm:p-7">
+      <div
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(79,140,255,0.08),rgba(157,77,255,0.05))]"
+        aria-hidden
+      />
+      <div className="relative z-10">
       <p className="text-xs font-medium uppercase tracking-[0.1em] text-rs-primary">
         {site.contact.panel.eyebrow}
       </p>
@@ -115,6 +120,7 @@ function ContactPanel() {
         <p className="mt-3 text-sm text-rs-text-secondary">
           Testumgebung zuerst. Livebetrieb danach.
         </p>
+      </div>
       </div>
     </aside>
   )

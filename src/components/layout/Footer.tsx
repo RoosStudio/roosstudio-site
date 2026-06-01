@@ -19,9 +19,24 @@ export function Footer() {
             </p>
           </div>
           <nav
-            className="flex flex-wrap gap-x-8 gap-y-2 text-sm text-rs-text-secondary"
-            aria-label="Rechtliches"
+            className="flex flex-col gap-6 sm:items-end"
+            aria-label="Footer Navigation"
           >
+            <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-rs-text-secondary">
+              <a
+                href="#leistungen"
+                className="transition-colors hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40"
+              >
+                Leistungen
+              </a>
+              <a
+                href="#beispiele"
+                className="transition-colors hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40"
+              >
+                Beispiele
+              </a>
+            </div>
+            <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm text-rs-text-secondary">
             <a
               href="#impressum"
               className="transition-colors hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40"
@@ -34,6 +49,7 @@ export function Footer() {
             >
               Datenschutz
             </a>
+            </div>
           </nav>
         </div>
 

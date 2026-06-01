@@ -15,7 +15,7 @@ const graph = {
       },
       email: site.meta.email,
       description:
-        'Software-Studio aus der Schweiz für Web-Apps, Live-Erlebnisse, Testumgebungen und WireTrack als Operations-Plattform.',
+        'Software-Studio aus der Schweiz — App-Entwicklung mit KI, Testumgebungen und eigener Produktwerkstatt.',
       areaServed: 'CH',
       availableLanguage: ['de-CH'],
     },
