@@ -33,7 +33,7 @@ export function Footer() {
                 href="#beispiele"
                 className="transition-colors hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40"
               >
-                Beispiele
+                Produkte
               </a>
             </div>
             <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm text-rs-text-secondary">

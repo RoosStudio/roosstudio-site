@@ -6,7 +6,7 @@ import { SectionReveal } from '../ui/SectionReveal'
 export function ApproachSection() {
   const reduce = useReducedMotion()
   const { approach } = site
-  const lanes = [approach.test, approach.deploy, approach.live]
+  const lanes = [approach.test, approach.deploy, approach.launch]
 
   return (
     <section

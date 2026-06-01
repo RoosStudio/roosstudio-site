@@ -10,7 +10,7 @@ export const site = {
   header: {
     nav: [
       { href: '#leistungen', label: 'Leistungen' },
-      { href: '#beispiele', label: 'Beispiele' },
+      { href: '#beispiele', label: 'Produkte' },
       { href: '#vorgehen', label: 'Vorgehen' },
       { href: '#kontakt', label: 'Kontakt' },
     ] as const,
@@ -24,12 +24,9 @@ export const site = {
     lede:
       'Du hast eine Idee für eine Web-App oder Plattform? Wir entwickeln sie mit dir — modern, mit KI im Werkzeugkasten und so, dass du sie früh testen kannst, bevor sie live geht.',
     primaryCta: { label: 'Idee besprechen', href: '#kontakt-email' },
-    secondaryCta: { label: 'Beispiele ansehen', href: '#beispiele' },
-    signals: [
-      { value: 'KI', label: 'schnell bauen & iterieren' },
-      { value: 'Test-first', label: 'Preview vor Live' },
-      { value: 'CH', label: 'direkt & persönlich' },
-    ] as const,
+    secondaryCta: { label: 'Produkte entdecken', href: '#beispiele' },
+    flagshipId: 'wiretrack',
+    flagshipHint: 'Klicken zum Vergrössern',
   },
 
   services: {
@@ -63,7 +60,9 @@ export const site = {
       logo: '/marketing/wiretrack-logo.png',
       alt: 'WireTrack: Operations-Dashboard',
       tagline: 'Operations-Dashboard für Teams.',
-      description: 'Tickets, Rollen, Projekte und Widgets — ein Beispiel für B2B-Software mit klarem Alltags-Fokus.',
+      pitch: 'Alles Steuern — Dashboard, Tickets, Rollen und Projekte in einer Oberfläche.',
+      description:
+        'WireTrack zeigt, wie wir komplexe B2B-Software klar halten: Widgets, Rechte und Abläufe, die im Alltag funktionieren.',
     },
     {
       id: 'nexplay',
@@ -72,8 +71,10 @@ export const site = {
       image: '/marketing/nexplay.png',
       logo: '/marketing/nexplay-logo.png',
       alt: 'NexPlay: Plattform-Übersicht',
-      tagline: 'Nächste Plattform in Arbeit.',
-      description: 'Zeigt, wie wir grössere Produkte Schritt für Schritt aufbauen — inklusive Preview und Deploy-Weg.',
+      tagline: 'Die nächste Plattform.',
+      pitch: 'Skalierbare Plattform-Architektur — gebaut für Wachstum und klare Releases.',
+      description:
+        'NexPlay steht für unseren Anspruch an grössere Produkte: strukturiert entwickeln, früh testen, sauber ausrollen.',
     },
     {
       id: 'lagerfotos',
@@ -82,8 +83,10 @@ export const site = {
       image: '/marketing/lagerfotos.png',
       logo: null,
       alt: 'Lagerfotos: Event-Galerie',
-      tagline: 'Galerie für Events und Lager.',
-      description: 'Mobile Oberfläche, Tagesalben, schnelle Suche — typisch für Erlebnis-Apps mit vielen Nutzenden.',
+      tagline: 'Event-Galerie.',
+      pitch: 'Tausende Fotos, sofort gefunden — mobil und klar strukturiert.',
+      description:
+        'Lagerfotos ist unsere Referenz für Erlebnis-Apps: schnell, visuell stark und unter Last stabil.',
     },
     {
       id: 'rally',
@@ -92,8 +95,10 @@ export const site = {
       image: '/marketing/rally-quest.png',
       logo: '/marketing/rally-logo.png',
       alt: 'Rally Quest: Roadtrip-Lobby',
-      tagline: 'Roadtrip mit Lobby und Tasks.',
-      description: 'Lobby, Codes, Karte und Aufgaben — interaktiv und für Gruppen gebaut.',
+      tagline: 'Roadtrip-App.',
+      pitch: 'Lobby, Karte und Aufgaben — Gruppenfahrten mit echtem Spielgefühl.',
+      description:
+        'Rally Quest verbindet Karte, Team-Logik und Aufgaben zu einer App, die bei Events sofort verstanden wird.',
     },
     {
       id: 'punkte-arena',
@@ -102,18 +107,17 @@ export const site = {
       image: '/marketing/punkte-arena.png',
       logo: null,
       alt: 'Punkte-Arena: Live-Rangliste',
-      tagline: 'Live-Scores für Shows.',
-      description: 'Ranglisten und Team-Ansichten für den Moment, wenn es auf der Bühne zählt.',
+      tagline: 'Show-Scores.',
+      pitch: 'Ranglisten und Team-Stände — lesbar aus zehn Metern Entfernung.',
+      description:
+        'Punkte-Arena ist für den Bühnenmoment gebaut: klare Typo, starke Kontraste, null Ablenkung.',
     },
   ] as const,
 
   work: {
-    sectionEyebrow: 'Beispiele',
-    sectionTitle: 'So sieht unsere Arbeit aus.',
-    lede:
-      'Ein Auszug aus Projekten, die wir selbst betreiben oder gebaut haben — als Referenz für Stil, Qualität und Umfang. Dein Projekt kann ganz anders aussehen.',
-    footnote:
-      'Du planst etwas Neues? Schreib uns kurz, was die App können soll — wir melden uns mit einem klaren nächsten Schritt.',
+    sectionEyebrow: 'Produkte',
+    sectionTitle: 'Apps, die für sich sprechen.',
+    lede: 'Scroll — jedes Produkt bekommt seinen Moment. Bilder vollständig, Zoom beim Scrollen.',
   },
 
   approach: {
@@ -131,8 +135,8 @@ export const site = {
       line: 'Reproduzierbarer Build und klarer Live-Pfad.',
       command: './deploy.sh',
     },
-    live: {
-      title: 'Live',
+    launch: {
+      title: 'Launch',
       line: 'Freigabe, wenn es passt — dann stabil ausliefern.',
       url: 'roosstudio.ch',
     },
@@ -149,7 +153,7 @@ export const site = {
       },
       {
         step: '03',
-        title: 'Live gehen',
+        title: 'Launch',
         line: 'Deploy, Check, Übergabe — wiederholbar und nachvollziehbar.',
       },
     ] as const,

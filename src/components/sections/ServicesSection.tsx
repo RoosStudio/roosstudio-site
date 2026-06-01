@@ -34,10 +34,10 @@ export function ServicesSection() {
               <span className="font-mono text-xs text-rs-primary" aria-hidden>
                 0{i + 1}
               </span>
-              <h3 className="mt-4 font-display text-lg font-semibold tracking-[-0.02em] text-rs-text sm:text-xl">
+              <h3 className="mt-4 font-display text-xl font-semibold tracking-[-0.02em] text-rs-text sm:text-2xl">
                 {item.title}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-rs-text-secondary sm:text-base">
+              <p className="mt-3 text-base leading-relaxed text-rs-text-secondary">
                 {item.line}
               </p>
             </motion.li>
