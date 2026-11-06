@@ -9,7 +9,7 @@ export function Header() {
 
   return (
     <motion.header
-      className="pointer-events-auto fixed inset-x-0 top-0 z-100 border-b border-rs-border/40 bg-rs-bg/85 backdrop-blur-xl"
+      className="pointer-events-auto fixed inset-x-0 top-0 z-100 border-b border-transparent bg-gradient-to-b from-rs-bg/90 via-rs-bg/55 to-transparent backdrop-blur-md"
       initial={reduceMotion ? { y: 0, opacity: 1 } : { y: -8, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4, ease: EASE }}
@@ -27,7 +27,7 @@ export function Header() {
             <a
               key={l.href}
               href={l.href}
-              className="rounded-lg px-3.5 py-2 text-sm font-medium text-rs-text-secondary transition-colors hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40"
+              className="rounded-md px-3.5 py-2 text-sm font-medium text-rs-text-secondary transition-colors hover:text-rs-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/40"
             >
               {l.label}
             </a>
@@ -39,7 +39,8 @@ export function Header() {
           aria-label={site.header.cta.aria}
           onClick={(e) => scrollToKontaktEmail(e, reduceMotion)}
         >
-          <span className="rs-cta-text-rest">{site.header.cta.long}</span>
+          <span className="rs-cta-text-rest sm:hidden">{site.header.cta.short}</span>
+          <span className="rs-cta-text-rest hidden sm:inline">{site.header.cta.long}</span>
         </a>
       </div>
     </motion.header>

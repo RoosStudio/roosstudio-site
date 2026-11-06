@@ -12,20 +12,22 @@ export function ContactSection() {
   return (
     <section
       id="kontakt"
-      className="rs-section-scroll-mt rs-section-border rs-section-y"
+      className="rs-section-scroll-mt rs-section-border rs-section-y relative overflow-hidden"
       aria-labelledby="kontakt-heading"
     >
-      <div className="rs-section-inner rs-section-inner--wide">
+      <div className="pointer-events-none absolute inset-0 rs-contact-glow" aria-hidden />
+
+      <div className="rs-section-inner rs-section-inner--wide relative">
         <motion.div
-          className="rs-contact-block mx-auto max-w-3xl text-center"
-          initial={reduce ? { opacity: 1 } : { opacity: 0, y: 16 }}
+          className="mx-auto max-w-2xl text-center"
+          initial={reduce ? false : { opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.5, ease: EASE }}
+          viewport={{ once: true, amount: 0.45 }}
+          transition={{ duration: 0.55, ease: EASE }}
         >
           <h2
             id="kontakt-heading"
-            className="font-display text-4xl font-bold tracking-[-0.04em] text-rs-text sm:text-5xl"
+            className="font-display text-4xl font-bold tracking-[-0.04em] text-rs-text sm:text-5xl md:text-6xl"
           >
             {site.contact.sectionTitle}
           </h2>
@@ -36,7 +38,7 @@ export function ContactSection() {
           <motion.a
             id="kontakt-email"
             href={mailtoHref}
-            className="rs-contact-email-link mt-10 inline-block scroll-mt-28 font-mono text-xl text-rs-primary transition hover:text-rs-text sm:text-2xl"
+            className="rs-contact-email-link mt-10 inline-block scroll-mt-28 font-display text-2xl font-semibold tracking-[-0.02em] text-rs-primary transition hover:text-rs-text sm:text-3xl"
             whileHover={reduce ? undefined : { y: -2 }}
             whileTap={reduce ? undefined : { scale: 0.99 }}
             transition={springTap}
@@ -44,9 +46,9 @@ export function ContactSection() {
             {site.contact.cta}
           </motion.a>
 
-          <ul className="mt-10 flex flex-wrap items-center justify-center gap-3" role="list">
+          <ul className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2" role="list">
             {site.contact.facts.map((fact) => (
-              <li key={fact} className="rs-contact-fact">
+              <li key={fact} className="text-sm text-rs-muted">
                 {fact}
               </li>
             ))}

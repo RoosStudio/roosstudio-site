@@ -1,5 +1,5 @@
 /**
- * Roos Studio — ein Kanal, klarer Ton.
+ * Roos Studio — Solo-Studio, klarer Ton, echte Arbeit.
  */
 export const site = {
   meta: {
@@ -9,28 +9,29 @@ export const site = {
 
   header: {
     nav: [
-      { href: '#produkte', label: 'Produkte' },
-      { href: '#vorgehen', label: 'Vorgehen' },
+      { href: '#arbeit', label: 'Arbeit' },
+      { href: '#studio', label: 'Studio' },
       { href: '#kontakt', label: 'Kontakt' },
     ] as const,
-    cta: { short: 'Kontakt', long: 'Projekt starten', aria: 'Zum Kontakt scrollen' },
+    cta: { short: 'Kontakt', long: 'Schreiben', aria: 'Zum Kontakt scrollen' },
   },
 
   hero: {
-    eyebrow: 'Software Studio · Schweiz',
-    h1Line1: 'Roos Studio',
-    h1Line2: 'Apps, die Ideen tragen.',
+    brand: 'Roos Studio',
+    headline: 'Software, die im Alltag landet.',
     lede:
-      'Wir entwickeln Web-Apps und Plattformen — für Kunden und in der eigenen Werkstatt. Mit KI, Handwerk und dem Anspruch, dass Software früh testbar wird.',
+      'Ich baue Web-Apps und Live-Tools für Vereine, Events und Ideen ohne Grossbudget — auf eigener Infrastruktur, mit klarer Domain und dem Anspruch, dass es einfach funktioniert.',
     primaryCta: { label: 'Projekt besprechen', href: '#kontakt-email' },
-    secondaryCta: { label: 'Produkte ansehen', href: '#produkte' },
+    secondaryCta: { label: 'Arbeit ansehen', href: '#arbeit' },
+    image: '/marketing/wiretrack.png',
+    imageAlt: 'WireTrack Enterprise-Plattform — Dashboard auf Tablet und Smartphone',
   },
 
-  products: {
-    sectionEyebrow: 'Produkte',
-    sectionTitle: 'Aus unserer Werkstatt.',
-    lede: 'Referenzprojekte aus unserer Werkstatt — ein Klick für den vollen Überblick.',
-    openLabel: 'Vergrössern',
+  work: {
+    sectionEyebrow: 'Arbeit',
+    sectionTitle: 'Aus der Werkstatt.',
+    lede: 'Eigene Produkte und Aufträge — sichtbar, testbar, auf rosstudio.ch gehostet.',
+    openLabel: 'Öffnen',
   },
 
   examples: [
@@ -40,112 +41,129 @@ export const site = {
       category: 'Plattform',
       image: '/marketing/wiretrack.png',
       logo: '/marketing/wiretrack-logo.png',
-      alt: 'WireTrack: Operations-Dashboard',
-      pitch: 'Operations-Dashboard für Teams — Tickets, Projekte und Rollen in einer Oberfläche.',
+      alt: 'WireTrack: Operations-Dashboard auf Tablet und Smartphone',
+      pitch: 'Operations-Plattform für Teams — Projekte, Service, Zeit und Kunden an einem Ort.',
       description:
-        'WireTrack bündelt Dashboard, Widgets, Rechte und Abläufe in einer klaren B2B-Oberfläche.',
+        'WireTrack bündelt Dashboard, Widgets, Rechte und Abläufe in einer klaren B2B-Oberfläche — gebaut für den Alltag, nicht für die Demo.',
       details: {
-        was: 'Operations-Plattform für Teams — Tickets, Projekte, Rollen und Widgets.',
-        wie: 'Modulares Widget-System, klare Rechte, eigener Test-Deploy.',
-        wo: 'Produktiv intern · Preview auf test.roosstudio.ch/wiretrack',
+        was: 'Enterprise-Management: Projekte, Serviceaufträge, Zeiterfassung, Offerten, Monitoring.',
+        wie: 'Modulares Widget-System, klare Rollen, eigener Deploy-Pfad.',
+        wo: 'Produktiv intern · Preview auf test.roosstudio.ch',
       },
     },
     {
       id: 'nexplay',
       name: 'NexPlay',
-      category: 'Plattform',
+      category: 'Verein',
       image: '/marketing/nexplay.png',
       logo: '/marketing/nexplay-logo.png',
-      alt: 'NexPlay: Plattform-Übersicht',
-      pitch: 'Skalierbare Plattform-Architektur — für Wachstum und klare Releases.',
+      alt: 'NexPlay: Vereins-App auf Desktop und Smartphone',
+      pitch: 'All-in-One für Vereine — Planung, Team und Kommunikation.',
       description:
-        'NexPlay ist unsere nächste Plattform: strukturiert entwickelt, früh testbar, sauber ausrollbar.',
+        'NexPlay ist die Vereinsplattform aus dem Studio: Spiele, Training, Chat und Status — später unter next.rosstudio.ch erreichbar.',
       details: {
-        was: 'Enterprise-Plattform — Content, Lobby, Scores und Live-Momente.',
-        wie: 'Gleicher Stack wie WireTrack: Preview-Slot, Module, iteratives Release.',
-        wo: 'In Entwicklung · Preview-Slot test.roosstudio.ch/nexplay',
+        was: 'Vereins-App — Team, Planung, Spiele, Kommunikation, Performance.',
+        wie: 'Gleicher Stack und Preview-Slot wie andere Studio-Produkte.',
+        wo: 'In Entwicklung · next.rosstudio.ch',
       },
     },
     {
       id: 'lagerfotos',
       name: 'Lagerfotos',
-      category: 'Experience',
+      category: 'Verein',
       image: '/marketing/lagerfotos.png',
       logo: null,
-      alt: 'Lagerfotos: Event-Galerie',
-      pitch: 'Event-Galerie mit Tagesalben — mobil, schnell, unter Last stabil.',
-      description: 'Referenz für Erlebnis-Apps: tausende Fotos, sofort auffindbar.',
+      alt: 'Lagerfotos: Galerie-Dashboard und mobile Ansichten',
+      pitch: 'Event- und Lager-Galerie — Alben, Freigaben, Elternzugang.',
+      description:
+        'Für Lager und Events: tausende Fotos sortieren, freigeben und sicher teilen — mobil und unter Last stabil.',
       details: {
-        was: 'Event-Galerie — Upload, Sortierung, Suche nach Tag und Album.',
-        wie: 'Mobile-first UI, performante Bildauslieferung.',
-        wo: 'Events und Lager · Handy und Tablet',
+        was: 'Foto-Galerie mit Jahres-/Lager-Struktur, Review und Elternzugang.',
+        wie: 'Mobile-first UI, performante Bildauslieferung, ZIP-Export.',
+        wo: 'Lager und Events · Handy und Tablet',
       },
     },
     {
       id: 'rally',
       name: 'Rally Quest',
-      category: 'Experience',
+      category: 'Event',
       image: '/marketing/rally-quest.png',
       logo: '/marketing/rally-logo.png',
-      alt: 'Rally Quest: Roadtrip-Lobby',
-      pitch: 'Roadtrip-App mit Lobby, Karte und Aufgaben für Gruppen.',
-      description: 'Interaktiv, skalierbar — für Events mit vielen Teilnehmenden.',
+      alt: 'Rally Quest: Live-Karte und Missionen',
+      pitch: 'Live-Rallye für Vereine und Teams — Karte, Missionen, Rangliste.',
+      description:
+        'Jede Location wird zur interaktiven Rallye: Missionen vor Ort, Live-Punkte und Duells — entwickelt von Roos Studio.',
       details: {
         was: 'Roadtrip- und Event-App — Lobby, Codes, Karte, Aufgaben.',
-        wie: 'Echtzeit-Lobby, Aufgaben-Flows, Kartenansicht.',
-        wo: 'Gruppenfahrten und Events',
+        wie: 'Echtzeit-Lobby, Missions-Flows, Kartenansicht.',
+        wo: 'Gruppenfahrten und Vereins-Events',
       },
     },
     {
       id: 'punkte-arena',
       name: 'Punkte-Arena',
-      category: 'Experience',
+      category: 'Event',
       image: '/marketing/punkte-arena.png',
       logo: null,
-      alt: 'Punkte-Arena: Live-Rangliste',
-      pitch: 'Live-Scores für Bühne und Publikum — lesbar aus der Distanz.',
-      description: 'Show-ready UI: klare Typografie, starke Kontraste, null Rauschen.',
+      alt: 'Punkte-Arena: Live-Rangliste und Scan-UI',
+      pitch: 'Live-Punkte für die Halle — scannen, verbuchen, belohnen.',
+      description:
+        'Show-ready Scoreboard und Abbuchungen in Echtzeit — lesbar von der Bühne bis zum Handy.',
       details: {
-        was: 'Live-Scoreboard — Teams, Punkte, Rankings in Echtzeit.',
-        wie: 'Grosse Typo, Bühne-/Team-/Publikums-Ansichten.',
+        was: 'Live-Scoreboard, QR-Scan, Punktevergabe und Abbuchungen.',
+        wie: 'Grosse Typo, Bühnen-/Team-/Publikums-Ansichten.',
         wo: 'Events und Shows · Grossleinwand und Mobil',
+      },
+    },
+    {
+      id: 'halle-bestellung',
+      name: 'Halle Bestellung',
+      category: 'Verein',
+      image: null,
+      logo: null,
+      alt: 'Bestellsystem für die Halle',
+      pitch: 'Kleines Bestellsystem für die Halle — Pizza und Snacks ohne Stress.',
+      description:
+        'Ein schlankes Bestellsystem für den Event-Betrieb: schnell eingerichtet, auf eigener Domain, ohne Ballast.',
+      details: {
+        was: 'Bestell-Flow für Speisen und Snacks in der Halle.',
+        wie: 'Einfache Oberfläche, eigene Subdomain unter rosstudio.ch.',
+        wo: 'Vereins- und Event-Hallen',
       },
     },
   ] as const,
 
-  approach: {
-    sectionEyebrow: 'Vorgehen',
-    sectionTitle: 'Klarer Weg von der Idee zum Launch.',
-    lede: 'Derselbe Prozess für unsere Apps und dein Projekt — ohne Umwege.',
-    steps: [
+  studio: {
+    sectionEyebrow: 'Studio',
+    sectionTitle: 'Ein Mensch. Eigener Server. Klare Domains.',
+    lede:
+      'Ich bin Solo — mit Freude am Coden und am Schreiben. Zu Hause läuft Infrastruktur, auf der Vereine und kleine Teams ihre Tools bekommen: xy.rosstudio.ch, ohne Agentur-Overhead.',
+    points: [
       {
-        title: 'Stage',
-        value: 'test.roosstudio.ch',
-        line: 'Eigene Preview-URL. Echte Flows testen, bevor etwas live geht.',
+        title: 'Für Vereine & Events',
+        line: 'Bestellungen, Galerien, Rallyes, Live-Punkte — Dinge, die am Abend in der Halle wirklich gebraucht werden.',
       },
       {
-        title: 'Build',
-        value: './deploy.sh',
-        line: 'Reproduzierbarer Build — jeder Release nachvollziehbar.',
+        title: 'Ohne Grossbudget',
+        line: 'Schlanke Lösungen statt Enterprise-Theater. Testbar früh, ausgeliefert wenn es sitzt.',
       },
       {
-        title: 'Launch',
-        value: 'roosstudio.ch',
-        line: 'Freigabe wenn es passt. Dann stabil ausliefern.',
+        title: 'Eigene Infrastruktur',
+        line: 'Hosting und Domains aus dem Studio. Preview auf test.rosstudio.ch, Live wenn du bereit bist.',
       },
     ] as const,
   },
 
   contact: {
-    sectionTitle: 'Projekt besprechen.',
-    lede: 'Kurze Mail reicht — wir melden uns persönlich mit einem klaren nächsten Schritt.',
+    sectionTitle: 'Hast du eine Idee?',
+    lede: 'Kurze Mail reicht. Ich melde mich persönlich mit einem klaren nächsten Schritt.',
     cta: 'hi@roosstudio.ch',
     mailtoSubject: 'Projekt — Roos Studio',
-    facts: ['Schweiz', 'Remote', 'Antwort per Mail'] as const,
+    facts: ['Schweiz', 'Solo-Studio', 'Antwort per Mail'] as const,
   },
 
   footer: {
-    tagline: 'Roos Studio — Software aus der Schweiz',
+    tagline: 'Roos Studio — Software aus Freude, für Vereine und Ideen.',
   },
 } as const
 

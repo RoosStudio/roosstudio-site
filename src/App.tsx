@@ -3,10 +3,10 @@ import { Atmosphere } from './components/ui/Atmosphere'
 import { SkipToMain } from './components/ui/SkipToMain'
 import { Header } from './components/layout/Header'
 import { Footer } from './components/layout/Footer'
-import { ApproachSection } from './components/sections/ApproachSection'
 import { ContactSection } from './components/sections/ContactSection'
 import { HeroSection } from './components/sections/HeroSection'
-import { ProductsSection } from './components/sections/ProductsSection'
+import { StudioSection } from './components/sections/StudioSection'
+import { WorkSection } from './components/sections/WorkSection'
 
 function App() {
   return (
@@ -18,8 +18,8 @@ function App() {
         <Header />
         <main id="main" tabIndex={-1} aria-label="Hauptinhalt">
           <HeroSection />
-          <ProductsSection />
-          <ApproachSection />
+          <WorkSection />
+          <StudioSection />
           <ContactSection />
         </main>
         <Footer />

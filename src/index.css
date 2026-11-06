@@ -16,8 +16,8 @@
   --color-rs-muted: #6b7280;
   --color-rs-wt-body: #b4b8c4;
   --color-rs-wt-muted: #7a8090;
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-display: 'Syne', 'Inter', system-ui, sans-serif;
+  --font-sans: 'Outfit', system-ui, sans-serif;
+  --font-display: 'Syne', 'Outfit', system-ui, sans-serif;
 }
 
 @layer base {
@@ -182,19 +182,19 @@
     gap: 0.5rem;
     min-height: 2.875rem;
     padding: 0.75rem 1.5rem;
-    border-radius: 9999px;
+    border-radius: 0.625rem;
     font-weight: 600;
     font-size: 0.9375rem;
     line-height: 1.25;
     text-decoration: none;
     user-select: none;
     cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(79, 140, 255, 0.35);
     background: linear-gradient(
       135deg,
-      var(--color-rs-gradient-start) 0%,
-      var(--color-rs-gradient-mid) 55%,
-      var(--color-rs-gradient-end) 100%
+      color-mix(in srgb, var(--color-rs-primary) 92%, #fff) 0%,
+      var(--color-rs-primary) 55%,
+      color-mix(in srgb, var(--color-rs-primary) 70%, #1a2a55) 100%
     );
     color: #fff;
     transition:
@@ -822,7 +822,191 @@
   }
 
   .rs-contact-fact {
-    @apply rounded-full border border-rs-border px-4 py-1.5 text-sm text-rs-text-secondary;
+    @apply text-sm text-rs-muted;
+  }
+
+  .rs-hero-scrim {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(11, 11, 15, 0.72) 0%,
+        rgba(11, 11, 15, 0.45) 32%,
+        rgba(11, 11, 15, 0.82) 68%,
+        rgba(11, 11, 15, 0.98) 100%
+      ),
+      linear-gradient(
+        105deg,
+        rgba(11, 11, 15, 0.78) 0%,
+        rgba(11, 11, 15, 0.35) 48%,
+        rgba(11, 11, 15, 0.55) 100%
+      );
+  }
+
+  .rs-studio-glow {
+    background: radial-gradient(
+      ellipse 70% 55% at 10% 0%,
+      rgba(79, 140, 255, 0.1),
+      transparent 58%
+    );
+  }
+
+  .rs-work-row {
+    display: grid;
+    gap: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .rs-work-row {
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.9fr);
+      align-items: stretch;
+      min-height: min(72vh, 40rem);
+    }
+
+    .rs-work-row--reverse {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.35fr);
+    }
+
+    .rs-work-row--reverse .rs-work-media {
+      order: 2;
+    }
+
+    .rs-work-row--reverse .rs-work-copy {
+      order: 1;
+    }
+  }
+
+  .rs-work-media {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-height: 16rem;
+    overflow: hidden;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background: #08080c;
+    cursor: pointer;
+    text-align: left;
+    outline: none;
+  }
+
+  .rs-work-media:focus-visible {
+    box-shadow: inset 0 0 0 2px var(--color-rs-primary);
+  }
+
+  @media (min-width: 640px) {
+    .rs-work-media {
+      min-height: 22rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .rs-work-media {
+      min-height: 100%;
+    }
+  }
+
+  .rs-work-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .rs-work-media:hover .rs-work-img {
+      transform: scale(1.035);
+    }
+  }
+
+  .rs-work-placeholder {
+    display: flex;
+    min-height: inherit;
+    height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 2rem 1.5rem;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 80%, rgba(79, 140, 255, 0.22), transparent 55%),
+      linear-gradient(160deg, #12121a 0%, #0b0b0f 100%);
+  }
+
+  @media (min-width: 640px) {
+    .rs-work-placeholder {
+      padding: 2.5rem 2rem;
+    }
+  }
+
+  .rs-work-open-hint {
+    pointer-events: none;
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(0, 0, 0, 0.45);
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.92);
+    opacity: 0;
+    backdrop-filter: blur(8px);
+    transition: opacity 0.3s ease;
+  }
+
+  .rs-work-media:hover .rs-work-open-hint,
+  .rs-work-media:focus-visible .rs-work-open-hint {
+    opacity: 1;
+  }
+
+  .rs-work-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.75rem 1.25rem 2.25rem;
+    background: color-mix(in srgb, var(--color-rs-surface) 55%, transparent);
+  }
+
+  @media (min-width: 640px) {
+    .rs-work-copy {
+      padding: 2.5rem 2rem 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .rs-work-copy {
+      padding: 3rem 2.5rem 3rem 2.75rem;
+    }
+  }
+
+  .rs-work-link {
+    align-self: flex-start;
+    border: 1px solid color-mix(in srgb, var(--color-rs-primary) 40%, transparent);
+    background: color-mix(in srgb, var(--color-rs-primary) 10%, transparent);
+    padding: 0.55rem 0.95rem;
+    border-radius: 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-rs-primary);
+    cursor: pointer;
+    transition:
+      color 0.2s ease,
+      background 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .rs-work-link:hover {
+    color: var(--color-rs-text);
+    border-color: color-mix(in srgb, var(--color-rs-primary) 65%, transparent);
+    background: color-mix(in srgb, var(--color-rs-primary) 18%, transparent);
+  }
+
+  .rs-work-link:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--color-rs-primary) 55%, transparent);
+    outline-offset: 3px;
   }
 
   .rs-hero-pillar {

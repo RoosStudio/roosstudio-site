@@ -29,69 +29,64 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
     <AnimatePresence>
       {product ? (
         <motion.div
-          className="rs-product-modal fixed inset-0 z-[250]"
+          key={product.id}
+          className="fixed inset-0 z-[400]"
           role="dialog"
           aria-modal="true"
           aria-labelledby="product-modal-title"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.35 }}
+          transition={{ duration: reduce ? 0 : 0.28 }}
         >
-          <motion.button
+          <button
             type="button"
-            className="absolute inset-0"
+            className="absolute inset-0 bg-black/75 backdrop-blur-md"
             aria-label="Schliessen"
             onClick={onClose}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
           />
 
-          <motion.img
-            src={product.image}
-            alt=""
-            aria-hidden
-            className="rs-product-modal-bg"
-            initial={reduce ? { scale: 1.1, opacity: 0.3 } : { scale: 1.2, opacity: 0 }}
-            animate={{ scale: 1.12, opacity: 0.55 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.7, ease: EASE }}
-          />
-          <div className="rs-product-modal-scrim" aria-hidden />
+          {product.image ? (
+            <img
+              src={product.image}
+              alt=""
+              aria-hidden
+              className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-30 blur-3xl"
+            />
+          ) : null}
 
-          <div className="rs-product-modal-content">
+          <div className="relative z-10 flex h-full flex-col overflow-y-auto px-4 py-6 sm:px-8 sm:py-10">
             <button
               type="button"
               onClick={onClose}
-              className="rs-product-modal-close"
+              className="fixed right-5 top-5 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/55 text-xl text-white backdrop-blur-md transition hover:bg-black/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rs-primary sm:right-8 sm:top-8"
               aria-label="Schliessen"
             >
               ×
             </button>
 
-            <motion.div
-              className="rs-product-modal-hero"
-              initial={reduce ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.88 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.94 }}
-              transition={{ duration: 0.55, ease: EASE, delay: 0.05 }}
-            >
-              <img
-                src={product.image}
-                alt={product.alt}
-                className="rs-product-modal-img"
-                width={1920}
-                height={1080}
-              />
-            </motion.div>
+            {product.image ? (
+              <motion.div
+                className="mx-auto flex w-full max-w-6xl flex-1 items-center justify-center py-4 sm:py-8"
+                initial={reduce ? false : { opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, ease: EASE }}
+              >
+                <img
+                  src={product.image}
+                  alt={product.alt}
+                  className="max-h-[min(52vh,32rem)] w-auto max-w-full object-contain drop-shadow-2xl"
+                  width={1920}
+                  height={1080}
+                />
+              </motion.div>
+            ) : null}
 
             <motion.div
-              className="rs-product-modal-panel"
-              initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              className="mx-auto w-full max-w-6xl rounded-2xl border border-rs-border/60 bg-rs-surface/90 p-6 backdrop-blur-xl sm:p-8 md:p-10"
+              initial={reduce ? false : { opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 24 }}
-              transition={{ duration: 0.5, ease: EASE, delay: 0.12 }}
+              transition={{ duration: 0.4, ease: EASE, delay: reduce ? 0 : 0.05 }}
             >
               <div className="flex flex-wrap items-start gap-4">
                 {product.logo ? (
@@ -128,8 +123,10 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
                     ['Wo', product.details.wo],
                   ] as const
                 ).map(([label, value]) => (
-                  <div key={label} className="rs-product-detail-card">
-                    <dt className="rs-product-detail-label">{label}</dt>
+                  <div key={label} className="rounded-xl border border-rs-border/70 bg-rs-bg/50 p-4 sm:p-5">
+                    <dt className="text-xs font-bold uppercase tracking-[0.14em] text-rs-primary">
+                      {label}
+                    </dt>
                     <dd className="mt-2 text-sm leading-relaxed text-rs-text-secondary sm:text-base">
                       {value}
                     </dd>
@@ -142,7 +139,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
                 onClick={onClose}
                 className="rs-cta rs-cta--shine mt-8 inline-flex focus-visible:outline-none"
               >
-                Ähnliche App anfragen
+                Ähnliches anfragen
               </a>
             </motion.div>
           </div>
