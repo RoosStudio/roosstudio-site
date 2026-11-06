@@ -31,7 +31,7 @@ export const site = {
     sectionEyebrow: 'Arbeit',
     sectionTitle: 'Aus der Werkstatt.',
     lede: 'Eigene Produkte und Aufträge — sichtbar, testbar, auf rosstudio.ch gehostet.',
-    openLabel: 'Öffnen',
+    openLabel: 'Reinzoomen',
   },
 
   examples: [

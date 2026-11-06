@@ -1,7 +1,9 @@
 import { JsonLd } from './components/seo/JsonLd'
 import { Atmosphere } from './components/ui/Atmosphere'
+import { ScrollProgress } from './components/ui/ScrollProgress'
 import { SkipToMain } from './components/ui/SkipToMain'
 import { Header } from './components/layout/Header'
+import { MobileDock } from './components/layout/MobileDock'
 import { Footer } from './components/layout/Footer'
 import { ContactSection } from './components/sections/ContactSection'
 import { HeroSection } from './components/sections/HeroSection'
@@ -13,6 +15,7 @@ function App() {
     <div className="relative min-h-dvh bg-rs-bg text-rs-text antialiased">
       <JsonLd />
       <SkipToMain />
+      <ScrollProgress />
       <Atmosphere />
       <div className="relative z-10">
         <Header />
@@ -23,6 +26,7 @@ function App() {
           <ContactSection />
         </main>
         <Footer />
+        <MobileDock />
       </div>
     </div>
   )

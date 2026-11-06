@@ -1,4 +1,5 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion, useReducedMotion, useScroll, useMotionValueEvent } from 'framer-motion'
+import { useState } from 'react'
 import { site } from '../../content/site'
 import { scrollToKontaktEmail } from '../../lib/scrollToKontaktEmail'
 import { EASE } from '../../lib/motionPresets'
@@ -6,15 +7,25 @@ import { BrandLogo } from '../brand/BrandLogo'
 
 export function Header() {
   const reduceMotion = useReducedMotion()
+  const { scrollY } = useScroll()
+  const [scrolled, setScrolled] = useState(false)
+
+  useMotionValueEvent(scrollY, 'change', (v) => {
+    setScrolled(v > 24)
+  })
 
   return (
     <motion.header
-      className="pointer-events-auto fixed inset-x-0 top-0 z-100 border-b border-transparent bg-gradient-to-b from-rs-bg/90 via-rs-bg/55 to-transparent backdrop-blur-md"
-      initial={reduceMotion ? { y: 0, opacity: 1 } : { y: -8, opacity: 0 }}
+      className={`pointer-events-auto fixed inset-x-0 top-0 z-100 transition-[background,border-color,backdrop-filter] duration-400 ${
+        scrolled
+          ? 'border-b border-rs-border/50 bg-rs-bg/80 backdrop-blur-xl'
+          : 'border-b border-transparent bg-gradient-to-b from-rs-bg/85 via-rs-bg/40 to-transparent backdrop-blur-md'
+      }`}
+      initial={reduceMotion ? { y: 0, opacity: 1 } : { y: -10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.4, ease: EASE }}
+      transition={{ duration: 0.45, ease: EASE }}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-3.5 sm:gap-4 sm:px-8 sm:py-4">
         <a
           href="#top"
           className="flex shrink-0 items-center outline-none focus-visible:ring-2 focus-visible:ring-rs-primary/45 focus-visible:ring-offset-2 focus-visible:ring-offset-rs-bg"
@@ -22,7 +33,7 @@ export function Header() {
         >
           <BrandLogo placement="header" />
         </a>
-        <nav className="hidden items-center gap-1 sm:flex" aria-label="Hauptnavigation">
+        <nav className="hidden items-center gap-0.5 md:flex" aria-label="Hauptnavigation">
           {site.header.nav.map((l) => (
             <a
               key={l.href}
@@ -39,8 +50,8 @@ export function Header() {
           aria-label={site.header.cta.aria}
           onClick={(e) => scrollToKontaktEmail(e, reduceMotion)}
         >
-          <span className="rs-cta-text-rest sm:hidden">{site.header.cta.short}</span>
-          <span className="rs-cta-text-rest hidden sm:inline">{site.header.cta.long}</span>
+          <span className="rs-cta-text-rest md:hidden">{site.header.cta.short}</span>
+          <span className="rs-cta-text-rest hidden md:inline">{site.header.cta.long}</span>
         </a>
       </div>
     </motion.header>
