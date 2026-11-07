@@ -15,7 +15,7 @@ const graph = {
       },
       email: site.meta.email,
       description:
-        'Software-Studio aus der Schweiz — App-Entwicklung mit KI, Testumgebungen und eigener Produktwerkstatt.',
+        'Solo-Software-Studio aus der Schweiz — Web-Apps und Live-Tools für Vereine, Events und Ideen ohne Grossbudget.',
       areaServed: 'CH',
       availableLanguage: ['de-CH'],
     },

@@ -3,7 +3,7 @@ import { BrandLogo } from '../brand/BrandLogo'
 
 export function Footer() {
   return (
-    <footer className="border-t border-rs-border/60 bg-rs-surface/40">
+    <footer className="border-t border-rs-border/60 bg-rs-bg pb-24 md:pb-0">
       <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between md:gap-16">
           <div className="max-w-md">

@@ -1,5 +1,5 @@
 /**
- * Animierter Seitenhintergrund: Orbs, Grid-Flow, Brand-Glows.
+ * Ruhiger Tiefen-Hintergrund — Orbs + feines Grain, ohne Hero zu übertönen.
  */
 export function Atmosphere() {
   return (
@@ -7,11 +7,11 @@ export function Atmosphere() {
       className="pointer-events-none fixed inset-0 z-0 isolate overflow-hidden"
       aria-hidden
     >
-      <div className="rs-bg-depth absolute inset-0" />
-      <div className="rs-ambient-field absolute inset-0" />
-      <div className="rs-orb rs-orb--a opacity-40" />
-      <div className="rs-orb rs-orb--b opacity-30" />
-      <div className="rs-page-grid absolute inset-0 opacity-[0.06]" />
+      <div className="absolute inset-0 bg-rs-bg" />
+      <div className="rs-orb rs-orb--a opacity-[0.28]" />
+      <div className="rs-orb rs-orb--b opacity-[0.22]" />
+      <div className="rs-page-grid absolute inset-0 opacity-[0.045]" />
+      <div className="rs-hero-grain absolute inset-0 opacity-50" />
     </div>
   )
 }
