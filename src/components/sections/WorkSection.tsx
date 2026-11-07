@@ -1,50 +1,84 @@
 import { useCallback, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { motion, useReducedMotion } from 'framer-motion'
 import { site, type Example } from '../../content/site'
+import { EASE } from '../../lib/motionPresets'
 import { ProductModal } from '../ui/ProductModal'
-import { ProjectMarquee } from '../ui/ProjectMarquee'
-import { WorkRail } from '../ui/WorkRail'
-import { WorkIntro } from './WorkIntro'
-import { WorkProject } from './WorkProject'
+import { SectionReveal } from '../ui/SectionReveal'
 
 export function WorkSection() {
-  const [modalProduct, setModalProduct] = useState<Example | null>(null)
-
-  const openModal = useCallback((product: Example) => {
-    setModalProduct(product)
-  }, [])
-  const closeModal = useCallback(() => setModalProduct(null), [])
+  const reduce = useReducedMotion()
+  const [active, setActive] = useState<Example | null>(null)
+  const open = useCallback((p: Example) => setActive(p), [])
+  const close = useCallback(() => setActive(null), [])
 
   const modal =
     typeof document !== 'undefined'
-      ? createPortal(<ProductModal product={modalProduct} onClose={closeModal} />, document.body)
+      ? createPortal(<ProductModal product={active} onClose={close} />, document.body)
       : null
 
   return (
     <>
-      <ProjectMarquee />
-      <section
-        id="arbeit"
-        className="rs-section-scroll-mt relative"
-        aria-labelledby="arbeit-heading"
-      >
-        <WorkIntro />
-        <WorkRail />
+      <section id="arbeit" className="rs-section-scroll-mt rs-section-y border-t border-white/10" aria-labelledby="arbeit-heading">
+        <div className="rs-section-inner rs-section-inner--wide">
+          <SectionReveal strength="bold">
+            <p className="rs-eyebrow">{site.work.eyebrow}</p>
+            <h2 id="arbeit-heading" className="rs-title max-w-3xl">
+              {site.work.title}
+            </h2>
+            <p className="rs-lede">{site.work.lede}</p>
+          </SectionReveal>
 
-        <ul className="relative" role="list">
-          {site.examples.map((product, index) => (
-            <WorkProject
-              key={product.id}
-              product={product}
-              index={index}
-              total={site.examples.length}
-              openLabel={site.work.openLabel}
-              onOpen={openModal}
-            />
-          ))}
-        </ul>
+          <ul className="mt-12 grid gap-4 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3" role="list">
+            {site.examples.map((product, i) => (
+              <motion.li
+                key={product.id}
+                initial={reduce ? false : { opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ delay: 0.05 * i, duration: 0.45, ease: EASE }}
+              >
+                <button
+                  type="button"
+                  className="rs-work-tile group outline-none focus-visible:ring-2 focus-visible:ring-rs-lime"
+                  onClick={() => open(product)}
+                  aria-label={`${product.name} — ${site.work.openLabel}`}
+                >
+                  {product.image ? (
+                    <img
+                      src={product.image}
+                      alt={product.alt}
+                      loading="lazy"
+                      decoding="async"
+                      width={1672}
+                      height={941}
+                    />
+                  ) : (
+                    <div className="rs-work-empty h-full min-h-[12rem]">
+                      <span className="font-display text-3xl font-extrabold tracking-[-0.04em] text-rs-text">
+                        {product.name}
+                      </span>
+                      <span className="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-rs-lime">
+                        {product.category}
+                      </span>
+                    </div>
+                  )}
+                  <div className="rs-work-tile-scrim" />
+                  <div className="absolute inset-x-0 bottom-0 z-[1] p-4 sm:p-5">
+                    <p className="text-[0.65rem] font-bold uppercase tracking-[0.16em] text-rs-lime">
+                      {product.category}
+                    </p>
+                    <p className="mt-1 font-display text-xl font-bold tracking-[-0.03em] text-rs-text">
+                      {product.name}
+                    </p>
+                    <p className="mt-1 line-clamp-2 text-sm text-rs-text-secondary">{product.pitch}</p>
+                  </div>
+                </button>
+              </motion.li>
+            ))}
+          </ul>
+        </div>
       </section>
-
       {modal}
     </>
   )

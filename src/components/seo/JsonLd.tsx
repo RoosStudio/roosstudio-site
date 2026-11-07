@@ -9,13 +9,10 @@ const graph = {
       '@id': `${SITE_ORIGIN}/#organization`,
       name: site.meta.siteName,
       url: SITE_ORIGIN,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${SITE_ORIGIN}/favicon.svg`,
-      },
+      logo: { '@type': 'ImageObject', url: `${SITE_ORIGIN}/favicon.svg` },
       email: site.meta.email,
       description:
-        'Solo-Software-Studio aus der Schweiz — Web-Apps und Live-Tools für Vereine, Events und Ideen ohne Grossbudget.',
+        'Solo-Software-Studio aus der Schweiz — schlanke Web-Apps und Event-Tools für Vereine und Ideen ohne Grossbudget.',
       areaServed: 'CH',
       availableLanguage: ['de-CH'],
     },
