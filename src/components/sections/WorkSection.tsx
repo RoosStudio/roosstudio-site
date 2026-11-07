@@ -2,7 +2,9 @@ import { useCallback, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { site, type Example } from '../../content/site'
 import { ProductModal } from '../ui/ProductModal'
-import { SectionReveal } from '../ui/SectionReveal'
+import { ProjectMarquee } from '../ui/ProjectMarquee'
+import { WorkRail } from '../ui/WorkRail'
+import { WorkIntro } from './WorkIntro'
 import { WorkProject } from './WorkProject'
 
 export function WorkSection() {
@@ -20,20 +22,14 @@ export function WorkSection() {
 
   return (
     <>
+      <ProjectMarquee />
       <section
         id="arbeit"
         className="rs-section-scroll-mt relative"
         aria-labelledby="arbeit-heading"
       >
-        <div className="rs-section-inner rs-section-inner--wide rs-section-y pb-10 sm:pb-14">
-          <SectionReveal strength="bold">
-            <p className="rs-eyebrow">{site.work.sectionEyebrow}</p>
-            <h2 id="arbeit-heading" className="rs-section-title rs-section-title--xl max-w-3xl">
-              {site.work.sectionTitle}
-            </h2>
-            <p className="rs-section-lede rs-section-lede--lg max-w-2xl">{site.work.lede}</p>
-          </SectionReveal>
-        </div>
+        <WorkIntro />
+        <WorkRail />
 
         <ul className="relative" role="list">
           {site.examples.map((product, index) => (
@@ -41,6 +37,7 @@ export function WorkSection() {
               key={product.id}
               product={product}
               index={index}
+              total={site.examples.length}
               openLabel={site.work.openLabel}
               onOpen={openModal}
             />

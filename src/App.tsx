@@ -1,5 +1,6 @@
 import { JsonLd } from './components/seo/JsonLd'
 import { Atmosphere } from './components/ui/Atmosphere'
+import { IntroCurtain } from './components/ui/IntroCurtain'
 import { ScrollProgress } from './components/ui/ScrollProgress'
 import { SkipToMain } from './components/ui/SkipToMain'
 import { Header } from './components/layout/Header'
@@ -15,6 +16,7 @@ function App() {
     <div className="relative min-h-dvh bg-rs-bg text-rs-text antialiased">
       <JsonLd />
       <SkipToMain />
+      <IntroCurtain />
       <ScrollProgress />
       <Atmosphere />
       <div className="relative z-10">

@@ -18,19 +18,19 @@ export const site = {
 
   hero: {
     brand: 'Roos Studio',
-    headline: 'Software, die im Alltag landet.',
+    headline: 'Ideen bauen. Live schalten. Alltag retten.',
     lede:
-      'Ich baue Web-Apps und Live-Tools für Vereine, Events und Ideen ohne Grossbudget — auf eigener Infrastruktur, mit klarer Domain und dem Anspruch, dass es einfach funktioniert.',
+      'Solo-Studio aus der Schweiz: Web-Apps und Live-Tools für Vereine, Events und Ideen ohne Grossbudget — auf eigener Infrastruktur, unter klarer Domain.',
     primaryCta: { label: 'Projekt besprechen', href: '#kontakt-email' },
-    secondaryCta: { label: 'Arbeit ansehen', href: '#arbeit' },
+    secondaryCta: { label: 'In die Werkstatt', href: '#arbeit' },
     image: '/marketing/wiretrack.png',
     imageAlt: 'WireTrack Enterprise-Plattform — Dashboard auf Tablet und Smartphone',
   },
 
   work: {
     sectionEyebrow: 'Arbeit',
-    sectionTitle: 'Aus der Werkstatt.',
-    lede: 'Eigene Produkte und Aufträge — sichtbar, testbar, auf rosstudio.ch gehostet.',
+    sectionTitle: 'Werkstatt. Kein Moodboard.',
+    lede: 'Echte Produkte und Aufträge — sticky, testbar, auf rosstudio.ch gehostet.',
     openLabel: 'Reinzoomen',
   },
 
@@ -155,8 +155,8 @@ export const site = {
   },
 
   contact: {
-    sectionTitle: 'Hast du eine Idee?',
-    lede: 'Kurze Mail reicht. Ich melde mich persönlich mit einem klaren nächsten Schritt.',
+    sectionTitle: 'Bring die Idee.',
+    lede: 'Kurze Mail reicht. Ich melde mich persönlich — mit einem klaren nächsten Schritt.',
     cta: 'hi@roosstudio.ch',
     mailtoSubject: 'Projekt — Roos Studio',
     facts: ['Schweiz', 'Solo-Studio', 'Antwort per Mail'] as const,

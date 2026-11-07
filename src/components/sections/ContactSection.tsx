@@ -20,38 +20,44 @@ export function ContactSection() {
     target: ref,
     offset: ['start end', 'end end'],
   })
-  const titleY = useTransform(scrollYProgress, [0.1, 0.55], reduce ? [0, 0] : [60, 0])
-  const titleOpacity = useTransform(scrollYProgress, [0.1, 0.45], [0.2, 1])
+  const titleY = useTransform(scrollYProgress, [0.05, 0.5], reduce ? [0, 0] : [90, 0])
+  const titleScale = useTransform(scrollYProgress, [0.05, 0.55], reduce ? [1, 1] : [0.92, 1])
+  const titleOpacity = useTransform(scrollYProgress, [0.05, 0.4], [0.15, 1])
+  const glow = useTransform(scrollYProgress, [0.2, 0.6], [0.25, 0.7])
 
   return (
     <section
       id="kontakt"
       ref={ref}
-      className="rs-section-scroll-mt relative min-h-[70svh] overflow-hidden border-t border-rs-border/40 py-24 sm:min-h-[80svh] sm:py-32 md:py-40"
+      className="rs-section-scroll-mt relative min-h-[80svh] overflow-hidden border-t border-rs-border/40 py-28 sm:min-h-[88svh] sm:py-36 md:py-44"
       aria-labelledby="kontakt-heading"
     >
-      <div className="pointer-events-none absolute inset-0 rs-contact-glow" aria-hidden />
+      <motion.div
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-rs-primary/20 blur-[110px]"
+        style={{ opacity: glow }}
+        aria-hidden
+      />
       <div className="rs-hero-grain pointer-events-none absolute inset-0 opacity-40" aria-hidden />
 
-      <div className="rs-section-inner rs-section-inner--wide relative flex min-h-[50svh] items-center justify-center pb-20 md:pb-8">
+      <div className="rs-section-inner rs-section-inner--wide relative flex min-h-[55svh] items-center justify-center pb-24 md:pb-10">
         <motion.div
-          className="mx-auto max-w-3xl text-center"
-          style={{ y: titleY, opacity: titleOpacity }}
+          className="mx-auto max-w-4xl text-center"
+          style={{ y: titleY, scale: titleScale, opacity: titleOpacity }}
         >
           <h2
             id="kontakt-heading"
-            className="font-display text-[clamp(2.5rem,9vw,5.5rem)] font-bold leading-[0.95] tracking-[-0.05em] text-rs-text"
+            className="font-display text-[clamp(2.75rem,11vw,6.5rem)] font-extrabold leading-[0.92] tracking-[-0.055em] text-rs-text"
           >
             {site.contact.sectionTitle}
           </h2>
-          <p className="mx-auto mt-5 max-w-lg text-base leading-relaxed text-rs-text-secondary sm:mt-6 sm:text-lg">
+          <p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-rs-text-secondary sm:mt-7 sm:text-lg">
             {site.contact.lede}
           </p>
 
-          <div id="kontakt-email" className="mt-10 scroll-mt-28 sm:mt-12">
+          <div id="kontakt-email" className="mt-10 scroll-mt-28 sm:mt-14">
             <MagneticButton
               href={mailtoHref}
-              className="rs-contact-email-link inline-block font-display text-2xl font-semibold tracking-[-0.02em] text-rs-primary transition hover:text-rs-text sm:text-4xl"
+              className="rs-contact-email-link inline-block font-display text-[clamp(1.35rem,4.5vw,2.75rem)] font-semibold tracking-[-0.03em] text-rs-primary transition hover:text-rs-text"
             >
               {site.contact.cta}
             </MagneticButton>

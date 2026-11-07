@@ -12,47 +12,57 @@ import { EASE } from '../../lib/motionPresets'
 type WorkProjectProps = {
   product: Example
   index: number
+  total: number
   openLabel: string
   onOpen: (product: Example) => void
 }
 
 function useProjectMotion(progress: MotionValue<number>, reduce: boolean | null) {
-  const scale = useTransform(progress, [0, 0.35, 0.75, 1], reduce ? [1, 1, 1, 1] : [1.18, 1, 1, 1.06])
-  const imgOpacity = useTransform(progress, [0, 0.15, 0.85, 1], [0.55, 1, 1, 0.7])
-  const copyY = useTransform(progress, [0.1, 0.35, 0.8, 1], reduce ? [0, 0, 0, 0] : [48, 0, 0, -24])
-  const copyOpacity = useTransform(progress, [0.08, 0.28, 0.78, 0.95], [0, 1, 1, 0])
-  const glow = useTransform(progress, [0.2, 0.45], [0.15, 0.55])
-  return { scale, imgOpacity, copyY, copyOpacity, glow }
+  const scale = useTransform(progress, [0, 0.32, 0.72, 1], reduce ? [1, 1, 1, 1] : [1.22, 1, 1, 1.08])
+  const imgOpacity = useTransform(progress, [0, 0.18, 0.82, 1], [0.35, 1, 1, 0.55])
+  const copyY = useTransform(progress, [0.12, 0.34, 0.78, 1], reduce ? [0, 0, 0, 0] : [56, 0, 0, -28])
+  const copyOpacity = useTransform(progress, [0.1, 0.28, 0.76, 0.94], [0, 1, 1, 0])
+  const glow = useTransform(progress, [0.18, 0.42], [0.1, 0.62])
+  const clip = useTransform(
+    progress,
+    [0, 0.22],
+    reduce ? ['inset(0% 0% 0% 0%)', 'inset(0% 0% 0% 0%)'] : ['inset(12% 8% 12% 8%)', 'inset(0% 0% 0% 0%)'],
+  )
+  const watermarkX = useTransform(progress, [0.15, 0.5], reduce ? [0, 0] : [40, 0])
+  const watermarkOpacity = useTransform(progress, [0.15, 0.35, 0.75], [0, 0.14, 0.05])
+  return { scale, imgOpacity, copyY, copyOpacity, glow, clip, watermarkX, watermarkOpacity }
 }
 
-export function WorkProject({ product, index, openLabel, onOpen }: WorkProjectProps) {
+export function WorkProject({ product, index, total, openLabel, onOpen }: WorkProjectProps) {
   const reduce = useReducedMotion()
   const ref = useRef<HTMLLIElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'end start'],
   })
-  const { scale, imgOpacity, copyY, copyOpacity, glow } = useProjectMotion(
-    scrollYProgress,
-    reduce,
-  )
+  const motionVals = useProjectMotion(scrollYProgress, reduce)
   const hasImage = Boolean(product.image)
 
   return (
-    <li ref={ref} className="rs-work-pin relative h-[145svh] sm:h-[155svh] lg:h-[165svh]">
+    <li
+      id={`work-${product.id}`}
+      ref={ref}
+      className="rs-work-pin relative h-[150svh] sm:h-[160svh] lg:h-[170svh]"
+    >
       <div className="sticky top-0 flex h-[100svh] items-end overflow-hidden">
         <motion.button
           type="button"
-          className="absolute inset-0 block h-full w-full cursor-pointer border-0 bg-[#07070b] p-0 text-left outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-rs-primary"
+          className="absolute inset-0 block h-full w-full cursor-pointer border-0 bg-[#050508] p-0 text-left outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-rs-primary"
           onClick={() => onOpen(product)}
           aria-label={`${product.name} — ${openLabel}`}
+          style={{ clipPath: motionVals.clip }}
         >
           {hasImage ? (
             <motion.img
               src={product.image!}
               alt={product.alt}
               className="h-full w-full object-cover object-center will-change-transform"
-              style={{ scale, opacity: imgOpacity }}
+              style={{ scale: motionVals.scale, opacity: motionVals.imgOpacity }}
               loading={index === 0 ? 'eager' : 'lazy'}
               decoding="async"
               width={1672}
@@ -71,32 +81,41 @@ export function WorkProject({ product, index, openLabel, onOpen }: WorkProjectPr
           )}
           <div className="rs-work-pin-scrim pointer-events-none absolute inset-0" />
           <motion.div
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_45%_at_50%_100%,rgba(79,140,255,0.28),transparent_70%)]"
-            style={{ opacity: glow }}
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_65%_50%_at_50%_100%,rgba(79,140,255,0.32),transparent_70%)]"
+            style={{ opacity: motionVals.glow }}
             aria-hidden
           />
         </motion.button>
 
+        <motion.p
+          className="pointer-events-none absolute top-[18%] right-4 z-[5] font-display text-[clamp(5rem,18vw,14rem)] font-extrabold leading-none tracking-[-0.08em] text-white select-none sm:right-8"
+          style={{ x: motionVals.watermarkX, opacity: motionVals.watermarkOpacity }}
+          aria-hidden
+        >
+          {String(index + 1).padStart(2, '0')}
+        </motion.p>
+
         <motion.div
           className="rs-work-pin-copy pointer-events-none relative z-10 w-full px-5 pb-28 pt-28 sm:px-8 sm:pb-14 md:pb-16"
-          style={{ y: copyY, opacity: copyOpacity }}
+          style={{ y: motionVals.copyY, opacity: motionVals.copyOpacity }}
         >
           <div className="mx-auto flex w-full max-w-7xl flex-col gap-5 sm:flex-row sm:items-end sm:justify-between sm:gap-10">
             <div className="max-w-xl">
               <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-rs-primary sm:text-xs">
-                {String(index + 1).padStart(2, '0')} · {product.category}
+                {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')} ·{' '}
+                {product.category}
               </p>
               <div className="mt-3 flex items-center gap-3">
                 {product.logo ? (
                   <img
                     src={product.logo}
                     alt=""
-                    className="h-9 w-9 object-contain opacity-95 sm:h-10 sm:w-10"
-                    width={40}
-                    height={40}
+                    className="h-9 w-9 object-contain opacity-95 sm:h-11 sm:w-11"
+                    width={44}
+                    height={44}
                   />
                 ) : null}
-                <h3 className="font-display text-3xl font-bold tracking-[-0.04em] text-rs-text sm:text-4xl md:text-5xl">
+                <h3 className="font-display text-3xl font-bold tracking-[-0.04em] text-rs-text sm:text-4xl md:text-5xl lg:text-6xl">
                   {product.name}
                 </h3>
               </div>
@@ -117,10 +136,9 @@ export function WorkProject({ product, index, openLabel, onOpen }: WorkProjectPr
         </motion.div>
       </div>
 
-      {/* Prefetch hint for reduced motion fallback layout measurement */}
       <span className="sr-only">{product.alt}</span>
       <motion.div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-rs-primary/40 to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-rs-primary/45 to-transparent"
         initial={reduce ? false : { scaleX: 0, opacity: 0 }}
         whileInView={{ scaleX: 1, opacity: 1 }}
         viewport={{ once: true, amount: 0.2 }}
