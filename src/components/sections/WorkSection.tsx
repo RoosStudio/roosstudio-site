@@ -29,10 +29,11 @@ export function WorkSection() {
             <p className="rs-lede">{site.work.lede}</p>
           </SectionReveal>
 
-          <ul className="mt-12 grid gap-4 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3" role="list">
+          <ul className="mt-12 grid gap-5 sm:mt-14 sm:grid-cols-2 lg:grid-cols-6" role="list">
             {site.examples.map((product, i) => (
               <motion.li
                 key={product.id}
+                className={i < 2 ? 'lg:col-span-3' : 'lg:col-span-2'}
                 initial={reduce ? false : { opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
@@ -40,7 +41,7 @@ export function WorkSection() {
               >
                 <button
                   type="button"
-                  className="rs-work-tile group outline-none focus-visible:ring-2 focus-visible:ring-rs-lime"
+                  className="rs-work-tile group outline-none focus-visible:ring-2 focus-visible:ring-rs-primary"
                   onClick={() => open(product)}
                   aria-label={`${product.name} — ${site.work.openLabel}`}
                 >
@@ -54,7 +55,7 @@ export function WorkSection() {
                   />
                   <div className="rs-work-tile-scrim" />
                   <div className="absolute inset-x-0 bottom-0 z-[1] p-4 sm:p-5">
-                    <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-rs-lime">
+                    <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-rs-primary">
                       {product.category}
                     </p>
                     <p className="mt-1 font-display text-lg font-semibold tracking-[-0.02em] text-rs-text sm:text-xl">
