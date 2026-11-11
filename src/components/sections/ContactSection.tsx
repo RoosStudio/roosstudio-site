@@ -31,7 +31,9 @@ export function ContactSection() {
           >
             {site.contact.sectionTitle}
           </h2>
-          <p className="mx-auto mt-5 max-w-lg text-base text-rs-text-secondary sm:text-lg">{site.contact.lede}</p>
+          <p className="mx-auto mt-5 max-w-lg text-base text-rs-text-secondary sm:text-lg">
+            {site.contact.lede}
+          </p>
 
           <div id="kontakt-email" className="mt-9 scroll-mt-28 sm:mt-11">
             <a
@@ -49,10 +51,6 @@ export function ContactSection() {
               </li>
             ))}
           </ul>
-
-          <a href="#preise" className="rs-cta rs-cta--shine mt-10 inline-flex">
-            Zu den Preisen
-          </a>
         </motion.div>
       </div>
     </section>
