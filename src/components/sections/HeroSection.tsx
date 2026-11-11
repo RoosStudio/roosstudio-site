@@ -17,11 +17,14 @@ export function HeroSection() {
   const ref = useRef<HTMLElement>(null)
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const y = useSpring(useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 70]), {
-    stiffness: 80,
-    damping: 28,
-  })
-  const contentFade = useTransform(scrollYProgress, [0, 0.55], [1, 0])
+  const smooth = useSpring(scrollYProgress, { stiffness: 70, damping: 26, restDelta: 0.001 })
+
+  // Bild zieht sich beim Scrollen durch: pan + leichter Zoom
+  const imgY = useTransform(smooth, [0, 1], [0, reduce ? 0 : 160])
+  const imgX = useTransform(smooth, [0, 1], [0, reduce ? 0 : -80])
+  const imgScale = useTransform(smooth, [0, 1], [1.12, reduce ? 1.12 : 1.28])
+  const contentFade = useTransform(smooth, [0, 0.55], [1, 0])
+  const contentY = useTransform(smooth, [0, 0.7], [0, reduce ? 0 : -36])
 
   return (
     <section
@@ -31,16 +34,16 @@ export function HeroSection() {
       aria-label="Einstieg"
     >
       <div className="absolute inset-0 bg-[#050508]" aria-hidden>
-        <motion.div className="absolute inset-0" style={{ y }}>
-          <motion.img
+        <motion.div
+          className="absolute inset-[-8%] will-change-transform"
+          style={{ x: imgX, y: imgY, scale: imgScale }}
+        >
+          <img
             src={site.hero.atmosphere.src}
             alt=""
-            className="h-[112%] w-full object-cover object-center"
+            className="h-full w-full object-cover object-[58%_42%]"
             decoding="async"
             fetchPriority="high"
-            initial={reduce ? false : { scale: 1.08 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: reduce ? 0 : 10, ease: EASE }}
           />
         </motion.div>
 
@@ -52,7 +55,7 @@ export function HeroSection() {
 
       <motion.div
         className="rs-section-inner rs-section-inner--wide relative z-10 grid w-full items-end gap-12 pb-16 pt-28 sm:pb-20 sm:pt-32 lg:grid-cols-[minmax(0,1.15fr)_minmax(16rem,0.7fr)] lg:gap-16"
-        style={reduce ? undefined : { opacity: contentFade }}
+        style={reduce ? undefined : { opacity: contentFade, y: contentY }}
       >
         <div>
           <motion.p
