@@ -15,14 +15,7 @@ function App() {
       <JsonLd />
       <SkipToMain />
       <ScrollProgress />
-      <div
-        className="pointer-events-none fixed inset-0 z-0"
-        aria-hidden
-        style={{
-          background:
-            'radial-gradient(ellipse 70% 45% at 80% -10%, rgba(79,140,255,0.16), transparent 55%), radial-gradient(ellipse 50% 40% at 0% 30%, rgba(200,245,66,0.07), transparent 50%), #07070c',
-        }}
-      />
+      <div className="rs-page-bg pointer-events-none fixed inset-0 z-0" aria-hidden />
       <div className="relative z-10">
         <Header />
         <main id="main" tabIndex={-1} aria-label="Hauptinhalt">

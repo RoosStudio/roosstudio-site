@@ -10,7 +10,7 @@ import { site } from '../../content/site'
 import { scrollToKontaktEmail } from '../../lib/scrollToKontaktEmail'
 import { EASE } from '../../lib/motionPresets'
 
-const HUB_LINES = ['NexPlay', 'WireTrack', 'Lagerfotos', 'Rally Quest', 'Punkte-Arena'] as const
+const HUB_LINES = ['NexPlay', 'Lagerfotos', 'Rally Quest', 'Punkte-Arena'] as const
 
 export function HeroSection() {
   const reduce = useReducedMotion()
@@ -48,8 +48,8 @@ export function HeroSection() {
         </motion.div>
 
         <div className="rs-hero-scrim absolute inset-0" />
-        <div className="rs-grain absolute inset-0 opacity-20" />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_75%_35%,rgba(200,245,66,0.1),transparent_60%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_45%_at_70%_30%,rgba(79,140,255,0.14),transparent_62%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_45%_40%_at_15%_75%,rgba(200,245,66,0.07),transparent_58%)]" />
         {!reduce && <div className="rs-hero-sheen" />}
       </div>
 
@@ -122,10 +122,10 @@ export function HeroSection() {
         >
           <div className="rs-hub-panel-glow" />
           <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-rs-lime/90">
-            Nex Hub
+            Nex Familie
           </p>
           <p className="mt-2 text-sm leading-relaxed text-rs-text-secondary">
-            Ein Einstieg. Mehrere Tools. Eigenes Ökosystem.
+            Vereins- und Event-Tools, die zusammenlaufen.
           </p>
           <ul className="mt-6 space-y-0">
             {HUB_LINES.map((label, i) => (
