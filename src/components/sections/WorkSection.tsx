@@ -44,31 +44,20 @@ export function WorkSection() {
                   onClick={() => open(product)}
                   aria-label={`${product.name} — ${site.work.openLabel}`}
                 >
-                  {product.image ? (
-                    <img
-                      src={product.image}
-                      alt={product.alt}
-                      loading="lazy"
-                      decoding="async"
-                      width={1672}
-                      height={941}
-                    />
-                  ) : (
-                    <div className="rs-work-empty h-full min-h-[12rem]">
-                      <span className="font-display text-3xl font-extrabold tracking-[-0.04em] text-rs-text">
-                        {product.name}
-                      </span>
-                      <span className="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-rs-lime">
-                        {product.category}
-                      </span>
-                    </div>
-                  )}
+                  <img
+                    src={product.image}
+                    alt={product.alt}
+                    loading="lazy"
+                    decoding="async"
+                    width={1672}
+                    height={941}
+                  />
                   <div className="rs-work-tile-scrim" />
                   <div className="absolute inset-x-0 bottom-0 z-[1] p-4 sm:p-5">
-                    <p className="text-[0.65rem] font-bold uppercase tracking-[0.16em] text-rs-lime">
+                    <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-rs-lime">
                       {product.category}
                     </p>
-                    <p className="mt-1 font-display text-xl font-bold tracking-[-0.03em] text-rs-text">
+                    <p className="mt-1 font-display text-lg font-semibold tracking-[-0.02em] text-rs-text sm:text-xl">
                       {product.name}
                     </p>
                     <p className="mt-1 line-clamp-2 text-sm text-rs-text-secondary">{product.pitch}</p>

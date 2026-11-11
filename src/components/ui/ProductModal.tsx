@@ -104,7 +104,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
                   </p>
                   <h2
                     id="product-modal-title"
-                    className="font-display text-3xl font-bold tracking-[-0.04em] text-rs-text sm:text-4xl"
+                    className="font-display text-3xl font-semibold tracking-[-0.03em] text-rs-text sm:text-4xl"
                   >
                     {product.name}
                   </h2>
@@ -124,7 +124,7 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
                   ] as const
                 ).map(([label, value]) => (
                   <div key={label} className="rounded-xl border border-rs-border/70 bg-rs-bg/50 p-4 sm:p-5">
-                    <dt className="text-xs font-bold uppercase tracking-[0.14em] text-rs-primary">
+                    <dt className="text-xs font-semibold uppercase tracking-[0.12em] text-rs-primary">
                       {label}
                     </dt>
                     <dd className="mt-2 text-sm leading-relaxed text-rs-text-secondary sm:text-base">

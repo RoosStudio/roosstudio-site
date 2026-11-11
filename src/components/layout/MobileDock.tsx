@@ -14,7 +14,7 @@ export function MobileDock() {
           <li key={link.href} className="min-w-0 flex-1">
             <a
               href={link.href}
-              className="flex items-center justify-center rounded-xl px-1 py-2.5 text-center text-[0.72rem] font-bold text-rs-text-secondary transition hover:bg-white/5 hover:text-rs-text"
+              className="flex items-center justify-center rounded-xl px-1 py-2.5 text-center text-[0.72rem] font-semibold text-rs-text-secondary transition hover:bg-white/5 hover:text-rs-text"
             >
               {link.label}
             </a>

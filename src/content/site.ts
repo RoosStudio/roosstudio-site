@@ -18,38 +18,16 @@ export const site = {
 
   hero: {
     brand: 'Roos Studio',
-    headline: 'Apps für Vereine & Ideen — ohne Agentur-Theater.',
+    badge: 'Studio · Schweiz',
+    headline: 'Apps für Vereine & Ideen — klar gebaut.',
     lede:
-      'Ich baue schlanke Web-Tools, die am Eventabend funktionieren. Eigene Domain, eigener Server, direkter Draht.',
+      'Schlanke Web-Tools, die am Eventabend funktionieren. Eigene Domain, eigener Server, direkter Draht.',
     primaryCta: { label: 'Beispiele ansehen', href: '#arbeit' },
     secondaryCta: { label: 'Schreiben', href: '#kontakt-email' },
-    slides: [
-      {
-        src: '/showcase/wiretrack-dashboard.png',
-        alt: 'WireTrack Dashboard',
-        label: 'WireTrack',
-      },
-      {
-        src: '/showcase/foto-lager-galerie.png',
-        alt: 'Lagerfotos Galerie',
-        label: 'Lagerfotos',
-      },
-      {
-        src: '/showcase/rally-roadtrip-lobby.png',
-        alt: 'Rally Quest Lobby',
-        label: 'Rally Quest',
-      },
-      {
-        src: '/showcase/kristall-arena.png',
-        alt: 'Punkte-Arena / Kristall',
-        label: 'Punkte-Arena',
-      },
-      {
-        src: '/marketing/nexplay-overview.png',
-        alt: 'NexPlay Übersicht',
-        label: 'NexPlay',
-      },
-    ] as const,
+    atmosphere: {
+      src: '/showcase/nex-ecosystem-hero.jpg',
+      alt: 'Nex Ökosystem Atmosphäre',
+    },
   },
 
   work: {
@@ -80,9 +58,9 @@ export const site = {
       id: 'wiretrack',
       name: 'WireTrack',
       category: 'Plattform',
-      image: '/showcase/wiretrack-dashboard.png',
+      image: '/showcase/wiretrack-lifestyle.jpg',
       logo: '/marketing/wiretrack-logo.png',
-      alt: 'WireTrack Dashboard',
+      alt: 'WireTrack Feld & Werkstatt',
       pitch: 'Operations-Dashboard für Projekte, Service und Zeit.',
       description: 'B2B-Plattform mit Widgets, Rechten und klarem Alltag.',
       details: {
@@ -137,27 +115,28 @@ export const site = {
       },
     },
     {
-      id: 'halle',
-      name: 'Halle Bestellung',
-      category: 'Verein',
-      image: null,
-      logo: null,
-      alt: 'Bestellsystem Halle',
-      pitch: 'Pizza & Snacks bestellen — ohne Zettelchaos.',
-      description: 'Schlankes Bestellsystem für den Event-Betrieb.',
+      id: 'nex-ecosystem',
+      name: 'Nex Ökosystem',
+      category: 'Hub',
+      image: '/showcase/nex-ecosystem-tile.jpg',
+      logo: '/marketing/nexplay-logo.png',
+      alt: 'Nex Ökosystem Hub',
+      pitch: 'Ein Hub für Vereine — Apps, die zusammenwachsen.',
+      description:
+        'NexPlay und die Event-Tools als gemeinsames Ökosystem: ein Einstieg, viele Module, eigene Domain.',
       details: {
-        was: 'Bestell-Flow für die Halle.',
-        wie: 'Einfach, schnell live.',
-        wo: 'Vereins-Hallen',
+        was: 'Vereins-Apps, Events, Live-Tools unter einem Dach.',
+        wie: 'Modular, eigener Server, iterativ ausbaubar.',
+        wo: 'next.rosstudio.ch',
       },
     },
   ] as const,
 
   about: {
     eyebrow: 'Studio',
-    title: 'Ein Typ. Eigener Server. Gute Laune am Code.',
+    title: 'Solo. Eigener Server. Klarer Code.',
     lede:
-      'Ich heisse Silas — Freude am Coden und Schreiben. Zu Hause läuft die Infra, auf der Vereine und kleine Teams ihre Tools bekommen.',
+      'Ich heisse Silas. Zu Hause läuft die Infra, auf der Vereine und kleine Teams ihre Tools bekommen — ohne Agentur-Overhead.',
     facts: ['Solo', 'Schweiz', 'Eigene Server', 'xy.rosstudio.ch'] as const,
   },
 
@@ -175,4 +154,3 @@ export const site = {
 } as const
 
 export type Example = (typeof site.examples)[number]
-export type HeroSlide = (typeof site.hero.slides)[number]
