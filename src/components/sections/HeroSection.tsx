@@ -1,160 +1,144 @@
 import {
-  AnimatePresence,
   motion,
   useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
 } from 'framer-motion'
-import { useEffect, useState, useRef } from 'react'
+import { useRef } from 'react'
 import { site } from '../../content/site'
 import { scrollToKontaktEmail } from '../../lib/scrollToKontaktEmail'
 import { EASE } from '../../lib/motionPresets'
 
-const SLIDE_MS = 4200
+const HUB_LINES = ['NexPlay', 'WireTrack', 'Lagerfotos', 'Rally Quest', 'Punkte-Arena'] as const
 
 export function HeroSection() {
   const reduce = useReducedMotion()
   const ref = useRef<HTMLElement>(null)
-  const slides = site.hero.slides
-  const [index, setIndex] = useState(0)
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const y = useSpring(useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 100]), {
+  const y = useSpring(useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 70]), {
     stiffness: 80,
     damping: 28,
   })
   const contentFade = useTransform(scrollYProgress, [0, 0.55], [1, 0])
 
-  useEffect(() => {
-    if (reduce || slides.length < 2) return
-    const id = window.setInterval(() => {
-      setIndex((i) => (i + 1) % slides.length)
-    }, SLIDE_MS)
-    return () => window.clearInterval(id)
-  }, [reduce, slides.length])
-
-  const active = slides[index]
-
   return (
     <section
       id="top"
       ref={ref}
-      className="relative flex min-h-[100svh] flex-col justify-end"
+      className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden"
       aria-label="Einstieg"
     >
-      <div className="absolute inset-0 overflow-hidden bg-[#050508]" aria-hidden>
-        <AnimatePresence mode="sync">
-          <motion.div
-            key={active.src}
-            className="absolute inset-0"
-            initial={reduce ? false : { opacity: 0, scale: 1.08 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={reduce ? undefined : { opacity: 0, scale: 1.02 }}
-            transition={{ duration: reduce ? 0 : 1.1, ease: EASE }}
-            style={{ y }}
-          >
-            <img
-              src={active.src}
-              alt=""
-              className="h-full w-full object-cover object-center"
-              decoding="async"
-              fetchPriority={index === 0 ? 'high' : 'low'}
-            />
-          </motion.div>
-        </AnimatePresence>
+      <div className="absolute inset-0 bg-[#050508]" aria-hidden>
+        <motion.div className="absolute inset-0" style={{ y }}>
+          <motion.img
+            src={site.hero.atmosphere.src}
+            alt=""
+            className="h-[112%] w-full object-cover object-center"
+            decoding="async"
+            fetchPriority="high"
+            initial={reduce ? false : { scale: 1.08 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: reduce ? 0 : 10, ease: EASE }}
+          />
+        </motion.div>
 
         <div className="rs-hero-scrim absolute inset-0" />
-        <div className="rs-grain absolute inset-0" />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_70%_30%,rgba(79,140,255,0.18),transparent_60%)]" />
+        <div className="rs-grain absolute inset-0 opacity-20" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_75%_35%,rgba(200,245,66,0.1),transparent_60%)]" />
+        {!reduce && <div className="rs-hero-sheen" />}
       </div>
 
       <motion.div
-        className="rs-section-inner rs-section-inner--wide relative z-10 w-full pb-16 pt-28 sm:pb-20 sm:pt-32"
+        className="rs-section-inner rs-section-inner--wide relative z-10 grid w-full items-end gap-12 pb-16 pt-28 sm:pb-20 sm:pt-32 lg:grid-cols-[minmax(0,1.15fr)_minmax(16rem,0.7fr)] lg:gap-16"
         style={reduce ? undefined : { opacity: contentFade }}
       >
-        <motion.div
-          className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/35 px-3 py-1.5 text-xs font-bold text-rs-text backdrop-blur-md"
-          initial={reduce ? false : { opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, ease: EASE }}
-        >
-          <span className="rs-live-dot" />
-          <AnimatePresence mode="wait">
-            <motion.span
-              key={active.label}
-              initial={reduce ? false : { opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={reduce ? undefined : { opacity: 0, y: -6 }}
-              transition={{ duration: 0.35 }}
-            >
-              Hub · {active.label}
-            </motion.span>
-          </AnimatePresence>
-        </motion.div>
-
-        <motion.p
-          className="font-display text-[clamp(2.6rem,11vw,7.5rem)] font-extrabold leading-[0.88] tracking-[-0.055em] text-rs-text"
-          initial={reduce ? false : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: EASE, delay: 0.05 }}
-        >
-          {site.hero.brand}
-        </motion.p>
-
-        <motion.h1
-          className="mt-5 max-w-3xl font-display text-[1.45rem] font-bold leading-[1.12] tracking-[-0.03em] text-rs-text sm:mt-6 sm:text-3xl md:text-4xl lg:text-[2.75rem]"
-          initial={reduce ? false : { opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: EASE, delay: 0.15 }}
-        >
-          {site.hero.headline}
-        </motion.h1>
-
-        <motion.p
-          className="mt-4 max-w-xl text-base leading-relaxed text-rs-text-secondary sm:mt-5 sm:text-lg"
-          initial={reduce ? false : { opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: EASE, delay: 0.25 }}
-        >
-          {site.hero.lede}
-        </motion.p>
-
-        <motion.div
-          className="mt-8 flex flex-wrap gap-3 sm:mt-10"
-          initial={reduce ? false : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, ease: EASE, delay: 0.35 }}
-        >
-          <a href={site.hero.primaryCta.href} className="rs-cta rs-cta--shine min-w-40 justify-center">
-            {site.hero.primaryCta.label}
-          </a>
-          <a
-            href={site.hero.secondaryCta.href}
-            className="rs-cta rs-cta--ghost min-w-40 justify-center"
-            onClick={(e) => scrollToKontaktEmail(e, reduce)}
+        <div>
+          <motion.p
+            className="rs-eyebrow"
+            initial={reduce ? false : { opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: EASE }}
           >
-            {site.hero.secondaryCta.label}
-          </a>
-        </motion.div>
+            {site.hero.badge}
+          </motion.p>
 
-        <div className="mt-8 flex flex-wrap items-center gap-2" role="tablist" aria-label="Hero-Bilder">
-          {slides.map((slide, i) => (
-            <button
-              key={slide.src}
-              type="button"
-              role="tab"
-              aria-selected={i === index}
-              aria-label={slide.label}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === index ? 'w-8 bg-rs-lime' : 'w-3 bg-white/25 hover:bg-white/45'
-              }`}
-              onClick={() => setIndex(i)}
-            />
-          ))}
+          <motion.p
+            className="mt-4 font-display text-[clamp(2.75rem,9.5vw,6.5rem)] font-semibold leading-[0.92] tracking-[-0.04em] text-rs-text"
+            initial={reduce ? false : { opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, ease: EASE, delay: 0.05 }}
+          >
+            {site.hero.brand}
+          </motion.p>
+
+          <motion.h1
+            className="mt-5 max-w-2xl text-[1.2rem] font-medium leading-snug tracking-[-0.02em] text-rs-text sm:mt-6 sm:text-2xl md:text-[1.75rem]"
+            initial={reduce ? false : { opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: EASE, delay: 0.12 }}
+          >
+            {site.hero.headline}
+          </motion.h1>
+
+          <motion.p
+            className="mt-4 max-w-lg text-[0.95rem] leading-relaxed text-rs-text-secondary sm:mt-5 sm:text-base"
+            initial={reduce ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: EASE, delay: 0.2 }}
+          >
+            {site.hero.lede}
+          </motion.p>
+
+          <motion.div
+            className="mt-8 flex flex-wrap gap-3 sm:mt-9"
+            initial={reduce ? false : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: EASE, delay: 0.28 }}
+          >
+            <a href={site.hero.primaryCta.href} className="rs-cta rs-cta--shine min-w-36 justify-center">
+              {site.hero.primaryCta.label}
+            </a>
+            <a
+              href={site.hero.secondaryCta.href}
+              className="rs-cta rs-cta--ghost min-w-36 justify-center"
+              onClick={(e) => scrollToKontaktEmail(e, reduce)}
+            >
+              {site.hero.secondaryCta.label}
+            </a>
+          </motion.div>
         </div>
 
-        <span className="sr-only">{active.alt}</span>
+        <motion.aside
+          className="rs-hub-panel relative hidden w-full max-w-sm justify-self-end lg:block"
+          initial={reduce ? false : { opacity: 0, x: 18 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.55, ease: EASE, delay: 0.22 }}
+          aria-hidden
+        >
+          <div className="rs-hub-panel-glow" />
+          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-rs-lime/90">
+            Nex Hub
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-rs-text-secondary">
+            Ein Einstieg. Mehrere Tools. Eigenes Ökosystem.
+          </p>
+          <ul className="mt-6 space-y-0">
+            {HUB_LINES.map((label, i) => (
+              <motion.li
+                key={label}
+                className="flex items-center gap-3 border-t border-white/10 py-3 last:border-b"
+                initial={reduce ? false : { opacity: 0, x: 10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, ease: EASE, delay: 0.3 + i * 0.06 }}
+              >
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-rs-lime" />
+                <span className="text-sm font-medium tracking-[-0.01em] text-rs-text">{label}</span>
+              </motion.li>
+            ))}
+          </ul>
+        </motion.aside>
       </motion.div>
     </section>
   )

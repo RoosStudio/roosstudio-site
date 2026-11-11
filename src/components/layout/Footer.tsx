@@ -28,7 +28,7 @@ export function Footer() {
         </div>
 
         <div id="impressum" className="mt-14 scroll-mt-24 border-t border-white/10 pt-10">
-          <h2 className="text-sm font-bold text-rs-text">Impressum</h2>
+          <h2 className="text-sm font-semibold text-rs-text">Impressum</h2>
           <div className="mt-3 max-w-2xl space-y-2 text-sm text-rs-text-secondary">
             <p>
               <strong className="text-rs-text">Roos Studio</strong>
@@ -43,7 +43,7 @@ export function Footer() {
         </div>
 
         <div id="datenschutz" className="mt-10 scroll-mt-24 border-t border-white/10 pt-10">
-          <h2 className="text-sm font-bold text-rs-text">Datenschutz</h2>
+          <h2 className="text-sm font-semibold text-rs-text">Datenschutz</h2>
           <div className="mt-3 max-w-2xl space-y-2 text-sm text-rs-text-secondary">
             <p>
               Keine Formulare auf dieser Seite. Beim Aufruf können technisch nötige Server-Logs entstehen.

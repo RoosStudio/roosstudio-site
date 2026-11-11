@@ -10,8 +10,8 @@
   --color-rs-text: #f4f4f7;
   --color-rs-text-secondary: #a3a3b0;
   --color-rs-muted: #6b6b78;
-  --font-sans: 'Manrope', system-ui, sans-serif;
-  --font-display: 'Syne', 'Manrope', system-ui, sans-serif;
+  --font-sans: 'Figtree', system-ui, sans-serif;
+  --font-display: 'Outfit', 'Figtree', system-ui, sans-serif;
 }
 
 @layer base {
@@ -40,7 +40,8 @@
   h3,
   .font-display {
     font-family: var(--font-display);
-    letter-spacing: -0.035em;
+    letter-spacing: -0.03em;
+    font-weight: 600;
   }
 
   ::selection {
@@ -80,6 +81,20 @@
   }
 }
 
+@keyframes rs-hero-sheen {
+  0% {
+    transform: translateX(-35%) skewX(-16deg);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.18;
+  }
+  100% {
+    transform: translateX(130%) skewX(-16deg);
+    opacity: 0;
+  }
+}
+
 @layer components {
   .rs-section-inner {
     @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
@@ -98,15 +113,15 @@
   }
 
   .rs-eyebrow {
-    @apply text-[0.6875rem] font-bold uppercase tracking-[0.2em] text-rs-lime sm:text-xs;
+    @apply text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-rs-lime sm:text-xs;
   }
 
   .rs-title {
-    @apply mt-3 font-display text-3xl font-extrabold leading-[1.02] tracking-[-0.04em] text-rs-text sm:mt-4 sm:text-5xl md:text-[3.4rem];
+    @apply mt-3 font-display text-3xl font-semibold leading-[1.05] tracking-[-0.03em] text-rs-text sm:mt-4 sm:text-4xl md:text-[2.85rem];
   }
 
   .rs-lede {
-    @apply mt-4 max-w-2xl text-base leading-relaxed text-rs-text-secondary sm:mt-5 sm:text-lg;
+    @apply mt-4 max-w-2xl text-[0.95rem] leading-relaxed text-rs-text-secondary sm:mt-5 sm:text-base;
   }
 
   .rs-cta {
@@ -118,8 +133,8 @@
     min-height: 2.85rem;
     padding: 0.7rem 1.35rem;
     border-radius: 0.75rem;
-    font-weight: 700;
-    font-size: 0.9375rem;
+    font-weight: 600;
+    font-size: 0.9rem;
     text-decoration: none;
     border: 1px solid transparent;
     cursor: pointer;
@@ -189,15 +204,52 @@
   .rs-hero-scrim {
     background:
       linear-gradient(180deg, rgba(7, 7, 12, 0.55) 0%, rgba(7, 7, 12, 0.2) 35%, rgba(7, 7, 12, 0.88) 78%, #07070c 100%),
-      linear-gradient(90deg, rgba(7, 7, 12, 0.7) 0%, transparent 45%, rgba(7, 7, 12, 0.35) 100%);
+      linear-gradient(90deg, rgba(7, 7, 12, 0.78) 0%, transparent 48%, rgba(7, 7, 12, 0.45) 100%);
+  }
+
+  .rs-hero-sheen {
+    pointer-events: none;
+    position: absolute;
+    inset: -10% -20%;
+    background: linear-gradient(
+      105deg,
+      transparent 38%,
+      rgba(255, 255, 255, 0.06) 50%,
+      transparent 62%
+    );
+    animation: rs-hero-sheen 9s ease-in-out infinite;
+  }
+
+  .rs-hub-panel {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    background: rgba(7, 7, 12, 0.55);
+    padding: 1.35rem 1.4rem 1.1rem;
+    backdrop-filter: blur(14px);
+  }
+
+  .rs-hub-panel-glow {
+    pointer-events: none;
+    position: absolute;
+    inset: auto auto -20% -10%;
+    width: 70%;
+    height: 55%;
+    background: radial-gradient(circle, rgba(200, 245, 66, 0.12), transparent 70%);
+    filter: blur(20px);
   }
 
   .rs-grain {
     pointer-events: none;
-    opacity: 0.28;
+    opacity: 0.22;
     mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
     background-size: 160px 160px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rs-hero-sheen {
+      animation: none !important;
+    }
   }
 
   .rs-price-card {

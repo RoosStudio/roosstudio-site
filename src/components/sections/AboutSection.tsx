@@ -21,7 +21,7 @@ export function AboutSection() {
           {site.about.facts.map((fact, i) => (
             <motion.li
               key={fact}
-              className="rounded-full border border-white/12 bg-white/[0.03] px-4 py-2 text-sm font-semibold text-rs-text-secondary"
+              className="border-b border-white/15 px-1 py-1 text-sm font-medium text-rs-text-secondary"
               initial={reduce ? false : { opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

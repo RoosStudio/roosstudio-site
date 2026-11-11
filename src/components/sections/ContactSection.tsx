@@ -27,18 +27,18 @@ export function ContactSection() {
         >
           <h2
             id="kontakt-heading"
-            className="font-display text-[clamp(2.5rem,10vw,5.5rem)] font-extrabold leading-[0.92] tracking-[-0.05em] text-rs-text"
+            className="font-display text-[clamp(2.2rem,8vw,4.25rem)] font-semibold leading-[1.02] tracking-[-0.035em] text-rs-text"
           >
             {site.contact.sectionTitle}
           </h2>
-          <p className="mx-auto mt-5 max-w-lg text-base text-rs-text-secondary sm:text-lg">
+          <p className="mx-auto mt-5 max-w-lg text-[0.95rem] text-rs-text-secondary sm:text-base">
             {site.contact.lede}
           </p>
 
           <div id="kontakt-email" className="mt-9 scroll-mt-28 sm:mt-11">
             <a
               href={mailtoHref}
-              className="inline-block font-display text-[clamp(1.35rem,4.8vw,2.6rem)] font-bold tracking-[-0.03em] text-rs-lime transition hover:text-rs-text"
+              className="inline-block font-display text-[clamp(1.25rem,4vw,2.1rem)] font-semibold tracking-[-0.025em] text-rs-lime transition hover:text-rs-text"
             >
               {site.contact.cta}
             </a>

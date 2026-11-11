@@ -17,13 +17,13 @@ export function BrandLogo({ placement, className = '' }: BrandLogoProps) {
 
   const roosClass =
     placement === 'header'
-      ? 'block text-base font-semibold leading-none tracking-[-0.02em] text-rs-text sm:text-[1.05rem]'
-      : 'block text-xl font-semibold leading-none tracking-[-0.02em] text-rs-text sm:text-2xl'
+      ? 'block font-display text-base font-semibold leading-none tracking-[-0.02em] text-rs-text sm:text-[1.05rem]'
+      : 'block font-display text-xl font-semibold leading-none tracking-[-0.02em] text-rs-text sm:text-2xl'
 
   const studioClass =
     placement === 'header'
-      ? 'block text-[0.625rem] font-medium uppercase leading-none tracking-[0.14em] text-rs-text-secondary sm:text-[0.6875rem]'
-      : 'block text-[0.6875rem] font-medium uppercase leading-none tracking-[0.14em] text-rs-text-secondary sm:text-xs'
+      ? 'block text-[0.625rem] font-medium uppercase leading-none tracking-[0.16em] text-rs-text-secondary sm:text-[0.6875rem]'
+      : 'block text-[0.6875rem] font-medium uppercase leading-none tracking-[0.16em] text-rs-text-secondary sm:text-xs'
 
   const gridClass = `grid grid-cols-[auto_1fr] grid-rows-2 items-center gap-x-2.5 gap-y-0.5 ${className}`
 
