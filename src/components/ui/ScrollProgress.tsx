@@ -1,68 +1,68 @@
 import {
+  AnimatePresence,
   motion,
   useMotionValueEvent,
   useReducedMotion,
   useScroll,
-  useSpring,
-  useTransform,
 } from 'framer-motion'
 import { useState } from 'react'
 
-/** Wegpunkte — visuell als Hub-Knoten, inhaltlich die Seitenstationen. */
-const STOPS = [0, 0.28, 0.62, 0.92] as const
+const GLYPHS = 'ROOSNEX0123456789·' as const
+
+function reelChar(seed: number, scroll: number, lag: number) {
+  const t = Math.max(0, scroll * 18 - lag)
+  const idx = Math.floor(t + seed * 7) % GLYPHS.length
+  return GLYPHS[(idx + GLYPHS.length) % GLYPHS.length]
+}
+
+function Reel({ value, delay }: { value: string; delay: number }) {
+  return (
+    <span className="rs-scroll-reel">
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.span
+          key={value}
+          className="rs-scroll-reel-char"
+          initial={{ y: '70%', opacity: 0, rotateX: -70 }}
+          animate={{ y: '0%', opacity: 1, rotateX: 0 }}
+          exit={{ y: '-70%', opacity: 0, rotateX: 70 }}
+          transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1], delay }}
+        >
+          {value}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  )
+}
 
 export function ScrollProgress() {
   const reduce = useReducedMotion()
   const { scrollYProgress } = useScroll()
-  const progress = useSpring(scrollYProgress, { stiffness: 95, damping: 28, restDelta: 0.001 })
-  const fillWidth = useTransform(progress, [0, 1], ['0%', '100%'])
-  const nodeLeft = useTransform(progress, [0, 1], ['0%', '100%'])
-  const [lit, setLit] = useState(0)
+  const [scroll, setScroll] = useState(0)
 
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
-    let next = 0
-    for (let i = 0; i < STOPS.length; i++) {
-      if (v >= STOPS[i] - 0.03) next = i
-    }
-    setLit(next)
+    // Quantize a bit so reels don't thrash every frame
+    const q = Math.round(v * 48) / 48
+    setScroll((prev) => (prev === q ? prev : q))
   })
 
   if (reduce) return null
 
+  const chars = [0, 1, 2, 3, 4].map((i) => reelChar(i + 1, scroll, i * 0.35))
+  const pct = String(Math.min(99, Math.round(scroll * 100))).padStart(2, '0')
+
   return (
     <div
-      className="pointer-events-none fixed inset-x-0 top-0 z-[120] h-3"
+      className="pointer-events-none fixed inset-x-0 top-0 z-[120] flex justify-center pt-2.5 sm:justify-end sm:pr-8 sm:pt-3"
       aria-hidden
-      title="Scroll-Pfad"
     >
-      {/* soft track */}
-      <div className="absolute inset-x-0 top-[5px] h-px bg-white/10" />
-      <motion.div
-        className="absolute top-[5px] h-px origin-left bg-gradient-to-r from-rs-lime via-[#9be36a] to-rs-primary"
-        style={{ width: fillWidth }}
-      />
-
-      {/* hub stops */}
-      <div className="absolute inset-x-[12%] top-[2px] flex justify-between sm:inset-x-[18%]">
-        {STOPS.map((at, i) => (
-          <span
-            key={at}
-            className={`block h-2 w-2 rounded-full transition-[background,box-shadow,transform] duration-300 ${
-              i <= lit
-                ? 'scale-110 bg-rs-lime shadow-[0_0_10px_rgba(200,245,66,0.65)]'
-                : 'bg-white/20'
-            }`}
-          />
+      <div className="rs-scroll-ticker">
+        {chars.map((c, i) => (
+          <Reel key={i} value={c} delay={i * 0.02} />
         ))}
+        <span className="rs-scroll-ticker-sep" />
+        <Reel value={pct[0]} delay={0.08} />
+        <Reel value={pct[1]} delay={0.1} />
       </div>
-
-      {/* traveling hub node */}
-      <motion.span
-        className="absolute top-0 h-3 w-3 -translate-x-1/2 rounded-full border border-white/30 bg-rs-bg"
-        style={{ left: nodeLeft }}
-      >
-        <span className="absolute inset-[2px] rounded-full bg-rs-lime shadow-[0_0_14px_rgba(200,245,66,0.7)]" />
-      </motion.span>
     </div>
   )
 }
