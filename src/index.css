@@ -87,11 +87,21 @@
     opacity: 0;
   }
   40% {
-    opacity: 0.18;
+    opacity: 0.16;
   }
   100% {
     transform: translateX(130%) skewX(-16deg);
     opacity: 0;
+  }
+}
+
+@keyframes rs-twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.95;
   }
 }
 
@@ -203,16 +213,24 @@
 
   .rs-page-bg {
     background:
-      radial-gradient(ellipse 80% 55% at 85% -5%, rgba(79, 140, 255, 0.14), transparent 58%),
-      radial-gradient(ellipse 55% 45% at 0% 40%, rgba(200, 245, 66, 0.05), transparent 52%),
-      radial-gradient(ellipse 60% 40% at 50% 100%, rgba(79, 140, 255, 0.06), transparent 55%),
+      radial-gradient(ellipse 75% 50% at 88% -8%, rgba(79, 140, 255, 0.12), transparent 55%),
+      radial-gradient(ellipse 50% 40% at 8% 55%, rgba(200, 245, 66, 0.04), transparent 50%),
+      radial-gradient(ellipse 55% 35% at 50% 110%, rgba(79, 140, 255, 0.07), transparent 50%),
       #07070c;
+  }
+
+  .rs-starfield {
+    opacity: 0.85;
+  }
+
+  .rs-star-bright {
+    filter: drop-shadow(0 0 2px rgba(200, 245, 66, 0.65));
   }
 
   .rs-hero-scrim {
     background:
-      linear-gradient(180deg, rgba(7, 7, 12, 0.35) 0%, rgba(7, 7, 12, 0.15) 40%, rgba(7, 7, 12, 0.82) 78%, #07070c 100%),
-      linear-gradient(90deg, rgba(7, 7, 12, 0.55) 0%, transparent 55%, rgba(7, 7, 12, 0.35) 100%);
+      linear-gradient(180deg, rgba(7, 7, 12, 0.45) 0%, rgba(7, 7, 12, 0.2) 38%, rgba(7, 7, 12, 0.88) 80%, #07070c 100%),
+      linear-gradient(90deg, rgba(7, 7, 12, 0.6) 0%, transparent 52%, rgba(7, 7, 12, 0.4) 100%);
   }
 
   .rs-hero-sheen {
@@ -268,34 +286,9 @@
     transform-origin: center;
   }
 
-  .rs-hub-panel {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 1rem;
-    background: rgba(7, 7, 12, 0.55);
-    padding: 1.35rem 1.4rem 1.1rem;
-    backdrop-filter: blur(14px);
-  }
-
-  .rs-hub-panel-glow {
-    pointer-events: none;
-    position: absolute;
-    inset: auto auto -20% -10%;
-    width: 70%;
-    height: 55%;
-    background: radial-gradient(circle, rgba(200, 245, 66, 0.12), transparent 70%);
-    filter: blur(20px);
-  }
-
-  .rs-grain {
-    pointer-events: none;
-    opacity: 0.22;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-    background-size: 160px 160px;
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .rs-hero-sheen {
+    .rs-hero-sheen,
+    .rs-starfield circle {
       animation: none !important;
     }
   }
@@ -364,36 +357,51 @@
   .rs-work-tile {
     position: relative;
     overflow: hidden;
-    border: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 0;
     margin: 0;
     display: block;
     width: 100%;
-    aspect-ratio: 16 / 11;
-    border-radius: 1.1rem;
+    aspect-ratio: 16 / 10;
+    border-radius: 1rem;
     background: #0a0a10;
     cursor: pointer;
     text-align: left;
+    box-shadow: 0 18px 50px -28px rgba(0, 0, 0, 0.7);
+    transition:
+      border-color 0.3s ease,
+      box-shadow 0.35s ease;
+  }
+
+  .rs-work-tile:hover {
+    border-color: rgba(79, 140, 255, 0.35);
+    box-shadow: 0 22px 60px -24px rgba(79, 140, 255, 0.28);
   }
 
   .rs-work-tile img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top center;
-    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    object-position: center top;
+    filter: saturate(0.92) brightness(0.92);
+    transition:
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.45s ease;
   }
 
   @media (prefers-reduced-motion: no-preference) {
     .rs-work-tile:hover img {
-      transform: scale(1.05);
+      transform: scale(1.035);
+      filter: saturate(1) brightness(1);
     }
   }
 
   .rs-work-tile-scrim {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent 40%, rgba(7, 7, 12, 0.92) 100%);
+    background:
+      linear-gradient(180deg, rgba(7, 7, 12, 0.12) 0%, transparent 28%, rgba(7, 7, 12, 0.55) 62%, rgba(7, 7, 12, 0.94) 100%),
+      linear-gradient(90deg, rgba(7, 7, 12, 0.2), transparent 40%);
   }
 
   .rs-work-empty {

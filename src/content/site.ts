@@ -18,10 +18,10 @@ export const site = {
 
   hero: {
     brand: 'Roos Studio',
-    badge: 'Studio · Schweiz',
-    headline: 'Apps für Vereine & Ideen — klar gebaut.',
+    badge: 'Roos Studio · Schweiz',
+    headline: 'Software für Vereine, Events und Teams.',
     lede:
-      'Schlanke Web-Tools, die am Eventabend funktionieren. Eigene Domain, eigener Server, direkter Draht.',
+      'Klar gebaut, eigener Server, direkter Draht — ohne Agentur-Overhead.',
     primaryCta: { label: 'Beispiele ansehen', href: '#arbeit' },
     secondaryCta: { label: 'Schreiben', href: '#kontakt-email' },
     atmosphere: {
@@ -31,9 +31,9 @@ export const site = {
   },
 
   work: {
-    eyebrow: 'Beispiele',
-    title: 'Schon gebaut. Schon gelaufen.',
-    lede: 'Echte Oberflächen aus der Werkstatt — tippen zum Vergrössern.',
+    eyebrow: 'Ausgewählte Arbeiten',
+    title: 'Gebaut. Live. Im Einsatz.',
+    lede: 'Fünf Produkte — gleiche Werkstatt, klare Oberflächen.',
     openLabel: 'Öffnen',
   },
 
@@ -42,7 +42,7 @@ export const site = {
       id: 'nexplay',
       name: 'NexPlay',
       category: 'Verein',
-      image: '/marketing/nexplay-overview.png',
+      image: '/marketing/nexplay.png',
       logo: '/marketing/nexplay-logo.png',
       alt: 'NexPlay Vereinsplattform',
       pitch: 'All-in-One für Teams: Planung, Chat, Spiele.',
@@ -58,10 +58,10 @@ export const site = {
       id: 'wiretrack',
       name: 'WireTrack',
       category: 'Plattform',
-      image: '/showcase/wiretrack-lifestyle.jpg',
+      image: '/marketing/wiretrack.png',
       logo: '/marketing/wiretrack-logo.png',
-      alt: 'WireTrack Feld & Werkstatt',
-      pitch: 'Operations-Dashboard für Projekte, Service und Zeit.',
+      alt: 'WireTrack Enterprise Platform',
+      pitch: 'Operations für Projekte, Service und Zeit.',
       description: 'B2B-Plattform mit Widgets, Rechten und klarem Alltag.',
       details: {
         was: 'Projekte, Service, Zeiterfassung, Offerten.',
@@ -73,7 +73,7 @@ export const site = {
       id: 'lagerfotos',
       name: 'Lagerfotos',
       category: 'Verein',
-      image: '/showcase/foto-lager-galerie.png',
+      image: '/marketing/lagerfotos.png',
       logo: null,
       alt: 'Lagerfotos Galerie',
       pitch: 'Foto-Galerie für Lager — Alben, Freigaben, Elternzugang.',
@@ -88,9 +88,9 @@ export const site = {
       id: 'rally',
       name: 'Rally Quest',
       category: 'Event',
-      image: '/showcase/rally-roadtrip-lobby.png',
+      image: '/marketing/rally-quest.png',
       logo: '/marketing/rally-logo.png',
-      alt: 'Rally Quest Lobby',
+      alt: 'Rally Quest',
       pitch: 'Live-Rallye mit Karte, Missionen und Rangliste.',
       description: 'Jede Location wird zur interaktiven Rallye.',
       details: {
@@ -103,7 +103,7 @@ export const site = {
       id: 'punkte-arena',
       name: 'Punkte-Arena',
       category: 'Event',
-      image: '/showcase/kristall-arena.png',
+      image: '/marketing/punkte-arena.png',
       logo: null,
       alt: 'Punkte-Arena Live',
       pitch: 'Punkte scannen, verbuchen, live zeigen.',
@@ -112,22 +112,6 @@ export const site = {
         was: 'Scan, Punkte, Rangliste.',
         wie: 'Bühne + Handy.',
         wo: 'Shows & Events',
-      },
-    },
-    {
-      id: 'nex-family',
-      name: 'Nex Familie',
-      category: 'Hub',
-      image: '/showcase/nex-family.jpg',
-      logo: '/marketing/nexplay-logo.png',
-      alt: 'NexPlay, Lagerfotos, Rally Quest und Punkte-Arena',
-      pitch: 'NexPlay + Lagerfotos + Rally + Arena — unter einem Dach.',
-      description:
-        'Die Vereins- und Event-Tools als Familie: NexPlay als Hub, dazu Lagerfotos, Rally Quest und Punkte-Arena. WireTrack läuft separat als B2B-Plattform.',
-      details: {
-        was: 'NexPlay, Lagerfotos, Rally Quest, Punkte-Arena.',
-        wie: 'Modular, eigener Server, gemeinsame Richtung.',
-        wo: 'next.rosstudio.ch',
       },
     },
   ] as const,
