@@ -118,10 +118,23 @@ export const site = {
 
   about: {
     eyebrow: 'Studio',
-    title: 'Solo. Eigener Server. Klarer Code.',
+    title: 'Gebaut von einer Person. Betrieben auf eigener Hardware.',
     lede:
-      'Ich heisse Silas. Zu Hause läuft die Infra, auf der Vereine und kleine Teams ihre Tools bekommen — ohne Agentur-Overhead.',
-    facts: ['Solo', 'Schweiz', 'Eigene Server', 'xy.rosstudio.ch'] as const,
+      'Ich heisse Silas Roos. Für Vereine und kleine Teams baue ich schlanke Web-Tools — und betreibe sie auf Servern, die bei mir laufen.',
+    points: [
+      {
+        label: 'Arbeitsweise',
+        text: 'Direkt mit mir — ohne Agentur-Schichten und lange Abstimmungen.',
+      },
+      {
+        label: 'Infrastruktur',
+        text: 'Eigene Server in der Schweiz. Domain und Deploy unter Kontrolle.',
+      },
+      {
+        label: 'Ziel',
+        text: 'Tools, die am Eventabend und im Vereinsalltag einfach funktionieren.',
+      },
+    ] as const,
   },
 
   contact: {
