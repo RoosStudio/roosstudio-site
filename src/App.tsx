@@ -5,8 +5,6 @@ import { Header } from './components/layout/Header'
 import { MobileDock } from './components/layout/MobileDock'
 import { Footer } from './components/layout/Footer'
 import { HeroSection } from './components/sections/HeroSection'
-import { PricingSection } from './components/sections/PricingSection'
-import { FeaturesSection } from './components/sections/FeaturesSection'
 import { WorkSection } from './components/sections/WorkSection'
 import { AboutSection } from './components/sections/AboutSection'
 import { ContactSection } from './components/sections/ContactSection'
@@ -29,8 +27,6 @@ function App() {
         <Header />
         <main id="main" tabIndex={-1} aria-label="Hauptinhalt">
           <HeroSection />
-          <PricingSection />
-          <FeaturesSection />
           <WorkSection />
           <AboutSection />
           <ContactSection />

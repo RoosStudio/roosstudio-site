@@ -1,5 +1,5 @@
 /**
- * Roos Studio — jung, direkt, bezahlbar.
+ * Roos Studio — jung, direkt, ohne Preisschild.
  */
 export const site = {
   meta: {
@@ -9,100 +9,45 @@ export const site = {
 
   header: {
     nav: [
-      { href: '#preise', label: 'Preise' },
-      { href: '#features', label: 'Features' },
       { href: '#arbeit', label: 'Beispiele' },
+      { href: '#studio', label: 'Studio' },
       { href: '#kontakt', label: 'Kontakt' },
     ] as const,
-    cta: { short: 'Los', long: 'Loslegen', aria: 'Zum Kontakt scrollen' },
+    cta: { short: 'Mail', long: 'Schreiben', aria: 'Zum Kontakt scrollen' },
   },
 
   hero: {
     brand: 'Roos Studio',
-    headline: 'Apps für Vereine & Ideen — ohne Agentur-Rechnung.',
+    headline: 'Apps für Vereine & Ideen — ohne Agentur-Theater.',
     lede:
-      'Ich baue dir schlanke Web-Tools, die am Eventabend funktionieren. Eigene Domain, eigener Server, Preis den man zahlen kann.',
-    primaryCta: { label: 'Preise ansehen', href: '#preise' },
-    secondaryCta: { label: 'Beispiele', href: '#arbeit' },
-    image: '/marketing/nexplay.png',
-    imageAlt: 'NexPlay Vereins-App auf Desktop und Smartphone',
-  },
-
-  pricing: {
-    eyebrow: 'Preise',
-    title: 'Klar. Fair. Kein Theater.',
-    lede: 'Einmal bauen, optional hosten unter xy.rosstudio.ch. Du zahlst für Ergebnis — nicht für Folien.',
-    note: 'Alle Preise in CHF, zzgl. MwSt. wo nötig. Fixpreis nach kurzem Kickoff.',
-    plans: [
+      'Ich baue schlanke Web-Tools, die am Eventabend funktionieren. Eigene Domain, eigener Server, direkter Draht.',
+    primaryCta: { label: 'Beispiele ansehen', href: '#arbeit' },
+    secondaryCta: { label: 'Schreiben', href: '#kontakt-email' },
+    slides: [
       {
-        id: 'spark',
-        name: 'Spark',
-        price: '290',
-        period: 'ab',
-        tag: 'Klein & schnell',
-        pitch: 'Landing, Bestellformular, einfache Event-Seite.',
-        points: ['1–2 Screens', 'Handy-first', 'Live in wenigen Tagen', 'Subdomain möglich'],
-        cta: 'Spark anfragen',
-        featured: false,
+        src: '/showcase/wiretrack-dashboard.png',
+        alt: 'WireTrack Dashboard',
+        label: 'WireTrack',
       },
       {
-        id: 'build',
-        name: 'Build',
-        price: '890',
-        period: 'ab',
-        tag: 'Am meisten gebucht',
-        pitch: 'Vereins- oder Event-Tool mit Login, Listen, Live-Daten.',
-        points: [
-          'Mehrere Views',
-          'Admin + Nutzer',
-          'Preview-URL zum Testen',
-          'Hosting-Option',
-        ],
-        cta: 'Build anfragen',
-        featured: true,
+        src: '/showcase/foto-lager-galerie.png',
+        alt: 'Lagerfotos Galerie',
+        label: 'Lagerfotos',
       },
       {
-        id: 'own',
-        name: 'Own',
-        price: '1’890',
-        period: 'ab',
-        tag: 'Custom',
-        pitch: 'Eigene Plattform — Dashboard, Rollen, Module.',
-        points: ['Massgeschneidert', 'Eigene Domain', 'Deploy-Pipeline', 'Weiterentwicklung'],
-        cta: 'Own anfragen',
-        featured: false,
-      },
-    ] as const,
-    hosting: {
-      title: 'Hosting dazu?',
-      line: 'xy.rosstudio.ch auf meiner Infra — ab CHF 19 / Monat inkl. HTTPS & Backups-Basics.',
-    },
-  },
-
-  features: {
-    eyebrow: 'Features',
-    title: 'Was du wirklich brauchst.',
-    lede: 'Kein Feature-Friedhof. Nur Dinge, die Vereine und Events nachts um elf retten.',
-    items: [
-      {
-        title: 'Live in der Halle',
-        line: 'Bestellungen, Punkte, Galerien, Rallyes — gebaut für Stress, nicht für Demos.',
-        image: '/marketing/punkte-arena.png',
+        src: '/showcase/rally-roadtrip-lobby.png',
+        alt: 'Rally Quest Lobby',
+        label: 'Rally Quest',
       },
       {
-        title: 'Deine Domain',
-        line: 'pizza.rosstudio.ch oder eigene .ch — klar, teilbar, ohne WordPress-Chaos.',
-        image: '/marketing/lagerfotos.png',
+        src: '/showcase/kristall-arena.png',
+        alt: 'Punkte-Arena / Kristall',
+        label: 'Punkte-Arena',
       },
       {
-        title: 'Früh testbar',
-        line: 'Preview auf test.rosstudio.ch, bevor irgendwas live geht. Du klickst, du entscheidest.',
-        image: '/marketing/rally-quest.png',
-      },
-      {
-        title: 'Solo = direkt',
-        line: 'Du schreibst mir. Ich baue. Keine Account-Manager, keine 12-Personen-Calls.',
-        image: '/marketing/wiretrack.png',
+        src: '/marketing/nexplay-overview.png',
+        alt: 'NexPlay Übersicht',
+        label: 'NexPlay',
       },
     ] as const,
   },
@@ -110,7 +55,7 @@ export const site = {
   work: {
     eyebrow: 'Beispiele',
     title: 'Schon gebaut. Schon gelaufen.',
-    lede: 'Screens aus der Werkstatt — klick rein.',
+    lede: 'Echte Oberflächen aus der Werkstatt — tippen zum Vergrössern.',
     openLabel: 'Öffnen',
   },
 
@@ -119,7 +64,7 @@ export const site = {
       id: 'nexplay',
       name: 'NexPlay',
       category: 'Verein',
-      image: '/marketing/nexplay.png',
+      image: '/marketing/nexplay-overview.png',
       logo: '/marketing/nexplay-logo.png',
       alt: 'NexPlay Vereinsplattform',
       pitch: 'All-in-One für Teams: Planung, Chat, Spiele.',
@@ -135,7 +80,7 @@ export const site = {
       id: 'wiretrack',
       name: 'WireTrack',
       category: 'Plattform',
-      image: '/marketing/wiretrack.png',
+      image: '/showcase/wiretrack-dashboard.png',
       logo: '/marketing/wiretrack-logo.png',
       alt: 'WireTrack Dashboard',
       pitch: 'Operations-Dashboard für Projekte, Service und Zeit.',
@@ -150,7 +95,7 @@ export const site = {
       id: 'lagerfotos',
       name: 'Lagerfotos',
       category: 'Verein',
-      image: '/marketing/lagerfotos.png',
+      image: '/showcase/foto-lager-galerie.png',
       logo: null,
       alt: 'Lagerfotos Galerie',
       pitch: 'Foto-Galerie für Lager — Alben, Freigaben, Elternzugang.',
@@ -165,9 +110,9 @@ export const site = {
       id: 'rally',
       name: 'Rally Quest',
       category: 'Event',
-      image: '/marketing/rally-quest.png',
+      image: '/showcase/rally-roadtrip-lobby.png',
       logo: '/marketing/rally-logo.png',
-      alt: 'Rally Quest Live',
+      alt: 'Rally Quest Lobby',
       pitch: 'Live-Rallye mit Karte, Missionen und Rangliste.',
       description: 'Jede Location wird zur interaktiven Rallye.',
       details: {
@@ -180,7 +125,7 @@ export const site = {
       id: 'punkte-arena',
       name: 'Punkte-Arena',
       category: 'Event',
-      image: '/marketing/punkte-arena.png',
+      image: '/showcase/kristall-arena.png',
       logo: null,
       alt: 'Punkte-Arena Live',
       pitch: 'Punkte scannen, verbuchen, live zeigen.',
@@ -209,25 +154,25 @@ export const site = {
   ] as const,
 
   about: {
-    eyebrow: 'Über mich',
+    eyebrow: 'Studio',
     title: 'Ein Typ. Eigener Server. Gute Laune am Code.',
     lede:
-      'Ich heisse Silas — Freude am Coden und Schreiben. Zu Hause läuft die Infra, auf der Vereine und kleine Teams ihre Tools bekommen. Kein Grossbudget nötig.',
+      'Ich heisse Silas — Freude am Coden und Schreiben. Zu Hause läuft die Infra, auf der Vereine und kleine Teams ihre Tools bekommen.',
     facts: ['Solo', 'Schweiz', 'Eigene Server', 'xy.rosstudio.ch'] as const,
   },
 
   contact: {
     sectionTitle: 'Schreib mir kurz.',
-    lede: 'Idee, Budget-Rahmen, Termin — reicht. Ich antworte persönlich.',
+    lede: 'Idee und grober Rahmen reichen. Ich antworte persönlich.',
     cta: 'hi@roosstudio.ch',
     mailtoSubject: 'Anfrage — Roos Studio',
-    facts: ['Antwort per Mail', 'Fixpreis nach Kickoff', 'Remote / CH'] as const,
+    facts: ['Antwort per Mail', 'Remote / CH', 'Direkter Draht'] as const,
   },
 
   footer: {
-    tagline: 'Roos Studio — junge Software, bezahlbare Preise, echte Events.',
+    tagline: 'Roos Studio — Software für Vereine, Events und Ideen.',
   },
 } as const
 
 export type Example = (typeof site.examples)[number]
-export type Plan = (typeof site.pricing.plans)[number]
+export type HeroSlide = (typeof site.hero.slides)[number]
