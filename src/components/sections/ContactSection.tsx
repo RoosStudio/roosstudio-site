@@ -10,7 +10,7 @@ export function ContactSection() {
   return (
     <section
       id="kontakt"
-      className="rs-section-scroll-mt relative overflow-hidden border-t border-white/10 py-24 sm:py-32 md:py-40"
+      className="rs-section-scroll-mt relative overflow-hidden border-t border-white/[0.06] py-24 sm:py-32 md:py-40"
       aria-labelledby="kontakt-heading"
     >
       <div

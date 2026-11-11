@@ -25,7 +25,7 @@ export const site = {
     primaryCta: { label: 'Beispiele ansehen', href: '#arbeit' },
     secondaryCta: { label: 'Schreiben', href: '#kontakt-email' },
     atmosphere: {
-      src: '/showcase/atmosphere-clean.jpg',
+      src: '/showcase/atmosphere-studio.jpg',
       alt: '',
     },
   },

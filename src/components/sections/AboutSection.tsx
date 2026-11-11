@@ -7,7 +7,7 @@ export function AboutSection() {
   const reduce = useReducedMotion()
 
   return (
-    <section id="studio" className="rs-section-scroll-mt rs-section-y border-t border-white/10" aria-labelledby="about-heading">
+    <section id="studio" className="rs-section-scroll-mt rs-section-y border-t border-white/[0.06]" aria-labelledby="about-heading">
       <div className="rs-section-inner rs-section-inner--wide">
         <SectionReveal strength="bold">
           <p className="rs-eyebrow">{site.about.eyebrow}</p>
