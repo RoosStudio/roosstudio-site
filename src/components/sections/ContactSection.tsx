@@ -14,7 +14,7 @@ export function ContactSection() {
       aria-labelledby="kontakt-heading"
     >
       <div
-        className="pointer-events-none absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-rs-lime/15 blur-[100px]"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-rs-primary/12 blur-[110px]"
         aria-hidden
       />
 

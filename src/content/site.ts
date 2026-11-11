@@ -25,8 +25,8 @@ export const site = {
     primaryCta: { label: 'Beispiele ansehen', href: '#arbeit' },
     secondaryCta: { label: 'Schreiben', href: '#kontakt-email' },
     atmosphere: {
-      src: '/showcase/nex-ecosystem-hero.jpg',
-      alt: 'Nex Ökosystem Atmosphäre',
+      src: '/showcase/atmosphere-clean.jpg',
+      alt: '',
     },
   },
 
@@ -115,18 +115,18 @@ export const site = {
       },
     },
     {
-      id: 'nex-ecosystem',
-      name: 'Nex Ökosystem',
+      id: 'nex-family',
+      name: 'Nex Familie',
       category: 'Hub',
-      image: '/showcase/nex-ecosystem-tile.jpg',
+      image: '/showcase/nex-family.jpg',
       logo: '/marketing/nexplay-logo.png',
-      alt: 'Nex Ökosystem Hub',
-      pitch: 'Ein Hub für Vereine — Apps, die zusammenwachsen.',
+      alt: 'NexPlay, Lagerfotos, Rally Quest und Punkte-Arena',
+      pitch: 'NexPlay + Lagerfotos + Rally + Arena — unter einem Dach.',
       description:
-        'NexPlay und die Event-Tools als gemeinsames Ökosystem: ein Einstieg, viele Module, eigene Domain.',
+        'Die Vereins- und Event-Tools als Familie: NexPlay als Hub, dazu Lagerfotos, Rally Quest und Punkte-Arena. WireTrack läuft separat als B2B-Plattform.',
       details: {
-        was: 'Vereins-Apps, Events, Live-Tools unter einem Dach.',
-        wie: 'Modular, eigener Server, iterativ ausbaubar.',
+        was: 'NexPlay, Lagerfotos, Rally Quest, Punkte-Arena.',
+        wie: 'Modular, eigener Server, gemeinsame Richtung.',
         wo: 'next.rosstudio.ch',
       },
     },
